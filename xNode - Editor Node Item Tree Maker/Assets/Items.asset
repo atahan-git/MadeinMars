@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6b088b2b659e546801133562ef6571, type: 3}
+  m_Name: Items
+  m_EditorClassIdentifier: 
+  items:
+  - uniqueName: base_iron
+    name: Iron
+    desctiption: 
+    myMat: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+  - uniqueName: base_copper
+    name: Copper
+    desctiption: 
+    myMat: {fileID: 2100000, guid: 4e19d1b2f0194b74989b1aefb795b8f4, type: 2}

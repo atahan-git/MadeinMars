@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &102242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411448}
+  - component: {fileID: 11472504}
+  m_Layer: 0
+  m_Name: Belt Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &411448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11472504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5daaf590fdf0cb429798513d6492d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputStorage:
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  outputStorage:
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  - myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  middleStorage:
+    myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  toBeGone:
+    myItem: {fileID: 0}
+    offSet: {x: 0, y: 0, z: 0}
+    n: 0
+  feedingItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inputItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  feedingBelts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inputBelts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inLocations: 00000000
+  outLocations: 00000000
+  x: 0
+  y: 0
+  tileCovered: {fileID: 0}
+  mySet: {fileID: 11400000, guid: f2e2c5e9a6f7cbe49b1bcc04a5357fc6, type: 2}
+  oldShit:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  reqPulseCount: 0
+  curPulseCount: 0

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd94bdf66b5922e4fbecf53ebb766655, type: 3}
+  m_Name: BeltSet
+  m_EditorClassIdentifier: 
+  b_middle: {fileID: 187180, guid: 69e37e06e0017414d8eb33b1fe090280, type: 3}
+  b_in: {fileID: 161310, guid: e810111ddc34afa45a510acc133f3432, type: 3}
+  b_out: {fileID: 119752, guid: 42d4ce681ccbe1245a3517133ee7e705, type: 3}
+  offset: 0.25

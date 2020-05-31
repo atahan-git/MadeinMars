@@ -1,0 +1,38 @@
+Hello everyone!
+
+I'm an aspiring developer trying to make a mobile game with the feel of Factorio but the basic systems of Factory Idle. Both are games about making factories. I am at the very early stages, and trying just to make a nice belt system that will work very efficiently on mobile systems. 
+
+[img]https://i.imgur.com/Z3TvoAm.gif[/img]
+[size=1]Move items move![/size]
+
+Instead of Factorio's collision based system, I wanted to opt to a slot based conveyor belt system, so that I can update it a lot less, and have time fast forwarding mode that is really hard to do with Factorio's system. 
+
+But slot based systems have their own problems:
+[img]https://i.imgur.com/iAtgTTE.gif[/img]
+[size=1]The items here don't move as they should be![/size]
+
+Main problem with a slot system is the update order. If you get careless about your items, you can update the same item twice in a loop:
+[img]https://i.imgur.com/dy0ukj7.gif[/img]
+
+If you keep track of the items you've moved before, you can get rid of that issue, but now they will stop at that same intersection point and you lose belt compression:
+[img]https://i.imgur.com/bHQRhGl.gif[/img]
+
+If you put yet another mark on the items, you can even fix that:
+[img]https://i.imgur.com/ZwSKWWM.gif[/img]
+
+But none of those systems really work with a completely filled loop:
+[img]https://i.imgur.com/nu1QK1l.gif[/img]
+
+I have some ideas to fix the loop, but they all increase the complexity/processing cost a lot.
+
+And at his point we are making 3 different passes on each of the belt section.
+Do a normal pass and mark things that don't move
+Do a second pass, moving only marked objects
+Clear the marks
+I am currently considering either dropping loop support (like Factory Idle, where you simply can't built looped belts), or just going with the bugged loops as they are not that big of a problem, given I would expect loops to be used very rarely (I never even realized you can't do loops in Factory Idle until I read it somewhere).
+
+So the question becomes, does anyone have a "conveyor belt" algorithm that can solve this problem efficiently? Right now my system is pretty much O(n), but I am not sure if I can improve it further, maybe a collision based system will actually be faster than a slot based system. I don't even know if this problem have a more legit name (like the [url=https://www.geeksforgeeks.org/trapping-rain-water/]Trapping Rain Water[/url] problem) so I can't search online... Also would the increased complexity and time cost worth the gameplay opportunities? 
+
+Currently my not very optimized solution clocks in at 12ms per update for 4000 belts in my laptop. I will be moving my logic to new ECS system soon, but I still want it to be as optimized as possible. I will continue developing with the 3rd system and see if I get to a performance bottleneck in 'normal' gameplay. 
+
+Thanks everyone for their input!

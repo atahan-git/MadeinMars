@@ -1,0 +1,2035 @@
+fileFormatVersion: 2
+guid: ef5be55c1a6aa764f93f1929c9745a59
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3821319437314492973
+    second: BeltsRender_0
+  - first:
+      213: -1081953156810806848
+    second: BeltsRender_1
+  - first:
+      213: -3260908560540908303
+    second: BeltsRender_2
+  - first:
+      213: -3302164783272594645
+    second: BeltsRender_3
+  - first:
+      213: 1763450242502437402
+    second: BeltsRender_4
+  - first:
+      213: -7877311334315652705
+    second: BeltsRender_5
+  - first:
+      213: -2170550396459890186
+    second: BeltsRender_6
+  - first:
+      213: -8815118952950925391
+    second: BeltsRender_7
+  - first:
+      213: -6985501359829909913
+    second: BeltsRender_8
+  - first:
+      213: 1781132548449239830
+    second: BeltsRender_9
+  - first:
+      213: -9189168932227093113
+    second: BeltsRender_10
+  - first:
+      213: 7000429772555215844
+    second: BeltsRender_11
+  - first:
+      213: 3464303151579970966
+    second: BeltsRender_12
+  - first:
+      213: 2187069567407996008
+    second: BeltsRender_13
+  - first:
+      213: 410690002445562921
+    second: BeltsRender_14
+  - first:
+      213: -5574750874421482455
+    second: BeltsRender_15
+  - first:
+      213: -998180139434910156
+    second: BeltsRender_16
+  - first:
+      213: -8289497994403815009
+    second: BeltsRender_17
+  - first:
+      213: 4704767108662335422
+    second: BeltsRender_18
+  - first:
+      213: 9220540953488858405
+    second: BeltsRender_19
+  - first:
+      213: -4445516308210651148
+    second: BeltsRender_20
+  - first:
+      213: 6316088184257481462
+    second: BeltsRender_21
+  - first:
+      213: 3035613923488180602
+    second: BeltsRender_22
+  - first:
+      213: 666904169968704481
+    second: BeltsRender_23
+  - first:
+      213: -7094684938303528300
+    second: BeltsRender_24
+  - first:
+      213: 6467920873651939248
+    second: BeltsRender_25
+  - first:
+      213: -8869475448183481244
+    second: BeltsRender_26
+  - first:
+      213: -3334485006293746082
+    second: BeltsRender_27
+  - first:
+      213: -5178598605305161857
+    second: BeltsRender_28
+  - first:
+      213: -2282281721000764890
+    second: BeltsRender_29
+  - first:
+      213: -7014676856274805454
+    second: BeltsRender_30
+  - first:
+      213: -3473479528898023486
+    second: BeltsRender_31
+  - first:
+      213: -3806890182252146008
+    second: BeltsRender_32
+  - first:
+      213: -5897387079686238771
+    second: BeltsRender_33
+  - first:
+      213: 5396368321161877952
+    second: BeltsRender_34
+  - first:
+      213: 2565999501382340816
+    second: BeltsRender_35
+  - first:
+      213: -423468606285172274
+    second: BeltsRender_36
+  - first:
+      213: 6047960916035808883
+    second: BeltsRender_37
+  - first:
+      213: -4786584061289398984
+    second: BeltsRender_38
+  - first:
+      213: -2779609704375300804
+    second: BeltsRender_39
+  - first:
+      213: -8923439362598760277
+    second: BeltsRender_40
+  - first:
+      213: -3087521942260930099
+    second: BeltsRender_41
+  - first:
+      213: -8323901806537529226
+    second: BeltsRender_42
+  - first:
+      213: -237135245010032098
+    second: BeltsRender_43
+  - first:
+      213: -8651217781073767870
+    second: BeltsRender_44
+  - first:
+      213: -4665559639527201506
+    second: BeltsRender_45
+  - first:
+      213: -8075315668764974468
+    second: BeltsRender_46
+  - first:
+      213: -2324801930120598656
+    second: BeltsRender_47
+  - first:
+      213: 3877465785595864562
+    second: BeltsRender_48
+  - first:
+      213: 8625399961920274203
+    second: BeltsRender_49
+  - first:
+      213: -4244316759168770954
+    second: BeltsRender_50
+  - first:
+      213: 662768085362617931
+    second: BeltsRender_51
+  - first:
+      213: -427192571927642496
+    second: BeltsRender_52
+  - first:
+      213: 4854695677900767174
+    second: BeltsRender_53
+  - first:
+      213: 1813555416313029699
+    second: BeltsRender_54
+  - first:
+      213: -2834563413997472036
+    second: BeltsRender_55
+  - first:
+      213: 6684865103117273188
+    second: BeltsRender_56
+  - first:
+      213: -6023981836104596992
+    second: BeltsRender_57
+  - first:
+      213: 2020882487887156866
+    second: BeltsRender_58
+  - first:
+      213: 835032142193074696
+    second: BeltsRender_59
+  - first:
+      213: -4975988460671671915
+    second: BeltsRender_60
+  - first:
+      213: -2383330025699541041
+    second: BeltsRender_61
+  - first:
+      213: -7672757575926166735
+    second: BeltsRender_62
+  - first:
+      213: 4565970278392202678
+    second: BeltsRender_63
+  - first:
+      213: -3563816005747189575
+    second: BeltsRender_64
+  - first:
+      213: 4294485911925533214
+    second: BeltsRender_65
+  - first:
+      213: 4659995513462745184
+    second: BeltsRender_66
+  - first:
+      213: -4793618231136595127
+    second: BeltsRender_67
+  - first:
+      213: -9153129543076646698
+    second: BeltsRender_68
+  - first:
+      213: -8349631009484852119
+    second: BeltsRender_69
+  - first:
+      213: 2144298132426728274
+    second: BeltsRender_70
+  - first:
+      213: -6943510228005647909
+    second: BeltsRender_71
+  - first:
+      213: -2447475133189500338
+    second: BeltsRender_72
+  - first:
+      213: 4819132785778173856
+    second: BeltsRender_73
+  - first:
+      213: 8770908916542926465
+    second: BeltsRender_74
+  - first:
+      213: -8085627933140189527
+    second: BeltsRender_75
+  - first:
+      213: -3023861345131548012
+    second: BeltsRender_76
+  - first:
+      213: -1570400446915598087
+    second: BeltsRender_77
+  - first:
+      213: 6903829232252640735
+    second: BeltsRender_78
+  - first:
+      213: -56621627749776591
+    second: BeltsRender_79
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 160
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BeltsRender_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ecbd5bb807f55a48a49394bf08545c3
+      internalID: 3821319437314492973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_1
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2176cac27fc9dff4699289235d297f7b
+      internalID: -1081953156810806848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_2
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6183631721c88a24f8b1ad06417a09fa
+      internalID: -3260908560540908303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_3
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3875889eb2f3c04b82cef2ce9ff0e16
+      internalID: -3302164783272594645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_4
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f36f553f300d04f918a8aa31cbe3a9
+      internalID: 1763450242502437402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_5
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e6423d5c66fdc242a765cfc54afa4db
+      internalID: -7877311334315652705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_6
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 687c59ad70b4571438058ad1a30f5722
+      internalID: -2170550396459890186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_7
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 1843.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4574ae02bcd679409da6550672f2de3
+      internalID: -8815118952950925391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 032d21518bd83af40a35f95c17427a00
+      internalID: -6985501359829909913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_9
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53218765ba8849642a4d80a0d35953bc
+      internalID: 1781132548449239830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_10
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5419fcec670df4541bb640fdd154d751
+      internalID: -9189168932227093113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_11
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33aeda0f85555f34d86ab7ff9711eb9d
+      internalID: 7000429772555215844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_12
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91017bc4d27a2904b913cc57edf35882
+      internalID: 3464303151579970966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_13
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 341bcdb6e5987774ca1cd98df6aea6b1
+      internalID: 2187069567407996008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_14
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f0ba7309ced25e4bbdae48e218b9645
+      internalID: 410690002445562921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_15
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 1639.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e6dfd7f8a2f7b542aa5ea39167e7432
+      internalID: -5574750874421482455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7a9f7783b3ba324f8cd54b9b5a749ff
+      internalID: -998180139434910156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_17
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df7a291aa34a1e48adff89553ca442a
+      internalID: -8289497994403815009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_18
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 619087dbef2b3b34d89775526a56ce60
+      internalID: 4704767108662335422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_19
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fe8540972fd0bb4997920b6cdeb4065
+      internalID: 9220540953488858405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_20
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9c44925b245a342bfe5f745227d2f3
+      internalID: -4445516308210651148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_21
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15f2161d20d828749bd45a1fead02703
+      internalID: 6316088184257481462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_22
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9639fee73f74ec2478c7969a0114d001
+      internalID: 3035613923488180602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_23
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 1435.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae56bd7540fc28e46b80939399dc4163
+      internalID: 666904169968704481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53743ec5e4d7bd148a408a158927364e
+      internalID: -7094684938303528300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_25
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a60b9f4312b0ea46be65a8527b79d97
+      internalID: 6467920873651939248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_26
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61dd537be62644740b84f469cc9bf983
+      internalID: -8869475448183481244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_27
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35a3b4d0f9d0cf45aa6efb28ba4806f
+      internalID: -3334485006293746082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_28
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 891264f839b564a4d826242294ce27e2
+      internalID: -5178598605305161857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_29
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b264c21f6f7067a40aef7a1f982a8fd9
+      internalID: -2282281721000764890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_30
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3f2dcf868660d640b5f0999dc35ff23
+      internalID: -7014676856274805454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_31
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 1231.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88865e6ec993c0e4eb9809cc179fbd24
+      internalID: -3473479528898023486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00f7ee7f393157243b3d44ca49b01081
+      internalID: -3806890182252146008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_33
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf285c0c45affce44bb0e98233217335
+      internalID: -5897387079686238771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_34
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e648c91b34424b04f97bb3cc3af39bb7
+      internalID: 5396368321161877952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_35
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42630821bdaf3c04d9a3ae838ae1d67c
+      internalID: 2565999501382340816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_36
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 230eca1d813145c4baa018d85fbac08e
+      internalID: -423468606285172274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_37
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd9dfa38e8b455408bafd4fc1d0a5cf
+      internalID: 6047960916035808883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_38
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36d947deccd096141af342bb2734cdcc
+      internalID: -4786584061289398984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_39
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 1027.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca2b9ae75343664db3b868429fb888f
+      internalID: -2779609704375300804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b6b3eda9eb39e428b1c96276a07cb7
+      internalID: -8923439362598760277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_41
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe33006e9c0f924f90985e20545bbe0
+      internalID: -3087521942260930099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_42
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 993b01bc2e896f448adf323de4caf4a6
+      internalID: -8323901806537529226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_43
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e927397d013d9cc4b9b32072eba4b9cb
+      internalID: -237135245010032098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_44
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce2dcf806c99df42bd44be8375b70eb
+      internalID: -8651217781073767870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_45
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7eb5389432a804cb8f02bbe2f48a41
+      internalID: -4665559639527201506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_46
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0530a46b8fce29441aa5c2bc0a65b0d5
+      internalID: -8075315668764974468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_47
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 823.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bde2f8b30db975468a7c7677dea2a72
+      internalID: -2324801930120598656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad252ed2fed61546a40f17bee55b077
+      internalID: 3877465785595864562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_49
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86cbacbd56b90ab45abb0859f772225a
+      internalID: 8625399961920274203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_50
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329bfad9496d19a4abb47443ef716c2a
+      internalID: -4244316759168770954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_51
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a158261959a4fc4889ca96dae03d8dd
+      internalID: 662768085362617931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_52
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29fb2acaf2daec546aab1670098e6452
+      internalID: -427192571927642496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_53
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a54927cf96987cf4dad6d2e746484b7a
+      internalID: 4854695677900767174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_54
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d61d131e4be01b6458c90925fd422ddd
+      internalID: 1813555416313029699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_55
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 619.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51e36a0487758154394620d38d070ed7
+      internalID: -2834563413997472036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ccf7dfaab0b7c4d8eb4571f39ec799
+      internalID: 6684865103117273188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_57
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5feb89a15ecc1c4183607e36f988817
+      internalID: -6023981836104596992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_58
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ba220c3f963644b89934950a3791f7
+      internalID: 2020882487887156866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_59
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae27c7038425b34da841c878f510ccd
+      internalID: 835032142193074696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_60
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0a61df9ce2f3b45947cf5258aa017e
+      internalID: -4975988460671671915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_61
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa5bc2c40047514dadd65d362d93880
+      internalID: -2383330025699541041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_62
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4739e40959b460d4cba4db596f0ac5b9
+      internalID: -7672757575926166735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_63
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 415.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6ee25db29ff3849bdb2e0e5fc773fb
+      internalID: 4565970278392202678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca8309d7fb019b41af2a71cb2fdd211
+      internalID: -3563816005747189575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_65
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07b658531760006428b37cae7f72cfae
+      internalID: 4294485911925533214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_66
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b03b8287f127042bbe69133def460a
+      internalID: 4659995513462745184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_67
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fc167ce0af2ffd458b1d7a1e52189c1
+      internalID: -4793618231136595127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_68
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27b432b9dc0bd164b8b6e909e6b7e6db
+      internalID: -9153129543076646698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_69
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f09b44e78e7291f428991dcbb7e914b9
+      internalID: -8349631009484852119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_70
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edf017eecd75b134991efd9da076268f
+      internalID: 2144298132426728274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_71
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 211.2
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f9ec8640e0ff7f4abc4d1cce2bd382f
+      internalID: -6943510228005647909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26a6f119ef1acce43a9d60d31814b6ff
+      internalID: -2447475133189500338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_73
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9ca87f536878fd49922f217b240405a
+      internalID: 4819132785778173856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_74
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af5c811e16002d438525557a8cd5552
+      internalID: 8770908916542926465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_75
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eacf1e021e9c2cb42b27833b063724f9
+      internalID: -8085627933140189527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_76
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93f6f00d413c446458d3a987a3ef2e66
+      internalID: -3023861345131548012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_77
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b189d3d7df4b64bb237b379b3fedf4
+      internalID: -1570400446915598087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_78
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e66017e635a6da44eada7d7b78705e4f
+      internalID: 6903829232252640735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeltsRender_79
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 7.199997
+        width: 204.8
+        height: 204.8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331983cafe92e0f4aab871ba38a36c4c
+      internalID: -56621627749776591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

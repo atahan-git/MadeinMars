@@ -1,0 +1,10 @@
+--------------------------------------------------
+
+No Optimization whatsoever, cant even run on an android device:
+Belt Count = 4104
+Prepass belts average: 7.663497
+Belt slot update average: 0.012301
+Belt slot Gfx average: 0.021555
+Total test time: 102.720200
+
+--------------------------------------------------

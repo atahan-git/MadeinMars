@@ -1,0 +1,39 @@
+
+
+--------------------------------------------------
+
+Belt Count = 4104
+Trial Counts: Prepass - 10, Update Slot - 1000, Update Gfx - 1000
+Prepass belts average: 0.271850
+Magic update average: 1.289361
+Belt slot update average: 0.017509
+Belt slot Gfx average: 0.016420
+Total test time: 1326.014000
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+Belt Count = 4104
+Trial Counts: Prepass - 10, Update Slot - 100, Update Gfx - 100
+Prepass belts average: 0.218745
+Magic update average: 0.103648
+Belt slot update average: 0.012106
+Belt slot Gfx average: 0.014561
+Total test time: 15.221930
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+Belt Count = 4104
+Trial Counts: Prepass - 10, Update Slot - 100, Update Gfx - 100
+Prepass belts average: 0.250626
+Magic update average: 0.117714
+Belt slot update average: 0.013356
+Belt slot Gfx average: 0.000001
+Total test time: 15.618810
+
+--------------------------------------------------

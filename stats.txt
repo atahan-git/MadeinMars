@@ -1,0 +1,4 @@
+max size of a world: 18000
+feasible max belt slot/object count = 45000
+feasible max belt count = 4500
+feasible max item visible count = 7500
