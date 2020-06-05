@@ -10,7 +10,6 @@ public class MovementController : MonoBehaviour {
 	Vector2 oldTouchVector;
 	float oldTouchDistance;
 
-	ItemPlacer it;
 	Transform myCam;
 
 	public float minZoom = 6f;
@@ -18,7 +17,6 @@ public class MovementController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		it = GetComponent<ItemPlacer> ();
 		myCam = Camera.main.gameObject.transform;
 	}
 
@@ -31,9 +29,9 @@ public class MovementController : MonoBehaviour {
 			return;
 		}
 		
-		if (!it.isMovementEnabled)
+		if (!Player_MasterControlCheck.s.isMovementEnabled)
 			return;
-		if (it.isPlacingItem) {
+		if (Player_MasterControlCheck.s.isPlacingItem) {
 			defZero = 1;
 		} else {
 			defZero = 0;

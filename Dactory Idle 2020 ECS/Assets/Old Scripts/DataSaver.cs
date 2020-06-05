@@ -15,7 +15,7 @@ public class DataSaver : MonoBehaviour {
 	SaveFile mySave;
 	string saveName = "mySave";
 
-	public static ItemData[] ItemsToBeSaved = new ItemData[99];
+	public static BuildingSaveData[] ItemsToBeSaved = new BuildingSaveData[99];
 	public static int n = 0;
 	public static BeltData[] BeltsToBeSaved = new BeltData[999];
 	public static int b = 0;
@@ -45,13 +45,10 @@ public class DataSaver : MonoBehaviour {
 	int itemID = 0;
 	int beltID = 0;
 	void InstantiateItems () {
-		foreach (ItemData myItem in mySave.itemData) {
+		foreach (BuildingSaveData myItem in mySave.itemData) {
 			if (myItem != null) {
-				if (myItem.type != -1) {
-					ItemBaseScript reelItem = ((GameObject)Instantiate(itemPrefabs[myItem.type], transform.position, transform.rotation)).GetComponent<ItemBaseScript>();
-					reelItem.PlaceSelf(myItem.x, myItem.y);
-					reelItem.gameObject.name = reelItem.gameObject.name + " " + itemID;
-					itemID++;
+				if (myItem.myUniqueName != "") {
+					ObjectBuilderMaster.BuildObject(myItem.myUniqueName, myItem.myPos);
 				}
 			}
 		}
@@ -117,10 +114,10 @@ public class DataSaver : MonoBehaviour {
 
 	[System.Serializable]
 	public class SaveFile {
-		public ItemData[] itemData;
+		public BuildingSaveData[] itemData;
 		public BeltData[] beltData;
 
-		public SaveFile (ItemData[] myit, BeltData[] mybel) {
+		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel) {
 			itemData = myit;
 			beltData = mybel;
 		}
@@ -128,15 +125,13 @@ public class DataSaver : MonoBehaviour {
 	}
 
 	[System.Serializable]
-	public class ItemData {
-		public int type = -1;
-		public int x = -1;
-		public int y = -1;
+	public class BuildingSaveData {
+		public string myUniqueName;
+		public Position myPos;
 
-		public ItemData (int myType, int myX, int myY) {
-			type = myType;
-			x = myX;
-			y = myY;
+		public BuildingSaveData (BuildingData myType, Position location) {
+			myUniqueName = myType.uniqueName;
+			myPos = location;
 		}
 	}
 

@@ -208,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 103354621}
   - component: {fileID: 103354623}
-  - component: {fileID: 103354622}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Untagged
@@ -230,18 +229,6 @@ Transform:
   m_Father: {fileID: 660928352}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &103354622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103354620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7b9fb6798efef40b53d4f6da6b8269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &103354623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +251,8 @@ GameObject:
   m_Component:
   - component: {fileID: 120790988}
   - component: {fileID: 120790989}
+  - component: {fileID: 120790991}
+  - component: {fileID: 120790990}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -300,6 +289,43 @@ MonoBehaviour:
   minZoom: 6
   maxZoom: 15
   keyboardSpeed: 10
+--- !u!114 &120790990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120790987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540baba120d2e9045aa80b25253f3719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMovementEnabled: 1
+  isPlacingItem: 0
+  buildingController: {fileID: 0}
+--- !u!114 &120790991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120790987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f07eac0fc86b374eb50423d79b755e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beltPrefab: {fileID: 0}
+  ItemPlacementHelperPrefab: {fileID: 118738, guid: e550cad1a961ea741825e01938364653,
+    type: 3}
+  isPlacingItem: 0
+  isBeltPlacing: 0
+  isSelling: 0
+  curItemId: 0
+  UIBeltModeOverlay: {fileID: 422055628}
+  lastTile: {fileID: 0}
+  buildingItem: {fileID: 0}
 --- !u!1 &135991036
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317095385}
   - component: {fileID: 317095386}
+  - component: {fileID: 317095387}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -762,7 +789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317095384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 660928352}
@@ -793,6 +820,21 @@ MonoBehaviour:
   rectangleSelect:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
+--- !u!114 &317095387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317095384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ccec1837c3b42916613fafffadb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBuildings:
+  - {fileID: 11400000, guid: 100a719508880084abd0d3fdba96fe00, type: 2}
+  - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
 --- !u!1 &422055628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511694006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 3.78, y: 6.93, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1164,6 +1206,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532766335}
   m_CullTransparentMesh: 0
+--- !u!1 &584196642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 584196643}
+  - component: {fileID: 584196644}
+  m_Layer: 0
+  m_Name: DEBUG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &584196643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584196642}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.7483642, y: 6.9101653, z: -3.4495542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 660928352}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &584196644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584196642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28883a273ef847841a978d83564ce71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeColorOnPlacedItemOnTop: 0
 --- !u!1 &660928351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1282,8 @@ Transform:
   - {fileID: 103354621}
   - {fileID: 317095385}
   - {fileID: 120790988}
+  - {fileID: 1663496229}
+  - {fileID: 584196643}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1655,8 +1743,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: PlaceItem
+        - m_Target: {fileID: 1663496230}
+          m_MethodName: GetBuildingInSlot
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1743,6 +1831,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287506091}
   m_CullTransparentMesh: 0
+--- !u!1 &1663496228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663496229}
+  - component: {fileID: 1663496232}
+  - component: {fileID: 1663496231}
+  - component: {fileID: 1663496230}
+  m_Layer: 0
+  m_Name: GUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1663496229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663496228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 660928352}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1663496230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663496228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cc8a0fe5cb5114db95dc3d288758e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotBuildings:
+  - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
+  - {fileID: 11400000, guid: 100a719508880084abd0d3fdba96fe00, type: 2}
+  - {fileID: 0}
+--- !u!114 &1663496231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663496228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5d222538986f145beb205162cdd210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1663496232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663496228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a53b13c828c83f44906daba69ef4817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1877336144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,8 +2040,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: PlaceItem
+        - m_Target: {fileID: 1663496230}
+          m_MethodName: GetBuildingInSlot
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1905,7 +2066,6 @@ GameObject:
   - component: {fileID: 1889085304}
   - component: {fileID: 1889085303}
   - component: {fileID: 1889085302}
-  - component: {fileID: 1889085301}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: Untagged
@@ -1927,30 +2087,6 @@ Transform:
   m_Father: {fileID: 660928352}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1889085301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889085299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f79d97f2e38c9445b797d90ed8d99e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beltPrefab: {fileID: 102242, guid: 7f4064ca17702b445ac8cb89c0db65d3, type: 3}
-  placeableObjects:
-  - {fileID: 11400000, guid: 65eba900fa9ba98468a6fae37767bcf8, type: 2}
-  - {fileID: 11400000, guid: 33aca52aba0d4b04e96f0a83f7aabf55, type: 2}
-  - {fileID: 11400000, guid: 31e92a7a513e87249b23b8bf0a9ca394, type: 2}
-  itemPlacementPrefab: {fileID: 118738, guid: e550cad1a961ea741825e01938364653, type: 3}
-  isPlacingItem: 0
-  isMovementEnabled: 1
-  isBeltPlacing: 0
-  isSelling: 0
-  curItemId: 0
-  UIBeltModeOverlay: {fileID: 422055628}
 --- !u!114 &1889085302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1980,6 +2116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1697ce04d4886ea41acd1933beb44841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buidingWorldObjectPrefab: {fileID: 118738, guid: 04493e98e3980c246a2fdd3f43bca791,
+    type: 3}
 --- !u!114 &1889085304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2164,8 +2302,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: PlaceItem
+        - m_Target: {fileID: 1663496230}
+          m_MethodName: GetBuildingInSlot
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

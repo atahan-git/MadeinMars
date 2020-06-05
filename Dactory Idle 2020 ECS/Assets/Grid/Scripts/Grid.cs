@@ -6,9 +6,12 @@ using System.IO;
 using UnityEngine.UI;
 
 
+[System.Serializable]
 public struct Position {
 	public int x;
 	public int y;
+
+	public static float defaultPositionVector3Z = 0;
 
 	public Position (int _x, int _y) {
 		x = _x;
@@ -17,6 +20,20 @@ public struct Position {
 
 	public static Position operator + (Position a, Position b) {
 		return new Position(a.x + b.x, a.y + b.y);
+	}
+
+	public static Position operator - (Position a, Position b) {
+		return new Position(a.x - b.x, a.y - b.y);
+	}
+
+	public Vector3 vector3 {
+		get {
+			return new Vector3(x,y, defaultPositionVector3Z);
+		}
+	}
+
+	public override string ToString () {
+		return string.Format("pos({0}, {1})", x, y);
 	}
 }
 
@@ -147,6 +164,7 @@ public class Grid : MonoBehaviour {
 			for (int y = 0; y < myTilesGameObjects.GetLength (1); y++) {
 
 				GameObject myTile = (GameObject)Instantiate (tileSet.prefabs[myTilesIDs.tiles [x, y]], transform.position, transform.rotation);
+				myTile.gameObject.name = x.ToString() + ", " + y.ToString() + " - "+ myTile.gameObject.name;
 				myTilesGameObjects [x, y] = myTile;
 
 				TileBaseScript myTileScript = myTile.GetComponent<TileBaseScript> ();

@@ -4,8 +4,10 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Building Data", menuName = "Building Data")]
 public class BuildingData : ScriptableObject {
+	public string uniqueName = "Base_newbuilding";
+
 	public ArrayLayout shape;
-	public static Vector2 center = new Vector2(3, 3);
+	public static Position center = new Position(3, 3);
 
 	public enum ItemType { Belt, Miner, Furnace, Processor }
 
@@ -15,4 +17,5 @@ public class BuildingData : ScriptableObject {
 	public bool[] BuildingAbility = new bool[5];
 
 	public Sprite BuildingSprite;
+	public Vector2 spriteOffset = new Vector2(0.5f, 0.5f);
 }

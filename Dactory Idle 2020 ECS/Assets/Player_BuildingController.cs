@@ -1,15 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Entities.UniversalDelegates;
+using UnityEngine;
 
-public class ItemPlacer : MonoBehaviour {
 
+/// <summary>
+/// Handles the player input processing for item placement.
+/// </summary>
+public class Player_BuildingController : MonoBehaviour
+{
 	public GameObject beltPrefab;
-	public PlaceableObjectData[] placeableObjects;
-	public GameObject itemPlacementPrefab;
+	public GameObject ItemPlacementHelperPrefab;
 	ItemPlacementHelper curItemPlacementScript;
 
 	public bool isPlacingItem = false;
-	public bool isMovementEnabled = true;
 	public bool isBeltPlacing = false;
 	public bool isSelling = false;
 
@@ -22,18 +27,21 @@ public class ItemPlacer : MonoBehaviour {
 	void Start () {
 		mycam = Camera.main;
 	}
-	/*
+	
 	// Update is called once per frame
 	void Update () {
 		if (isPlacingItem)
 			PlaceItemCheck ();
-		if (isBeltPlacing && !lastFrameStuff)
+		/*if (isBeltPlacing && !lastFrameStuff)
 			PlaceBeltsCheck ();
 		if (isSelling)
 			SellCheck ();
-		lastFrameStuff = false;
+		lastFrameStuff = false;*/
 	}
 
+
+	public TileBaseScript lastTile;
+	public BuildingData buildingItem;
 	void PlaceItemCheck () {
 		if (Input.GetMouseButton(0)) {
 			Ray myRay = mycam.ScreenPointToRay (Input.mousePosition);
@@ -46,29 +54,34 @@ public class ItemPlacer : MonoBehaviour {
 				if (tileS == null)
 					return;
 
+				lastTile = tileS;
 				curItemPlacementScript.UpdatePosition(tileS);
 			}
 		} else {
 			print ("Item Placement Done");
 			isPlacingItem = false;
-				curItemPlacementScript.PlaceSelf ();
-				//Destroy (curItem.gameObject);
-				curItemPlacementScript = null;
-			
+			Player_MasterControlCheck.s.TogglePlacingItem(false);
+			if (ObjectBuilderMaster.CheckPlaceable(buildingItem, lastTile.position)) {
+				curItemPlacementScript.PlaceSelf();
+				ObjectBuilderMaster.BuildObject(buildingItem, lastTile.position);
+			} else {
+				curItemPlacementScript.FailedPlacingSelf();
+			}
 		}
 	}
-
-	public void PlaceItem (int id) {
+	
+	public void TryToPlaceItem (BuildingData myData) {
 		print ("Placing Item");
 		isPlacingItem = true;
 		isBeltPlacing = false;
 		isSelling = false;
-		isMovementEnabled = true;
+		Player_MasterControlCheck.s.ToggleMovement(true);
+		Player_MasterControlCheck.s.TogglePlacingItem(true);
 		UIBeltModeOverlay.SetActive (false);
-		curItemId = id;
-		GameObject curItemPlacement = Instantiate (itemPlacementPrefab, transform.position, Quaternion.identity);
+		buildingItem = myData;
+		GameObject curItemPlacement = Instantiate (ItemPlacementHelperPrefab, transform.position, Quaternion.identity);
 		curItemPlacementScript = curItemPlacement.GetComponent<ItemPlacementHelper> ();
-		curItemPlacementScript.Setup(placeableObjects[curItemId]);
+		curItemPlacementScript.Setup(myData);
 	}
 
 	public void SelectDown () {
@@ -76,10 +89,12 @@ public class ItemPlacer : MonoBehaviour {
 		isBeltPlacing = false;
 		isSelling = false;
 		UIBeltModeOverlay.SetActive (false);
+		Player_MasterControlCheck.s.TogglePlacingItem(false);
 	}
 
-	public void SelectUp(){
-		isMovementEnabled = true;
+	public void SelectUp() {
+		Player_MasterControlCheck.s.ToggleMovement(true);
+		Player_MasterControlCheck.s.TogglePlacingItem(false);
 	}
 
 	public void SellEnable (){
@@ -105,17 +120,18 @@ public class ItemPlacer : MonoBehaviour {
 				}
 
 				if (tileS.areThereItem) {
-					if (tileS.myItem.GetComponent<PlacedItemBaseScript> ())
+					/*if (tileS.myItem.GetComponent<PlacedItemBaseScript> ())
 						tileS.myItem.GetComponent<PlacedItemBaseScript> ().DestroyYourself ();
 					else
-						tileS.myItem.GetComponent<BeltScript> ().DestroyYourself ();
+						tileS.myItem.GetComponent<BeltScript> ().DestroyYourself ();*/
+					throw new NotImplementedException("Building selling not implemented yet!");
 				}
 			}
 		}
 	}
 
 	//--------------------------------------------------------------------------------------------------BELT STUFF
-	bool lastFrameStuff = false;
+	/*bool lastFrameStuff = false;
 	public void ActivateBeltMode () {
 		isMovementEnabled = false;
 		isBeltPlacing = true;
@@ -297,12 +313,12 @@ public class ItemPlacer : MonoBehaviour {
 		else if (y < yOther) //up
 			return 1;
 		else {
-			Debug.LogError ("erorrr");
+			Debug.LogError("erorrr");
 			return -1;
 		}
 	}
 
-	int RevertLocation(int location){
+	int RevertLocation (int location) {
 		//return location;
 
 		switch (location) {
@@ -325,3 +341,4 @@ public class ItemPlacer : MonoBehaviour {
 		}
 	}
 }
+

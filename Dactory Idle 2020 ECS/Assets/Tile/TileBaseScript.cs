@@ -6,6 +6,7 @@ public class TileBaseScript : MonoBehaviour {
 	public int tileType = -1;
 	public int x = 0;
 	public int y = 0;
+	public Position position { get { return new Position(x, y); } }
 
 	static bool isDragStarted = false;
 
@@ -14,12 +15,21 @@ public class TileBaseScript : MonoBehaviour {
 	public bool itemPlaceable = false;
 	public bool beltPlaceable = false;
 
-	
+
+	SpriteRenderer rend;
 	// Update is called once per frame
 	void Update () {
 		if (isDragStarted && Input.GetMouseButtonUp (0)) {
 			//print ("drag end");
 			isDragStarted = false;
+		}
+
+		if (MasterDebug.changeColorOnPlacedItemOnTop) {
+			if (rend == null)
+				rend = GetComponentInChildren<SpriteRenderer>();
+			else {
+				rend.color = areThereItem ? Color.green : Color.red;
+			}
 		}
 	}
 

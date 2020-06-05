@@ -42,8 +42,8 @@ public class PlacedItemBaseScript : MonoBehaviour {
 
 	
 	void SaveYourself () {
-		DataSaver.ItemsToBeSaved[DataSaver.n] = new DataSaver.ItemData(type, x, y);
-		DataSaver.n++;
+		//DataSaver.ItemsToBeSaved[DataSaver.n] = new DataSaver.BuildingSaveData(type, x, y);
+		//DataSaver.n++;
 	}
 
 	void OnDestroy () {

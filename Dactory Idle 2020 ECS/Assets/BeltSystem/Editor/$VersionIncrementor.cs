@@ -48,7 +48,7 @@ public class VersionIncrementor
 
             versionText = MajorVersion.ToString("0") + "." +
                           MinorVersion.ToString("0") + "." +
-                          SubMinorVersion.ToString("000") + "." +
+                          SubMinorVersion.ToString("0000") + "." +
                           SubVersionText;
 
             Debug.Log("Version Incremented " + versionText);
