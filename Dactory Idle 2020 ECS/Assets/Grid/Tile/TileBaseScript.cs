@@ -10,8 +10,12 @@ public class TileBaseScript : MonoBehaviour {
 
 	static bool isDragStarted = false;
 
-	public bool areThereItem { get { return myItem != null; } }
-	public GameObject myItem;
+
+	public bool isEmpty { get { return !areThereBelt && !areThereBuilding; } }
+	public bool areThereBuilding { get { return myBuilding != null; } }
+	public GameObject myBuilding;
+	public bool areThereBelt { get { return myBelt != null; } }
+	public GameObject myBelt;
 	public bool itemPlaceable = false;
 	public bool beltPlaceable = false;
 
@@ -28,7 +32,7 @@ public class TileBaseScript : MonoBehaviour {
 			if (rend == null)
 				rend = GetComponentInChildren<SpriteRenderer>();
 			else {
-				rend.color = areThereItem ? Color.green : Color.red;
+				rend.color = !isEmpty ? Color.green : Color.red;
 			}
 		}
 	}

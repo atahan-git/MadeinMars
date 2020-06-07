@@ -317,8 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f07eac0fc86b374eb50423d79b755e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beltPrefab: {fileID: 8859827216176125549, guid: 7219ca325a41ae741a2e1a2f9c5d993f,
-    type: 3}
   ItemPlacementHelperPrefab: {fileID: 118738, guid: e550cad1a961ea741825e01938364653,
     type: 3}
   isPlacingItem: 0
@@ -886,8 +884,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allBelts: []
   beltGroups: []
-  autoStart: 1
-  debugDraw: 1
+  autoStart: 0
+  debugDraw: 0
   entityPool: {fileID: 0}
   maxItemCount: 4000
   activeItemCount: 0
@@ -2357,11 +2355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71a8b15175d1894c8feac9daf2c40d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefabs:
-  - {fileID: 100748, guid: 3b211773c2f367b41a6f5657a130c97a, type: 3}
-  - {fileID: 185450, guid: f2161ac9813d03d43975153e9bfeea79, type: 3}
-  - {fileID: 145094, guid: 6e2482aa69042b945bafc0a86703213b, type: 3}
-  beltPrefab: {fileID: 102242, guid: 7f4064ca17702b445ac8cb89c0db65d3, type: 3}
 --- !u!114 &1889085303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2375,6 +2368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buidingWorldObjectPrefab: {fileID: 118738, guid: 04493e98e3980c246a2fdd3f43bca791,
+    type: 3}
+  beltPrefab: {fileID: 8859827216176125549, guid: 7219ca325a41ae741a2e1a2f9c5d993f,
     type: 3}
 --- !u!114 &1889085304
 MonoBehaviour:

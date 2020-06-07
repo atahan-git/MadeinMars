@@ -65,7 +65,6 @@ public class BeltMaster : MonoBehaviour {
 	}
 
 	void CreateGfxs () {
-		
 		for (int i = 0; i < allBelts.Count; i++) {
 			allBelts[i].UpdateGraphics();
 		}
@@ -185,7 +184,7 @@ public class BeltMaster : MonoBehaviour {
 	protected BeltObject GetBeltAtLocation (Position pos) {
 		BeltObject belt = null;
 		try {
-			belt = Grid.s.GetTile(pos).myItem.GetComponent<BeltObject>();
+			belt = Grid.s.GetTile(pos).myBelt.GetComponent<BeltObject>();
 		} catch { }
 		return belt;
 	}

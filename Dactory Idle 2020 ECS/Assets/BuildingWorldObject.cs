@@ -35,7 +35,7 @@ public class BuildingWorldObject : MonoBehaviour
 	public void DestroyYourself () {
 		foreach (TileBaseScript myTile in myTiles) {
 			if (myTile != null)
-				myTile.myItem = null;
+				myTile.myBuilding = null;
 		}
 		Destroy(gameObject);
 	}

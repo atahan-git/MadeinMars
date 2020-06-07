@@ -9,7 +9,9 @@ using UnityEngine;
 /// </summary>
 public class ObjectBuilderMaster : MonoBehaviour
 {
-	public static ObjectBuilderMaster s;
+	static ObjectBuilderMaster s;
+	public GameObject buidingWorldObjectPrefab;
+	public GameObject beltPrefab;
 	private void Awake () {
 		if (s != null) {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
@@ -17,10 +19,9 @@ public class ObjectBuilderMaster : MonoBehaviour
 		s = this;
 	}
 
-	public GameObject buidingWorldObjectPrefab;
 	public static bool CheckPlaceable (Position location) {
 		try {
-			return Grid.s.GetTile(location).itemPlaceable && !Grid.s.GetTile(location).areThereItem;
+			return Grid.s.GetTile(location).itemPlaceable && Grid.s.GetTile(location).isEmpty;
 		} catch (IndexOutOfRangeException e) {
 			return false;
 		}
@@ -38,8 +39,31 @@ public class ObjectBuilderMaster : MonoBehaviour
 		}
 		return true;
 	}
-	public static bool BuildObject (string myUniqueName, Position location) {
+	public static bool BuildObjectFromSave (string myUniqueName, Position location) {
 		return BuildObject(DataHolder.s.GetBuilding(myUniqueName), location);
+	}
+
+	public static BeltObject BuildBelt (TileBaseScript tileS) {
+		BeltObject myBelt = ((GameObject)Instantiate(s.beltPrefab, tileS.position.vector3 + new Vector3(0.5f, 0.5f, 0), Quaternion.identity)).GetComponent<BeltObject>();
+		myBelt.gameObject.name = tileS.position.ToString() + " - " + myBelt.gameObject.name;
+		myBelt.pos = tileS.position;
+		tileS.myBelt = myBelt.gameObject;
+		myBelt.tileCovered = tileS;
+
+		DataSaver.saveEvent += myBelt.SaveYourself;
+		return myBelt;
+	}
+
+	public static bool BuildBeltFromSave (bool[] beltInData, bool[] beltOutData, Position location) {
+		if (CheckPlaceable(location)) {
+			BeltObject myBelt = BuildBelt(Grid.s.GetTile(location));
+			myBelt.beltInputs = beltInData;
+			myBelt.beltOutputs = beltOutData;
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public static bool BuildObject (BuildingData myData, Position location) {
@@ -54,7 +78,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 						TileBaseScript myTile = Grid.s.GetTile(new Position(x, y) + location - BuildingData.center);
 						//print(new Position(x, y) + location - BuildingData.center);
 						//myTile.itemPlaceable = false;
-						myTile.myItem = InstantiatedItem;
+						myTile.myBuilding = InstantiatedItem;
 						coveredTiles.Add(myTile);
 					}
 				}

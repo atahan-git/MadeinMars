@@ -40,12 +40,17 @@ public class BeltObject : MonoBehaviour {
 		pos.x = Mathf.FloorToInt( transform.position.x);
 		pos.y = Mathf.FloorToInt(transform.position.y);
 		try {
-			Grid.s.GetTile(pos).myItem = this.gameObject;
+			Grid.s.GetTile(pos).myBelt = this.gameObject;
 			tileCovered = Grid.s.GetTile(pos);
 		} catch { }
 	}
 
-	public void UpdateGraphics () {
+	public void SaveYourself () {
+		DataSaver.BeltsToBeSaved[DataSaver.b] = new DataSaver.BeltData(beltInputs, beltOutputs, pos);
+		DataSaver.b++;
+	}
+
+	public virtual void UpdateGraphics () {
 		//print("Updating graphics");
 		try {
 			GetComponent<BeltGfx>().UpdateGraphics(beltInputs, beltOutputs);
@@ -95,7 +100,7 @@ public class BeltObject : MonoBehaviour {
 	 *			-1 out 2 split in '>v<' and reverse of that
 	 *			-2 in 2 out, ins and outs are next to each other - is an overpass
 	 */
-	public void CreateBeltItemSlots () {
+	public virtual void CreateBeltItemSlots () {
 
 		myBeltItemSlots = new BeltItemSlot[4, 4];
 		myBeltItemSlotsLayer2 = new BeltItemSlot[4, 4];
@@ -280,7 +285,7 @@ public class BeltObject : MonoBehaviour {
 
 		allBeltItemSlotsArray = allBeltItemSlots.ToArray();
 	}
-	Vector3 GetBeltItemSlotPos (int x, int y) {
+	protected Vector3 GetBeltItemSlotPos (int x, int y) {
 		return transform.position - new Vector3(gridSize / 2f - gridSize / 8f, -gridSize / 2f + gridSize / 8f, 0) + new Vector3(gridSize / 4f * (float)x, -gridSize / 4f * (float)y, beltZOffset);
 	}
 

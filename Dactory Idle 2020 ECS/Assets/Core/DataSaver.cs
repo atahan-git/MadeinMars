@@ -7,12 +7,9 @@ using UnityEngine.UI;
 
 public class DataSaver : MonoBehaviour {
 
-	public delegate void InstantiationUpdate ();
-	public static event InstantiationUpdate beltEvent;
-
 	public static DataSaver s;
 
-	SaveFile mySave;
+	public static SaveFile mySave;
 	string saveName = "mySave";
 
 	public static BuildingSaveData[] ItemsToBeSaved = new BuildingSaveData[99];
@@ -20,12 +17,8 @@ public class DataSaver : MonoBehaviour {
 	public static BeltData[] BeltsToBeSaved = new BeltData[999];
 	public static int b = 0;
 
-
-	public GameObject[] itemPrefabs;
-	public GameObject beltPrefab;
-
-	public delegate void SaveStuff ();
-	public static event SaveStuff saveEvent;
+	public delegate void SaveYourself ();
+	public static event SaveYourself saveEvent;
 
 	// Use this for initialization
 	void Awake () {
@@ -33,48 +26,11 @@ public class DataSaver : MonoBehaviour {
 
 	}
 	void Start () {
-		print(Application.persistentDataPath);
-		n = 0;
-		if (Load()) {
-			InstantiateItems();
-			InstantiateBelts();
-		}
+		print("Save Location:" + Application.persistentDataPath);
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
-	int itemID = 0;
-	int beltID = 0;
-	void InstantiateItems () {
-		/*foreach (BuildingSaveData myItem in mySave.itemData) {
-			if (myItem != null) {
-				if (myItem.myUniqueName != "") {
-					ObjectBuilderMaster.BuildObject(myItem.myUniqueName, myItem.myPos);
-				}
-			}
-		}*/
-		throw new NotImplementedException("This feature not implemented yet!");
-	}
-
-	void InstantiateBelts () {
-		/*foreach (BeltData myBelt in mySave.beltData) {
-			if (myBelt != null) {
-				if (myBelt.x != -1) {
-					BeltScript reelBelt = ((GameObject)Instantiate(beltPrefab, transform.position, transform.rotation)).GetComponent<BeltScript>();
-					reelBelt.PlaceSelf(myBelt.x, myBelt.y, myBelt.inLocations, myBelt.outLocations);
-					reelBelt.gameObject.name = reelBelt.gameObject.name + " " + beltID;
-					beltID++;
-				}
-			}
-		}
-		
-		if (beltEvent != null)
-			beltEvent();*/
-		throw new NotImplementedException("This feature not implemented yet!");
-	}
-
-
-	//--------------------------------------------------------------------------------------------------------------------------------
-
+	
 	void OnApplicationQuit () {
 		if (saveEvent != null)
 			saveEvent();
@@ -116,11 +72,11 @@ public class DataSaver : MonoBehaviour {
 
 	[System.Serializable]
 	public class SaveFile {
-		public BuildingSaveData[] itemData;
-		public BeltData[] beltData;
+		public BuildingSaveData[] buildingData = new BuildingSaveData[0];
+		public BeltData[] beltData = new BeltData[0];
 
 		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel) {
-			itemData = myit;
+			buildingData = myit;
 			beltData = mybel;
 		}
 
@@ -131,25 +87,22 @@ public class DataSaver : MonoBehaviour {
 		public string myUniqueName;
 		public Position myPos;
 
-		public BuildingSaveData (string myUniqueName, Position location) {
-			myUniqueName = myUniqueName;
+		public BuildingSaveData (string _myUniqueName, Position location) {
+			myUniqueName = _myUniqueName;
 			myPos = location;
 		}
 	}
 
 	[System.Serializable]
 	public class BeltData {
-		public int x = -1;
-		public int y = -1;
 		public bool[] inLocations = new bool[4];
 		public bool[] outLocations = new bool[4];
+		public Position myPos;
 
-		public BeltData (int myX, int myY, bool[] myins, bool[] myouts) {
-			x = myX;
-			y = myY;
+		public BeltData (bool[] myins, bool[] myouts, Position location) {
 			inLocations = myins;
 			outLocations = myouts;
-
+			myPos = location;
 		}
 	}
 }
