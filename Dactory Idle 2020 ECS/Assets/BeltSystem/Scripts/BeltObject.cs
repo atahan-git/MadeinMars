@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class BeltObject : MonoBehaviour {
@@ -42,6 +41,7 @@ public class BeltObject : MonoBehaviour {
 		pos.y = Mathf.FloorToInt(transform.position.y);
 		try {
 			Grid.s.GetTile(pos).myItem = this.gameObject;
+			tileCovered = Grid.s.GetTile(pos);
 		} catch { }
 	}
 
@@ -56,28 +56,29 @@ public class BeltObject : MonoBehaviour {
 
 
 	// call this if you wanna remove previous connections as well
-	public void RemoveOldItemSlots (List<List<BeltItemSlot>> existingMaster) {
+	public void RemoveOldItemSlots () {
 		// go around the edges and remove connections
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 4; y++) {
-				if (!(x < 4 && x > 1 && y < 4 && y > 1)) {
-					BeltItemSlot.RemoveAllConnectionsFromBeltItemSlot(myBeltItemSlots[x, y]);
-					BeltItemSlot.RemoveAllConnectionsFromBeltItemSlot(myBeltItemSlotsLayer2[x, y]);
-				}
+				BeltItemSlot.ResetBeltItemSlot(myBeltItemSlots[x, y]);
+				BeltItemSlot.ResetBeltItemSlot(myBeltItemSlotsLayer2[x, y]);
+
 			}
 		}
 
-		if (existingMaster != null) {
+		if (beltGroup != null) {
+
 			for (int x = 0; x < 4; x++) {
 				for (int y = 0; y < 4; y++) {
 					if (myBeltItemSlots[x, y] != null)
-						if (myBeltItemSlots[x, y].beltItemSlotGroup != -1)
-							existingMaster[myBeltItemSlots[x, y].beltItemSlotGroup].Remove(myBeltItemSlots[x, y]);
+						if (myBeltItemSlots[x, y].beltItemSlotGroup != null)
+							myBeltItemSlots[x, y].beltItemSlotGroup.Remove(myBeltItemSlots[x, y]);
 
 					if (myBeltItemSlotsLayer2[x, y] != null)
-						if (myBeltItemSlotsLayer2[x, y].beltItemSlotGroup != -1)
-							existingMaster[myBeltItemSlotsLayer2[x, y].beltItemSlotGroup].Remove(myBeltItemSlotsLayer2[x, y]);
+						if (myBeltItemSlotsLayer2[x, y].beltItemSlotGroup != null)
+							myBeltItemSlotsLayer2[x, y].beltItemSlotGroup.Remove(myBeltItemSlotsLayer2[x, y]);
 				}
+
 			}
 		}
 	}
@@ -180,7 +181,7 @@ public class BeltObject : MonoBehaviour {
 		if (runningLineCount == 2 && totalEdgeCount == 4) {
 			for (int x = 1; x < 3; x++) {
 				for (int y = 1; y < 3; y++) {
-					BeltItemSlot.RemoveAllConnectionsFromBeltItemSlot(myBeltItemSlots[x, y]);
+					BeltItemSlot.ResetBeltItemSlot(myBeltItemSlots[x, y]);
 				}
 			}
 

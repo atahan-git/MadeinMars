@@ -45,13 +45,14 @@ public class DataSaver : MonoBehaviour {
 	int itemID = 0;
 	int beltID = 0;
 	void InstantiateItems () {
-		foreach (BuildingSaveData myItem in mySave.itemData) {
+		/*foreach (BuildingSaveData myItem in mySave.itemData) {
 			if (myItem != null) {
 				if (myItem.myUniqueName != "") {
 					ObjectBuilderMaster.BuildObject(myItem.myUniqueName, myItem.myPos);
 				}
 			}
-		}
+		}*/
+		throw new NotImplementedException("This feature not implemented yet!");
 	}
 
 	void InstantiateBelts () {
@@ -65,9 +66,10 @@ public class DataSaver : MonoBehaviour {
 				}
 			}
 		}
-
+		
 		if (beltEvent != null)
 			beltEvent();*/
+		throw new NotImplementedException("This feature not implemented yet!");
 	}
 
 
@@ -129,8 +131,8 @@ public class DataSaver : MonoBehaviour {
 		public string myUniqueName;
 		public Position myPos;
 
-		public BuildingSaveData (BuildingData myType, Position location) {
-			myUniqueName = myType.uniqueName;
+		public BuildingSaveData (string myUniqueName, Position location) {
+			myUniqueName = myUniqueName;
 			myPos = location;
 		}
 	}

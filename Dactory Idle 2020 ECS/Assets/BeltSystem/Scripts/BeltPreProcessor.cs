@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class BeltPreProcessor {
 
@@ -24,20 +25,38 @@ public class BeltPreProcessor {
 		GetBeltAtLocation = _GetBeltAtLocation;
 	}
 
-	/* We will do a few important things here for the belt system to work
-		1. Split up belts into sperate list based on if they are feeding into each other
-		2. Make item lines, and put the 'lines' on lists
-		3. go through those lines recursively to find their update order using A* like method
-		4. sort these lists based on the found update order
-
-	*/
+	/// <summary>
+	/// This should be called in the beginning to reset the whole system
+	/// </summary>
 	public void PrepassBelts (List<BeltObject> allBelts) {
+		allBeltGroups.Clear();
+		ProcessBelts(allBelts);
+	}
+
+		/* We will do a few important things here for the belt system to work
+			1. Split up belts into sperate list based on if they are feeding into each other
+			2. Make item lines, and put the 'lines' on lists
+			3. go through those lines recursively to find their update order using A* like method
+			4. sort these lists based on the found update order
+		*/
+	/// <summary>
+	/// This can be called with any set of belts to completely process them.
+	/// Assumes that the belts listed does not belong to any belt group
+	/// Assumes the beltSlots that exists are in correct places
+	/// </summary>
+	void ProcessBelts (List<BeltObject> beltsToProcess) {
 		var temp = Time.realtimeSinceStartup;
 		Debug.Log("Clear old things");
-		allBeltGroups.Clear();
-		foreach (BeltObject belt in allBelts) {
+		foreach (BeltObject belt in beltsToProcess) {
 			belt.isProcessed = false;
-			belt.CreateBeltItemSlots();
+			if (belt.allBeltItemSlots.Count > 0) {
+				foreach (BeltItemSlot slot in belt.allBeltItemSlots) {
+					slot.isProcessed = false;
+				}
+			} else {
+				belt.CreateBeltItemSlots();
+			}
+			
 		}
 		temp = Time.realtimeSinceStartup - temp;
 		Debug.Log("belt item slot creation: " + (temp).ToString("f6"));
@@ -47,8 +66,8 @@ public class BeltPreProcessor {
 		var processSlotsTotal = 0f;
 		var processSlotsCount = 0f;
 		Debug.Log("Creating Belt Groups");
-		for (int i = 0; i < allBelts.Count; i++) {
-			if (allBelts[i].isProcessed)
+		for (int i = 0; i < beltsToProcess.Count; i++) {
+			if (beltsToProcess[i].isProcessed)
 				continue;
 
 			temp = Time.realtimeSinceStartup;
@@ -56,7 +75,7 @@ public class BeltPreProcessor {
 			//newBeltGroup.belts = new List<BeltObject>();
 			//newBeltGroup.beltItemSlotGroups = new List<List<BeltItemSlot>>();
 			allBeltGroups.Add(newBeltGroup);
-			RecursiveGroupBelts(allBelts[i], newBeltGroup.belts);
+			RecursiveGroupBelts(beltsToProcess[i], newBeltGroup.belts);
 
 			foreach (BeltObject belt in newBeltGroup.belts) {
 				belt.beltGroup = newBeltGroup;
@@ -92,7 +111,7 @@ public class BeltPreProcessor {
 			group.beltItemSlotGroups.Add(newBeltItemSlotGroup);
 			RecursiveGroupBeltItemSlots(slots[i], newBeltItemSlotGroup, 0);
 			foreach (BeltItemSlot beltItemSlot in newBeltItemSlotGroup) {
-				beltItemSlot.beltItemSlotGroup = slots.Count - 1;
+				beltItemSlot.beltItemSlotGroup = newBeltItemSlotGroup;
 			}
 		}
 
@@ -119,12 +138,8 @@ public class BeltPreProcessor {
 		//Debug.Log(group.beltItemSlotGroups.Count);
 	}
 
-	public void UpdateOneBeltBeltSlots (BeltObject belt) {
-		try {
-			belt.RemoveOldItemSlots(belt.beltGroup.beltItemSlotGroups);
-		} catch (ArgumentOutOfRangeException e) {
-			belt.RemoveOldItemSlots(null);
-		}
+	public void ResetBeltSlots (BeltObject belt) {
+		belt.RemoveOldItemSlots();
 		belt.CreateBeltItemSlots();
 	}
 
@@ -139,47 +154,25 @@ public class BeltPreProcessor {
 		} else  {
 			AddBeltToExistingBeltGroups(belt, myTouchingBeltGroups);
 		}
-
-		belt.isProcessed = true;
 	}
 
 	void AddBeltToNewBeltGroup (BeltObject belt) {
 		Debug.Log("Creating new belt group for " + belt.name);
-
-		BeltGroup targetBeltGroup = new BeltGroup();
-		targetBeltGroup.belts = new List<BeltObject>();
-		allBeltGroups.Add(targetBeltGroup);
-
-		targetBeltGroup.belts.Add(belt);
-
-		belt.beltGroup = targetBeltGroup;
-
-		ProcessBeltGroupItemSlots(targetBeltGroup);
-
-		belt.isProcessed = true;
+		ProcessBelts(new List<BeltObject> { belt });
 	}
 
 	void AddBeltToExistingBeltGroups (BeltObject belt, List<BeltGroup> touchingBeltGroups) {
 		Debug.Log("Processing belt grouping change for belt with " + touchingBeltGroups.Count + " nearby belt groups");
 
-		BeltGroup targetBeltGroup = touchingBeltGroups[0];
-		for (int i = 1; i < touchingBeltGroups.Count; i++) {
-			targetBeltGroup.belts.AddRange(touchingBeltGroups[i].belts); // add all the other belt groups to the first one
-		}
+		List<BeltObject> updatedBelts = new List<BeltObject>();
+		updatedBelts.Add(belt);
 
-		for (int i = 1; i < touchingBeltGroups.Count; i++) {
+		for (int i = 0; i < touchingBeltGroups.Count; i++) {
+			updatedBelts.AddRange(touchingBeltGroups[i].belts);
 			allBeltGroups.Remove(touchingBeltGroups[i]); // remove the old belt groups
 		}
 
-		if (belt.beltGroup != null)
-			if (belt.beltGroup != targetBeltGroup)
-				targetBeltGroup.belts.Add(belt); // add our new belt
-		
-		foreach (BeltObject _belt in targetBeltGroup.belts) {
-			_belt.beltGroup = targetBeltGroup;
-		}
-
-		ProcessBeltGroupItemSlots(targetBeltGroup);
+		ProcessBelts(updatedBelts);
 	}
 
 	List<BeltGroup> GetNearbyBeltGroups (BeltObject belt) {

@@ -92,19 +92,19 @@ public class BeltMaster : MonoBehaviour {
 
 	public void AddOneBeltConnectedToOne (BeltObject newBelt, BeltObject updatedBelt) {
 		allBelts.Add(newBelt);
-		beltPreProc.UpdateOneBeltBeltSlots(newBelt);
-		beltPreProc.UpdateOneBeltBeltSlots(updatedBelt);
+		beltPreProc.ResetBeltSlots(newBelt);
+		beltPreProc.ResetBeltSlots(updatedBelt);
 		ProcessBeltGroupingChange(newBelt);
 	}
 
 	public void AddOneBelt (BeltObject newBelt) {
 		allBelts.Add(newBelt);
-		beltPreProc.UpdateOneBeltBeltSlots(newBelt);
+		beltPreProc.ResetBeltSlots(newBelt);
 		ProcessBeltGroupingChange(newBelt);
 	}
 
 	public void ChangeOneBelt (BeltObject updatedBelt) {
-		beltPreProc.UpdateOneBeltBeltSlots(updatedBelt);
+		beltPreProc.ResetBeltSlots(updatedBelt);
 		ProcessBeltGroupingChange(updatedBelt);
 	}
 

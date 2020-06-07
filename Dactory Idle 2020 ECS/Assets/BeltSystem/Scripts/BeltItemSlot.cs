@@ -6,7 +6,7 @@ public class BeltItemSlot {
 
 	public bool isProcessed = false;
 	public int index;
-	public int beltItemSlotGroup = -1;
+	public List<BeltItemSlot> beltItemSlotGroup;
 
 	public Vector3 position = new Vector3();
 
@@ -96,7 +96,17 @@ public class BeltItemSlot {
 		to.insideConnections.Remove(from);
 	}
 
-	public static void RemoveAllConnectionsFromBeltItemSlot (BeltItemSlot from) {
+
+	public static void ResetBeltItemSlot (BeltItemSlot from) {
+		if (from == null)
+			return;
+		if(from.myItem != null)
+			BeltMaster.s.DestroyItemAtSlot(from);
+
+		RemoveAllConnections(from);
+	}
+
+	static void RemoveAllConnections (BeltItemSlot from) {
 		if (from == null)
 			return;
 

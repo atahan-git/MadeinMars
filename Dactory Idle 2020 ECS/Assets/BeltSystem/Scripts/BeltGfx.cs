@@ -59,10 +59,10 @@ public class BeltGfx : MonoBehaviour {
 				}
 				if (mySprite == null) {
 					Debug.Log(myTable.mapping.Count);
-					foreach (KeyValuePair<string, Sprite> attachStat in myTable.mapping) {
+					/*foreach (KeyValuePair<string, Sprite> attachStat in myTable.mapping) {
 						//Now you can access the key and value both separately from this attachStat as:
 						Debug.Log(attachStat.Key.ToString() + ", " + attachStat.Value.ToString());
-					}
+					}*/
 
 					throw new NullReferenceException("BeltGfxLookupTable failed to get the correct belt sprite for key " + BeltGfxLookupTable.beltToKey(GetComponent<BeltObject>()));
 				}

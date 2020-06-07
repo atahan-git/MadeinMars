@@ -28,7 +28,7 @@ public class BuildingWorldObject : MonoBehaviour
 
 
 	void SaveYourself () {
-		DataSaver.ItemsToBeSaved[DataSaver.n] = new DataSaver.BuildingSaveData(myData, myPos);
+		DataSaver.ItemsToBeSaved[DataSaver.n] = new DataSaver.BuildingSaveData(myData.uniqueName, myPos);
 		DataSaver.n++;
 	}
 

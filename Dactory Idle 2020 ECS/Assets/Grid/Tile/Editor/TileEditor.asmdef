@@ -1,0 +1,17 @@
+{
+    "name": "TileEditor",
+    "references": [
+        "GUID:5e7c43411b2dc2c4b9e35766da0e684e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
