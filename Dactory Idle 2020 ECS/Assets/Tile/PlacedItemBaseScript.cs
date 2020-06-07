@@ -25,10 +25,10 @@ public class PlacedItemBaseScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void DestroyYourself () {
-		foreach (TileBaseScript myTile in tilesCovered) {
-			if (myTile != null)
-				myTile.areThereItem = false;
-		}
+		//foreach (TileBaseScript myTile in tilesCovered) {
+		//	if (myTile != null)
+		//		myTile.areThereItem = false;
+		//}
 		Destroy (gameObject);
 	}
 

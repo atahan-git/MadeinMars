@@ -27,8 +27,6 @@ public class BeltMaster : MonoBehaviour {
 	public const float beltUpdatePerSecond = 4;
 	public const float itemWorldPositionZOffset = -1f;
 
-	protected Dictionary<Position, BeltObject> allBeltsCoords = new Dictionary<Position, BeltObject>();
-
 	public ObjectPoolSimple<BeltItem> itemPool;
 	[HideInInspector]
 	 public ObjectPool entityPool; //refactor this asap pls, belt item slot should not access this
@@ -69,9 +67,7 @@ public class BeltMaster : MonoBehaviour {
 	void CreateGfxs () {
 		
 		for (int i = 0; i < allBelts.Count; i++) {
-			BeltObject belt = allBelts[i];
-
-			belt.GetComponent<BeltGfx>().UpdateGraphics(belt.beltInputs, belt.beltOutputs);
+			allBelts[i].UpdateGraphics();
 		}
 	}
 
@@ -81,7 +77,6 @@ public class BeltMaster : MonoBehaviour {
 		for (int i = 0; i <  allBelts.Count; i++) {
 			BeltObject belt = allBelts[i];
 			belt.SetPosBasedOnWorlPos();
-			allBeltsCoords[belt.pos] = belt;
 		}
 
 		beltPreProc = new BeltPreProcessor(beltGroups, allBeltItems, GetBeltAtLocation);
@@ -95,13 +90,26 @@ public class BeltMaster : MonoBehaviour {
 		StartCoroutine(BeltItemSlotUpdateLoop());
 	}
 
+	public void AddOneBeltConnectedToOne (BeltObject newBelt, BeltObject updatedBelt) {
+		allBelts.Add(newBelt);
+		beltPreProc.UpdateOneBeltBeltSlots(newBelt);
+		beltPreProc.UpdateOneBeltBeltSlots(updatedBelt);
+		ProcessBeltGroupingChange(newBelt);
+	}
+
 	public void AddOneBelt (BeltObject newBelt) {
 		allBelts.Add(newBelt);
-		ChangeOneBelt(newBelt);
+		beltPreProc.UpdateOneBeltBeltSlots(newBelt);
+		ProcessBeltGroupingChange(newBelt);
 	}
 
 	public void ChangeOneBelt (BeltObject updatedBelt) {
-		beltPreProc.ProcessOneBeltChange(updatedBelt);
+		beltPreProc.UpdateOneBeltBeltSlots(updatedBelt);
+		ProcessBeltGroupingChange(updatedBelt);
+	}
+
+	private void ProcessBeltGroupingChange (BeltObject updatedBelt) {
+		beltPreProc.ProcessBeltGroupingChange(updatedBelt);
 	}
 
 	IEnumerator BeltItemSlotUpdateLoop () {
@@ -175,8 +183,10 @@ public class BeltMaster : MonoBehaviour {
 	}
 
 	protected BeltObject GetBeltAtLocation (Position pos) {
-		BeltObject belt;
-		allBeltsCoords.TryGetValue(pos, out belt);
+		BeltObject belt = null;
+		try {
+			belt = Grid.s.GetTile(pos).myItem.GetComponent<BeltObject>();
+		} catch { }
 		return belt;
 	}
 

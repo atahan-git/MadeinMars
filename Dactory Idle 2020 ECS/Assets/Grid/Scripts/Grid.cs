@@ -60,15 +60,18 @@ public class Grid : MonoBehaviour {
 
 	[HideInInspector]
 	GameObject[,] myTilesGameObjects = new GameObject[10,10];
-	public TileBaseScript[,] myTiles = new TileBaseScript[10, 10];
+	[SerializeField]
+	TileBaseScript[,] myTiles = new TileBaseScript[10, 10];
 	public GameObject emptyTile;
-	public Tiles myTilesIDs = new Tiles();
+	Tiles myTilesIDs = new Tiles();
 
 	public int myType = 0;
 
-	public void Awake(){
+	private void Awake () {
+		if (s != null) {
+			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
+		}
 		s = this;
-		//UpdateTileSize ();
 
 		if (!Load ()) {
 			myTilesGameObjects = new GameObject[gridSizeX, gridSizeY];
@@ -77,6 +80,10 @@ public class Grid : MonoBehaviour {
 		}
 
 		DrawTiles ();
+	}
+
+	public TileBaseScript GetTile (Position pos) {
+		return myTiles[pos.x, pos.y];
 	}
 
 	public Vector2[] rectangleSelect = new Vector2[2];

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Boo.Lang.Environments;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities.UniversalDelegates;
@@ -32,11 +33,11 @@ public class Player_BuildingController : MonoBehaviour
 	void Update () {
 		if (isPlacingItem)
 			PlaceItemCheck ();
-		/*if (isBeltPlacing && !lastFrameStuff)
+		if (isBeltPlacing && !lastFrameStuff)
 			PlaceBeltsCheck ();
 		if (isSelling)
 			SellCheck ();
-		lastFrameStuff = false;*/
+		lastFrameStuff = false;
 	}
 
 
@@ -71,37 +72,36 @@ public class Player_BuildingController : MonoBehaviour
 	}
 	
 	public void TryToPlaceItem (BuildingData myData) {
+		Deselect();
 		print ("Placing Item");
 		isPlacingItem = true;
 		isBeltPlacing = false;
 		isSelling = false;
 		Player_MasterControlCheck.s.ToggleMovement(true);
 		Player_MasterControlCheck.s.TogglePlacingItem(true);
-		UIBeltModeOverlay.SetActive (false);
+		//UIBeltModeOverlay.SetActive (false);
 		buildingItem = myData;
 		GameObject curItemPlacement = Instantiate (ItemPlacementHelperPrefab, transform.position, Quaternion.identity);
 		curItemPlacementScript = curItemPlacement.GetComponent<ItemPlacementHelper> ();
 		curItemPlacementScript.Setup(myData);
 	}
 
-	public void SelectDown () {
+	public void Deselect () {
 		isPlacingItem = false;
 		isBeltPlacing = false;
 		isSelling = false;
-		UIBeltModeOverlay.SetActive (false);
-		Player_MasterControlCheck.s.TogglePlacingItem(false);
-	}
-
-	public void SelectUp() {
+		// UIBeltModeOverlay.SetActive (false);
 		Player_MasterControlCheck.s.ToggleMovement(true);
 		Player_MasterControlCheck.s.TogglePlacingItem(false);
 	}
 
+
 	public void SellEnable (){
+		Deselect();
 		isPlacingItem = false;
 		isBeltPlacing = false;
 		isSelling = true;
-		UIBeltModeOverlay.SetActive (false);
+		//UIBeltModeOverlay.SetActive (false);
 	}
 
 	void SellCheck (){
@@ -131,17 +131,19 @@ public class Player_BuildingController : MonoBehaviour
 	}
 
 	//--------------------------------------------------------------------------------------------------BELT STUFF
-	/*bool lastFrameStuff = false;
+	bool lastFrameStuff = false;
 	public void ActivateBeltMode () {
-		isMovementEnabled = false;
+		Deselect();
+		Player_MasterControlCheck.s.ToggleMovement(true);
+		Player_MasterControlCheck.s.TogglePlacingItem(true);
 		isBeltPlacing = true;
 		isSelling = false;
-		UIBeltModeOverlay.SetActive (true);
+		//UIBeltModeOverlay.SetActive (true); // handled by GUI building bar controller
 		lastFrameStuff = true;
 	}
 
 	PlacedItemBaseScript b_lastItem;
-	BeltScript b_lastBelt;
+	BeltObject b_lastBelt;
 	TileBaseScript b_lastTile;
 
 	int n = 0;
@@ -167,7 +169,7 @@ public class Player_BuildingController : MonoBehaviour
 						print ("we moved 2 blocks");
 
 						if (b_lastBelt != null)
-							b_lastBelt.UpdateGraphic ();
+							b_lastBelt.UpdateGraphics ();
 
 						b_lastBelt = null;
 						b_lastItem = null;
@@ -177,36 +179,33 @@ public class Player_BuildingController : MonoBehaviour
 
 				if (tileS.beltPlaceable) {					//can we place a belt here
 					if (!tileS.areThereItem) {											//there are no items here so place a belt
-						BeltScript myBelt = ((GameObject)Instantiate (beltPrefab, tileS.transform.position, Quaternion.identity)).GetComponent<BeltScript> ();
+						BeltObject myBelt = ((GameObject)Instantiate (beltPrefab, tileS.position.vector3 + new Vector3(0.5f,0.5f,0), Quaternion.identity)).GetComponent<BeltObject> ();
 						myBelt.gameObject.name = myBelt.gameObject.name + " - " + n;
-						myBelt.x = tileS.x;
-						myBelt.y = tileS.y;
+						myBelt.pos = tileS.position;
 						n++;
-						tileS.areThereItem = true;
 						tileS.myItem = myBelt.gameObject;
 						myBelt.tileCovered = tileS;
 
-						if (b_lastTile != null) {										//this is not the starting point - update in location
-							UpdateBeltInOut (b_lastTile, tileS, myBelt, true);
+						if (b_lastBelt != null) {                                       //there was a belt before this one - update its out stuff
+							BeltObject.ConnectBeltsBuildingOnly(b_lastBelt, myBelt);
+							BeltMaster.s.AddOneBeltConnectedToOne(myBelt, b_lastBelt);
+						} else if (b_lastTile != null) {                                     //this is not the starting point - update in location
+							BeltObject.ConnectBeltsBuildingOnly(b_lastTile, myBelt);
+							BeltMaster.s.AddOneBelt(myBelt);
+						} else {
+							BeltMaster.s.AddOneBelt(myBelt);
 						}
 
-						if (b_lastBelt != null) {										//there was a belt before this one - update its out stuff
-							UpdateBeltInOut (b_lastTile, tileS, b_lastBelt, false);
-
-							b_lastBelt.feedingBelts [movementToArrayNum(b_lastTile,tileS)] = myBelt;
-							myBelt.inputBelts [RevertLocation (movementToArrayNum (b_lastTile, tileS))] = b_lastBelt;
-						}
-
-						if (b_lastItem != null) {										//there was an item before us - update its out stuff
+						/*if (b_lastItem != null) {										//there was an item before us - update its out stuff
 							b_lastItem.outConveyors [b_lastItem.n_out] = myBelt;
 							b_lastItem.n_out++;
 							myBelt.inputItems [RevertLocation (movementToArrayNum (b_lastTile, tileS))] = b_lastItem;
-						}
+						}*/ // This is magically handled by the belt master now
 
 						if (b_lastBelt != null)
-							b_lastBelt.UpdateGraphic ();
+							b_lastBelt.UpdateGraphics ();
 						if (myBelt != null)
-							myBelt.UpdateGraphic ();
+							myBelt.UpdateGraphics ();
 
 						b_lastBelt = myBelt;
 						b_lastItem = null;
@@ -214,9 +213,9 @@ public class Player_BuildingController : MonoBehaviour
 
 					} else {															//there is an item below us
 						PlacedItemBaseScript myItem = null;
-						BeltScript myBelt = null;
+						BeltObject myBelt = null;
 						myItem = tileS.myItem.GetComponent<PlacedItemBaseScript> ();
-						myBelt = tileS.myItem.GetComponent<BeltScript> ();
+						myBelt = tileS.myItem.GetComponent<BeltObject> ();
 
 						if (b_lastBelt == null && b_lastItem == null) {								//nothing to something
 							//do nothing
@@ -224,34 +223,26 @@ public class Player_BuildingController : MonoBehaviour
 						} else if (b_lastBelt == null && b_lastItem != null && myItem != null) {	//item to item
 							//do nothing
 
-						} else if (b_lastBelt == null && b_lastItem != null && myBelt != null) {	//item to belt
-							b_lastItem.outConveyors [b_lastItem.n_out] = myBelt;
-							b_lastItem.n_out++;
-							b_lastBelt.inputItems [RevertLocation (movementToArrayNum (b_lastTile, tileS))] = b_lastItem;
-							UpdateBeltInOut (b_lastTile, tileS, myBelt, true);
+						} else if (b_lastBelt == null && b_lastItem != null && myBelt != null) {    //item to belt
+							BeltObject.ConnectBeltsBuildingOnly(b_lastTile, myBelt);
+							BeltMaster.s.AddOneBelt(myBelt);
 
-						} else if (b_lastBelt != null && b_lastItem == null && myBelt != null) {	//belt to belt
-							UpdateBeltInOut (b_lastTile, tileS, b_lastBelt, false);
-							b_lastBelt.feedingBelts [movementToArrayNum(b_lastTile,tileS)] = myBelt;
-							myBelt.inputBelts [RevertLocation (movementToArrayNum (b_lastTile, tileS))] = b_lastBelt;
-
-							UpdateBeltInOut (b_lastTile, tileS, myBelt, true);
+						} else if (b_lastBelt != null && b_lastItem == null && myBelt != null) {    //belt to belt
+							BeltObject.ConnectBeltsBuildingOnly(b_lastBelt, myBelt);
+							BeltMaster.s.AddOneBeltConnectedToOne(myBelt, b_lastBelt);
 
 						} else if (b_lastBelt != null && b_lastItem == null && myItem != null) {	//belt to item
-							UpdateBeltInOut (b_lastTile, tileS, b_lastBelt, false);
-							b_lastBelt.feedingItems [movementToArrayNum(b_lastTile,tileS)] = myItem;
-
-							myItem.inConveyors [myItem.n_in] = b_lastBelt;
-							myItem.n_in++;
+							BeltObject.ConnectBeltsBuildingOnly(b_lastBelt, tileS);
+							BeltMaster.s.AddOneBelt(myBelt);
 
 						} else {
-							Debug.LogError ("weird shit happened: " + b_lastTile + " - " + tileS + " - " + b_lastBelt + " - " + b_lastItem + " - " + myBelt + " - " + myItem);
+							Debug.LogError ("Connection failure: " + b_lastTile + " - " + tileS + " - " + b_lastBelt + " - " + b_lastItem + " - " + myBelt + " - " + myItem);
 						}
 
 						if (b_lastBelt != null)
-							b_lastBelt.UpdateGraphic ();
+							b_lastBelt.UpdateGraphics ();
 						if (myBelt != null)
-							myBelt.UpdateGraphic ();
+							myBelt.UpdateGraphics ();
 
 						b_lastBelt = myBelt;
 						b_lastItem = myItem;
@@ -261,83 +252,11 @@ public class Player_BuildingController : MonoBehaviour
 			}
 		} else {
 			if (b_lastBelt != null)
-				b_lastBelt.UpdateGraphic ();
+				b_lastBelt.UpdateGraphics ();
 
 			b_lastBelt = null;
 			b_lastItem = null;
 			b_lastTile = null;
-		}
-	}
-
-	void UpdateBeltInOut(TileBaseScript lastTile, TileBaseScript thisTile, BeltScript myBelt, bool isIn){
-		int x = lastTile.x;
-		int xOther = thisTile.x;
-		int y = lastTile.y;
-		int yOther = thisTile.y;
-
-		if (isIn) {
-			if (x > xOther)      //left
-				myBelt.inLocations [2] = true;
-			else if (x < xOther) //right
-				myBelt.inLocations [0] = true;
-			else if (y > yOther) //down
-				myBelt.inLocations [1] = true;
-			else if (y < yOther) //up
-				myBelt.inLocations [3] = true;
-		} else {
-			if (x > xOther)      //left
-				myBelt.outLocations [0] = true;
-			else if (x < xOther) //right
-				myBelt.outLocations [2] = true;
-			else if (y > yOther) //down
-				myBelt.outLocations [3] = true;
-			else if (y < yOther) //up
-				myBelt.outLocations [1] = true;
-		}
-
-		//myBelt.UpdateGraphic ();
-	}*/
-
-	int movementToArrayNum (TileBaseScript lastTile, TileBaseScript thisTile) {
-		int x = lastTile.x;
-		int xOther = thisTile.x;
-		int y = lastTile.y;
-		int yOther = thisTile.y;
-
-		if (x > xOther)      //left
-			return 0;
-		else if (x < xOther) //right
-			return 2;
-		else if (y > yOther) //down
-			return 3;
-		else if (y < yOther) //up
-			return 1;
-		else {
-			Debug.LogError("erorrr");
-			return -1;
-		}
-	}
-
-	int RevertLocation (int location) {
-		//return location;
-
-		switch (location) {
-		case 0:
-			return 2;
-			break;
-		case 1:
-			return 3;
-			break;
-		case 2:
-			return 0;
-			break;
-		case 3:
-			return 1;
-			break;
-		default:
-			Debug.LogError("given wrong number: " + location);
-			return -1;
-			break;
 		}
 	}
 }

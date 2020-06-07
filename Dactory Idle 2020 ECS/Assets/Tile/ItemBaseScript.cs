@@ -71,10 +71,10 @@ public class ItemBaseScript : MonoBehaviour {
 		x = myX;
 		y = myY;
 
-		TileBaseScript myTileS = Grid.s.myTiles [x, y];
-		transform.position = myTileS.transform.position;
-		myTileS.areThereItem = true;
-		myTileS.myItem = gameObject;
+		//TileBaseScript myTileS = Grid.s.myTiles [x, y];
+		//transform.position = myTileS.transform.position;
+		//myTileS.areThereItem = true;
+		//myTileS.myItem = gameObject;
 		//print (x + " - " + y + " - " + Grid.s.myTiles [x, y].transform.position);
 
 		//print ("saver call2");
@@ -106,11 +106,11 @@ public class ItemBaseScript : MonoBehaviour {
 				int checkY = y - mySprite.y;
 
 				try {
-					TileBaseScript myTile = Grid.s.myTiles [checkX, checkY];
+					//TileBaseScript myTile = Grid.s.myTiles [checkX, checkY];
 					//myTile.itemPlaceable = false;
-					myTile.areThereItem = true;
-					myTile.myItem = InstantiatedItem;
-					InstItemScript.tilesCovered [InstItemScript.n_cover] = myTile;
+					//myTile.areThereItem = true;
+					//myTile.myItem = InstantiatedItem;
+					//InstItemScript.tilesCovered [InstItemScript.n_cover] = myTile;
 					InstItemScript.n_cover++;
 				} catch {
 				}
@@ -138,19 +138,19 @@ public class ItemBaseScript : MonoBehaviour {
 			//print (checkX + " - " + checkY);
 
 			bool myVal = false;
-			try{
-				if (!Grid.s.myTiles [checkX, checkY].areThereItem)
-					myVal = Grid.s.myTiles [checkX, checkY].itemPlaceable;
-			}catch{}
+			//try{
+			//	if (!Grid.s.myTiles [checkX, checkY].areThereItem)
+			//		myVal = Grid.s.myTiles [checkX, checkY].itemPlaceable;
+			//}catch{}
 
 
 
-			if (myVal) {
-				mySprite.Placeable ();
-			} else {
-				mySprite.CantPlace ();
-				isPlaceAble = false;
-			}
+			//if (myVal) {
+			//	mySprite.Placeable ();
+			//}// else {
+			//	mySprite.CantPlace ();
+			//	isPlaceAble = false;
+			//}
 		}
 	}
 	/*[System.Serializable]

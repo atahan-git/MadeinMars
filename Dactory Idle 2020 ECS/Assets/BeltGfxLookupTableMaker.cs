@@ -14,15 +14,22 @@ public class BeltGfxLookupTableMaker : MonoBehaviour
 
         BeltObject[] allBeltsInScene = GameObject.FindObjectsOfType<BeltObject>();
 
+        string[] keys = new string[allBeltsInScene.Length];
+        Sprite[] values = new Sprite[allBeltsInScene.Length];
+
         for (int i = 0; i < allBeltsInScene.Length; i++) {
             int spriteIndex = Mathf.RoundToInt((allBeltsInScene[i].transform.position.x / 2) + (allBeltsInScene[i].transform.position.y / -2 * 8));
 
-            if (!myTable.mapping.ContainsKey(BeltGfxLookupTable.beltToKey(allBeltsInScene[i]))) {
+            /*if (!myTable.mapping.ContainsKey(BeltGfxLookupTable.beltToKey(allBeltsInScene[i]))) {
                 myTable.mapping.Add(BeltGfxLookupTable.beltToKey(allBeltsInScene[i]), myTable.sprites[spriteIndex]);
             } else {
                 myTable.mapping[BeltGfxLookupTable.beltToKey(allBeltsInScene[i])] = myTable.sprites[spriteIndex];
-            }
+            }*/
+            keys[i] = BeltGfxLookupTable.beltToKey(allBeltsInScene[i]);
+            values[i] = myTable.sprites[spriteIndex];
         }
+
+        myTable.SetUpDictionary(keys, values);
         myTable.isSetUp = true;
 
         foreach (KeyValuePair<string, Sprite> attachStat in myTable.mapping) {

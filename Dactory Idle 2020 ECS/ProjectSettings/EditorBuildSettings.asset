@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/BeltSystem/Scenes/Stress Test.unity
     guid: a93e9ddf51fed5a47a5dc3e714a5fa09
   - enabled: 0
-    path: Assets/BeltSystem/Scenes/All Belt Types.unity
+    path: Assets/BeltSystem/Scenes/Belt Lookup table setup.unity
     guid: bb336c8b17a31da41bc050a50d60648a
   m_configObjects: {}

@@ -20,7 +20,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 	public GameObject buidingWorldObjectPrefab;
 	public static bool CheckPlaceable (Position location) {
 		try {
-			return Grid.s.myTiles[location.x, location.y].itemPlaceable && !Grid.s.myTiles[location.x, location.y].areThereItem;
+			return Grid.s.GetTile(location).itemPlaceable && !Grid.s.GetTile(location).areThereItem;
 		} catch (IndexOutOfRangeException e) {
 			return false;
 		}
@@ -51,10 +51,9 @@ public class ObjectBuilderMaster : MonoBehaviour
 			for(int y = 0; y < myData.shape.rows.Length; y++) {
 				for (int x = 0; x < myData.shape.rows[y].row.Length; x++) {
 					if (myData.shape.rows[y].row[x]) {
-						TileBaseScript myTile = Grid.s.myTiles[x+location.x - BuildingData.center.x, y+location.y - BuildingData.center.y];
+						TileBaseScript myTile = Grid.s.GetTile(new Position(x, y) + location - BuildingData.center);
 						//print(new Position(x, y) + location - BuildingData.center);
 						//myTile.itemPlaceable = false;
-						myTile.areThereItem = true;
 						myTile.myItem = InstantiatedItem;
 						coveredTiles.Add(myTile);
 					}

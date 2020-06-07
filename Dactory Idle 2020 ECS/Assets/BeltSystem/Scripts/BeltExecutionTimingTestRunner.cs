@@ -23,7 +23,6 @@ public class BeltExecutionTimingTestRunner : BeltMaster {
         foreach (BeltObject belt in allBelts) {
             belt.SetPosBasedOnWorlPos();
             belt.GetComponent<BeltGfx>().UpdateGraphics(belt.beltInputs, belt.beltOutputs);
-            allBeltsCoords[belt.pos] = belt;
         }
 
         beltPreProc = new BeltPreProcessor(beltGroups, allBeltItems, GetBeltAtLocation);

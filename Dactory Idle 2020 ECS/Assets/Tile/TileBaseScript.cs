@@ -10,7 +10,7 @@ public class TileBaseScript : MonoBehaviour {
 
 	static bool isDragStarted = false;
 
-	public bool areThereItem = false;
+	public bool areThereItem { get { return myItem != null; } }
 	public GameObject myItem;
 	public bool itemPlaceable = false;
 	public bool beltPlaceable = false;
