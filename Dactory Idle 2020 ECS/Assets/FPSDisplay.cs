@@ -24,7 +24,7 @@ public class FPSDisplay : MonoBehaviour
 		deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
 		msec.Enqueue(deltaTime * 1000.0f);
 		fps.Enqueue(1.0f / deltaTime);
-		string text = string.Format("{0:000.0} ms ({1:000.} fps)", msec.Average(), fps.Average());
+		string text = string.Format("{0:000.0} ms - {2:000.} min fps - {1:000.} avg fps", msec.Average(), fps.Average(), fps.Min());
 		myText.text = text;
 
 		if (msec.Count > avgCount) {

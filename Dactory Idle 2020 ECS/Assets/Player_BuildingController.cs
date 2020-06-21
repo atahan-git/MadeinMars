@@ -42,7 +42,7 @@ public class Player_BuildingController : MonoBehaviour {
 	public BuildingData buildingItem;
 	void PlaceItemCheck () {
 		if (Input.GetMouseButton(0)) {
-			Ray myRay = mycam.ScreenPointToRay(Input.mousePosition);
+			Ray myRay = GetRay();
 			RaycastHit hit = new RaycastHit();
 			if (Physics.Raycast(myRay, out hit)) {
 				TileBaseScript tileS;
@@ -98,12 +98,14 @@ public class Player_BuildingController : MonoBehaviour {
 		isPlacingItem = false;
 		isBeltPlacing = false;
 		isSelling = true;
+		Player_MasterControlCheck.s.ToggleMovement(true);
+		Player_MasterControlCheck.s.TogglePlacingItem(true);
 		//UIBeltModeOverlay.SetActive (false);
 	}
 
 	void SellCheck () {
 		if (Input.GetMouseButton(0)) {
-			Ray myRay = mycam.ScreenPointToRay(Input.mousePosition);
+			Ray myRay = GetRay();
 			RaycastHit hit = new RaycastHit();
 			if (Physics.Raycast(myRay, out hit)) {
 
@@ -146,7 +148,7 @@ public class Player_BuildingController : MonoBehaviour {
 
 	void PlaceBeltsCheck () {
 		if (Input.GetMouseButton(0)) {
-			Ray myRay = mycam.ScreenPointToRay(Input.mousePosition);
+			Ray myRay = GetRay();
 			if (Physics.Raycast(myRay, out RaycastHit hit)) {                                      // cast the ray
 				TileBaseScript tileS;
 				try {
@@ -251,5 +253,14 @@ public class Player_BuildingController : MonoBehaviour {
 			b_lastBuilding = null;
 			b_lastTile = null;
 		}
+	}
+
+	Ray GetRay () {
+		Ray myRay;
+		if (Input.touchCount > 0)
+			myRay = mycam.ScreenPointToRay(Input.GetTouch(0).position);
+		else
+			myRay = mycam.ScreenPointToRay(Input.mousePosition);
+		return myRay;
 	}
 }
