@@ -13,17 +13,19 @@ public class BuildingWorldObject : MonoBehaviour
 	public BuildingData myData;
 	public Position myPos;
 	public List<TileBaseScript> myTiles;
+	public List<BeltBuildingObject> myBelts;
 
 	public SpriteRenderer myRend;
 
-	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileBaseScript> _myTiles) {
+	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileBaseScript> _myTiles, List<BeltBuildingObject> _buildingBelts) {
 		myData = _myData;
 		myPos = _location;
 		myTiles = _myTiles;
+		myBelts = _buildingBelts;
 
 		myRend.sprite = myData.BuildingSprite;
 		DataSaver.saveEvent += SaveYourself;
-		transform.position = _location.vector3 + myData.spriteOffset.vector3();
+		transform.position = _location.Vector3(Position.Type.building) + myData.spriteOffset.vector3();
 	}
 
 
@@ -32,15 +34,21 @@ public class BuildingWorldObject : MonoBehaviour
 		DataSaver.n++;
 	}
 
+	void OnDestroy () {
+		DataSaver.saveEvent -= SaveYourself;
+	}
+
 	public void DestroyYourself () {
 		foreach (TileBaseScript myTile in myTiles) {
 			if (myTile != null)
 				myTile.myBuilding = null;
 		}
+		foreach (BeltBuildingObject myBelt in myBelts) {
+			if (myBelt != null)
+				myBelt.DestroyYourself();
+		}
 		Destroy(gameObject);
 	}
 
-	void OnDestroy () {
-		DataSaver.saveEvent -= SaveYourself;
-	}
+	
 }

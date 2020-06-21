@@ -6,8 +6,8 @@ public class GameLoader : MonoBehaviour
 {
     public void LoadGame () {
         if (DataSaver.s.Load()) {
-            CreateBuildings();
             CreateBelts();
+            CreateBuildings();
         }
     }
 
@@ -21,7 +21,7 @@ public class GameLoader : MonoBehaviour
     void CreateBelts () {
         foreach (DataSaver.BeltData belt in DataSaver.mySave.beltData) {
             if (belt != null)
-                ObjectBuilderMaster.BuildBeltFromSave(belt.inLocations, belt.outLocations, belt.myPos);
+                ObjectBuilderMaster.BuildBeltFromSave(belt.inLocations, belt.outLocations, belt.myPos, belt.isBuildingBelt);
         }
     }
 }

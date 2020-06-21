@@ -30,7 +30,7 @@ public class ItemPlacementHelper : MonoBehaviour
 					Position myPos = (new Position(x, y) - BuildingData.center);
 					//print(myPos);
 
-					mySprites[x,y] = Instantiate(ItemSpritePrefab, myPos.vector3 - Vector3.forward, Quaternion.identity);
+					mySprites[x,y] = Instantiate(ItemSpritePrefab, myPos.Vector3(Position.Type.building) - Vector3.forward, Quaternion.identity);
 					mySprites[x,y].transform.parent = transform;
 					ItemSprite mySprite = mySprites[x,y].GetComponent<ItemSprite>();
 					mySprite.x = myPos.x;

@@ -98,11 +98,13 @@ public class DataSaver : MonoBehaviour {
 		public bool[] inLocations = new bool[4];
 		public bool[] outLocations = new bool[4];
 		public Position myPos;
+		public bool isBuildingBelt = false;
 
-		public BeltData (bool[] myins, bool[] myouts, Position location) {
+		public BeltData (bool[] myins, bool[] myouts, Position location, bool amIBuildingBelt) {
 			inLocations = myins;
 			outLocations = myouts;
 			myPos = location;
+			isBuildingBelt = amIBuildingBelt;
 		}
 	}
 }

@@ -143,6 +143,13 @@ public class BeltPreProcessor {
 		belt.CreateBeltItemSlots();
 	}
 
+	public void RemoveBelt (BeltObject removedBelt) {
+		BeltGroup myBeltGroup = removedBelt.beltGroup;
+		myBeltGroup.belts.Remove(removedBelt);
+		allBeltGroups.Remove(myBeltGroup);
+		ProcessBelts(myBeltGroup.belts);
+	}
+
 	public void ProcessBeltGroupingChange (BeltObject belt) {
 		List<BeltGroup> myTouchingBeltGroups = GetNearbyBeltGroups(belt);
 

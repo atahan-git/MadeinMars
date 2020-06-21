@@ -9,6 +9,8 @@ public struct Position {
 
 	public static float defaultPositionVector3Z = 0;
 
+	public enum Type { world, belt, item, building };
+
 	public Position (int _x, int _y) {
 		x = _x;
 		y = _y;
@@ -22,10 +24,23 @@ public struct Position {
 		return new Position(a.x - b.x, a.y - b.y);
 	}
 
-	public Vector3 vector3 {
-		get {
-			return new Vector3(x, y, defaultPositionVector3Z);
+	public Vector3 Vector3 (Type type){
+		float zPos = defaultPositionVector3Z;
+		switch (type) {
+		case Type.world:
+			zPos = DataHolder.worldLayer;
+			break;
+		case Type.belt:
+			zPos = DataHolder.beltLayer;
+			break;
+		case Type.item:
+			zPos = DataHolder.itemLayer;
+			break;
+		case Type.building:
+			zPos = DataHolder.buildingLayer;
+			break;
 		}
+		return new Vector3(x, y, zPos);
 	}
 
 	public override string ToString () {

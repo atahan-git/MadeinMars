@@ -46,8 +46,19 @@ public class BeltObject : MonoBehaviour {
 	}
 
 	public void SaveYourself () {
-		DataSaver.BeltsToBeSaved[DataSaver.b] = new DataSaver.BeltData(beltInputs, beltOutputs, pos);
+		DataSaver.BeltsToBeSaved[DataSaver.b] = new DataSaver.BeltData(beltInputs, beltOutputs, pos, this is BeltBuildingObject);
 		DataSaver.b++;
+	}
+	void OnDestroy () {
+		DataSaver.saveEvent -= SaveYourself;
+	}
+
+	public void DestroyYourself () {
+		if (tileCovered != null)
+			tileCovered.myBelt = null;
+		BeltMaster.s.DestroyABelt(this);
+		RemoveOldItemSlots();
+		Destroy(gameObject);
 	}
 
 	public virtual void UpdateGraphics () {
@@ -312,9 +323,12 @@ public class BeltObject : MonoBehaviour {
 		return false;
 	}
 
-	public static void ConnectBeltsBuildingOnly (BeltObject from, BeltObject to) {
+	public static bool ConnectBeltsBuildingOnly (BeltObject from, BeltObject to) {
 		if (from == null || to == null)
-			return;
+			return false;
+		if (from is BeltBuildingObject && to is BeltBuildingObject)
+			// We don't want to connect to building belts.
+			return false;
 
 		int xDiff = from.pos.x - to.pos.x;
 		int yDiff = from.pos.y - to.pos.y;
@@ -324,23 +338,28 @@ public class BeltObject : MonoBehaviour {
 			to.beltInputs[2] = true;
 			from.beltInputs[0] = false;
 			to.beltOutputs[2] = false;
+			return true;
 		} else if (xDiff == -1 && yDiff == 0) {
 			from.beltOutputs[1] = true;
 			to.beltInputs[3] = true;
 			from.beltInputs[1] = false;
 			to.beltOutputs[3] = false;
+			return true;
 		} else if (xDiff == 0 && yDiff == 1) {
 			from.beltOutputs[2] = true;
 			to.beltInputs[0] = true;
 			from.beltInputs[2] = false;
 			to.beltOutputs[0] = false;
+			return true;
 		} else if (xDiff == 1 && yDiff == 0) {
 			from.beltOutputs[3] = true;
 			to.beltInputs[1] = true;
 			from.beltInputs[3] = false;
 			to.beltOutputs[1] = false;
+			return true;
 		} else {
 			Debug.LogError("Trying to connect belts that cannot be connected!");
+			return false;
 		}
 	}
 	public static void ConnectBeltsBuildingOnly (TileBaseScript from, BeltObject to) {

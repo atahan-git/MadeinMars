@@ -12,6 +12,8 @@ public class ObjectBuilderMaster : MonoBehaviour
 	static ObjectBuilderMaster s;
 	public GameObject buidingWorldObjectPrefab;
 	public GameObject beltPrefab;
+	public GameObject buildingBeltPrefab;
+
 	private void Awake () {
 		if (s != null) {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
@@ -40,11 +42,13 @@ public class ObjectBuilderMaster : MonoBehaviour
 		return true;
 	}
 	public static bool BuildObjectFromSave (string myUniqueName, Position location) {
-		return BuildObject(DataHolder.s.GetBuilding(myUniqueName), location);
+		return BuildObject(DataHolder.s.GetBuilding(myUniqueName), location, true);
 	}
 
-	public static BeltObject BuildBelt (TileBaseScript tileS) {
-		BeltObject myBelt = ((GameObject)Instantiate(s.beltPrefab, tileS.position.vector3 + new Vector3(0.5f, 0.5f, 0), Quaternion.identity)).GetComponent<BeltObject>();
+	static BeltObject BuildBelt (TileBaseScript tileS, bool isBuildingBelt) {
+		GameObject prefab = isBuildingBelt ? s.buildingBeltPrefab : s.beltPrefab;
+
+		BeltObject myBelt = ((GameObject)Instantiate(prefab, tileS.position.Vector3(Position.Type.belt) + new Vector3(0.5f, 0.5f, 0), Quaternion.identity)).GetComponent<BeltObject>();
 		myBelt.gameObject.name = tileS.position.ToString() + " - " + myBelt.gameObject.name;
 		myBelt.pos = tileS.position;
 		tileS.myBelt = myBelt.gameObject;
@@ -54,9 +58,13 @@ public class ObjectBuilderMaster : MonoBehaviour
 		return myBelt;
 	}
 
-	public static bool BuildBeltFromSave (bool[] beltInData, bool[] beltOutData, Position location) {
+	public static BeltObject BuildBelt (TileBaseScript tileS) {
+		return BuildBelt(tileS, false);
+	}
+
+	public static bool BuildBeltFromSave (bool[] beltInData, bool[] beltOutData, Position location, bool isBuildingBelt) {
 		if (CheckPlaceable(location)) {
-			BeltObject myBelt = BuildBelt(Grid.s.GetTile(location));
+			BeltObject myBelt = BuildBelt(Grid.s.GetTile(location), isBuildingBelt);
 			myBelt.beltInputs = beltInData;
 			myBelt.beltOutputs = beltOutData;
 
@@ -67,12 +75,17 @@ public class ObjectBuilderMaster : MonoBehaviour
 	}
 
 	public static bool BuildObject (BuildingData myData, Position location) {
+		return BuildObject(myData, location, false);
+	}
 
-		if (CheckPlaceable(myData, location)) {
-			GameObject InstantiatedItem = Instantiate(s.buidingWorldObjectPrefab, location.vector3, Quaternion.identity);
+	public static bool BuildObject (BuildingData myData, Position location, bool forced) {
+
+		if (CheckPlaceable(myData, location) || forced) {
+			GameObject InstantiatedItem = Instantiate(s.buidingWorldObjectPrefab, location.Vector3(Position.Type.building), Quaternion.identity);
 
 			List<TileBaseScript> coveredTiles = new List<TileBaseScript>();
-			for(int y = 0; y < myData.shape.rows.Length; y++) {
+			List<BeltBuildingObject> buildingBelts = new List<BeltBuildingObject>();
+			for (int y = 0; y < myData.shape.rows.Length; y++) {
 				for (int x = 0; x < myData.shape.rows[y].row.Length; x++) {
 					if (myData.shape.rows[y].row[x]) {
 						TileBaseScript myTile = Grid.s.GetTile(new Position(x, y) + location - BuildingData.center);
@@ -80,11 +93,15 @@ public class ObjectBuilderMaster : MonoBehaviour
 						//myTile.itemPlaceable = false;
 						myTile.myBuilding = InstantiatedItem;
 						coveredTiles.Add(myTile);
+
+						GameObject InstantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
+
+						buildingBelts.Add(InstantiatedBuildingBelt.GetComponent<BeltBuildingObject>());
 					}
 				}
 			}
 
-			InstantiatedItem.GetComponent<BuildingWorldObject>().PlaceInWorld(myData, location, coveredTiles);
+			InstantiatedItem.GetComponent<BuildingWorldObject>().PlaceInWorld(myData, location, coveredTiles, buildingBelts);
 
 			return true;
 		} else {

@@ -89,6 +89,11 @@ public class BeltMaster : MonoBehaviour {
 		StartCoroutine(BeltItemSlotUpdateLoop());
 	}
 
+	public void DestroyABelt (BeltObject destroyedBelt){
+		allBelts.Remove(destroyedBelt);
+		beltPreProc.RemoveBelt(destroyedBelt);
+	}
+
 	public void AddOneBeltConnectedToOne (BeltObject newBelt, BeltObject updatedBelt) {
 		allBelts.Add(newBelt);
 		beltPreProc.ResetBeltSlots(newBelt);
@@ -204,14 +209,16 @@ public class BeltMaster : MonoBehaviour {
 		return false;
 	}
 
-	public void DestroyItemAtSlot (BeltItemSlot slot) {
+	public bool DestroyItemAtSlot (BeltItemSlot slot) {
 		if (slot != null) {
 			if (slot.myItem != null) {
 				entityPool.DestroyPooledObject(slot.myItem.myEntityId);
 				itemPool.DestroyPooledObject(slot.myItem);
 				slot.myItem = null;
 				activeItemCount--;
+				return true;
 			}	
 		}
+		return false;
 	}
 }

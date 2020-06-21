@@ -97,13 +97,13 @@ public class BeltItemSlot {
 	}
 
 
-	public static void ResetBeltItemSlot (BeltItemSlot from) {
-		if (from == null)
+	public static void ResetBeltItemSlot (BeltItemSlot target) {
+		if (target == null)
 			return;
-		if(from.myItem != null)
-			BeltMaster.s.DestroyItemAtSlot(from);
+		if(target.myItem != null)
+			BeltMaster.s.DestroyItemAtSlot(target);
 
-		RemoveAllConnections(from);
+		RemoveAllConnections(target);
 	}
 
 	static void RemoveAllConnections (BeltItemSlot from) {

@@ -13,6 +13,11 @@ public class DataHolder : MonoBehaviour {
     [SerializeField]
     private BuildingData[] myBuildings;
 
+    //Layers
+    public static int worldLayer = 1;
+    public static int beltLayer = 0;
+    public static int itemLayer = -1;
+    public static int buildingLayer = -2;
 
     private void Awake () {
         if (s != null) {

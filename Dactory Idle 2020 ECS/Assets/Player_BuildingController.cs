@@ -93,7 +93,7 @@ public class Player_BuildingController : MonoBehaviour {
 	}
 
 
-	public void SellEnable () {
+	public void ActivateSellMode () {
 		Deselect();
 		isPlacingItem = false;
 		isBeltPlacing = false;
@@ -107,7 +107,7 @@ public class Player_BuildingController : MonoBehaviour {
 			RaycastHit hit = new RaycastHit();
 			if (Physics.Raycast(myRay, out hit)) {
 
-				print(hit.collider.gameObject.name);
+				Debug.Log("Selling " + hit.collider.gameObject.name);
 
 				TileBaseScript tileS;
 				try {
@@ -117,11 +117,10 @@ public class Player_BuildingController : MonoBehaviour {
 				}
 
 				if (!tileS.isEmpty) {
-					/*if (tileS.myItem.GetComponent<PlacedItemBaseScript> ())
-						tileS.myItem.GetComponent<PlacedItemBaseScript> ().DestroyYourself ();
+					if (tileS.myBuilding != null)
+						tileS.myBuilding.GetComponent<BuildingWorldObject> ().DestroyYourself ();
 					else
-						tileS.myItem.GetComponent<BeltScript> ().DestroyYourself ();*/
-					throw new NotImplementedException("Building selling not implemented yet!");
+						tileS.myBelt.GetComponent<BeltObject> ().DestroyYourself ();
 				}
 			}
 		}
@@ -148,8 +147,7 @@ public class Player_BuildingController : MonoBehaviour {
 	void PlaceBeltsCheck () {
 		if (Input.GetMouseButton(0)) {
 			Ray myRay = mycam.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit = new RaycastHit();
-			if (Physics.Raycast(myRay, out hit)) {                                      // cast the ray
+			if (Physics.Raycast(myRay, out RaycastHit hit)) {                                      // cast the ray
 				TileBaseScript tileS;
 				try {
 					tileS = hit.collider.gameObject.GetComponent<TileBaseScript>(); //hit something
@@ -206,16 +204,17 @@ public class Player_BuildingController : MonoBehaviour {
 					} else {                                                            //there is an item below us
 						BuildingWorldObject myBuilding = null;
 						BeltObject myBelt = null;
-						if(tileS.myBuilding != null)
-							myBuilding = tileS.myBuilding.GetComponent<BuildingWorldObject>();
+						if (tileS.myBuilding != null)
+							// We never connect to buildings anymore so just make it null.
+							myBuilding = null;//tileS.myBuilding.GetComponent<BuildingWorldObject>();
 						if (tileS.myBelt != null)
 							myBelt = tileS.myBelt.GetComponent<BeltObject>();
 
 						if (b_lastBelt == null && b_lastBuilding == null) {                             //nothing to something
-																									//do nothing
+																										//do nothing
 
 						} else if (b_lastBelt == null && b_lastBuilding != null && myBuilding != null) {    //item to item
-																									//do nothing
+																											//do nothing
 
 						} else if (b_lastBelt == null && b_lastBuilding != null && myBelt != null) {    //item to belt
 							BeltObject.ConnectBeltsBuildingOnly(b_lastTile, myBelt);
