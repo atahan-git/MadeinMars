@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
+using XNode;
 
 
 /// <summary>
@@ -12,6 +16,12 @@ public class DataHolder : MonoBehaviour {
     public static DataHolder s;
     [SerializeField]
     private BuildingData[] myBuildings;
+    [SerializeField]
+    private ItemSet[] myItemSets;
+    [SerializeField]
+    private RecipeSet[] myRecipeSets;
+    CraftingProcessNode[] myCraftingProcesses;
+    CraftingProcessNode[][] myCraftingProcessesDivided;
 
     //Layers
     public static int worldLayer = 1;
@@ -27,12 +37,84 @@ public class DataHolder : MonoBehaviour {
     }
 
     public BuildingData GetBuilding (string uniqueName) {
+        // This should be converted to use a dictionary at some point
         for (int i = 0; i < myBuildings.Length; i++) {
             if (myBuildings[i] != null) {
                 if (myBuildings[i].uniqueName == uniqueName)
                     return myBuildings[i];
             }
         }
-        throw new NullReferenceException("The building you are requesting " + uniqueName + " does not exist currently!");
+        throw new NullReferenceException("The building you are requesting " + uniqueName + " does not exist!");
+    }
+
+    public BuildingData[] AllBuildings () {
+        return myBuildings;
+    }
+
+    public Item GetItem (int itemId) {
+        int itemSet = 0;
+        while (itemId > myItemSets[itemSet].items.Length) {
+            itemId -= myItemSets[itemSet].items.Length;
+            itemSet++;
+            if (itemSet >= myItemSets.Length) {
+                throw new NullReferenceException("The item you are requesting with id " + itemId + " does not exist!");
+            }
+        }
+        return myItemSets[itemSet].items[itemId];
+    }
+
+
+    void GenerateCraftingProcessesArray () {
+        List<CraftingProcessNode> cp = new List<CraftingProcessNode>();
+
+        for (int i = 0; i < myRecipeSets.Length; i++) {
+            for (int m = 0; m < myRecipeSets[i].nodes.Count; m++) {
+                if (myRecipeSets[i].nodes[m] is CraftingProcessNode) {
+                    cp.Add((CraftingProcessNode)myRecipeSets[i].nodes[m]);
+                }
+            }
+        }
+
+        myCraftingProcesses = cp.ToArray();
+    }
+
+    void DivideCraftingProcessesArray () {
+        Dictionary<CraftingProcessNode.cTypes, int> cTypetoIndexMatch = new Dictionary<CraftingProcessNode.cTypes, int>();
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Furnace] = 0;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorSingle] = 1;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorDouble] = 2;
+        // Make sure this matches with the switch statement in GetCraftingProcessesOfType function!
+
+
+        List<List<CraftingProcessNode>> cp = new List<List<CraftingProcessNode>>();
+
+        cp.Add(new List<CraftingProcessNode>());
+        cp.Add(new List<CraftingProcessNode>());
+
+        for (int i = 0; i < myCraftingProcesses.Length; i++) {
+            cp[cTypetoIndexMatch[myCraftingProcesses[i].CraftingType]].Add(myCraftingProcesses[i]);
+        }
+
+        myCraftingProcessesDivided = cp.Select(a => a.ToArray()).ToArray();
+    }
+
+    public CraftingProcessNode[] GetCraftingProcessesOfType (BuildingData.ItemType type) {
+        int index = -1;
+        switch (type) {
+        case BuildingData.ItemType.Furnace:
+            index = 0;
+            break;
+        case BuildingData.ItemType.ProcessorSingle:
+            index = 1;
+            break;
+        case BuildingData.ItemType.ProcessorDouble:
+            index = 1;
+            break;
+        }
+        if (index == -1) {
+            throw new InvalidEnumArgumentException("This building type does not support Crafting Processes!");
+        }
+
+        return myCraftingProcessesDivided[index];
     }
 }

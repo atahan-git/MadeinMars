@@ -1,0 +1,751 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8664233201081424687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c186fcf4949bdc842b3f1346a1c624f1, type: 3}
+  m_Name: Crafting Process
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 536, y: -312}
+  ports:
+    keys:
+    - Input 1
+    - Input 2
+    - Input 3
+    - Output 1
+    - Output 2
+    values:
+    - _fieldName: Input 1
+      _node: {fileID: -8664233201081424687}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingInput
+        node: {fileID: -8369109708272232732}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Input 2
+      _node: {fileID: -8664233201081424687}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingInput
+        node: {fileID: -5603118792784446991}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Input 3
+      _node: {fileID: -8664233201081424687}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 1
+      _node: {fileID: -8664233201081424687}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingResult
+        node: {fileID: -1189855339667758864}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 2
+      _node: {fileID: -8664233201081424687}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  CraftingType: 2
+  CraftingTier: 0
+  timeCost: 0
+  inputItemUniqueNames:
+  - concrete
+  - ironIngot
+  - Empty
+  inputItemCounts: 0400000001000000
+  outputItemUniqueNames:
+  - buildingMat
+  - Empty
+  outputItemCounts: 01000000
+--- !u!114 &-8369109708272232732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 168, y: -328}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: -8369109708272232732}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Input 1
+        node: {fileID: -8664233201081424687}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: -8369109708272232732}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: concrete
+--- !u!114 &-5603118792784446991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 168, y: -56}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: -5603118792784446991}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Input 2
+        node: {fileID: -8664233201081424687}
+        reroutePoints: []
+      - fieldName: Input 1
+        node: {fileID: 5842919704912968515}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: -5603118792784446991}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Output 1
+        node: {fileID: 4806882596363312630}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: ironIngot
+--- !u!114 &-1363793797473808960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 888, y: 8}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: -1363793797473808960}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: -1363793797473808960}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Output 1
+        node: {fileID: 5842919704912968515}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: ironPlate
+--- !u!114 &-1189855339667758864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 872, y: -248}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: -1189855339667758864}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: -1189855339667758864}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Output 1
+        node: {fileID: -8664233201081424687}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: buildingMat
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebed907818813d64d8267c307c8017ac, type: 3}
+  m_Name: Base Recipe Set
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 7058421518136959276}
+  - {fileID: 4806882596363312630}
+  - {fileID: -5603118792784446991}
+  - {fileID: 4777914591007526908}
+  - {fileID: 7909929281203855048}
+  - {fileID: 6789401536184634643}
+  - {fileID: -8664233201081424687}
+  - {fileID: -1189855339667758864}
+  - {fileID: -8369109708272232732}
+  - {fileID: 5842919704912968515}
+  - {fileID: -1363793797473808960}
+  - {fileID: 8210405110212262982}
+  - {fileID: 4469622414673102226}
+  myItemSets:
+  - {fileID: 11400000, guid: 9427da8f80d849340bc3314ec68eee65, type: 2}
+--- !u!114 &4469622414673102226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 888, y: 248}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: 4469622414673102226}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: 4469622414673102226}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Output 1
+        node: {fileID: 8210405110212262982}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: copperCable
+--- !u!114 &4777914591007526908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -504, y: 120}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: 4777914591007526908}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Input 1
+        node: {fileID: 7909929281203855048}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: 4777914591007526908}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: copperOre
+--- !u!114 &4806882596363312630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c186fcf4949bdc842b3f1346a1c624f1, type: 3}
+  m_Name: Crafting Process
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: -104}
+  ports:
+    keys:
+    - Input 1
+    - Input 2
+    - Output 1
+    - Output 2
+    values:
+    - _fieldName: Input 1
+      _node: {fileID: 4806882596363312630}
+      _typeQualifiedName: ItemInput, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingInput
+        node: {fileID: 7058421518136959276}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Input 2
+      _node: {fileID: 4806882596363312630}
+      _typeQualifiedName: ItemInput, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 1
+      _node: {fileID: 4806882596363312630}
+      _typeQualifiedName: ItemOutput, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingResult
+        node: {fileID: -5603118792784446991}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 2
+      _node: {fileID: 4806882596363312630}
+      _typeQualifiedName: ItemOutput, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  CraftingType: 0
+  CraftingTier: 0
+  timeCost: 2
+  inputItemUniqueNames:
+  - ironOre
+  - Empty
+  inputItemCounts: 08000000
+  outputItemUniqueNames:
+  - ironIngot
+  - Empty
+  outputItemCounts: 02000000
+--- !u!114 &5842919704912968515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c186fcf4949bdc842b3f1346a1c624f1, type: 3}
+  m_Name: Crafting Process
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 536, y: -40}
+  ports:
+    keys:
+    - Input 1
+    - Input 2
+    - Output 1
+    - Output 2
+    values:
+    - _fieldName: Input 1
+      _node: {fileID: 5842919704912968515}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingInput
+        node: {fileID: -5603118792784446991}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Input 2
+      _node: {fileID: 5842919704912968515}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 1
+      _node: {fileID: 5842919704912968515}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingResult
+        node: {fileID: -1363793797473808960}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 2
+      _node: {fileID: 5842919704912968515}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  CraftingType: 1
+  CraftingTier: 0
+  timeCost: 0
+  inputItemUniqueNames:
+  - ironIngot
+  - Empty
+  inputItemCounts: 01000000
+  outputItemUniqueNames:
+  - ironPlate
+  - Empty
+  outputItemCounts: 02000000
+--- !u!114 &6789401536184634643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 168, y: 184}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: 6789401536184634643}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Input 1
+        node: {fileID: 8210405110212262982}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: 6789401536184634643}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Output 1
+        node: {fileID: 7909929281203855048}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: copperIngot
+--- !u!114 &7058421518136959276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde6e0e18a02c8942958766e84c592bb, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -504, y: -120}
+  ports:
+    keys:
+    - CraftingInput
+    - CraftingResult
+    values:
+    - _fieldName: CraftingInput
+      _node: {fileID: 7058421518136959276}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Input 1
+        node: {fileID: 4806882596363312630}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: CraftingResult
+      _node: {fileID: 7058421518136959276}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  myUniqueName: ironOre
+--- !u!114 &7909929281203855048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c186fcf4949bdc842b3f1346a1c624f1, type: 3}
+  m_Name: Crafting Process
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: 136}
+  ports:
+    keys:
+    - Input 1
+    - Input 2
+    - Output 1
+    - Output 2
+    values:
+    - _fieldName: Input 1
+      _node: {fileID: 7909929281203855048}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingInput
+        node: {fileID: 4777914591007526908}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Input 2
+      _node: {fileID: 7909929281203855048}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 1
+      _node: {fileID: 7909929281203855048}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingResult
+        node: {fileID: 6789401536184634643}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 2
+      _node: {fileID: 7909929281203855048}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  CraftingType: 0
+  CraftingTier: 0
+  timeCost: 0
+  inputItemUniqueNames:
+  - copperOre
+  - Empty
+  inputItemCounts: 05000000
+  outputItemUniqueNames:
+  - copperIngot
+  - Empty
+  outputItemCounts: 02000000
+--- !u!114 &8210405110212262982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c186fcf4949bdc842b3f1346a1c624f1, type: 3}
+  m_Name: Crafting Process
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 536, y: 200}
+  ports:
+    keys:
+    - Input 1
+    - Input 2
+    - Output 1
+    - Output 2
+    values:
+    - _fieldName: Input 1
+      _node: {fileID: 8210405110212262982}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingInput
+        node: {fileID: 6789401536184634643}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Input 2
+      _node: {fileID: 8210405110212262982}
+      _typeQualifiedName: ItemInput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 1
+      _node: {fileID: 8210405110212262982}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: CraftingResult
+        node: {fileID: 4469622414673102226}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Output 2
+      _node: {fileID: 8210405110212262982}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  CraftingType: 1
+  CraftingTier: 0
+  timeCost: 0
+  inputItemUniqueNames:
+  - copperIngot
+  - Empty
+  inputItemCounts: 01000000
+  outputItemUniqueNames:
+  - copperCable
+  - Empty
+  outputItemCounts: 01000000

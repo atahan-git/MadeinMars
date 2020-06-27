@@ -55,7 +55,7 @@ public class ObjectPool : MonoBehaviour {
 				material = material,
 			});
 
-			entityManager.SetComponentData(entity, new Scale { Value = 0.2f });
+			entityManager.SetComponentData(entity, new Scale { Value = 0.25f });
 
 			isActiveArray[i] = false;
 		}
@@ -108,15 +108,18 @@ public class ObjectPool : MonoBehaviour {
 	}
 
 
-	public int Spawn (Vector3 pos, Vector3 componentData) {
+	public int Spawn (Vector3 pos, Vector3 componentData, Item item) {
 		for (int i = 0; i < isActiveArray.Length; i++) {
 			if (!isActiveArray[i]) {
 				isActiveArray[i] = true;
-
+				Material mat = item.GetMaterial();
 				entityManager.SetComponentData(allEntitiesArray[i], new Translation { Value = pos });
 				entityManager.SetComponentData(allEntitiesArray[i], new ItemMovement { targetWithOffset = componentData });
 				entityManager.RemoveComponent<Disabled>(allEntitiesArray[i]);
-
+				entityManager.SetSharedComponentData(allEntitiesArray[i], new RenderMesh {
+					mesh = mesh,
+					material = mat,
+				});
 				ActiveObjectsCount++;
 
 				return i;
@@ -127,7 +130,7 @@ public class ObjectPool : MonoBehaviour {
 
 		//there is no free object left
 		if (ExpandEntityArray())
-			return Spawn(pos, componentData);
+			return Spawn(pos, componentData, item);
 		else {
 			Debug.LogError("Can't Spawn more objects!");
 			return -1;

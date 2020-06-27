@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30baec280fa5d0468bce2c5a6d2a647, type: 3}
   m_Name: Miner
   m_EditorClassIdentifier: 
-  uniqueName: Base_newbuilding
+  uniqueName: Base_miner
   shape:
     rows:
     - row: 00000000000000

@@ -34,15 +34,12 @@ public class BeltBuildingObject : BeltObject {
 		CreateItemInputSlots();
 	}
 
-	public void Start () {
-		InvokeRepeating("CreateItemsPeriodically", 1f, 1f);
-	}
 
 	public void CreateItemsPeriodically () {
 		for (int i = 0; i < myCreationSlots.Count; i++) {
 			ItemCreationSlot slot = myCreationSlots[i];
 			if (slot != null) {
-				slot.CreateItem();
+				slot.CreateItem(0);
 			}
 		}
 
@@ -116,7 +113,11 @@ public class ItemInputSlot {
 		mySlot = slot;
 	}
 
-	public bool TakeItem () {
+	public int TakeItem (int itemId) {
+		return BeltMaster.s.DestroyItemAtSlot(mySlot, itemId);
+	}
+
+	public int TakeItem () {
 		return BeltMaster.s.DestroyItemAtSlot(mySlot);
 	}
 }
@@ -128,7 +129,7 @@ public class ItemCreationSlot {
 		mySlot = slot;
 	}
 
-	public void CreateItem () {
-		BeltMaster.s.CreateItemAtBeltSlot(mySlot);
+	public bool CreateItem (int itemId) {
+		return BeltMaster.s.CreateItemAtBeltSlot(mySlot, itemId);
 	}
 }

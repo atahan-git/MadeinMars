@@ -10,6 +10,4 @@ public class ItemNode : Node {
 
     [Input] public ItemOutput CraftingResult;
     [Output] public ItemInput CraftingInput;
-
-
 }

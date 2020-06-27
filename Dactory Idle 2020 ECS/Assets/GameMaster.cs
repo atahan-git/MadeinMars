@@ -7,5 +7,11 @@ public class GameMaster : MonoBehaviour {
 	void Start () {
 		GetComponent<GameLoader>().LoadGame();
 		BeltMaster.s.StartBeltSystem();
+		BuildingMaster.s.StartBuildingSystem();
 	}
+
+	private void OnApplicationQuit () {
+		DataSaver.s.SaveGame();
+	}
+
 }

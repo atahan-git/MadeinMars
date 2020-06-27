@@ -257,10 +257,7 @@ public class Player_BuildingController : MonoBehaviour {
 
 	Ray GetRay () {
 		Ray myRay;
-		if (Input.touchCount > 0)
-			myRay = mycam.ScreenPointToRay(Input.GetTouch(0).position);
-		else
-			myRay = mycam.ScreenPointToRay(Input.mousePosition);
+		myRay = mycam.ScreenPointToRay(SmartInput.inputPos);
 		return myRay;
 	}
 }

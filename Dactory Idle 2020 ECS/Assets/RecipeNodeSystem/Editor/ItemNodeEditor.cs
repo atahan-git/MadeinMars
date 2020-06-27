@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
@@ -12,6 +13,7 @@ public class ItemNodeEditor : NodeEditor {
 	string lastUniqueName;
 
 	public override void OnHeaderGUI () {
+		GUI.backgroundColor = Color.white;
 		GUI.color = Color.white;
 		ItemNode node = target as ItemNode;
 		RecipeSet graph = node.graph as RecipeSet;
@@ -43,8 +45,8 @@ public class ItemNodeEditor : NodeEditor {
 		}
 		if (myItem != null) {
 			GUI.color = Color.white;
-			if (myItem.myMat != null) {
-				GUI.DrawTexture(new Rect(20, 40, 40, 40), myItem.myMat.mainTexture, ScaleMode.ScaleToFit);
+			if (myItem.myTextureOffset.x != -1) {
+				GUI.DrawTextureWithTexCoords(new Rect(20, 40, 40, 40), myItem.myItemSet.myTexture, new Rect(myItem.GetTextureCoordinates(), myItem.GetScale()));
 			}
 		} else {
 			GUI.color = new Color(1, .5f, .5f);

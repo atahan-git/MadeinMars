@@ -14,4 +14,8 @@ public static class ExtensionMethods {
     public static Vector3 vector3 (this Vector2 v2) {
         return new Vector3(v2.x, v2.y, Position.defaultPositionVector3Z);
     }
+
+    public static Vector2 vector2 (this Vector3 v3) {
+        return new Vector2(v3.x, v3.y);
+    }
 }

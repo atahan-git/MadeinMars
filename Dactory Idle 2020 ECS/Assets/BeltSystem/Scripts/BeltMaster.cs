@@ -29,7 +29,7 @@ public class BeltMaster : MonoBehaviour {
 
 	public ObjectPoolSimple<BeltItem> itemPool;
 	[HideInInspector]
-	 public ObjectPool entityPool; //refactor this asap pls, belt item slot should not access this
+	public ObjectPool entityPool; //refactor this asap pls, belt item slot should not access this
 
 
 	protected List<MagicItemCreator> allCreators = new List<MagicItemCreator>();
@@ -90,6 +90,9 @@ public class BeltMaster : MonoBehaviour {
 	}
 
 	public void DestroyABelt (BeltObject destroyedBelt){
+		if (beltPreProc == null) {
+			return;
+		}
 		allBelts.Remove(destroyedBelt);
 		beltPreProc.RemoveBelt(destroyedBelt);
 	}
@@ -196,11 +199,12 @@ public class BeltMaster : MonoBehaviour {
 
 
 	public int activeItemCount = 0;
-	public bool CreateItemAtBeltSlot (BeltItemSlot slot /*, int itemTyep*/) {
+	public bool CreateItemAtBeltSlot (BeltItemSlot slot , int itemId) {
 		if (slot != null) {
 			if (slot.myItem == null) {
 				slot.myItem = itemPool.Spawn();
-				slot.myItem.myEntityId = entityPool.Spawn(slot.position, slot.position);
+				slot.myItem.myItemId = itemId;
+				slot.myItem.myEntityId = entityPool.Spawn(slot.position, slot.position, DataHolder.s.GetItem(itemId));
 				activeItemCount++;
 				return true;
 			} 
@@ -209,16 +213,26 @@ public class BeltMaster : MonoBehaviour {
 		return false;
 	}
 
-	public bool DestroyItemAtSlot (BeltItemSlot slot) {
+	public int DestroyItemAtSlot (BeltItemSlot slot) {
 		if (slot != null) {
 			if (slot.myItem != null) {
+				int itemId = slot.myItem.myItemId;
 				entityPool.DestroyPooledObject(slot.myItem.myEntityId);
 				itemPool.DestroyPooledObject(slot.myItem);
+				slot.myItem.myItemId = -1;
 				slot.myItem = null;
 				activeItemCount--;
-				return true;
+				return itemId;
 			}	
 		}
-		return false;
+		return -1;
+	}
+
+	public int DestroyItemAtSlot (BeltItemSlot slot, int itemId) {
+		if (slot != null)
+			if (slot.myItem != null)
+				if (slot.myItem.myItemId == itemId)
+					return DestroyItemAtSlot(slot);
+		return -1;
 	}
 }

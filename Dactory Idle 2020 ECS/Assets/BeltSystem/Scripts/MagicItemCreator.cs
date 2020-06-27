@@ -17,7 +17,7 @@ public class MagicItemCreator : BeltObject {
                     BeltItemSlot slot = allBeltItemSlotsArray[i]; 
                     if (slot != null) {
                         if (slot.myItem == null)
-                            BeltMaster.s.CreateItemAtBeltSlot(slot);
+                            BeltMaster.s.CreateItemAtBeltSlot(slot, 0);
                 }
             }
             curTick = 0;

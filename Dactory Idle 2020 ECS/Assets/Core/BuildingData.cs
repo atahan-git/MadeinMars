@@ -9,7 +9,7 @@ public class BuildingData : ScriptableObject {
 	public ArrayLayout shape;
 	public static Position center = new Position(3, 3);
 
-	public enum ItemType { Belt, Miner, Furnace, Processor }
+	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble }
 
 	public ItemType myType;
 

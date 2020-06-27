@@ -30,6 +30,7 @@ public class ObjectPoolSimple<T> where T : IPoolableClass, new() {
 		for (int i = 0; i < _objectPool.Length; i++) {
 			_objectPool[i] = new T();
 			_objectPool[i].myId = i;
+			_objectPool[i].Setup();
 
 			isActiveArray[i] = false;
 		}
@@ -117,4 +118,5 @@ public class ObjectPoolSimple<T> where T : IPoolableClass, new() {
 
 public interface IPoolableClass {
 	int myId { get; set; }
+	void Setup ();
 }

@@ -14,6 +14,7 @@ public class BuildingWorldObject : MonoBehaviour
 	public Position myPos;
 	public List<TileBaseScript> myTiles;
 	public List<BeltBuildingObject> myBelts;
+	public BuildingCraftingController myCrafter;
 
 	public SpriteRenderer myRend;
 
@@ -22,10 +23,13 @@ public class BuildingWorldObject : MonoBehaviour
 		myPos = _location;
 		myTiles = _myTiles;
 		myBelts = _buildingBelts;
+		myCrafter.myBelts = myBelts;
+		myCrafter.isActive = true;
 
 		myRend.sprite = myData.BuildingSprite;
 		DataSaver.saveEvent += SaveYourself;
 		transform.position = _location.Vector3(Position.Type.building) + myData.spriteOffset.vector3();
+		BuildingMaster.myBuildings.Add(myCrafter);
 	}
 
 
@@ -47,6 +51,7 @@ public class BuildingWorldObject : MonoBehaviour
 			if (myBelt != null)
 				myBelt.DestroyYourself();
 		}
+		BuildingMaster.myBuildings.Remove(myCrafter);
 		Destroy(gameObject);
 	}
 

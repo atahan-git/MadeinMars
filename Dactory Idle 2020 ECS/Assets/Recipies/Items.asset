@@ -12,12 +12,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6b088b2b659e546801133562ef6571, type: 3}
   m_Name: Items
   m_EditorClassIdentifier: 
+  myMaterial: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+  myTexture: {fileID: 2800000, guid: eb81a87d36dcdad4d88f8e417d09cbbe, type: 3}
   items:
-  - uniqueName: base_IronOre
+  - uniqueName: ironOre
     name: Iron Ore
-    desctiption: 
-    myMat: {fileID: 2100000, guid: 4e19d1b2f0194b74989b1aefb795b8f4, type: 2}
-  - uniqueName: base_Iron
-    name: Iron
-    desctiption: 
-    myMat: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myTextureOffset: {x: 0, y: 0}
+  - uniqueName: ironIngot
+    name: Iron Ingot
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myTextureOffset: {x: 1, y: 0}
+  - uniqueName: ironPlate
+    name: Iron Plate
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myTextureOffset: {x: 2, y: 0}
+  - uniqueName: copperOre
+    name: Copper Ore
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myTextureOffset: {x: 0, y: 1}
+  - uniqueName: copperIngot
+    name: Copper Ingot
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myTextureOffset: {x: 1, y: 1}
+  - uniqueName: copperCable
+    name: Copper Cables
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 0}
+    myTextureOffset: {x: 2, y: 1}
+  - uniqueName: concrete
+    name: Concrete
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myTextureOffset: {x: 0, y: 2}
+  - uniqueName: buildingMat
+    name: Building Materials
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myTextureOffset: {x: 1, y: 2}

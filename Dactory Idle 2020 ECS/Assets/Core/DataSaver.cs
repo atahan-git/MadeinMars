@@ -16,6 +16,7 @@ public class DataSaver : MonoBehaviour {
 	public static int n = 0;
 	public static BeltData[] BeltsToBeSaved = new BeltData[999];
 	public static int b = 0;
+	public static string[] BuildingBarDataToBeSaved;
 
 	public delegate void SaveYourself ();
 	public static event SaveYourself saveEvent;
@@ -31,17 +32,16 @@ public class DataSaver : MonoBehaviour {
 
 	//--------------------------------------------------------------------------------------------------------------------------------
 	
-	void OnApplicationQuit () {
-		if (saveEvent != null)
-			saveEvent();
+	public void SaveGame () {
+		saveEvent?.Invoke();
 		Save();
 	}
 
-	public void Save () {
+	void Save () {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName + ".banana");
 
-		SaveFile data = new SaveFile(ItemsToBeSaved, BeltsToBeSaved);
+		SaveFile data = new SaveFile(ItemsToBeSaved, BeltsToBeSaved, BuildingBarDataToBeSaved);
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -74,10 +74,12 @@ public class DataSaver : MonoBehaviour {
 	public class SaveFile {
 		public BuildingSaveData[] buildingData = new BuildingSaveData[0];
 		public BeltData[] beltData = new BeltData[0];
+		public string[] buildingBarData = new string[0];
 
-		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel) {
+		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, string[] mybuilbar) {
 			buildingData = myit;
 			beltData = mybel;
+			buildingBarData = mybuilbar;
 		}
 
 	}

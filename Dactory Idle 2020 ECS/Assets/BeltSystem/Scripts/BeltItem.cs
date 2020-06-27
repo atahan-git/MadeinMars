@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
+using UnityEngine.PlayerLoop;
 
 public class BeltItem : IPoolableClass {
 
@@ -10,18 +11,18 @@ public class BeltItem : IPoolableClass {
 	public bool isMovedThisLoop = false;
 	//public Vector3 position = new Vector3();
 	public BeltItemSlot mySlot;
-	public Vector3 myRandomOffset;
+	public Vector3 myRandomOffset = Vector3.zero;
 
 	public int myId { get; set; }
+	public int myItemId = -1;
 	public int myEntityId;
 
-	/*public float randAmount = 0.03f;
-	private void Start () {
-		myRandomOffset = new Vector3(Random.Range(-randAmount, randAmount), Random.Range(-randAmount, randAmount), 0);
+	public float randAmount = 0.03f;
+	public void Setup () {
+		//myRandomOffset = new Vector3(Random.Range(-randAmount, randAmount), Random.Range(-randAmount, randAmount), 0);
 	}
 
-
-	public void DestroyItem () {
+	/*public void DestroyItem () {
 		Destroy(gameObject);
 	}*/
 

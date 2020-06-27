@@ -1,9 +1,8 @@
 {
-    "name": "Core",
+    "name": "GUI",
     "references": [
-        "GUID:f813a3ca5985e9e4aa2d9d281a2194fb",
-        "GUID:09b3620e92863634684f039ee6c397c0",
-        "GUID:88ec1e84b64276b428b5320860fef700"
+        "GUID:0a644bb01a5dd3540bb796167189dcb2",
+        "GUID:c87700ed8d985264f8e5e1dbe65240d7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

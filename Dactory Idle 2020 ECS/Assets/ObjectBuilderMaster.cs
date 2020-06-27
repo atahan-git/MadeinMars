@@ -48,7 +48,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 	static BeltObject BuildBelt (TileBaseScript tileS, bool isBuildingBelt) {
 		GameObject prefab = isBuildingBelt ? s.buildingBeltPrefab : s.beltPrefab;
 
-		BeltObject myBelt = ((GameObject)Instantiate(prefab, tileS.position.Vector3(Position.Type.belt) + new Vector3(0.5f, 0.5f, 0), Quaternion.identity)).GetComponent<BeltObject>();
+		BeltObject myBelt = Instantiate(prefab, tileS.position.Vector3(Position.Type.belt) + new Vector3(0.5f, 0.5f, 0), Quaternion.identity).GetComponent<BeltObject>();
 		myBelt.gameObject.name = tileS.position.ToString() + " - " + myBelt.gameObject.name;
 		myBelt.pos = tileS.position;
 		tileS.myBelt = myBelt.gameObject;
@@ -94,7 +94,18 @@ public class ObjectBuilderMaster : MonoBehaviour
 						myTile.myBuilding = InstantiatedItem;
 						coveredTiles.Add(myTile);
 
-						GameObject InstantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
+
+						GameObject InstantiatedBuildingBelt;
+						if (myTile.areThereBelt) {
+							if (myTile.myBelt.GetComponent<BeltBuildingObject>()) {
+								InstantiatedBuildingBelt = myTile.myBelt.gameObject;
+							} else {
+								myTile.myBelt.GetComponent<BeltObject>().DestroyYourself();
+								InstantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
+							}
+						} else {
+							InstantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
+						}
 
 						buildingBelts.Add(InstantiatedBuildingBelt.GetComponent<BeltBuildingObject>());
 					}

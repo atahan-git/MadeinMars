@@ -5,6 +5,8 @@ using XNode;
 
 public class CraftingProcessNode : Node {
 
+    public enum cTypes { Furnace, ProcessorSingle, ProcessorDouble };
+    public cTypes CraftingType;
     public int CraftingTier;
     public float timeCost;
 

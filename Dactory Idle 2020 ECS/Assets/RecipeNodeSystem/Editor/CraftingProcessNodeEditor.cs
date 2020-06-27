@@ -10,22 +10,61 @@ using XNode;
 public class CraftingProcessNodeEditor : NodeEditor {
 
 	public const float portFieldVerticalSize = 20f;
-	public const float startFromTopDist = 78f;
+	public const float startFromTopDist = 96f;
 
 	public override void OnHeaderGUI () {
-		GUI.color = Color.white;
+		//GUI.backgroundColor = Color.white;
 		CraftingProcessNode node = target as CraftingProcessNode;
 		RecipeSet graph = node.graph as RecipeSet;
+
+		string myColor = "#FFFFFF";
+		switch (node.CraftingType) {
+		case CraftingProcessNode.cTypes.Furnace:
+			myColor = "#FFAAAA";
+			break;
+		case CraftingProcessNode.cTypes.ProcessorSingle:
+			myColor = "#AAB1FF";
+			break;
+		case CraftingProcessNode.cTypes.ProcessorDouble:
+			myColor = "#AAFFAA";
+			break;
+		}
+
+		Color color;
+		ColorUtility.TryParseHtmlString(myColor, out color);
+		GUI.color = color;
 		//if (graph.current == node) GUI.color = Color.blue;
 		string title = target.name +" Tier "+ node.CraftingTier.ToString();
 		GUILayout.Label(title, NodeEditorResources.styles.nodeHeader, GUILayout.Height(30));
+
 		GUI.color = Color.white;
 	}
 
 	public override void OnBodyGUI () {
-		base.OnBodyGUI();
 		CraftingProcessNode node = target as CraftingProcessNode;
 		RecipeSet graph = node.graph as RecipeSet;
+		// Limiting crafting counts stuff
+		int maxInputCount = 10;
+		switch (node.CraftingType) {
+		case CraftingProcessNode.cTypes.Furnace:
+		case CraftingProcessNode.cTypes.ProcessorSingle:
+			maxInputCount = 1;
+			break;
+		case CraftingProcessNode.cTypes.ProcessorDouble:
+			maxInputCount = 2;
+			break;
+		}
+
+		if (node.inputItemUniqueNames.Count-1 < maxInputCount) {
+			GUI.color = Color.yellow;
+		} else if (node.inputItemUniqueNames.Count-1 > maxInputCount) {
+			GUI.color = Color.red;
+		} else {
+			GUI.color = Color.white;
+		}
+
+
+		base.OnBodyGUI();
 		bool inputPortAdded = false;
 
 		// --------------------------------------------------------- Input fields
