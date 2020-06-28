@@ -17,9 +17,11 @@ public class GUI_SwitchController : MonoBehaviour
 		if (GUI_Inventory.activeSelf) {
 			GUI_Inventory.SetActive(false);
 			bbarcont.isOnFocus = true;
+			Player_MasterControlCheck.s.ToggleMovement(true);
 		} else {
 			GUI_Inventory.SetActive(true);
 			bbarcont.isOnFocus = false;
+			Player_MasterControlCheck.s.ToggleMovement(false);
 		}
 	}
 

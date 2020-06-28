@@ -10,7 +10,7 @@ public class GameMaster : MonoBehaviour {
 		BuildingMaster.s.StartBuildingSystem();
 	}
 
-	private void OnApplicationQuit () {
+	private void OnApplicationPause () {
 		DataSaver.s.SaveGame();
 	}
 

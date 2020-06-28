@@ -13,10 +13,9 @@ public class GameLoader : MonoBehaviour
         if (DataSaver.s.Load()) {
             CreateBelts();
             CreateBuildings();
+            loadEvent?.Invoke();
         }
 
-        // We want these to happen even if loading from disk fails
-        loadEvent?.Invoke();
         isGameLoadingDone = true;
     }
 

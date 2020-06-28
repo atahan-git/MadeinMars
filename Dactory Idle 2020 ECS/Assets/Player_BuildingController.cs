@@ -53,17 +53,20 @@ public class Player_BuildingController : MonoBehaviour {
 					return;
 
 				lastTile = tileS;
-				curItemPlacementScript.UpdatePosition(tileS);
+				if(curItemPlacementScript != null)
+					curItemPlacementScript.UpdatePosition(tileS);
 			}
 		} else {
 			print("Item Placement Done");
 			isPlacingItem = false;
 			Player_MasterControlCheck.s.TogglePlacingItem(false);
-			if (ObjectBuilderMaster.CheckPlaceable(buildingItem, lastTile.position)) {
-				curItemPlacementScript.PlaceSelf();
-				ObjectBuilderMaster.BuildObject(buildingItem, lastTile.position);
-			} else {
-				curItemPlacementScript.FailedPlacingSelf();
+			if (curItemPlacementScript != null) {
+				if (ObjectBuilderMaster.CheckPlaceable(buildingItem, lastTile.position)) {
+					curItemPlacementScript.PlaceSelf();
+					ObjectBuilderMaster.BuildObject(buildingItem, lastTile.position);
+				} else {
+					curItemPlacementScript.FailedPlacingSelf();
+				}
 			}
 		}
 	}
@@ -78,9 +81,11 @@ public class Player_BuildingController : MonoBehaviour {
 		Player_MasterControlCheck.s.TogglePlacingItem(true);
 		//UIBeltModeOverlay.SetActive (false);
 		buildingItem = myData;
-		GameObject curItemPlacement = Instantiate(ItemPlacementHelperPrefab, transform.position, Quaternion.identity);
-		curItemPlacementScript = curItemPlacement.GetComponent<ItemPlacementHelper>();
-		curItemPlacementScript.Setup(myData);
+		if (buildingItem != null) {
+			GameObject curItemPlacement = Instantiate(ItemPlacementHelperPrefab, transform.position, Quaternion.identity);
+			curItemPlacementScript = curItemPlacement.GetComponent<ItemPlacementHelper>();
+			curItemPlacementScript.Setup(myData);
+		}
 	}
 
 	public void Deselect () {

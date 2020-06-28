@@ -22,6 +22,7 @@ public class TileBaseScript : MonoBehaviour {
 
 	SpriteRenderer rend;
 	// Update is called once per frame
+#if UNITY_EDITOR
 	void Update () {
 		if (isDragStarted && Input.GetMouseButtonUp (0)) {
 			//print ("drag end");
@@ -36,8 +37,9 @@ public class TileBaseScript : MonoBehaviour {
 			}
 		}
 	}
+#endif
 
-	void OnMouseDown(){
+	void OnMouseDown (){
 		//print ("drag start");
 		isDragStarted = true;
 		Grid.s.ClickTile (gameObject);

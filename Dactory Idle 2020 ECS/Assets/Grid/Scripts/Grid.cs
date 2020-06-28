@@ -241,7 +241,7 @@ public class Grid : MonoBehaviour {
 
 		bf.Serialize (file, data);
 		file.Close ();
-		print ("Data Saved");
+		print ("Grid Data Saved");
 	}
 
 	public bool Load(){

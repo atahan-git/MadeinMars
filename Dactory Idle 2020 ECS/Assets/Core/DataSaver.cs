@@ -45,7 +45,7 @@ public class DataSaver : MonoBehaviour {
 
 		bf.Serialize(file, data);
 		file.Close();
-		print("Data Saved");
+		print("Data Saved to " + Application.persistentDataPath + "/");
 	}
 
 	public bool Load () {

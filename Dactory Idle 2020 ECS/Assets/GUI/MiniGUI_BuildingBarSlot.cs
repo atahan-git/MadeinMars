@@ -27,9 +27,7 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
     }
 
     public void PointerDown () {
-        if (myDat != null) {
-            mycont.GetBuildingFromSlot(myDat);
-        }
+        mycont.GetBuildingFromSlot(myDat);
     }
 
     public void PointerEnter () {

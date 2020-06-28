@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GUI_BuildingBarController : MonoBehaviour {
 
@@ -15,28 +16,35 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
     // public int buildingSlotCount = 3; >> possibly auto generate building bar slots?
 
-    public MiniGUI_BuildingBarSlot[] buildingBarSlots;
+    public MiniGUI_BuildingBarSlot[] myBuildingBarSlots;
 
     private void Start () {
         if (GameLoader.isGameLoadingDone)
             LoadBuildingSlots();
         else
-            DataSaver.saveEvent += SaveBuildingSlots;
+            GameLoader.loadEvent += LoadBuildingSlots;
+
+        DataSaver.saveEvent += SaveBuildingSlots;
 
         scont = GetComponent<GUI_SwitchController>();
     }
 
     void LoadBuildingSlots () {
-        for (int i = 0; i < DataSaver.mySave.buildingBarData.Length; i++) {
-            if (DataSaver.mySave.buildingBarData[i] != "") {
-                buildingBarSlots[i].ChangeBuilding(DataHolder.s.GetBuilding(DataSaver.mySave.buildingBarData[i]));
+        if (DataSaver.mySave != null) {
+            if (DataSaver.mySave.buildingBarData != null) {
+                for (int i = 0; i < DataSaver.mySave.buildingBarData.Length; i++) {
+                    if (DataSaver.mySave.buildingBarData[i] != null)
+                        if (DataSaver.mySave.buildingBarData[i].Length > 0)
+                            myBuildingBarSlots[i].ChangeBuilding(DataHolder.s.GetBuilding(DataSaver.mySave.buildingBarData[i]));
+
+                }
             }
         }
     }
 
     private void Update () {
         if (inventoryDragBegun)
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) || (Input.touchCount == 0 && Input.touchSupported))
                 StopDragInventoryBuilding();
     }
 
@@ -64,15 +72,19 @@ public class GUI_BuildingBarController : MonoBehaviour {
     BuildingData barSlotOldBuilding;
     public void PointerEnterBuildingBarSlot (int slot) {
         if (inventoryDragBegun) {
-            barSlotOldBuilding = buildingBarSlots[slot].myDat;
-            buildingBarSlots[slot].ChangeBuilding(dragBuildDat);
+            barSlotOldBuilding = myBuildingBarSlots[slot].myDat;
+            myBuildingBarSlots[slot].ChangeBuilding(dragBuildDat);
         }
     }
 
     public void PointerExitBuildingBarSlot (int slot) {
         if (inventoryDragBegun) {
-            buildingBarSlots[slot].ChangeBuilding(barSlotOldBuilding);
-            barSlotOldBuilding = null;
+            RectTransform myRect = myBuildingBarSlots[slot].GetComponent<RectTransform>();
+            Vector2 localMousePosition = myRect.InverseTransformPoint(SmartInput.inputPos);
+            if (!myRect.rect.Contains(localMousePosition)) {
+                myBuildingBarSlots[slot].ChangeBuilding(barSlotOldBuilding);
+                barSlotOldBuilding = null;
+            }
         }
     }
 
@@ -81,7 +93,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
         beltBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
         Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat);
-         
+        
         scont.BringBuildingBarToFocus();
     }
 
@@ -106,10 +118,10 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
     void SaveBuildingSlots () {
-        DataSaver.BuildingBarDataToBeSaved = new string[buildingBarSlots.Length];
-        for (int i = 0; i < buildingBarSlots.Length; i++) {
-            if (buildingBarSlots[i].myDat != null) {
-                DataSaver.BuildingBarDataToBeSaved[i] = buildingBarSlots[i].myDat.uniqueName;
+        DataSaver.BuildingBarDataToBeSaved = new string[myBuildingBarSlots.Length];
+        for (int i = 0; i < myBuildingBarSlots.Length; i++) {
+            if (myBuildingBarSlots[i].myDat != null) {
+                DataSaver.BuildingBarDataToBeSaved[i] = myBuildingBarSlots[i].myDat.uniqueName;
             }
         }
     }
