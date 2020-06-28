@@ -42,7 +42,11 @@ public class ObjectBuilderMaster : MonoBehaviour
 		return true;
 	}
 	public static bool BuildObjectFromSave (string myUniqueName, Position location) {
-		return BuildObject(DataHolder.s.GetBuilding(myUniqueName), location, true);
+		BuildingData dat = DataHolder.s.GetBuilding(myUniqueName);
+		if (dat != null)
+			return BuildObject(DataHolder.s.GetBuilding(myUniqueName), location, true);
+		else
+			return false;
 	}
 
 	static BeltObject BuildBelt (TileBaseScript tileS, bool isBuildingBelt) {
@@ -113,6 +117,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 			}
 
 			InstantiatedItem.GetComponent<BuildingWorldObject>().PlaceInWorld(myData, location, coveredTiles, buildingBelts);
+			InstantiatedItem.gameObject.name = Grid.s.GetTile(location).position.ToString() + " - " + InstantiatedItem.gameObject.name; 
 
 			return true;
 		} else {

@@ -19,7 +19,6 @@ public class ItemSet : ScriptableObject
         for (int i = 0; i < items.Length; i++) {
             if (items[i] != null)
                 if (items[i].uniqueName == uniqueName) {
-                    items[i].myItemSet = this;
                     return items[i];
                 }
         }
@@ -43,7 +42,13 @@ public class Item {
     public string desctiption = "This is a new Item";
 
     [HideInInspector]
+    //Item sets are assigned by DataHolder
     public ItemSet myItemSet;
+    [HideInInspector]
+    //Item ids are assigned by DataHolder
+    //They are the equivalent of the items array position, counted additively if there are multiple item sets
+    public int myId = -1; 
+
     public Vector2 myTextureOffset = new Vector2(-1,-1);
 
 	private Material myMat = null;
@@ -52,6 +57,7 @@ public class Item {
         if (myMat == null) {
             myMat = new Material(myItemSet.myMaterial);
             myMat.mainTextureOffset = GetTextureCoordinates();
+            myMat.name = uniqueName + " Material";
         }
         return myMat;
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30baec280fa5d0468bce2c5a6d2a647, type: 3}
   m_Name: seller
   m_EditorClassIdentifier: 
-  uniqueName: Base_miner
+  uniqueName: Base_seller
   shape:
     rows:
     - row: 00000000000000
@@ -22,7 +22,7 @@ MonoBehaviour:
     - row: 00000101000000
     - row: 00000000000000
     - row: 00000000000000
-  myType: 2
+  myType: 1
   BuildingAbility: 0000000000
-  BuildingSprite: {fileID: 21300000, guid: cca065c7fe0512e4bb72903e756d3a57, type: 3}
+  BuildingSprite: {fileID: 21300000, guid: 15304e358c54c6348835534231d82ce4, type: 3}
   spriteOffset: {x: 0, y: 1}

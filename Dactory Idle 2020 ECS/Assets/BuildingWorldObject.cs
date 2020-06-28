@@ -30,6 +30,7 @@ public class BuildingWorldObject : MonoBehaviour
 		DataSaver.saveEvent += SaveYourself;
 		transform.position = _location.Vector3(Position.Type.building) + myData.spriteOffset.vector3();
 		BuildingMaster.myBuildings.Add(myCrafter);
+		myCrafter.SetUpCraftingProcesses(myData);
 	}
 
 

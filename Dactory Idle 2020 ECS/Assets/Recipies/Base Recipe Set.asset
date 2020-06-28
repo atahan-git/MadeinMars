@@ -78,7 +78,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 2
   CraftingTier: 0
-  timeCost: 0
+  timeCost: 1
   inputItemUniqueNames:
   - concrete
   - ironIngot
@@ -433,7 +433,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 0
   CraftingTier: 0
-  timeCost: 2
+  timeCost: 3
   inputItemUniqueNames:
   - ironOre
   - Empty
@@ -507,7 +507,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 1
   CraftingTier: 0
-  timeCost: 0
+  timeCost: 1
   inputItemUniqueNames:
   - ironIngot
   - Empty
@@ -666,7 +666,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 0
   CraftingTier: 0
-  timeCost: 0
+  timeCost: 2
   inputItemUniqueNames:
   - copperOre
   - Empty
@@ -740,7 +740,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 1
   CraftingTier: 0
-  timeCost: 0
+  timeCost: 1
   inputItemUniqueNames:
   - copperIngot
   - Empty

@@ -19,7 +19,7 @@ public class DataHolder : MonoBehaviour {
     [SerializeField]
     private ItemSet[] myItemSets;
     [SerializeField]
-    private RecipeSet[] myRecipeSets;
+    private RecipeSet[] myRecipeSets; 
     CraftingProcessNode[] myCraftingProcesses;
     CraftingProcessNode[][] myCraftingProcessesDivided;
 
@@ -34,6 +34,9 @@ public class DataHolder : MonoBehaviour {
             Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
         }
         s = this;
+        GenerateCraftingProcessesArray();
+        DivideCraftingProcessesArray();
+        AssignItemIds();
     }
 
     public BuildingData GetBuilding (string uniqueName) {
@@ -44,12 +47,33 @@ public class DataHolder : MonoBehaviour {
                     return myBuildings[i];
             }
         }
-        throw new NullReferenceException("The building you are requesting " + uniqueName + " does not exist!");
+        Debug.LogError("Illegal building request: " + uniqueName);
+        return null;
     }
 
     public BuildingData[] AllBuildings () {
         return myBuildings;
     }
+
+    public int GetItemIDFromName (string uniqueName) {
+        return GetItem(uniqueName).myId;
+    }
+
+    public Item GetItem (string uniqueName) {
+        int idCounter = 0;
+        for (int m = 0; m < myItemSets.Length; m++) {
+            for (int i = 0; i < myItemSets[m].items.Length; i++) {
+                if (myItemSets[m].items[i] != null) {
+                    if (myItemSets[m].items[i].uniqueName == uniqueName) {
+                        return myItemSets[m].items[i];
+                    }
+                }
+                idCounter++;
+            }
+        }
+        throw new NullReferenceException("The building you are requesting " + uniqueName + " does not exist!");
+    }
+
 
     public Item GetItem (int itemId) {
         int itemSet = 0;
@@ -63,6 +87,18 @@ public class DataHolder : MonoBehaviour {
         return myItemSets[itemSet].items[itemId];
     }
 
+    void AssignItemIds () {
+        int idCounter = 0;
+        for (int m = 0; m < myItemSets.Length; m++) {
+            for (int i = 0; i < myItemSets[m].items.Length; i++) {
+                if (myItemSets[m].items[i] != null) {
+                    myItemSets[m].items[i].myItemSet = myItemSets[m];
+                    myItemSets[m].items[i].myId = idCounter;
+                }
+                idCounter++;
+            }
+        }
+    }
 
     void GenerateCraftingProcessesArray () {
         List<CraftingProcessNode> cp = new List<CraftingProcessNode>();
@@ -90,6 +126,7 @@ public class DataHolder : MonoBehaviour {
 
         cp.Add(new List<CraftingProcessNode>());
         cp.Add(new List<CraftingProcessNode>());
+        cp.Add(new List<CraftingProcessNode>());
 
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             cp[cTypetoIndexMatch[myCraftingProcesses[i].CraftingType]].Add(myCraftingProcesses[i]);
@@ -108,11 +145,11 @@ public class DataHolder : MonoBehaviour {
             index = 1;
             break;
         case BuildingData.ItemType.ProcessorDouble:
-            index = 1;
+            index = 2;
             break;
         }
         if (index == -1) {
-            throw new InvalidEnumArgumentException("This building type does not support Crafting Processes!");
+            return null;
         }
 
         return myCraftingProcessesDivided[index];

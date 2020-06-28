@@ -10,6 +10,8 @@ public class MagicItemCreator : BeltObject {
     public int tickCount = 4;
     int curTick = 0;
 
+    public int itemIdToCreate = 0;
+
     public void CreateItemsBasedOnTick () {
 
         if (curTick >= tickCount) {
@@ -17,7 +19,7 @@ public class MagicItemCreator : BeltObject {
                     BeltItemSlot slot = allBeltItemSlotsArray[i]; 
                     if (slot != null) {
                         if (slot.myItem == null)
-                            BeltMaster.s.CreateItemAtBeltSlot(slot, 0);
+                            BeltMaster.s.CreateItemAtBeltSlot(slot, itemIdToCreate);
                 }
             }
             curTick = 0;
