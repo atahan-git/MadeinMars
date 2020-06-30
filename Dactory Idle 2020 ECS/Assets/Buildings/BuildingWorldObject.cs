@@ -16,7 +16,7 @@ public class BuildingWorldObject : MonoBehaviour
 	public List<BeltBuildingObject> myBelts;
 	public BuildingCraftingController myCrafter;
 
-	public SpriteRenderer myRend;
+	SpriteGraphicsController myRend;
 
 	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts) {
 		myData = _myData;
@@ -25,6 +25,7 @@ public class BuildingWorldObject : MonoBehaviour
 		myBelts = _buildingBelts;
 		myCrafter.myBelts = myBelts;
 
+		myRend = GetComponent<SpriteGraphicsController>();
 		myRend.sprite = myData.BuildingSprite;
 		DataSaver.saveEvent += SaveYourself;
 		transform.position = _location.Vector3(Position.Type.building) + myData.spriteOffset.vector3();

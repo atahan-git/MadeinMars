@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8865374049752605896}
   - component: {fileID: 5393229918230673437}
   - component: {fileID: 1172893428270975827}
+  - component: {fileID: 828199510647682927}
   m_Layer: 0
   m_Name: BeltObject
   m_TagString: Untagged
@@ -47,9 +48,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isProcessed: 0
   isEndPoint: 0
-  beltGroup: -1
+  beltGroup:
+    belts: []
   runningLineCount: -1
   totalEdgeCount: -1
+  pos:
+    x: 0
+    y: 0
+  tileCovered:
+    x: 0
+    y: 0
+    myBuilding: {fileID: 0}
+    myBelt: {fileID: 0}
+    height: 0
+    material: 0
+    oreType: 0
+    oreAmount: 0
   beltInputs: 00000000
   beltOutputs: 00000000
 --- !u!114 &5393229918230673437
@@ -65,11 +79,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTable: {fileID: 11400000, guid: 025f07606a4270441a1574bb195eac95, type: 2}
-  inputObj: {fileID: 7532324186213090248, guid: 9b00d88987e2e4a479014c49de917e17,
-    type: 3}
-  outputObj: {fileID: 7077159691186513325, guid: 266ad332b0080d341b3c468a92e845e4,
-    type: 3}
-  baseObj: {fileID: 8301124877300187983, guid: a92d7e63816ce404cb4f32decfd92ec8, type: 3}
 --- !u!212 &1172893428270975827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,3 +129,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &828199510647682927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859827216176125549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4561b7673861d44a43d87767520e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShadowPrefab: {fileID: 4245691249430997310, guid: fa9c94dc8554cdc4e924a75a872e0263,
+    type: 3}
+  height: 0.1

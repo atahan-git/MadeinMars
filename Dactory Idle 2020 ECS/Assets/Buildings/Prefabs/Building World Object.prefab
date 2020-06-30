@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7924911040813485356}
   - component: {fileID: 8298747911481777782}
   - component: {fileID: 7048171872626484110}
+  - component: {fileID: 1267436625792812064}
   m_Layer: 0
   m_Name: Building World Object
   m_TagString: Untagged
@@ -54,7 +55,6 @@ MonoBehaviour:
   myTiles: []
   myBelts: []
   myCrafter: {fileID: 7924911040813485356}
-  myRend: {fileID: 7048171872626484110}
 --- !u!114 &7924911040813485356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
   myObj: {fileID: 3873503240087946759}
   myBelts: []
   isActive: 0
+  lastCheckId: 0
 --- !u!114 &8298747911481777782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +139,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1267436625792812064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4561b7673861d44a43d87767520e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShadowPrefab: {fileID: 4245691249430997310, guid: fa9c94dc8554cdc4e924a75a872e0263,
+    type: 3}
+  height: 0.2
 --- !u!1 &3003533581990514315
 GameObject:
   m_ObjectHideFlags: 0

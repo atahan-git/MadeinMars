@@ -86,12 +86,15 @@ public class MovementController : MonoBehaviour {
 		}
 	}
 
-	public float keyboardSpeed = 10f;
+	public float keyboardSpeed = 2f;
 
 	void KeyboardControls () {
-		float horizontal = Input.GetAxis("Horizontal");
-		float vertical = Input.GetAxis("Vertical");
+		float horizontal = Input.GetAxis("Horizontal") * myCam.GetComponent<Camera>().orthographicSize;
+		float vertical = Input.GetAxis("Vertical") * myCam.GetComponent<Camera>().orthographicSize;
+		float scroll = Input.mouseScrollDelta.y;
 
+		myCam.GetComponent<Camera>().orthographicSize -= scroll;
+		myCam.GetComponent<Camera>().orthographicSize = Mathf.Clamp(myCam.GetComponent<Camera>().orthographicSize, minZoom, maxZoom);
 		myCam.Translate(new Vector3(horizontal, vertical, 0) * keyboardSpeed * Time.deltaTime);
 	}
 }

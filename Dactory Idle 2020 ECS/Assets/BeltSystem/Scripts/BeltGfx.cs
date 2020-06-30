@@ -15,7 +15,7 @@ public class BeltGfx : MonoBehaviour {
 	bool[] oldInputs = new bool[4];
 	bool[] oldOutputs = new bool[4];
 
-	SpriteRenderer myRend;
+	SpriteGraphicsController myRend;
 
 	const bool autoUpdate = false;
 
@@ -46,9 +46,9 @@ public class BeltGfx : MonoBehaviour {
 			}
 
 			if (myRend == null) {
-				myRend = GetComponent<SpriteRenderer>();
+				myRend = GetComponent<SpriteGraphicsController>();
 				if (myRend == null) {
-					gameObject.AddComponent<SpriteRenderer>();
+					gameObject.AddComponent<SpriteGraphicsController>();
 				}
 			}
 
