@@ -11,9 +11,12 @@ public class GameLoader : MonoBehaviour
 
     public void LoadGame () {
         if (DataSaver.s.Load()) {
+            Grid.s.LoadTiles();
             CreateBelts();
             CreateBuildings();
             loadEvent?.Invoke();
+        } else {
+            Grid.s.GenerateTiles();
         }
 
         isGameLoadingDone = true;

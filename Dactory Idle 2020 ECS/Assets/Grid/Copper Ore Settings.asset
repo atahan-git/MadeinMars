@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2737279d0e9680448a53446214736a7, type: 3}
+  m_Name: Copper Ore Settings
+  m_EditorClassIdentifier: 
+  oreUniqueName: copperOre
+  tiles:
+  - {fileID: 11400000, guid: 28b2aa1950df03440bfc3b3fd8a749f1, type: 2}
+  - {fileID: 11400000, guid: 32b9409624d899646bb95fc008f92106, type: 2}
+  cutoff: 0.781
+  perlinScale: 0.022
+  edgePercent: 0.042

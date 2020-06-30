@@ -23,6 +23,10 @@ public class DataHolder : MonoBehaviour {
     CraftingProcessNode[] myCraftingProcesses;
     CraftingProcessNode[][] myCraftingProcessesDivided;
 
+    [Header ("please note that the higher ups in the lists will override the others during generation")]
+    [SerializeField]
+	private OreSpawnSettings[] myOres;
+
     //Layers
     public static int worldLayer = 1;
     public static int beltLayer = 0;
@@ -37,6 +41,20 @@ public class DataHolder : MonoBehaviour {
         GenerateCraftingProcessesArray();
         DivideCraftingProcessesArray();
         AssignItemIds();
+    }
+
+    public OreSpawnSettings[] GetAllOres () {
+        return myOres;
+    }
+
+    public bool OreIdtoUniqueName (int id, out string oreType) {
+        if (id > 0 && id <= myOres.Length) {
+            oreType = myOres[id - 1].oreUniqueName;
+            return true;
+        } else {
+            oreType = null;
+            return false;
+        }
     }
 
     public BuildingData GetBuilding (string uniqueName) {
@@ -116,17 +134,18 @@ public class DataHolder : MonoBehaviour {
 
     void DivideCraftingProcessesArray () {
         Dictionary<CraftingProcessNode.cTypes, int> cTypetoIndexMatch = new Dictionary<CraftingProcessNode.cTypes, int>();
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Furnace] = 0;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorSingle] = 1;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorDouble] = 2;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Miner] = 0;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Furnace] = 1;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorSingle] = 2;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorDouble] = 3;
         // Make sure this matches with the switch statement in GetCraftingProcessesOfType function!
 
 
         List<List<CraftingProcessNode>> cp = new List<List<CraftingProcessNode>>();
 
-        cp.Add(new List<CraftingProcessNode>());
-        cp.Add(new List<CraftingProcessNode>());
-        cp.Add(new List<CraftingProcessNode>());
+        for (int i = 0; i < cTypetoIndexMatch.Count; i++) {
+            cp.Add(new List<CraftingProcessNode>());
+        }
 
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             cp[cTypetoIndexMatch[myCraftingProcesses[i].CraftingType]].Add(myCraftingProcesses[i]);
@@ -138,17 +157,21 @@ public class DataHolder : MonoBehaviour {
     public CraftingProcessNode[] GetCraftingProcessesOfType (BuildingData.ItemType type) {
         int index = -1;
         switch (type) {
-        case BuildingData.ItemType.Furnace:
+        case BuildingData.ItemType.Miner:
             index = 0;
             break;
-        case BuildingData.ItemType.ProcessorSingle:
+        case BuildingData.ItemType.Furnace:
             index = 1;
             break;
-        case BuildingData.ItemType.ProcessorDouble:
+        case BuildingData.ItemType.ProcessorSingle:
             index = 2;
+            break;
+        case BuildingData.ItemType.ProcessorDouble:
+            index = 3;
             break;
         }
         if (index == -1) {
+            Debug.LogError("Building does not support crafting! >> " + type.ToString());
             return null;
         }
 

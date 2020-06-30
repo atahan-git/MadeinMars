@@ -25,7 +25,7 @@ public class BeltObject : MonoBehaviour {
 
 	// Grid Coordinates
 	public Position pos;
-	public TileBaseScript tileCovered;
+	public TileData tileCovered;
 
 	const float gridSize = 1f;
 	const float beltZOffset = BeltMaster.itemWorldPositionZOffset;
@@ -362,7 +362,7 @@ public class BeltObject : MonoBehaviour {
 			return false;
 		}
 	}
-	public static void ConnectBeltsBuildingOnly (TileBaseScript from, BeltObject to) {
+	public static void ConnectBeltsBuildingOnly (TileData from, BeltObject to) {
 		if (from == null || to == null)
 			return;
 
@@ -386,7 +386,7 @@ public class BeltObject : MonoBehaviour {
 		}
 	}
 
-	public static void ConnectBeltsBuildingOnly (BeltObject from, TileBaseScript to) {
+	public static void ConnectBeltsBuildingOnly (BeltObject from, TileData to) {
 		if (from == null || to == null)
 			return;
 

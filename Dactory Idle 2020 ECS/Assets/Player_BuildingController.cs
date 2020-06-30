@@ -16,15 +16,6 @@ public class Player_BuildingController : MonoBehaviour {
 	public bool isBeltPlacing = false;
 	public bool isSelling = false;
 
-	public int curItemId = 0;
-
-	Camera mycam;
-	public GameObject UIBeltModeOverlay;
-
-	// Use this for initialization
-	void Start () {
-		mycam = Camera.main;
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -38,23 +29,16 @@ public class Player_BuildingController : MonoBehaviour {
 	}
 
 
-	public TileBaseScript lastTile;
+	public TileData lastTile;
 	public BuildingData buildingItem;
 	void PlaceItemCheck () {
 		if (Input.GetMouseButton(0)) {
-			Ray myRay = GetRay();
-			RaycastHit hit = new RaycastHit();
-			if (Physics.Raycast(myRay, out hit)) {
-				TileBaseScript tileS;
+			TileData myTile = Grid.s.GetTileUnderPointer();
+			if (myTile!=null) {
 
-				tileS = hit.collider.gameObject.GetComponent<TileBaseScript>();
-
-				if (tileS == null)
-					return;
-
-				lastTile = tileS;
+				lastTile = myTile;
 				if(curItemPlacementScript != null)
-					curItemPlacementScript.UpdatePosition(tileS);
+					curItemPlacementScript.UpdatePosition(myTile);
 			}
 		} else {
 			print("Item Placement Done");
@@ -110,24 +94,16 @@ public class Player_BuildingController : MonoBehaviour {
 
 	void SellCheck () {
 		if (Input.GetMouseButton(0)) {
-			Ray myRay = GetRay();
-			RaycastHit hit = new RaycastHit();
-			if (Physics.Raycast(myRay, out hit)) {
+			TileData myTile = Grid.s.GetTileUnderPointer();
+			if (myTile != null) {
 
-				Debug.Log("Selling " + hit.collider.gameObject.name);
+				Debug.Log("Selling " + myTile.name);
 
-				TileBaseScript tileS;
-				try {
-					tileS = hit.collider.gameObject.GetComponent<TileBaseScript>();
-				} catch {
-					return;
-				}
-
-				if (!tileS.isEmpty) {
-					if (tileS.myBuilding != null)
-						tileS.myBuilding.GetComponent<BuildingWorldObject> ().DestroyYourself ();
+				if (!myTile.isEmpty) {
+					if (myTile.myBuilding != null)
+						myTile.myBuilding.GetComponent<BuildingWorldObject> ().DestroyYourself ();
 					else
-						tileS.myBelt.GetComponent<BeltObject> ().DestroyYourself ();
+						myTile.myBelt.GetComponent<BeltObject> ().DestroyYourself ();
 				}
 			}
 		}
@@ -147,27 +123,21 @@ public class Player_BuildingController : MonoBehaviour {
 
 	BuildingWorldObject b_lastBuilding;
 	BeltObject b_lastBelt;
-	TileBaseScript b_lastTile;
+	TileData b_lastTile;
 
 	int n = 0;
 
 	void PlaceBeltsCheck () {
 		if (Input.GetMouseButton(0)) {
-			Ray myRay = GetRay();
-			if (Physics.Raycast(myRay, out RaycastHit hit)) {                                      // cast the ray
-				TileBaseScript tileS;
-				try {
-					tileS = hit.collider.gameObject.GetComponent<TileBaseScript>(); //hit something
-				} catch {
-					return;
-				}
+			TileData myTile = Grid.s.GetTileUnderPointer();
+			if (myTile != null) {											//Get tile
 
-				if (b_lastTile == tileS) {                                              //is it still the same tile?
-																						//print ("do nothing");
+				if (b_lastTile == myTile) {                                              //is it still the same tile?
+					//print ("do nothing");
 					return;
 				}
 				if (b_lastTile != null) {                                               //how much did we moved - if too much do shit
-					if (Mathf.Abs(b_lastTile.x - tileS.x) >= 2 || Mathf.Abs(b_lastTile.y - tileS.y) >= 2 || Mathf.Abs(b_lastTile.y - tileS.y) + Mathf.Abs(b_lastTile.x - tileS.x) >= 2) {
+					if (Mathf.Abs(b_lastTile.x - myTile.x) >= 2 || Mathf.Abs(b_lastTile.y - myTile.y) >= 2 || Mathf.Abs(b_lastTile.y - myTile.y) + Mathf.Abs(b_lastTile.x - myTile.x) >= 2) {
 						print("we moved 2 blocks");
 
 						if (b_lastBelt != null)
@@ -179,9 +149,9 @@ public class Player_BuildingController : MonoBehaviour {
 					}
 				}
 
-				if (tileS.beltPlaceable) {                  //can we place a belt here
-					if (tileS.isEmpty) {                                          //there are no items here so place a belt
-						BeltObject myBelt = ObjectBuilderMaster.BuildBelt(tileS);
+				if (myTile.beltPlaceable) {                  //can we place a belt here
+					if (myTile.isEmpty) {                                          //there are no items here so place a belt
+						BeltObject myBelt = ObjectBuilderMaster.BuildBelt(myTile);
 
 						if (b_lastBelt != null) {                                       //there was a belt before this one - update its out stuff
 							BeltObject.ConnectBeltsBuildingOnly(b_lastBelt, myBelt);
@@ -206,16 +176,16 @@ public class Player_BuildingController : MonoBehaviour {
 
 						b_lastBelt = myBelt;
 						b_lastBuilding = null;
-						b_lastTile = tileS;
+						b_lastTile = myTile;
 
 					} else {                                                            //there is an item below us
 						BuildingWorldObject myBuilding = null;
 						BeltObject myBelt = null;
-						if (tileS.myBuilding != null)
+						if (myTile.myBuilding != null)
 							// We never connect to buildings anymore so just make it null.
 							myBuilding = null;//tileS.myBuilding.GetComponent<BuildingWorldObject>();
-						if (tileS.myBelt != null)
-							myBelt = tileS.myBelt.GetComponent<BeltObject>();
+						if (myTile.myBelt != null)
+							myBelt = myTile.myBelt.GetComponent<BeltObject>();
 
 						if (b_lastBelt == null && b_lastBuilding == null) {                             //nothing to something
 																										//do nothing
@@ -232,11 +202,11 @@ public class Player_BuildingController : MonoBehaviour {
 							BeltMaster.s.AddOneBeltConnectedToOne(myBelt, b_lastBelt);
 
 						} else if (b_lastBelt != null && b_lastBuilding == null && myBuilding != null) {    //belt to item
-							BeltObject.ConnectBeltsBuildingOnly(b_lastBelt, tileS);
+							BeltObject.ConnectBeltsBuildingOnly(b_lastBelt, myTile);
 							BeltMaster.s.AddOneBelt(myBelt);
 
 						} else {
-							Debug.LogError("Connection failure: " + b_lastTile + " - " + tileS + " - " + b_lastBelt + " - " + b_lastBuilding + " - " + myBelt + " - " + myBuilding);
+							Debug.LogError("Connection failure: " + b_lastTile + " - " + myTile + " - " + b_lastBelt + " - " + b_lastBuilding + " - " + myBelt + " - " + myBuilding);
 						}
 
 						if (b_lastBelt != null)
@@ -246,7 +216,7 @@ public class Player_BuildingController : MonoBehaviour {
 
 						b_lastBelt = myBelt;
 						b_lastBuilding = myBuilding;
-						b_lastTile = tileS;
+						b_lastTile = myTile;
 					}
 				}
 			}
@@ -258,11 +228,5 @@ public class Player_BuildingController : MonoBehaviour {
 			b_lastBuilding = null;
 			b_lastTile = null;
 		}
-	}
-
-	Ray GetRay () {
-		Ray myRay;
-		myRay = mycam.ScreenPointToRay(SmartInput.inputPos);
-		return myRay;
 	}
 }

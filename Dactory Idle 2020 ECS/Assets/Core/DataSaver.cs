@@ -17,6 +17,7 @@ public class DataSaver : MonoBehaviour {
 	public static BeltData[] BeltsToBeSaved = new BeltData[999];
 	public static int b = 0;
 	public static string[] BuildingBarDataToBeSaved;
+	public static TileData[,] TileDataToBeSaved;
 
 	public delegate void SaveYourself ();
 	public static event SaveYourself saveEvent;
@@ -24,24 +25,27 @@ public class DataSaver : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		s = this;
-
 	}
+
 	void Start () {
 		print("Save Location:" + Application.persistentDataPath);
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
-	
+
+	public bool dontSave = false;
 	public void SaveGame () {
-		saveEvent?.Invoke();
-		Save();
+		if (!dontSave) {
+			saveEvent?.Invoke();
+			Save();
+		}
 	}
 
 	void Save () {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName + ".banana");
 
-		SaveFile data = new SaveFile(ItemsToBeSaved, BeltsToBeSaved, BuildingBarDataToBeSaved);
+		SaveFile data = new SaveFile(ItemsToBeSaved, BeltsToBeSaved, BuildingBarDataToBeSaved, TileDataToBeSaved);
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -70,16 +74,22 @@ public class DataSaver : MonoBehaviour {
 		}
 	}
 
+	public void DeleteSave () {
+		File.Delete(Application.persistentDataPath + "/" + saveName + ".banana");
+	}
+
 	[System.Serializable]
 	public class SaveFile {
 		public BuildingSaveData[] buildingData = new BuildingSaveData[0];
 		public BeltData[] beltData = new BeltData[0];
 		public string[] buildingBarData = new string[0];
+		public TileData[,] tileData = new TileData[0,0];
 
-		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, string[] mybuilbar) {
+		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, string[] mybuilbar, TileData[,] myTiledata) {
 			buildingData = myit;
 			beltData = mybel;
 			buildingBarData = mybuilbar;
+			tileData = myTiledata;
 		}
 
 	}
@@ -107,6 +117,22 @@ public class DataSaver : MonoBehaviour {
 			outLocations = myouts;
 			myPos = location;
 			isBuildingBelt = amIBuildingBelt;
+		}
+	}
+
+
+	[System.Serializable]
+	public class TileData {
+		public int height = 0;
+		public int material = 0;
+		public int oreType = 0;
+		public int oreAmount = 0;
+
+		public TileData (int _height, int _material, int _oreType, int _oreAmount) {
+			height = _height;
+			material = _material;
+			oreType = _oreType;
+			oreAmount = _oreAmount;
 		}
 	}
 }

@@ -19,6 +19,9 @@ public class CraftingProcessNodeEditor : NodeEditor {
 
 		string myColor = "#FFFFFF";
 		switch (node.CraftingType) {
+		case CraftingProcessNode.cTypes.Miner:
+			myColor = "#E1AAFF";
+			break;
 		case CraftingProcessNode.cTypes.Furnace:
 			myColor = "#FFAAAA";
 			break;
@@ -46,6 +49,9 @@ public class CraftingProcessNodeEditor : NodeEditor {
 		// Limiting crafting counts stuff
 		int maxInputCount = 10;
 		switch (node.CraftingType) {
+		case CraftingProcessNode.cTypes.Miner:
+			maxInputCount = 0;
+			break;
 		case CraftingProcessNode.cTypes.Furnace:
 		case CraftingProcessNode.cTypes.ProcessorSingle:
 			maxInputCount = 1;
