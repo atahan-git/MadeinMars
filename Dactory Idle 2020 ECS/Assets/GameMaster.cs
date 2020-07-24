@@ -5,6 +5,10 @@ public class GameMaster : MonoBehaviour {
 
 	public bool loadingDone = false;
 
+	private void Awake () {
+		GameLoader.isGameLoadingDone = false;
+	}
+
 	// Use this for initialization
 	void Start () {
 		GetComponent<GameLoader>().LoadGame();

@@ -1,0 +1,11 @@
+{
+  "recipe": [
+    ["bronze-ingot", "bronze-ingot-from-ingot"],
+    ["glass-ingot", "glass-ingot-from-ingot"],
+    ["steel-ingot", "steel-ingot-from-ingot"],
+    ["duranium-ingot", "duranium-ingot-from-ingot"]
+  ],
+  "technology": [
+    ["deadlock-disassembly", "deadlock-scrapping"]
+  ]
+}

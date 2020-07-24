@@ -46,7 +46,7 @@ public class ItemNodeEditor : NodeEditor {
 		if (myItem != null) {
 			GUI.color = Color.white;
 			if (myItem.myTextureOffset.x != -1) {
-				GUI.DrawTextureWithTexCoords(new Rect(20, 40, 40, 40), myItem.myItemSet.myTexture, new Rect(myItem.GetTextureCoordinates(), myItem.GetScale()));
+				GUI.DrawTextureWithTexCoords(new Rect(10, 30, 60, 60), myItem.myItemSet.myTexture, new Rect(myItem.GetTextureCoordinates(), myItem.GetScale()));
 			}
 		} else {
 			GUI.color = new Color(1, .5f, .5f);

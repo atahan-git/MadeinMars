@@ -113,6 +113,13 @@ public class ItemInputSlot {
 		mySlot = slot;
 	}
 
+	public int ItemId () {
+		if (mySlot.myItem != null)
+			return mySlot.myItem.myItemId;
+		else
+			return -1;
+	}
+
 	public int TakeItem (int itemId) {
 		return BeltMaster.s.DestroyItemAtSlot(mySlot, itemId);
 	}

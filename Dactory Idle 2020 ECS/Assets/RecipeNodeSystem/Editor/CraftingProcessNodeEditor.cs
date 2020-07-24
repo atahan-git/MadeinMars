@@ -47,13 +47,14 @@ public class CraftingProcessNodeEditor : NodeEditor {
 		CraftingProcessNode node = target as CraftingProcessNode;
 		RecipeSet graph = node.graph as RecipeSet;
 		// Limiting crafting counts stuff
-		int maxInputCount = 10;
+		int maxInputCount = -1;
 		switch (node.CraftingType) {
 		case CraftingProcessNode.cTypes.Miner:
 			maxInputCount = 0;
 			break;
 		case CraftingProcessNode.cTypes.Furnace:
 		case CraftingProcessNode.cTypes.ProcessorSingle:
+		case CraftingProcessNode.cTypes.Cutter:
 			maxInputCount = 1;
 			break;
 		case CraftingProcessNode.cTypes.ProcessorDouble:
@@ -61,13 +62,18 @@ public class CraftingProcessNodeEditor : NodeEditor {
 			break;
 		}
 
-		if (node.inputItemUniqueNames.Count-1 < maxInputCount) {
-			GUI.color = Color.yellow;
-		} else if (node.inputItemUniqueNames.Count-1 > maxInputCount) {
-			GUI.color = Color.red;
+		if (maxInputCount != -1) {
+			if (node.inputItemUniqueNames.Count - 1 < maxInputCount) {
+				GUI.color = Color.yellow;
+			} else if (node.inputItemUniqueNames.Count - 1 > maxInputCount) {
+				GUI.color = Color.red;
+			} else {
+				GUI.color = Color.white;
+			}
 		} else {
 			GUI.color = Color.white;
 		}
+
 
 
 		base.OnBodyGUI();
@@ -216,6 +222,10 @@ public class CraftingProcessNodeEditor : NodeEditor {
 				ItemNode connectedItemNode = node.GetOutputPort("Output " + (i + 1).ToString()).GetConnection(0).node as ItemNode;
 				if (connectedItemNode != null)
 					node.outputItemUniqueNames[i] = connectedItemNode.myUniqueName;
+
+				BuildingNode connectedBuildingNode = node.GetOutputPort("Output " + (i + 1).ToString()).GetConnection(0).node as BuildingNode;
+				if (connectedBuildingNode != null)
+					node.outputItemUniqueNames[i] = connectedBuildingNode.myUniqueName;
 			}
 		}
 	}

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GUI_BuildingBarController : MonoBehaviour {
 
     public bool isOnFocus = true;
-    public GUI_SwitchController scont;
+    GUI_SwitchController scont;
 
     public GameObject beltBuildingOverlay;
     public GameObject sellModeOverlay;
@@ -18,13 +18,15 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
     public MiniGUI_BuildingBarSlot[] myBuildingBarSlots;
 
+    public Image PlaceBeltsButton;
+    public bool CanPlaceBelts = true;
+
     private void Start () {
-        if (GameLoader.isGameLoadingDone)
-            LoadBuildingSlots();
-        else
-            GameLoader.loadEvent += LoadBuildingSlots;
+        GameLoader.CallWhenLoaded(LoadBuildingSlots);
 
         DataSaver.saveEvent += SaveBuildingSlots;
+
+        Player_InventoryController.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;
 
         scont = GetComponent<GUI_SwitchController>();
     }
@@ -46,6 +48,22 @@ public class GUI_BuildingBarController : MonoBehaviour {
         if (inventoryDragBegun)
             if (Input.GetMouseButtonUp(0) || (Input.touchCount == 0 && Input.touchSupported))
                 StopDragInventoryBuilding();
+    }
+
+    public void UpdateSlotsBuildableStates () {
+        for (int i = 0; i < myBuildingBarSlots.Length; i++) {
+            myBuildingBarSlots[i].UpdateBuildableState(Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(myBuildingBarSlots[i].myDat));
+        }
+
+        CanPlaceBelts = Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(ObjectBuilderMaster.beltBuildingData);
+        if (CanPlaceBelts) {
+            PlaceBeltsButton.color = Color.white;
+        } else {
+            float darkness = 0.5f;
+            PlaceBeltsButton.color = new Color(darkness, darkness, darkness);
+            if (beltBuildingOverlay.activeSelf)
+                Deselect();
+        }
     }
 
     public bool inventoryDragBegun = false;
@@ -89,7 +107,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
 
-    public void GetBuildingFromSlot (BuildingData dat) {
+    public void StartBuildingFromSlot (BuildingData dat) {
         beltBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
         Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat);
@@ -105,6 +123,10 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
     public void BeltMode () {
+        if (!CanPlaceBelts) {
+            Deselect();
+            return;
+        }
         beltBuildingOverlay.SetActive(true);
         sellModeOverlay.SetActive(false);
         Player_MasterControlCheck.s.buildingController.ActivateBeltMode();
@@ -126,8 +148,14 @@ public class GUI_BuildingBarController : MonoBehaviour {
         }
     }
 
+	public void OnDestroy () {
+        GameLoader.RemoveFromCall(LoadBuildingSlots);
+        DataSaver.saveEvent -= SaveBuildingSlots;
+        Player_InventoryController.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
+    }
 
-    static void GUIDrawSprite (Rect rect, Sprite sprite) {
+
+	static void GUIDrawSprite (Rect rect, Sprite sprite) {
         Rect spriteRect = sprite.rect;
         Texture2D tex = sprite.texture;
         GUI.DrawTextureWithTexCoords(rect, tex, new Rect(spriteRect.x / tex.width, spriteRect.y / tex.height, spriteRect.width / tex.width, spriteRect.height / tex.height));

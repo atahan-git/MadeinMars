@@ -19,6 +19,7 @@ MonoBehaviour:
     name: Iron Ore
     desctiption: desc
     myItemSet: {fileID: 11400000}
+    myId: 0
     myTextureOffset: {x: 0, y: 0}
   - uniqueName: ironIngot
     name: Iron Ingot
@@ -26,6 +27,7 @@ MonoBehaviour:
 
 '
     myItemSet: {fileID: 11400000}
+    myId: 1
     myTextureOffset: {x: 1, y: 0}
   - uniqueName: ironPlate
     name: Iron Plate
@@ -33,6 +35,7 @@ MonoBehaviour:
 
 '
     myItemSet: {fileID: 11400000}
+    myId: 2
     myTextureOffset: {x: 2, y: 0}
   - uniqueName: copperOre
     name: Copper Ore
@@ -40,6 +43,7 @@ MonoBehaviour:
 
 '
     myItemSet: {fileID: 11400000}
+    myId: 3
     myTextureOffset: {x: 0, y: 1}
   - uniqueName: copperIngot
     name: Copper Ingot
@@ -47,13 +51,15 @@ MonoBehaviour:
 
 '
     myItemSet: {fileID: 11400000}
+    myId: 4
     myTextureOffset: {x: 1, y: 1}
-  - uniqueName: copperCable
-    name: Copper Cables
+  - uniqueName: copperCoil
+    name: Copper Coils
     desctiption: 'desc
 
 '
-    myItemSet: {fileID: 0}
+    myItemSet: {fileID: 11400000}
+    myId: 5
     myTextureOffset: {x: 2, y: 1}
   - uniqueName: concrete
     name: Concrete
@@ -61,6 +67,7 @@ MonoBehaviour:
 
 '
     myItemSet: {fileID: 11400000}
+    myId: 6
     myTextureOffset: {x: 0, y: 2}
   - uniqueName: buildingMat
     name: Building Materials
@@ -68,4 +75,151 @@ MonoBehaviour:
 
 '
     myItemSet: {fileID: 11400000}
+    myId: 7
     myTextureOffset: {x: 1, y: 2}
+  - uniqueName: ironGear
+    name: Iron Gear
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myId: 8
+    myTextureOffset: {x: 3, y: 0}
+  - uniqueName: ironDril
+    name: Iron Drill Bits
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myId: 9
+    myTextureOffset: {x: 4, y: 0}
+  - uniqueName: ironPipe
+    name: Iron Pipe
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myId: 10
+    myTextureOffset: {x: 5, y: 0}
+  - uniqueName: thermometer
+    name: Thermometer
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myId: 11
+    myTextureOffset: {x: 3, y: 1}
+  - uniqueName: motor
+    name: Motor
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myId: 12
+    myTextureOffset: {x: 4, y: 1}
+  - uniqueName: ironArm
+    name: Assembler Arm
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myId: 13
+    myTextureOffset: {x: 5, y: 1}
+  - uniqueName: solarCell
+    name: Solar Cells
+    desctiption: desc
+    myItemSet: {fileID: 11400000}
+    myId: 14
+    myTextureOffset: {x: 6, y: 1}
+  - uniqueName: laser
+    name: Laser components
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 15
+    myTextureOffset: {x: 7, y: 1}
+  - uniqueName: drillPrefab
+    name: Drill Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 16
+    myTextureOffset: {x: 0, y: 3}
+  - uniqueName: smelterPrefab
+    name: Smelter Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 17
+    myTextureOffset: {x: 1, y: 3}
+  - uniqueName: assembler1Prefab
+    name: Assembler Tier 1 Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 18
+    myTextureOffset: {x: 2, y: 3}
+  - uniqueName: pressPrefab
+    name: Plate Maker Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 19
+    myTextureOffset: {x: 3, y: 3}
+  - uniqueName: coilerPrefab
+    name: Coil Maker Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 20
+    myTextureOffset: {x: 4, y: 3}
+  - uniqueName: cutterPrefab
+    name: Laser Cutter Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 21
+    myTextureOffset: {x: 5, y: 3}
+  - uniqueName: labPrefab
+    name: Science Building Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 22
+    myTextureOffset: {x: 6, y: 3}
+  - uniqueName: solarPrefab
+    name: Solar Panel Array Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 23
+    myTextureOffset: {x: 7, y: 3}
+  - uniqueName: batteryPrefab
+    name: Energy Storage Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 24
+    myTextureOffset: {x: 8, y: 3}
+  - uniqueName: transformerPrefab
+    name: Energy Transformer Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 25
+    myTextureOffset: {x: 9, y: 3}
+  - uniqueName: storagePrefab
+    name: Storage Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 26
+    myTextureOffset: {x: 11, y: 3}
+  - uniqueName: assembler2Prefab
+    name: Assembler Tier 2 Prefab
+    desctiption: 'desc
+
+'
+    myItemSet: {fileID: 11400000}
+    myId: 27
+    myTextureOffset: {x: 3, y: 4}

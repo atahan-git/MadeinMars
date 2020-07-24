@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30baec280fa5d0468bce2c5a6d2a647, type: 3}
+  m_Name: Assembler 2
+  m_EditorClassIdentifier: 
+  uniqueName: bAssembler2
+  shape:
+    rows:
+    - row: 00000000000000
+    - row: 00000000000000
+    - row: 00000000000000
+    - row: 00000101010000
+    - row: 00000101010000
+    - row: 00000000000000
+    - row: 00000000000000
+  myType: 4
+  BuildingAbility: 0000000000
+  BuildingSprite: {fileID: 4147102589836524916, guid: 303bb25d1c5eb4742be5b86894aba532,
+    type: 3}
+  spriteOffset: {x: 0.5, y: 1}

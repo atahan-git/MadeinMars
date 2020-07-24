@@ -8,26 +8,40 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
     public int myID;
     public GUI_BuildingBarController mycont;
 
-    public Text name;
+    public Text nameText;
     public Image img;
     public BuildingData myDat;
 
+    public Image bgImg;
+
+    public bool state = true;
 
 	public void ChangeBuilding (BuildingData _myDat) {
         myDat = _myDat;
         if (myDat != null) {
-            name.text = myDat.name;
+            nameText.text = myDat.name;
             img.sprite = myDat.BuildingSprite;
             img.color = Color.white;
         } else {
-            name.text = "empty";
+            nameText.text = "empty";
             img.sprite = null;
             img.color = new Color(0,0,0,0);
         }
     }
 
+    public void UpdateBuildableState (bool _state) {
+        state = _state;
+        if (state) {
+            bgImg.color = new Color(1, 1, 1);
+        } else {
+            float darkness = 0.5f;
+            bgImg.color = new Color(darkness, darkness, darkness);
+        }
+    }
+
     public void PointerDown () {
-        mycont.GetBuildingFromSlot(myDat);
+        if(state)
+            mycont.StartBuildingFromSlot(myDat);
     }
 
     public void PointerEnter () {

@@ -1,0 +1,448 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.12
+Date: 05. 01. 2020
+  Fixes:
+    - Fixed charged high capacity battery "burnt result".
+---------------------------------------------------------------------------------------------------
+Version: 1.0.11
+Date: 05. 01. 2020
+  Fixes:
+    - Explicitly set icon size for the very few prototypes still using 32x32 icons.
+    - Create assembling machine fluid boxes and battery items from scratch, instead of relying on vanilla prototypes.
+  Tidying:
+    - Removed unused/postponed code.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.10
+Date: 03. 01. 2020
+  Fixes:
+    - Fixed an issue with robotowers built outside of a power grid. Robotowers and roboports both now have a "recharge minimum" of 50% of their buffer capacity.
+  Tweaks:
+    - Replaced OTT photon cannon toggle sounds with generic bloops.
+    - Photon cannon and inserter toggle sounds are now played only to the toggling player instead of "in the world", to avoid spam.
+    - Display plate symbol selection buttons now make a clicking sound when pressed.
+    - Rotating a building makes a subtle sound.
+    - Enabled the hidden gold chest.
+    - Sulphur has randomised "belt variants", like ores.
+  Compatibility:
+    - Any recipe or technology prototype with a property "IR_tech_rebuild_ignore" set to true will now be ignored by the tech tree builder.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.9
+Date: 07. 12. 2019
+  Tweaks:
+    - Filter inserter default upgrades set to the next highest tier.
+    - Stack filter inserters added to filter inserter upgrade group.
+    - Stack filter inserters now have 5 filter slots, the same as lower tier filter inserters.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.8
+Date: 27. 11. 2019
+  Tweaks:
+    - Turrets now show their resistances in tooltips.
+  Fixes:
+    - Fixed an error on load if a long-handed or filter inserter entity created by some other mod had no matching item.
+    - Fixed that deconstructing an orange filter inserter returned a yellow inserter.
+    - Fixed missing colour masks from logistic depot entity icons (i.e. in upgrade planner).
+    - Restored missing tank cannon shell damage upgrades to Stronger Explosives 3+ research.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.7
+Date: 23. 11. 2019
+  Crafting:
+    - Added robotowers, a slimmer, cheaper, smaller range roboport. Allows for personal logistics/trash and automated repairs much earlier in the Steel Age.
+    - Added racing monowheels, a winged Chrome Age iteration, faster than any other non-rail vehicle but still no weapons. Battery powered.
+    - Added watchtowers, a form of "burner radar", Stone Age tech. They only reveal the map remotely, they do not provide an active view of the local area.
+    - Added Iron Age filter inserters. These operate at the same speed as yellow inserters but have filtering capability.
+    - Sensors are now unlocked with electronics and do not contain steel.
+    - Car and copper monowheel recipes tweaked.
+    - Gem cost of field effectors and lasers was multiplied substantially.
+    - Electric labs no longer have yellow inserters as ingredients (and therefore no longer require them as a research prerequisite).
+    - Electronics cost of centrifuges and arc turrets moved back a tier. Centrifuges also no longer require chrome-plated components.
+    - Cables are no longer "derivative" components, i.e. they are only unlocked when first needed, not at the material milestone.
+    - The "default" crafting speed for any vanilla recipe that left it undefined but has ingredients adjusted by IR is now 1 second rather than 0.5.
+    - Optical controllers and computers now the same crafting tier as optical circuits, i.e. they only require an electric assembler, not laser.
+  Science:
+    - Science pack tier progression was reworked again for a lot of the tech tree, especially military and other "bonus" technologies.
+    - Ammo turret damage research was removed. Turret bonuses were re-integrated with physical projectile research.
+    - Rocket and tank cannon firing rate technologies were removed and not replaced.
+    - Stronger explosives research was reverted to vanilla bonuses.
+    - Miniguns were moved out of Military 3 into their own technology. They require Projectile Fire Rate 4 research to be completed first.
+    - Miniguns no longer get a researchable fire rate bonus - they are simply always more rapid than submachine guns, locked to 30 rounds/s.
+    - Robot battery research was nerfed, but it remains infinite, so, eh.
+  Military:
+    - Tanks are now partly constructed from titanium. Electronics removed.
+    - The cost of rockets, tank cannon shells, artillery shells increased.
+    - Minigun ammo now has a stack size of 20, affording improved inventory density per round over magazines; but ammo belt crafting time was increased.
+    - Turrets were given some resistance to fire and acid. The game currently only displays this info in tooltips for turrets belonging to an enemy force.
+  Tweaks:
+    - Autogun turrets were re-rendered. The old version had a minor glitch with spinning gears when firing. The new version has a smoother 3-frame firing animation and more efficient atlas usage.
+    - Due to the improved tooltips introduced in 0.17.75, all IR "fake tooltip" info was removed from basic product items and processing recipe descriptions.
+    - The extra tooltip info on ammo/guns/turrets was left in. Now uses the same fonts and colours as the new tooltips.
+    - Long-handed inserter rotation speed was slowed to the same as the normal length inserters of the same tier.
+    - Inserter icons have an identifier overlay if they are a long-handed or a filter variant.
+    - Ammo turret alt-mode icons are shifted downwards onto the base of the turret.
+    - Reinforced steel walls have more appropriate deconstruction and car impact sounds.
+    - Added a custom icon for the charged battery fuel category.
+    - Coal and crushed coal icons are a bit lighter.
+    - Input flow limit removed from laser turrets and arc turrets, which fixes the glitchy energy bar in the new tooltips.
+    - Filters were added to supported control script event handlers, theoretically giving a very small performance boost during construction/deconstruction.
+  Fixes:
+    - Fixed an oversight in the generator manager control script, which triggered an error if the player used a third party mod's vehicle equipment grid while in a characterless state.
+    - Fixed an oversight in a recipe-parsing function that could cause an error if it encountered a valid third party mod recipe that was only available in expensive mode.
+    - Fixed some typos in ingredient definitions which could trigger an error with other mods that defined a variable called "item" with global scope.
+    - Fixed that display plates did not inherit the map marker on/off setting or update any existing map markers when copy-pasting settings from plate to plate.
+    - Fixed that the display plate gui "rubber grid" for empty slots would light up on mouseover once the display symbol had been changed at least once.
+  Known issues:
+    - Minigun turrets fire slower than minigun weapons, at 20 rounds/s. This cannot currently be fixed without reducing the quality of the firing animation. See forum thread 76805.
+  Compatibility:
+    - IR now requires Factorio stable release 0.17.79 or above.
+    - If installed, Deadlock's Larger Lamps version 1.3.0 is now required.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.6
+Date: 23. 10. 2019
+  Compatibility:
+    - Dectorio: fixed an error on load if Dectorio walls were disabled in settings.
+    - Dectorio: fixed badly sized colour signal icons if Dectorio signals were disabled in settings.
+    - Deadlock Experimental Stacking was marked as incompatible with IR.
+    - General fix for other mods appending the same prerequisites as IR to vanilla technologies without checking first, e.g. Rampant Arsenal.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.5
+Date: 20. 10. 2019
+  Processing:
+    - Glass ingots now have the alloy-style smelting speed bonus.
+  Tweaks:
+    - Starter kits (see mod map gen settings) can now unlock more than one technology chain.
+    - Big wooden poles are slimmer (sprite tweak only).
+  Fixes:
+    - Fixed that a few equipment items were misnamed in starter kits and silently not being given.
+    - Fixed a couple of rarely-seen entity icons being the wrong size or the wrong entity (in deconstruction planner).
+---------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Date: 19. 10. 2019
+  Crafting:
+    - Added reinforced steel walls.
+  Military:
+    - Defender robots now fire physical bullets, like the steel magazines they are made with.
+    - Physical projectile damage level 6 and turret damage level 6 technologies now require utility science.
+  Tweaks:
+    - Train stops stack to 50. Sulphur stacks to 100.
+    - Fixed that higher tier vanilla chests were faster to craft than low tier IR chests.
+  Compatibility:
+    - DSB: The icons for stacked ingots and rods now resemble the base items more closely.
+    - Multiple Unit Train Control and others: Fixed an issue with hidden tech prerequisites.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.3
+Date: 16. 10. 2019
+  Processing:
+    - The refined chromium cost of making chromic acid was reduced by 80%.
+  Crafting:
+    - Electronics cost of arithmetic and decider combinators reduced.
+    - High capacity battery cost of laser turrets, arc turrets and photonic cannons was reduced.
+  Science:
+    - Turret research was de-chained, i.e. turret research now depends on military and materials research, not on previous turrets.
+  Military:
+    - Minigun turrets were added. They use titanium minigun belt ammo.
+    - Photonic cannons were rebalanced. Additionally, they can now point in 8 directions and you can toggle their firing arc.
+  Tweaks:
+    - Belt immunity equipment power drain reduced to 10kW.
+  Locale:
+    - Non-English languages were moved into a language pack, so that locales can be updated independently of the main mod. See mod portal / dependencies.
+  Fixes:
+    - Photonic cannons were misaligned with the tile grid. They were supposed to be a 4x4 entity but were aligned like a 3x3 entity. Whoops.
+    - The best fix for this that didn't break people's blueprints or cause entities to shift when replaced was to reduce the size of the entity to 3x3.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 12. 10. 2019
+  Processing:
+    - Copper scrapping machines added, for early-game scrapping.
+    - Stone and stone brick ingredients are now scrapped as stone rather than gravel. Gravel is still scrapped as gravel.
+  Tweaks:
+    - Inserters squeak when you toggle their lane.
+    - Scattergun turrets now have their own firing sound.
+    - Virtual signal icons updated.
+  Fixes:
+    - Alloy ingots (including glass) were being incorrectly ignored by the tech tree build, causing Logistic Science research to have missing prerequisites.
+    - If vanilla items are updated with a high-res icon, any associated entity's icon is updated at the same time (e.g. inserters).
+  Compatibility:
+    - DSB: Restored missing stacked bronze gear wheel icon.
+  Locale:
+    - Brazilian Portuguese locale updated by Jackson Meira, many thanks to them for doing this work.
+    - Russian locale updated by Astorin, many thanks to them for doing this work.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 11. 10. 2019
+  Fixes:
+    - Fixed missing GUI title for laser assemblers.
+  Compatibility:
+    - DSB: Added missing stacked solder icon.
+    - Dectorio: Version 0.9.16 of Dectorio is now required.
+    - Dectorio: Fixed that some tile recipes were returning 1 tile when it should have been 10.
+    - Dectorio: Dirt and grass landscaping now use gravel instead of stone. Landscaping therefore depends on Ore Crushing 1.
+  Locale:
+    - German locale updated by tiriscef, many thanks to them for doing this work.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 10. 10. 2019
+  Processing:
+    - New ore processing technology added: diluted acid washing. This is a more expensive form of refining that doubles the chances of getting purification byproducts but destroys some of the main product.
+    - Alloying (making ingots from other ingots) is now twice as rapid as smelting (making ingots from ore products). Reduces bronze, steel and duranium factory footprints considerably.
+    - Glass sheets are now produced in batches, like other smelting recipes. Tin ingots were added to the recipe, vaguely referencing float glass.
+    - Refined ore and powdered ore smelting for titanium and lead were nerfed to the same ingot ratios as the common metals.
+    - Sulphur production rate was substantially buffed.
+    - Sulphuric acid production rate is now 1:1 with sulphur.
+    - Sulphuric and chromic acid volumes were rescaled across all recipes.
+    - Plastic bar and liquid plastic production rates buffed.
+    - Lead was lowered to the same crafting tier as iron and gold.
+    - Copper refining no longer produces any gold.
+    - Diamonds are no longer obtained from coal crushing, but from powdering instead. The diamond drop rate was reduced.
+  Productivity:
+    - Productivity was reviewed. It was decided that only resource processing recipes and a small number of end-of-line products will benefit from productivity in IR.
+    - As before, this includes all ore/oil refining or processing recipes, from being pulled out of the ground up to and including ingots and "raw" fluids.
+    - Recipes added, which were not in 0.99.7: sulphuric acid, glass sheets, carbon fibre, natural rubber, solder, low density structures, and the six craftable science packs.
+  Science:
+    - Utility (yellow) and production (purple) sciences were disentangled, i.e. utility no longer requires production, so there are now QOL techs that only require utility science.
+    - Tree dependencies and science pack requirements (especially production science) were also adjusted in many places to remove inconsistencies and reduce some of the bigger horizontal planes in the tree.
+    - After much feedback and debate, the steel cost of production science was left as it is, given that fewer technologies now require it, and also the change to steel production rates (see Processing).
+    - The titanium cost of production science packs was increased to match the natural iron:titanium ratio.
+    - The high capacity battery in utility science packs was replaced with 2 standard batteries. This keeps sulphuric acid in the pack but substantially reduces the lead.
+    - Nuclear fuel was moved from Kovarex Enrichment into its own technology.
+  Rockets:
+    - Low density structures now use copper foil instead of rods. The copper cost was doubled. Crafting time increased.
+    - Low density structures were removed from rocket control units and added back to "rocket parts".
+    - This means that rocket launches now require four ingredients: LDSs, RCUs, Steel Bulkheads and Rocket Fuel.
+    - Satellites/probes had their costs adjusted.
+  Crafting:
+    - Electronics was revamped. Too many changes to list in full. Bottom line: with the change to glass sheets, more tin is used across all electronics tiers.
+    - Solder was added to high tier electronics and some other intermediates. Solder resembles a cable-type component, but is smelted directly from an alloy of tin and lead.
+    - Heavy gold cables were removed from the mod.
+    - Lead rods, a redundant component, were removed from the mod.
+    - Bronze pistons were removed from the mod. They were replaced with other bronze components in just two recipes.
+    - Junction boxes are back in. They feature in machines which handle a lot of current.
+    - The metal cost of iron, steel and chrome pistons was increased slightly, but chrome pistons no longer require lubricant.
+    - Crafting times for both types of battery were reduced. Steel cost of high capacity batteries was reduced.
+    - Graphite electrode cost increased. They now require you to pipe in 1000 litres of Discord tears.
+    - Electric arc turret electronics cost decreased.
+    - Centrifuge electronics tier increased.
+    - Roboports are now built around an accumulator. Their buffer capacity (not displayed in-game) was reduced to that of IR accumulators (60MJ, which is 12x a vanilla accumulator).
+    - The energy usage of electroplating machines was increased.
+    - Platinum is now used in the highest tier of air filters.
+    - Electric lab cost substantially increased.
+    - Numerous other small tweaks to less frequently crafted items.
+  Military:
+    - Magazine and cartridge ammo recipes were rescaled. Low tiers are slightly cheaper, high tiers are more expensive.
+    - Minigun turrets are now known as autogun turrets.
+    - New player weapon added: the minigun. It uses specialised titanium ammo belts, each containing 100 bullets.
+    - The minigun has longer range and fires more rapidly than the submachine gun, but reduces movement speed by 95% for a minimum of 1 second when fired, and has a 1 second reload time per belt. 
+    - The car machine gun was nerfed to have the same stats as a hand-held submachine gun.
+    - The tank machine gun was replaced with a minigun, effectively buffing it, but it now requires minigun ammo.
+    - Cartridge ammo now has an additional 0.5 second reload time per cartridge, i.e. every 10 shots. This affects scattergun turrets as well as hand-held shotguns.
+    - Combat robot capsule costs were increased (slightly for defenders, considerably for distractors and destroyers).
+    - Electric arc turrets no longer do any damage at all. Their slowdown effect was increased.
+  Robotics:
+    - Bronze punkbots now move faster when first unlocked, at the same speed as construction bots in vanilla.
+    - Vanilla construction bots now move slightly faster when first unlocked.
+    - However, if you have Factorio 0.17.70 or above installed, bronze punkbots (should) no longer benefit at all from worker robot speed research.
+    - Worker Robot Battery research bonuses were increased, and the technology is now infinite.
+    - All three robot types move at 25% speed when out of energy, instead of vanilla 20%.
+  Tweaks:
+    - Rubber trees still prefer damp biomes, but they can also now spawn at very low elevations, i.e. lake shores, even in otherwise dry lands.
+    - Miniature fission reactor energy output was buffed to 1.6MW, so that it offers a clearer upgrade from battery dischargers.
+    - Nuclear fuel stack size reduced to 3.
+    - IR machines larger than 3x3 now stack to 20 or 10. Monowheels stack to 1, like cars.
+    - Destroyer combat robots now use the default vanilla lightning visuals and sounds - the IR lightning is now used only by arc turrets.
+    - Some more vanilla icons were replaced with temporary hi-res versions, until the proper base game icon update drops.
+    - Ammo tooltips expanded to show reload time (if any). Weapon tooltips show the ammo type required and any player movement speed penalties.
+    - Display plates can now be set to show the icon for lubricant.
+    - Wooden chests have a fuel value again, like they did in 0.16.
+    - Adjusted the volume of quantum labs and the position of their module alt-mode overlay.
+    - Attempted to tidy up the item filter menu for things on the Processing tab.
+  Locale:
+    - Traditional Chinese locale added. Thank you very much to Frank-Wu and friends for taking the time to do this work.
+    - French, Russian, Polish locales updated, thanks to Redstylt, Oceanel51, JSzulakiewicz.
+    - Note to translators: several key changes in the English locale, see Github for differences.
+  Fixes:
+    - Changed the render layers of gravel flooring and vanilla placeable tiles, so that they are not drawn over by landfill edges and by mud decals.
+    - Fixed that IR non-recipe-unlocking upgrade techs were not being chained level to level. 
+    - Fixed that stack inserter capacity could only be upgraded to 11 instead of 12.
+    - The uranium fuel cell recipe was producing just 1 cell. Adjusted ingredients and results so that it produces 10 cells and requires a centrifuge to craft. Nuclear fuel reprocessing recipe adjusted to match.
+    - The titanium-ingot-from-scrap recipe was moved from Ore Crushing 3 to the correct place in Furnaces 3. 
+    - Radar is no longer researchable before you research electricity. 
+    - Fixed that you could lane-toggle inserters from beyond player reach.
+    - Added "Can't reach" cue to display plates instead of just doing nothing.
+---------------------------------------------------------------------------------------------------
+Version: 0.99.7
+Date: 22. 09. 2019
+  Locale:
+    - Added Brazilian Portuguese locale, many thanks to Jackson Meira for taking the time and effort.
+    - German locale updated again by tiriscef, many thanks.
+    - Polish locale updated again by GamingCube, many thanks.
+  Compatibility:
+    - AAI: Fixed more issues with AAI tech tree overwrites.
+    - Fixed another issue that was causing non-vanilla techs with no recipe unlocks to end up with duplicated prerequisites.
+---------------------------------------------------------------------------------------------------
+Version: 0.99.6
+Date: 20. 09. 2019
+  Locale:
+    - Polish locale added by CubeGaming, many thanks to them for taking the time and effort to do this.
+    - Russian locale updated by Oceanel51, much obliged to them.
+    - French locale updated by Redstylt, thanks again.
+  Fixes:
+    - Scrapping machine pollution/minute was mistakenly being overwritten, it has now has a more appropriate value.
+    - Fixed some glitches introduced to tooltip material info in the last version.
+    - Fixed a minor bug in multiplayer, whereby players leaving and rejoining sessions would have the generator manager quickbar shortcut disabled.
+    - Fixed a minor bug in the assignment of crafting tiers for non-ingots, e.g. stone furnaces could be used to produce glass sheets despite glass ingots requiring bronze furnaces.
+    - Fixed a potential issue arising from tree builder changes in 0.99.4 where vanilla techs with no recipe unlocks, altered by other mods, could end up with the same prerequisite more than once.
+    - Fixed another more serious issue arising from the above, whereby vanilla "upgrade" type techs with no recipe unlocks were ending up with excessive science pack tiers.
+---------------------------------------------------------------------------------------------------
+Version: 0.99.5
+Date: 19. 09. 2019
+  Burner leech:
+    - The Factorio modding API, as of 0.17.69, now directly supports burner inserters fueling themselves from any fuel slot they can access, aka "burner leech".
+    - It is not enabled by default and does not feature in vanilla freeplay games. Mods have to enable it.
+    - In IR, this is now a setting under Settings > Mod settings > Startup, which defaults to off, to preserve the non-leech challenge for those that enjoy it.
+  Fixes:
+    - Corrected an oversight in scrapping recipes. Maximum scrap return for each material is now 50k. Fixes issues with extreme recipes from other mods, such as Clusterio's energy transmitters.
+    - Corrected another oversight where items with incredibly minimal amounts of material in them could produce an invalid crafting time, such as the enigmatic "red".
+    - Rocket silo launch GUI now recognises the additional launch payloads.
+  Locale:
+    - Russian locale updated, thanks again to cos-mic.
+    - German locale updated, thanks again to tiriscef.
+    - Note to translators: tips 018 and 030 have changed.
+  Compatibility:
+    - IR now depends on Factorio base version 0.17.69.
+---------------------------------------------------------------------------------------------------
+Version: 0.99.4
+Date: 19. 09. 2019
+  Breaking changes:
+    - Disassembly wasn't working. It had an ugly menu and did not solve the problem it was created for. It has itself been disassembled.
+    - The replacement is scrapping. Scrapping offers a way to recover some of the metal, glass and stone from any crafted item, at a cost. Even plates, rivets, ammo.
+    - Disassemblers were removed from the mod. They were deliberately not migrated to Scrapping Machines, because scrappers are a lot hungrier for your itamz.
+    - For a full description of how scrapping works, see https://tinyurl.com/scraptastic.
+  Locale:
+    - Russian locale added. Thanks very much to cos-mic for doing this work, and to others for offering to help.
+    - Note to translators: a number of new entries, ask for a list if you need one.
+  Tweaks:
+    - A bonus from the scrap algorithm: in the Laser Assembler, many vanilla recipes / other mod recipes, which previously defaulted to red, now get the crafting tint of the recipe's most common material.
+    - Chemical plants now glow a little at night, to compensate for being at the back of queue when they were handing out lasers.
+    - Advanced furnace alt-mode icons shifted downwards, off the internal glow.
+    - Alloy recipes now have an icon overlay (to differentiate them from scrap smelting).
+    - Empty module slots now show a "greyed out" IR module instead of a vanilla one. Air filter icons were updated to have a similar boxy look to modules, so you know they fit in the same slots.
+    - Better milestone icons.
+  Balancing:
+    - The cost/complexity of air filters was increased. They are still a lot cheaper than an electric module.
+    - Nuclear Fuel Reprocessing was adjusted, is now a specialist scrapping-in-a-centrifuge recipe that also recovers some U238.
+  Fixes:
+    - IR small chest collision boxes were standardised against vanilla small chests, fixing some fast-replace and upgrade issues.
+    - Default upgrade paths set for all small chests and also for bronze depots.
+    - Storage logistics depots now have a filter, like the small yellow chest does.
+    - Productivity modules were re-enabled for rocket launching, explosives, and Kovarex enrichment. Productivity module issues will be looked over again during the balance pass for 1.0.0.
+    - Fixed a derp in vanilla recipe sweep where a couple of items (e.g. blue circuits) were ignoring the crafting category changes set for them.
+    - "Ring" type components no longer show primary material details, because they are always multi-material intermediate products.
+    - Storage tank removal warning is now only shown on standard vanilla tanks and the IR small tank, to stop it showing on tanks from other mods which use them as doorstops and hatstands or whatever the hell.
+  Compatibility:
+    - Multiple Unit Train Control (MUTC): now "currently supported" by IR, by request from author robot256, who did their homework and made this very easy to do, much appreciated.
+    - Space Exploration has temporarily been marked as incompatible, because reports about it are becoming an unwanted drain on my time. Official support for SE will be added at a later date. You're free to experiment.
+    - DSB: fixed bad offset/scale on stacked rubber and wood icons, stacked steel/titanium/chrome gear wheel icons now match unstacked style.
+    - Incineration and flare stack voiding recipes now have a generic localised name, for other mods that display hidden recipes (e.g. FNEI).
+    - Recipes in vanilla's Fluid Handling technology are handled less aggressively, to better support other mods that add recipes to that tech.
+    - Alien Biomes: hidden optional dependency added. Saplings should now be correctly added to Alien Biomes trees regardless of what other mods may be influencing loading order.
+    - AAI: compatibility refactored. No longer runs a second cheeky tech tree rebuild. Does still run a second science costs pass.
+    - The dreaded tech tree cycle error has an improved error message. Now only techs involved in the cycle are shown. The mods involved cannot yet be shown (pending API support).
+    - The science costs pass also runs a tree cycle check, as it can now be called separately when required.
+    - The tech tree builder no longer resets the prerequisites of technologies that have no recipe unlocks. Should help with compatibility for mods with a lot of script-only techs, e.g. Factorissimo 2.
+    - Comments added to code/technology/technology.lua on the disabled vanilla techs list at the top, indicating the closest IR or vanilla equivalent where relevant.
+    - Monowheel item changed to item-with-entity-data.
+---------------------------------------------------------------------------------------------------
+Version: 0.99.3
+Date: 11. 09. 2019
+  Balancing:
+    - Military Science (grey science packs) now depends on Improved Laboratories 1, like blue science, because you can't use military packs in copper labs anyway.
+    - This has no actual effect on military progression in terms of timing, but it does automatically result in slightly increased military research costs from the mid-Iron Age onwards.
+  Fixes:
+    - The smelting recipe overload change in the last version was reverted, it didn't achieve the desired goal and just created new problems.
+    - Fixed that logistics storage depots would return the wrong item when deconstructed.
+  Compatibility:
+    - Loader Redux compatibility was added, and it was added to the list of mods that are supported.
+    - PyCoalProcessing was marked as incompatible for the time being (at their request).
+    - Omnipermute was removed from the incompatible mods list, as it depends on Omnilibrary which remains incompatible.
+    - Deadlock's Larger Lamps now required to be version 1.2.7 or above.
+    - If IR hides any vanilla item that places a vanilla entity, the "next_upgrade" property of the entity is now automatically set to nil, instead of listing specific next_upgrade cancellations manually.
+---------------------------------------------------------------------------------------------------
+Version: 0.99.2
+Date: 10. 09. 2019
+  Breaking changes:
+    - Lamp signal-to-colour-mapping was re-ordered, so that it follows the rainbow order in the IR signals menu, left to right.
+    - Apologies that the above change might break some lamp set-ups, but this was a mess and did need correcting.
+  Locale:
+    - German locale added, many thanks to tiriscef for taking the time and effort to do this.
+    - French locale updated, thanks again to Redstylt.
+  Fixes:
+    - All quickbar shortcuts that are unlocked in vanilla by Construction Robotics are now unlocked by Roboport Equipment instead, as that is the equivalent vanilla unlock in IR.
+    - The same shortcuts are now additionally unlocked by Clockwork Punkbot research.
+    - Migration handler added re: the two changes above for existing saves.
+    - This issue with the construction quickbar shortcuts will not have affected the vast majority of IR players, as the unlocks are stored in player data, not in the game save.
+    - Smelting/alloying recipes were overloaded by 8x, so that inserters will fill furnace input slots more, a little closer to vanilla inserter/furnace behaviour.
+    - Fixed that players could receive vanilla items if they respawn. You now get nichts. Don't die.
+    - Display plate GUI: removed a potential desync issue.
+    - The research queue is no longer forced to be on. Does not affect existing saves.
+  Compatibility:
+    - Dectorio: Lamp signal colour mapping order, and the colour signal icons, both defer to Dectorio if detected.
+    - Dectorio: Fixed another issue which occurred with IR + Dectorio + Alien Biomes, caused by me not practising what I preach.
+    - Omnipermute and Omnilib were added to the incompatible mods list.
+---------------------------------------------------------------------------------------------------
+Version: 0.99.1
+Date: 08. 09. 2019
+  Locale:
+    - French locale added, many thanks to Redstylt and SNova for doing this work.
+  Fixes:
+    - Chromed steel rods (redundant in IR) had the wrong ratio of ingredients to results.
+    - The opening/closing sound volume for tin and bronze chests, and all the storage depot variants, now matches vanilla chests.
+    - Fixed that duranium alloy could not be forged in any available furnace.
+  Compatibility:
+    - AAI: Fixed that AAI was overriding IR's necessary changes to some early vanilla machine recipes, e.g. burner drills.
+---------------------------------------------------------------------------------------------------
+Version: 0.9.999
+Date: 07. 09. 2019
+  License:
+    - The license changed to CC BY-NC-ND 4.0 (https://creativecommons.org/licenses/by-nc-nd/4.0/).
+    - This is exactly the same license as the one used by Pyanodon's mods and Angel's mods.
+  New:
+    - Added a description of how the generator manager works to all generator equipment. Suggested by Ranakastrasz.
+  Fixes:
+    - Fixed that sulphur was on the wrong tab on the item filter menu.
+    - Removed laser turrets and electric arc turrets from disassembly recipes (too many results for the disassembler machine to handle).
+    - Demoted logs about redundant items from warning to debug, and removed other log spam.
+    - Generator manager quickbar shortcut and keyboard control name references were still a bit wonky, fixed.
+    - Bronze bearings locale string had a typo.
+  Balancing:
+    - Bronze forester: No longer has negative pollution. It interacted badly with fuel multipliers. Pollution now zero.
+    - Electric forester: Still has negative pollution. Their cleaning power increased.
+    - This means that solar-powered electric foresters produce better net cleaning than before, but steam-powered ones still have net pollution emissions.
+  Compatibility:
+    - DSB/DCM/AAI: Prevented a whole set of possible and existing issues with DSB/DCM circular tech errors, e.g. when AAI is also active.
+    - AAI: Fixed that copper drills and burner inserters were not enabled on new game start.
+    - Dectorio: fixed that vanilla ores were mistakenly being hidden from item filter menus.
+    - Changed the way that saplings are added to vanilla trees, to try and preserve changes other mods might have made (where possible).
+  Known compatibility issues:
+    - Dectorio + Alien Biomes: Dectorio does not handle IR's perfectly valid minable results property for trees in its Alien Biomes support. Reported to the author.
+    - AAI: "Starting crash sequence" provides some relatively trivial items that the player shouldn't really be able to access. Will be fixed, but low priority. To avoid it for now, turn off the crash sequence in AAI settings.
+---------------------------------------------------------------------------------------------------
+Version: 0.9.99
+Date: 07. 09. 2019
+  Fixes:
+    - Fixed CTRL+G causing an error when trying to use the keyboard to toggle the generator manager.
+    - Fixed a dopey mistake with AAI compatibility, caused by moving a recipe unlock without checking. Rookie.
+    - Fixed an issue raised by Explosive Termites, where IR was assuming that vanilla trees are minable. Do as I say, not as I do.
+    - The mod "Bullet Trails" was marked as incompatible because of conflicts over vanilla turrets. IR already provides its own bullet trails, via literal bullets.
+  Changes:
+    - All the supported mods except Larger Lamps were made into hidden dependencies - people seem to be thinking that showing optional dependencies means it's recommended to install everything on the list, it isn't.
+---------------------------------------------------------------------------------------------------
+Version: 0.9.9
+Date: 06. 09. 2019
+  New:
+    - Initial 0.9.9 release to the starving masses.
+    - Recipes and general balance in the mod are subject to change until 1.0.0 - this will only be done if absolutely necessary.
+    - 1.0.0 will be released when Factorio 0.17 goes stable and there are no more glaring issues to solve, whichever is the later.
+  READ THIS:
+    - A new game is highly recommended. Loading this mod into a pre-existing vanilla or modded save will probably wreck it.
+    - Only high resolution sprites are provided. "Lowest" graphics settings will rescale sprites.
+    - "Normal" and "expensive" recipes are not supported. Recipes are what they are.
+  Incomplete/to-do:
+    - There is not very much to do yet with the final post-rocket tier of materials. More post-rocket machines and technologies will be added at a later date.

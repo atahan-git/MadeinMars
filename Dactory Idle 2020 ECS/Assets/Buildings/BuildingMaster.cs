@@ -22,17 +22,27 @@ public class BuildingMaster : MonoBehaviour {
 
 
 	public void StartBuildingLoops () {
-		StartCoroutine(BeltItemSlotUpdateLoop());
+		StartCoroutine(UpdateLoop());
 	}
 
-	IEnumerator BeltItemSlotUpdateLoop () {
+
+	float energyProduced = 100000;
+	float energyUsed = 1;
+	float efficiency;
+
+	IEnumerator UpdateLoop () {
 		while (true) {
+			efficiency = energyProduced / energyUsed;
+			if (efficiency > 1)
+				efficiency = 1;
+			energyUsed = 1;
+			energyProduced = 100000;
 
 			for (int i = 0; i < myBuildings.Count; i++) {
 				if (myBuildings[i] != null) {
 					if (myBuildings[i].isActive) {
 						myBuildings[i].TakeItemsIn();
-						myBuildings[i].UpdateCraftingProcess();
+						energyUsed += myBuildings[i].UpdateCraftingProcess(efficiency);
 						myBuildings[i].PutItemsOut();
 					}
 				}

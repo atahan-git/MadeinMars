@@ -89,7 +89,7 @@ public class DataHolder : MonoBehaviour {
                 idCounter++;
             }
         }
-        throw new NullReferenceException("The building you are requesting " + uniqueName + " does not exist!");
+        throw new NullReferenceException("The item you are requesting " + uniqueName + " does not exist!");
     }
 
 
@@ -103,6 +103,14 @@ public class DataHolder : MonoBehaviour {
             }
         }
         return myItemSets[itemSet].items[itemId];
+    }
+
+    public int TotalItemCount () {
+        int total = 0;
+        for (int m = 0; m < myItemSets.Length; m++) {
+            total += myItemSets[m].items.Length;
+        }
+        return total;
     }
 
     void AssignItemIds () {
@@ -134,10 +142,15 @@ public class DataHolder : MonoBehaviour {
 
     void DivideCraftingProcessesArray () {
         Dictionary<CraftingProcessNode.cTypes, int> cTypetoIndexMatch = new Dictionary<CraftingProcessNode.cTypes, int>();
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Miner] = 0;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Furnace] = 1;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorSingle] = 2;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorDouble] = 3;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Miner]             = 0;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Furnace]           = 1;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorSingle]   = 2;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorDouble]   = 3;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Press]             = 4;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Coiler]            = 5;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Cutter]            = 6;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Lab]               = 7;
+        cTypetoIndexMatch[CraftingProcessNode.cTypes.Building]          = 8;
         // Make sure this matches with the switch statement in GetCraftingProcessesOfType function!
 
 
@@ -157,18 +170,15 @@ public class DataHolder : MonoBehaviour {
     public CraftingProcessNode[] GetCraftingProcessesOfType (BuildingData.ItemType type) {
         int index = -1;
         switch (type) {
-        case BuildingData.ItemType.Miner:
-            index = 0;
-            break;
-        case BuildingData.ItemType.Furnace:
-            index = 1;
-            break;
-        case BuildingData.ItemType.ProcessorSingle:
-            index = 2;
-            break;
-        case BuildingData.ItemType.ProcessorDouble:
-            index = 3;
-            break;
+        case BuildingData.ItemType.Miner:           index = 0; break;
+        case BuildingData.ItemType.Furnace:         index = 1; break;
+        case BuildingData.ItemType.ProcessorSingle: index = 2; break;
+        case BuildingData.ItemType.ProcessorDouble: index = 3; break;
+        case BuildingData.ItemType.Press:           index = 4; break;
+        case BuildingData.ItemType.Coiler:          index = 5; break;
+        case BuildingData.ItemType.Cutter:          index = 6; break;
+        case BuildingData.ItemType.Lab:             index = 7; break;
+        case BuildingData.ItemType.Building:        index = 8; break;
         }
         if (index == -1) {
             Debug.LogError("Building does not support crafting! >> " + type.ToString());

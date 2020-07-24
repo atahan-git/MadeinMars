@@ -24,6 +24,10 @@ public struct Position {
 		return new Position(a.x - b.x, a.y - b.y);
 	}
 
+	public static Position operator - (Position a, Vector2 b) {
+		return new Position(a.x - (int)b.x, a.y - (int)b.y);
+	}
+
 	public Vector3 Vector3 (Type type){
 		float zPos = defaultPositionVector3Z;
 		switch (type) {

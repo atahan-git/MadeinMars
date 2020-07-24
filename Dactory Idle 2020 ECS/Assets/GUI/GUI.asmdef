@@ -2,7 +2,9 @@
     "name": "GUI",
     "references": [
         "GUID:0a644bb01a5dd3540bb796167189dcb2",
-        "GUID:c87700ed8d985264f8e5e1dbe65240d7"
+        "GUID:c87700ed8d985264f8e5e1dbe65240d7",
+        "GUID:09b3620e92863634684f039ee6c397c0",
+        "GUID:d57d5f01a2a2dce4fb04cbc951411332"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -33,7 +33,7 @@ public class SpriteGraphicsController : MonoBehaviour {
 
 
     void ChangeSprite (Sprite sp) {
-        if (rend == null)
+        if (rend == null || myShadow == null)
             CreateShadow();
         rend.sprite = sp;
         myShadow.GetComponent<SpriteRenderer>().sprite = rend.sprite;

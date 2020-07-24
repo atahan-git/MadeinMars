@@ -35,7 +35,6 @@ public class Player_BuildingController : MonoBehaviour {
 		if (Input.GetMouseButton(0)) {
 			TileData myTile = Grid.s.GetTileUnderPointer();
 			if (myTile!=null) {
-
 				lastTile = myTile;
 				if(curItemPlacementScript != null)
 					curItemPlacementScript.UpdatePosition(myTile);
@@ -45,9 +44,10 @@ public class Player_BuildingController : MonoBehaviour {
 			isPlacingItem = false;
 			Player_MasterControlCheck.s.TogglePlacingItem(false);
 			if (curItemPlacementScript != null) {
-				if (ObjectBuilderMaster.CheckPlaceable(buildingItem, lastTile.position)) {
+				if (SmartInput.inputPos.y > 200 && ObjectBuilderMaster.CheckPlaceable(buildingItem, lastTile.position)) {
 					curItemPlacementScript.PlaceSelf();
 					ObjectBuilderMaster.BuildObject(buildingItem, lastTile.position);
+					Player_MasterControlCheck.s.inventoryController.UseBuildingResources(buildingItem, 1);
 				} else {
 					curItemPlacementScript.FailedPlacingSelf();
 				}
@@ -81,7 +81,6 @@ public class Player_BuildingController : MonoBehaviour {
 		Player_MasterControlCheck.s.TogglePlacingItem(false);
 	}
 
-
 	public void ActivateSellMode () {
 		Deselect();
 		isPlacingItem = false;
@@ -94,16 +93,22 @@ public class Player_BuildingController : MonoBehaviour {
 
 	void SellCheck () {
 		if (Input.GetMouseButton(0)) {
+			if (SmartInput.inputPos.y < 200)
+				return;
+
 			TileData myTile = Grid.s.GetTileUnderPointer();
 			if (myTile != null) {
 
 				Debug.Log("Selling " + myTile.name);
 
 				if (!myTile.isEmpty) {
-					if (myTile.myBuilding != null)
-						myTile.myBuilding.GetComponent<BuildingWorldObject> ().DestroyYourself ();
-					else
-						myTile.myBelt.GetComponent<BeltObject> ().DestroyYourself ();
+					if (myTile.myBuilding != null) {
+						Player_MasterControlCheck.s.inventoryController.UseBuildingResources(myTile.myBuilding.GetComponent<BuildingWorldObject>().myData, -1);
+						myTile.myBuilding.GetComponent<BuildingWorldObject>().DestroyYourself();
+					} else {
+						Player_MasterControlCheck.s.inventoryController.UseBuildingResources(myTile.myBelt.GetComponent<BeltObject>().myData, -1);
+						myTile.myBelt.GetComponent<BeltObject>().DestroyYourself();
+					}
 				}
 			}
 		}
@@ -112,7 +117,7 @@ public class Player_BuildingController : MonoBehaviour {
 	//--------------------------------------------------------------------------------------------------BELT STUFF
 	bool lastFrameStuff = false;
 	public void ActivateBeltMode () {
-		Deselect();
+		Deselect(); 
 		Player_MasterControlCheck.s.ToggleMovement(true);
 		Player_MasterControlCheck.s.TogglePlacingItem(true);
 		isBeltPlacing = true;
@@ -152,6 +157,7 @@ public class Player_BuildingController : MonoBehaviour {
 				if (myTile.beltPlaceable) {                  //can we place a belt here
 					if (myTile.isEmpty) {                                          //there are no items here so place a belt
 						BeltObject myBelt = ObjectBuilderMaster.BuildBelt(myTile);
+						Player_MasterControlCheck.s.inventoryController.UseBuildingResources(ObjectBuilderMaster.beltBuildingData, 1);
 
 						if (b_lastBelt != null) {                                       //there was a belt before this one - update its out stuff
 							BeltObject.ConnectBeltsBuildingOnly(b_lastBelt, myBelt);
@@ -177,6 +183,10 @@ public class Player_BuildingController : MonoBehaviour {
 						b_lastBelt = myBelt;
 						b_lastBuilding = null;
 						b_lastTile = myTile;
+
+						if (!Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(ObjectBuilderMaster.beltBuildingData)) {
+							Deselect();
+						}
 
 					} else {                                                            //there is an item below us
 						BuildingWorldObject myBuilding = null;

@@ -33,6 +33,16 @@ public class ItemSet : ScriptableObject
 
 }
 
+[System.Serializable]
+public class InventoryItemSlot{
+    public Item myItem;
+    public int count = 0; // If 0, means the slot is empty.
+
+    public InventoryItemSlot () { }
+    public InventoryItemSlot (Item item, int _count) { myItem = item; count = _count; }
+}
+
+
 
 [System.Serializable]
 public class Item {

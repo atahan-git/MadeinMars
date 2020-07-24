@@ -55,7 +55,7 @@ public class MovementController : MonoBehaviour {
 				oldTouchPositions[0] = newTouchPosition;
 			}
 		}
-		else {
+		else if (Input.touchCount > defZero + 1){
 			if (oldTouchPositions[1] == null) {
 				oldTouchPositions[0] = Input.GetTouch(defZero).position;
 				oldTouchPositions[1] = Input.GetTouch(defZero + 1).position;

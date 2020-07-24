@@ -285,7 +285,7 @@ namespace XNodeEditor {
                     break;
                 case EventType.KeyDown:
                     if (EditorGUIUtility.editingTextField) break;
-                    else if (e.keyCode == KeyCode.F) Home();
+                    //else if (e.keyCode == KeyCode.F) Home();
                     if (IsMac()) {
                         if (e.keyCode == KeyCode.Return) RenameSelectedNode();
                     } else {

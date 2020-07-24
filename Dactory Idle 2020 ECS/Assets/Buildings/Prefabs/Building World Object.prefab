@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7417c414b1a97d4448e2818aea8155c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 3003533581990514315}
   Parent: {fileID: 4068593010235698205}
   craftingProcesses: []
   ProcessDisplayPrefab: {fileID: 3193192259405869338, guid: b961bd15b6fca014d929073592eb0513,

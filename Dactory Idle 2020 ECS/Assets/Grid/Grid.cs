@@ -22,11 +22,23 @@ public class Grid : MonoBehaviour
 		DataSaver.saveEvent += SaveTiles;
 	}
 
+	private void Start () {
+		GameLoader.CallWhenLoaded(GameLoadingComplete);
+	}
+
 
 	public TileData[,] myTiles;
 
 	public TileData GetTile (Position pos) {
 		return myTiles[pos.x, pos.y];
+	}
+
+	void GameLoadingComplete () {
+		if (GameLoader.isGameLoadingSuccessfull) {
+			LoadTiles();
+		} else {
+			GenerateTiles();
+		}
 	}
 
 
@@ -129,6 +141,11 @@ public class Grid : MonoBehaviour
 				DataSaver.TileDataToBeSaved[x, y] = new DataSaver.TileData(ct.height, ct.material, ct.oreType, ct.oreAmount);
 			}
 		}
+	}
+
+	private void OnDestroy () {
+		DataSaver.saveEvent -= SaveTiles;
+		GameLoader.RemoveFromCall(GameLoadingComplete);
 	}
 }
 

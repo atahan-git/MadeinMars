@@ -14,11 +14,33 @@ public class ObjectBuilderMaster : MonoBehaviour
 	public GameObject beltPrefab;
 	public GameObject buildingBeltPrefab;
 
+	public BuildingData _beltBuildingData;
+	public static BuildingData beltBuildingData;
+
 	private void Awake () {
 		if (s != null) {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
 		}
 		s = this;
+		beltBuildingData = _beltBuildingData;
+
+	}
+	private void Start () {
+		GameLoader.CallWhenLoaded(LoadFromSave);
+	}
+
+	void LoadFromSave () {
+		if (DataSaver.mySave != null) {
+			foreach (DataSaver.BeltData belt in DataSaver.mySave.beltData) {
+				if (belt != null)
+					BuildBeltFromSave(belt.inLocations, belt.outLocations, belt.myPos, belt.isBuildingBelt);
+			}
+
+			foreach (DataSaver.BuildingSaveData building in DataSaver.mySave.buildingData) {
+				if (building != null)
+					BuildObjectFromSave(building.myUniqueName, building.myPos);
+			}
+		}
 	}
 
 	public static bool CheckPlaceable (Position location) {
@@ -41,7 +63,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 		}
 		return true;
 	}
-	public static bool BuildObjectFromSave (string myUniqueName, Position location) {
+	static bool BuildObjectFromSave (string myUniqueName, Position location) {
 		BuildingData dat = DataHolder.s.GetBuilding(myUniqueName);
 		if (dat != null)
 			return BuildObject(DataHolder.s.GetBuilding(myUniqueName), location, true);
@@ -57,6 +79,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 		myBelt.pos = tileS.position;
 		tileS.myBelt = myBelt.gameObject;
 		myBelt.tileCovered = tileS;
+		myBelt.myData = beltBuildingData;
 
 		DataSaver.saveEvent += myBelt.SaveYourself;
 		return myBelt;
@@ -66,7 +89,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 		return BuildBelt(tileS, false);
 	}
 
-	public static bool BuildBeltFromSave (bool[] beltInData, bool[] beltOutData, Position location, bool isBuildingBelt) {
+	static bool BuildBeltFromSave (bool[] beltInData, bool[] beltOutData, Position location, bool isBuildingBelt) {
 		if (CheckPlaceable(location)) {
 			BeltObject myBelt = BuildBelt(Grid.s.GetTile(location), isBuildingBelt);
 			myBelt.beltInputs = beltInData;

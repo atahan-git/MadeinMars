@@ -7,6 +7,7 @@ using XNode;
 public class RecipeSet : NodeGraph {
     // Start is called before the first frame update
     public ItemSet[] myItemSets = new ItemSet[1];
+    public BuildingData[] myBuildings = new BuildingData[0];
 
 
     /// <summary>
@@ -21,6 +22,18 @@ public class RecipeSet : NodeGraph {
                 if (myItem != null) {
                     myItem.myItemSet = myItemSets[i];
                     return myItem;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public BuildingData GetBuilding (string uniqueName) {
+        for (int i = 0; i < myBuildings.Length; i++) {
+            if (myBuildings[i] != null) {
+                if (myBuildings[i].uniqueName == uniqueName) {
+                    return myBuildings[i];
                 }
             }
         }

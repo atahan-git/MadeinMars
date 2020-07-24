@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BeltObject : MonoBehaviour {
 
+	public BuildingData myData;
+
 	// variable to see if this belt was gone through the setup processing for list generation
 	public bool isProcessed = false;
 	// processing data

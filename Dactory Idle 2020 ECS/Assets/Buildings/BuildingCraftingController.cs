@@ -12,13 +12,12 @@ public class BuildingCraftingController : MonoBehaviour
 
     public bool isActive = false;
 
-    public CraftingProcess[] myCraftingProcesses = new CraftingProcess[0];
-
+    public IProcess[] myCraftingProcesses = new IProcess[0];
 
     public void SetUpCraftingProcesses (BuildingData mydat) {
         CraftingProcessNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
         if (ps != null) {
-            myCraftingProcesses = new CraftingProcess[ps.Length];
+            myCraftingProcesses = new IProcess[ps.Length];
 
             for (int i = 0; i < ps.Length; i++) {
                 myCraftingProcesses[i] = new CraftingProcess(myBelts,
@@ -29,7 +28,11 @@ public class BuildingCraftingController : MonoBehaviour
                     ps[i].timeCost
                     );
             }
-        } else {
+        } else if (mydat.myType == BuildingData.ItemType.Base) {
+            myCraftingProcesses = new IProcess[1];
+            myCraftingProcesses[0] = new InputProcess(myBelts);
+        }
+        else {
             Debug.Log(gameObject.name + " my type: " + mydat.myType.ToString() + " doesnt have any processess!");
         }
 
@@ -64,28 +67,29 @@ public class BuildingCraftingController : MonoBehaviour
             }
         }
 
-        if(isActive)
+        if(isActive && mydat.myType != BuildingData.ItemType.Base)
             GetComponent<BuildingInfoDisplay>().SetUp();
     }
 
     public void TakeItemsIn () {
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
-            myCraftingProcesses[i].TakeItemIn();
+            myCraftingProcesses[i].TakeItemsIn();
         }
     }
 
     public int lastCheckId = 0;
-    public void UpdateCraftingProcess () {
+    public float UpdateCraftingProcess (float efficiency) {
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             // Always continue from the last crafting we've made, so that we continue the same process
-            if (myCraftingProcesses[lastCheckId].UpdateCraftingProcess()) {
-                return;
+            if (myCraftingProcesses[lastCheckId].UpdateCraftingProcess(efficiency)) {
+                return myObj.myData.energyUse;
             } else {
                 // if we can't process this one, continue with the next one
                 lastCheckId++;
                 lastCheckId = lastCheckId % myCraftingProcesses.Length;
             }
         }
+        return 0;
     }
 
 
@@ -97,14 +101,49 @@ public class BuildingCraftingController : MonoBehaviour
     }
 }
 
-public class CraftingProcess {
+public interface IProcess {
+    void TakeItemsIn();
+    bool UpdateCraftingProcess (float efficiency);
+    void PutItemsOut (ref int outputIndex);
+}
+
+public class InputProcess : IProcess {
+
+    List<BeltBuildingObject> myBelts;
+
+    public InputProcess (List<BeltBuildingObject> belts) {
+        myBelts = belts;
+    }
+        public void TakeItemsIn () {
+        for (int i = 0; i < myBelts.Count; i++) {
+            for (int k = 0; k < myBelts[i].myInputSlots.Count; k++) {
+                int myItem = myBelts[i].myInputSlots[k].ItemId();
+                if (myItem != -1) {
+                    if (Player_InventoryController.s.TryAddItem(DataHolder.s.GetItem(myItem))){
+                        myBelts[i].myInputSlots[k].TakeItem(myItem);
+                    }
+                }
+            }
+        }
+    }
+    public bool UpdateCraftingProcess (float efficiency) {
+        return false;
+    }
+    public void PutItemsOut (ref int outputIndex) {
+		
+	}
+
+
+}
+
+public class CraftingProcess : IProcess {
     public int[] inputItemCounts = new int[1];
     public int[] inputItemIds = new int[] { 0 };
     public int[] inputItemRequirements = new int[] { 5 };
 
     public bool isCrafting = false;
-    public int curCraftingProgress = 0;
-    public int craftingProgressTickReq = 20;
+    public float curCraftingProgress = 0;
+    public float craftingProgressTickReq = 20;
 
     public int[] outputItemCounts = new int[1];
     public int[] outputItemIds = new int[] { 1 };
@@ -131,22 +170,32 @@ public class CraftingProcess {
             outputItemIds[i] = DataHolder.s.GetItemIDFromName(outputItems[i]);
         }
 
-        craftingProgressTickReq = (int)(timeReq * BuildingMaster.buildingUpdatePerSecond);
+        craftingProgressTickReq = (timeReq * BuildingMaster.buildingUpdatePerSecond);
     }
 
 
-    public void TakeItemIn () {
+    public void TakeItemsIn () {
         for (int i = 0; i < myBelts.Count; i++) {
             for (int k = 0; k < myBelts[i].myInputSlots.Count; k++) {
-                if (myBelts[i].myInputSlots[k].TakeItem(inputItemIds[0]) != -1) {
-                    inputItemCounts[0]++;
+                for (int item = 0; item < inputItemIds.Length; item++) {
+                    if (inputItemCounts[item] < inputItemRequirements[item] * 2) {
+                        if (myBelts[i].myInputSlots[k].TakeItem(inputItemIds[item]) != -1) {
+                            inputItemCounts[item]++;
+                        }
+                    }
                 }
             }
         }
     }
 
-    public bool UpdateCraftingProcess () {
+    public bool UpdateCraftingProcess (float efficiency) {
         if (!isCrafting) {
+            for (int i = 0; i < outputItemCounts.Length; i++) {
+                if (outputItemCounts[i] >= outputItemAmounts[i] *2) {
+                    return false;
+                }
+            }
+
             for (int i = 0; i < inputItemCounts.Length; i++) {
                 if (inputItemCounts[i] < inputItemRequirements[i]) {
                     return false;
@@ -159,7 +208,7 @@ public class CraftingProcess {
         }
 
         if (isCrafting) {
-            curCraftingProgress++;
+            curCraftingProgress+=efficiency;
 
             if (curCraftingProgress >= craftingProgressTickReq) {
                 outputItemCounts[0] += outputItemAmounts[0];
