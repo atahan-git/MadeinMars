@@ -4,56 +4,91 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Nova.NodeItemTree {
-    [CreateAssetMenu]
-    public class RecipeSet : ScriptableObject {
-        public ItemSet[] myItemSets = new ItemSet[1];
+//namespace Nova.NodeItemTree {
+[CreateAssetMenu]
+public class RecipeSet : ScriptableObject {
+    public ItemSet[] myItemSets = new ItemSet[1];
 
 
-        /// <summary>
-        /// Returns Item in all item sets based on uniqueName
-        /// Returns null if not found
-        /// </summary>
-        /// <returns>Item or null</returns>
-        public Item GetItem (string uniqueName) {
-            for (int i = 0; i < myItemSets.Length; i++) {
-                if (myItemSets[i] != null) {
-                    Item myItem = myItemSets[i].GetItem(uniqueName);
-                    if (myItem != null)
-                        return myItem;
-                }
+    /// <summary>
+    /// Returns Item in all item sets based on uniqueName
+    /// Returns null if not found
+    /// </summary>
+    /// <returns>Item or null</returns>
+    public Item GetItem(string uniqueName) {
+        for (int i = 0; i < myItemSets.Length; i++) {
+            if (myItemSets[i] != null) {
+                Item myItem = myItemSets[i].GetItem(uniqueName);
+                if (myItem != null)
+                    return myItem;
             }
-            return null;
         }
 
-        public List<CraftingProcessNode> myCraftingProcessNodes = new List<CraftingProcessNode>();
-        public List<ItemNode> myItemNodes = new List<ItemNode>();
+        return null;
     }
 
-    [Serializable]
-    public class CraftingProcessNode {
+    public List<CraftingNode> myCraftingNodes = new List<CraftingNode>();
+    public List<ItemNode> myItemNodes = new List<ItemNode>();
+}
 
-        [HideInInspector]
-        public int x, y;
+[Serializable]
+public class Node {
+    public int id;
+    public Vector3 pos;
 
-        public int tier;
-        public float craftingTime;
-
-        public enum CraftingTypes { Processing, Melting }
-        public CraftingTypes myCraftingType;
-
-        public List<(ItemNode, int)> inputs = new List<(ItemNode, int)>();
-        public List<(ItemNode, int)> outputs = new List<(ItemNode, int)>();
-
-    }
-
-
-    [Serializable]
-    public class ItemNode {
-
-        [HideInInspector]
-        public int x, y;
-
-        public Item myItem;
+    public Node (int id) {
+        this.id = id;
     }
 }
+
+[Serializable]
+public class CraftingNode : Node {
+
+    public int tier;
+    public float craftingTime;
+
+    public enum CraftingTypes {
+        Processing,
+        Melting
+    }
+
+    public CraftingTypes myCraftingType;
+
+    public List<CountedItemNode> inputs = new List<CountedItemNode>();
+    public List<CountedItemNode> outputs = new List<CountedItemNode>();
+
+    public CraftingNode(int id) : base(id) {
+        this.id = id;
+    }
+    
+    public CraftingNode(int id, int tier, float craftingTime, CraftingTypes myCraftingType) : base(id) {
+        this.id = id;
+        this.tier = tier;
+        this.craftingTime = craftingTime;
+        this.myCraftingType = myCraftingType;
+    }
+}
+
+[Serializable]
+public class CountedItemNode {
+    public ItemNode itemNode;
+    public int count;
+
+    public CountedItemNode(ItemNode node, int _count) {
+        itemNode = node;
+        count = _count;
+    }
+}
+
+
+[Serializable]
+public class ItemNode : Node {
+
+    public Item myItem;
+
+    public ItemNode(int id, Item item) : base(id) {
+        this.id = id;
+        myItem = item;
+    }
+}
+//}

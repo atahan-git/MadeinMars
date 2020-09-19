@@ -50,14 +50,16 @@ public class GUI_BuildingBarController : MonoBehaviour {
                 StopDragInventoryBuilding();
     }
 
+    public Color defColor = Color.white;
     public void UpdateSlotsBuildableStates () {
         for (int i = 0; i < myBuildingBarSlots.Length; i++) {
+            if(myBuildingBarSlots[i].myDat != null)
             myBuildingBarSlots[i].UpdateBuildableState(Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(myBuildingBarSlots[i].myDat));
         }
 
         CanPlaceBelts = Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(ObjectBuilderMaster.beltBuildingData);
         if (CanPlaceBelts) {
-            PlaceBeltsButton.color = Color.white;
+            PlaceBeltsButton.color = defColor;
         } else {
             float darkness = 0.5f;
             PlaceBeltsButton.color = new Color(darkness, darkness, darkness);
@@ -77,6 +79,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
     public void StopDragInventoryBuilding () {
         buildingDragFromInventoryOverlay.SetActive(false);
         inventoryDragBegun = false;
+        UpdateSlotsBuildableStates();
     }
 
     void OnGUI () {

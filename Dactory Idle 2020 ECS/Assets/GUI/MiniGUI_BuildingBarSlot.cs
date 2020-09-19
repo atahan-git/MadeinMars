@@ -16,12 +16,14 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
 
     public bool state = true;
 
-	public void ChangeBuilding (BuildingData _myDat) {
+    public Color defColor = Color.white;
+
+    public void ChangeBuilding (BuildingData _myDat) {
         myDat = _myDat;
         if (myDat != null) {
             nameText.text = myDat.name;
             img.sprite = myDat.BuildingSprite;
-            img.color = Color.white;
+            img.color = defColor;
         } else {
             nameText.text = "empty";
             img.sprite = null;

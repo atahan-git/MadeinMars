@@ -16,8 +16,7 @@ namespace XNode {
             Dictionary<string, NodePort> staticPorts = new Dictionary<string, NodePort>();
             System.Type nodeType = node.GetType();
 
-            List<NodePort> typePortCache;
-            if (portDataCache.TryGetValue(nodeType, out typePortCache)) {
+            if (portDataCache.TryGetValue(nodeType, out var typePortCache)) {
                 for (int i = 0; i < typePortCache.Count; i++) {
                     staticPorts.Add(typePortCache[i].fieldName, portDataCache[nodeType][i]);
                 }
@@ -27,8 +26,7 @@ namespace XNode {
             // Loop through current node ports
             foreach (NodePort port in ports.Values.ToList()) {
                 // If port still exists, check it it has been changed
-                NodePort staticPort;
-                if (staticPorts.TryGetValue(port.fieldName, out staticPort)) {
+                if (staticPorts.TryGetValue(port.fieldName, out var staticPort)) {
                     // If port exists but with wrong settings, remove it. Re-add it later.
                     if (port.connectionType != staticPort.connectionType || port.IsDynamic || port.direction != staticPort.direction || port.typeConstraint != staticPort.typeConstraint) ports.Remove(port.fieldName);
                     else port.ValueType = staticPort.ValueType;

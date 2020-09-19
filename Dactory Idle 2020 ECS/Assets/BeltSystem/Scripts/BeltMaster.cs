@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -39,8 +40,15 @@ public class BeltMaster : MonoBehaviour {
 
 	EntityManager entityManager;
 	// Start is called before the first frame update
-	void Start() {
+
+	private void Awake() {
+		if (s != null) {
+			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
+		}
 		s = this;
+	}
+
+	void Start() {
 		entityManager = World.Active.EntityManager;
 
 		if (autoStart)
@@ -108,6 +116,13 @@ public class BeltMaster : MonoBehaviour {
 		allBelts.Add(newBelt);
 		beltPreProc.ResetBeltSlots(newBelt);
 		ProcessBeltGroupingChange(newBelt);
+	}
+
+	public void AddOneBeltFromSave(BeltObject savedBelt) {
+		return;
+		savedBelt.CreateBeltItemSlots();
+		savedBelt.UpdateGraphics();
+		allBelts.Add(savedBelt);
 	}
 
 	public void ChangeOneBelt (BeltObject updatedBelt) {

@@ -57,20 +57,17 @@ namespace XNodeEditor {
         }
 
         public static bool GetCachedAttrib<T>(Type classType, string fieldName, out T attribOut) where T : Attribute {
-            Dictionary<string, Dictionary<Type, Attribute>> typeFields;
-            if (!typeAttributes.TryGetValue(classType, out typeFields)) {
+            if (!typeAttributes.TryGetValue(classType, out var typeFields)) {
                 typeFields = new Dictionary<string, Dictionary<Type, Attribute>>();
                 typeAttributes.Add(classType, typeFields);
             }
 
-            Dictionary<Type, Attribute> typeTypes;
-            if (!typeFields.TryGetValue(fieldName, out typeTypes)) {
+            if (!typeFields.TryGetValue(fieldName, out var typeTypes)) {
                 typeTypes = new Dictionary<Type, Attribute>();
                 typeFields.Add(fieldName, typeTypes);
             }
 
-            Attribute attr;
-            if (!typeTypes.TryGetValue(typeof(T), out attr)) {
+            if (!typeTypes.TryGetValue(typeof(T), out var attr)) {
                 if (GetAttrib<T>(classType, fieldName, out attribOut)) typeTypes.Add(typeof(T), attribOut);
                 else typeTypes.Add(typeof(T), null);
             }

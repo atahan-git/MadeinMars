@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2a162d57-6986-4fe9-9e95-991e9596740e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/riderModule.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/.idea/.idea.Assets.dir/.idea/.idea.Assets.dir.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/.idea/.idea.Assets.dir/riderModule.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/backdrop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/backdrop.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/merged.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/merged.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Media/random/Building crafting.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Media/random/Course builder doesnt like emojis.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Media/random/Snek level 1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Media/random/Snek.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Media/random/fireworks.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Media/random/hc wheel graceful.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/00.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/33.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/34.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/backdrop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/merged.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/merged.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Colony.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Colony.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingCraftingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingCraftingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingInfoDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingInfoDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingWorldObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingWorldObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/ObjectBuilderMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/ObjectBuilderMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataHolder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataSaver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataSaver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/GameLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/GameLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Player_InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Player_InventoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Position.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Position.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/SpriteGraphicsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/SpriteGraphicsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_BuildingBarController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_BuildingBarController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_InventoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_SwitchController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_SwitchController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Inventory Listing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Inventory Listing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Item in&amp;out display.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Item in&amp;out display.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/MiniGUI_InventoryListing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/MiniGUI_InventoryListing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GameMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GameMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Grid/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Grid/Grid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/MovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/MovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/CraftingProcessNodeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/CraftingProcessNodeEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemSet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUILayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUILayout.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorPreferences.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorPreferences.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorUtilities.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorUtilities.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeGraphEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeGraphEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Node.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeDataCache.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeDataCache.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Items.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Items.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/testLevel.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/testLevel.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Example Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Example Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/DragMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/DragMe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/DragPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/DragPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/DropMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/DropMe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/Item List Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/Item List Prefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Nova.NodeItemTree.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Nova.NodeItemTree.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scenes/Node Item Tree Making Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scenes/Node Item Tree Making Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Logs/Packages-Update.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/ObjectPoolMatrix.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.5.0-preview.17/Unity.Entities/IJobForEach.gen.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/ObjectPoolMatrix.cs" />
+        <option value="$PROJECT_DIR$/Assets/BeltSystem/PoolingCodes ECS/ObjectPoolECS.cs" />
+        <option value="$PROJECT_DIR$/Assets/BeltMasterMatrix.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hYsw22Dnl40PE8CxGP883nVSGH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a162d57-6986-4fe9-9e95-991e9596740e" name="Default Changelist" comment="" />
+      <created>1600199596013</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600199596013</updated>
+      <workItem from="1600199600292" duration="4841000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

@@ -46,22 +46,28 @@ public class InventoryItemSlot{
 
 [System.Serializable]
 public class Item {
-    public string uniqueName = "Not Set";
+    public string uniqueName = "";
     public string name = "New Item";
-    [TextArea]
-    public string desctiption = "This is a new Item";
+    [TextArea] public string desctiption = "This is a new Item";
 
     [HideInInspector]
     //Item sets are assigned by DataHolder
     public ItemSet myItemSet;
+
     [HideInInspector]
     //Item ids are assigned by DataHolder
     //They are the equivalent of the items array position, counted additively if there are multiple item sets
-    public int myId = -1; 
+    public int myId = -1;
 
-    public Vector2 myTextureOffset = new Vector2(-1,-1);
+    public Vector2 myTextureOffset = new Vector2(-1, -1);
+    public Sprite mySprite;
 
-	private Material myMat = null;
+    private Material myMat = null;
+
+
+    public Sprite GetSprite() {
+        return mySprite;
+    }
 
     public Material GetMaterial () {
         if (myMat == null) {

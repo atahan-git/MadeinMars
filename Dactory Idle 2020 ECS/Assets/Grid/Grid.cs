@@ -9,6 +9,8 @@ public class Grid : MonoBehaviour
 	public MapGenerator mapGen;
 
 	public int mapSize = 200;
+
+	public TileData[,] myTiles;
 	private void Awake () {
 		if (s != null) {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
@@ -23,11 +25,10 @@ public class Grid : MonoBehaviour
 	}
 
 	private void Start () {
-		GameLoader.CallWhenLoaded(GameLoadingComplete);
+		GameLoader.CallWhenLoaded(GameLoadingComplete, 0);
 	}
 
 
-	public TileData[,] myTiles;
 
 	public TileData GetTile (Position pos) {
 		return myTiles[pos.x, pos.y];
@@ -58,40 +59,41 @@ public class Grid : MonoBehaviour
 		}
 	}
 
-	public void LoadTiles () {
+	public void LoadTiles() {
 		mapGen.Clear();
 		bool loadDataExists = DataSaver.mySave.tileData != null;
-		if(loadDataExists)
-
-		if (DataSaver.mySave.tileData != null && DataSaver.mySave.tileData.Length > 0) {
-			int xLength = DataSaver.mySave.tileData.GetLength(0);
-			int yLength = DataSaver.mySave.tileData.GetLength(0);
-			int[,] materials = new int [xLength,yLength];
-			int[,] height = new int[xLength, yLength];
-			int[][,] oreAmounts = new int[DataHolder.s.GetAllOres().Length][,];
-			for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
-				oreAmounts[i] = new int[xLength, yLength];
-			}
-			myTiles = new TileData[xLength, yLength];
-			for (int x = 0; x < DataSaver.mySave.tileData.GetLength(0); x++) {
-				for (int y = 0; y < DataSaver.mySave.tileData.GetLength(1); y++) {
-					DataSaver.TileData dat = DataSaver.mySave.tileData[x, y];
-					myTiles[x, y] = new TileData(dat, x, y);
-					materials[x, y] = dat.material;
-					height[x, y] = dat.height;
-					if(dat.oreType > 0 && dat.oreType <= oreAmounts.GetLength(0))
-					oreAmounts[dat.oreType-1][x, y] = dat.oreAmount;
+		if (loadDataExists) {
+			if (DataSaver.mySave.tileData != null && DataSaver.mySave.tileData.Length > 0) {
+				int xLength = DataSaver.mySave.tileData.GetLength(0);
+				int yLength = DataSaver.mySave.tileData.GetLength(0);
+				int[,] materials = new int [xLength, yLength];
+				int[,] height = new int[xLength, yLength];
+				int[][,] oreAmounts = new int[DataHolder.s.GetAllOres().Length][,];
+				for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
+					oreAmounts[i] = new int[xLength, yLength];
 				}
-			}
 
-			mapGen.LoadMap(materials, height);
-			for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
-				mapGen.LoadResources(oreAmounts[i], DataHolder.s.GetAllOres()[i]);
-			}
+				myTiles = new TileData[xLength, yLength];
+				for (int x = 0; x < DataSaver.mySave.tileData.GetLength(0); x++) {
+					for (int y = 0; y < DataSaver.mySave.tileData.GetLength(1); y++) {
+						DataSaver.TileData dat = DataSaver.mySave.tileData[x, y];
+						myTiles[x, y] = new TileData(dat, x, y);
+						materials[x, y] = dat.material;
+						height[x, y] = dat.height;
+						if (dat.oreType > 0 && dat.oreType <= oreAmounts.GetLength(0))
+							oreAmounts[dat.oreType - 1][x, y] = Mathf.CeilToInt(dat.oreAmount/10000f);
+					}
+				}
 
-			print("Map successfully loaded");
-		} else {
-			GenerateTiles();
+				mapGen.LoadMap(materials, height);
+				for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
+					mapGen.LoadResources(oreAmounts[i], DataHolder.s.GetAllOres()[i]);
+				}
+
+				print("Map successfully loaded");
+			} else {
+				GenerateTiles();
+			}
 		}
 	}
 
@@ -118,7 +120,7 @@ public class Grid : MonoBehaviour
 				for (int i = 0; i < oreAmountsPrepass.Length; i++) {
 					if (oreAmountsPrepass[i][x, y] > 0) {
 						oreType[x, y] = i+1;
-						oreAmount[x, y] = oreAmountsPrepass[i][x, y];
+						oreAmount[x, y] = oreAmountsPrepass[i][x, y] * 10000;
 						break;
 					}
 				}

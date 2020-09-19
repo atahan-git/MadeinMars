@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+using XNode;
 
 namespace XNodeEditor {
     /// <summary> xNode-specific version of <see cref="EditorGUILayout"/> </summary>
@@ -42,16 +43,14 @@ namespace XNodeEditor {
                 Rect rect = new Rect();
 
                 float spacePadding = 0;
-                SpaceAttribute spaceAttribute;
-                if (NodeEditorUtilities.GetCachedAttrib(port.node.GetType(), property.name, out spaceAttribute)) spacePadding = spaceAttribute.height;
+                if (NodeEditorUtilities.GetCachedAttrib(port.node.GetType(), property.name, out SpaceAttribute spaceAttribute)) spacePadding = spaceAttribute.height;
 
                 // If property is an input, display a regular property field and put a port handle on the left side
                 if (port.direction == XNode.NodePort.IO.Input) {
                     // Get data from [Input] attribute
                     XNode.Node.ShowBackingValue showBacking = XNode.Node.ShowBackingValue.Unconnected;
-                    XNode.Node.InputAttribute inputAttribute;
                     bool dynamicPortList = false;
-                    if (NodeEditorUtilities.GetCachedAttrib(port.node.GetType(), property.name, out inputAttribute)) {
+                    if (NodeEditorUtilities.GetCachedAttrib(port.node.GetType(), property.name, out Node.InputAttribute inputAttribute)) {
                         dynamicPortList = inputAttribute.dynamicPortList;
                         showBacking = inputAttribute.backingValue;
                     }
@@ -94,9 +93,8 @@ namespace XNodeEditor {
                 } else if (port.direction == XNode.NodePort.IO.Output) {
                     // Get data from [Output] attribute
                     XNode.Node.ShowBackingValue showBacking = XNode.Node.ShowBackingValue.Unconnected;
-                    XNode.Node.OutputAttribute outputAttribute;
                     bool dynamicPortList = false;
-                    if (NodeEditorUtilities.GetCachedAttrib(port.node.GetType(), property.name, out outputAttribute)) {
+                    if (NodeEditorUtilities.GetCachedAttrib(port.node.GetType(), property.name, out Node.OutputAttribute outputAttribute)) {
                         dynamicPortList = outputAttribute.dynamicPortList;
                         showBacking = outputAttribute.backingValue;
                     }
@@ -140,8 +138,7 @@ namespace XNodeEditor {
                 rect.size = new Vector2(16, 16);
 
                 Color backgroundColor = new Color32(90, 97, 105, 255);
-                Color tint;
-                if (NodeEditorWindow.nodeTint.TryGetValue(port.node.GetType(), out tint)) backgroundColor *= tint;
+                if (NodeEditorWindow.nodeTint.TryGetValue(port.node.GetType(), out var tint)) backgroundColor *= tint;
                 Color col = NodeEditorWindow.current.graphEditor.GetPortColor(port);
                 DrawPortHandle(rect, backgroundColor, col);
 
@@ -196,8 +193,7 @@ namespace XNodeEditor {
             Rect rect = new Rect(position, new Vector2(16, 16));
 
             Color backgroundColor = new Color32(90, 97, 105, 255);
-            Color tint;
-            if (NodeEditorWindow.nodeTint.TryGetValue(port.node.GetType(), out tint)) backgroundColor *= tint;
+            if (NodeEditorWindow.nodeTint.TryGetValue(port.node.GetType(), out var tint)) backgroundColor *= tint;
             Color col = NodeEditorWindow.current.graphEditor.GetPortColor(port);
             DrawPortHandle(rect, backgroundColor, col);
 
@@ -224,8 +220,7 @@ namespace XNodeEditor {
             rect.size = new Vector2(16, 16);
 
             Color backgroundColor = new Color32(90, 97, 105, 255);
-            Color tint;
-            if (NodeEditorWindow.nodeTint.TryGetValue(port.node.GetType(), out tint)) backgroundColor *= tint;
+            if (NodeEditorWindow.nodeTint.TryGetValue(port.node.GetType(), out var tint)) backgroundColor *= tint;
             Color col = NodeEditorWindow.current.graphEditor.GetPortColor(port);
             DrawPortHandle(rect, backgroundColor, col);
 
@@ -267,10 +262,8 @@ namespace XNodeEditor {
         public static bool IsDynamicPortListPort(XNode.NodePort port) {
             string[] parts = port.fieldName.Split(' ');
             if (parts.Length != 2) return false;
-            Dictionary<string, ReorderableList> cache;
-            if (reorderableListCache.TryGetValue(port.node, out cache)) {
-                ReorderableList list;
-                if (cache.TryGetValue(parts[0], out list)) return true;
+            if (reorderableListCache.TryGetValue(port.node, out var cache)) {
+                if (cache.TryGetValue(parts[0], out var list)) return true;
             }
             return false;
         }
@@ -297,8 +290,7 @@ namespace XNodeEditor {
             List<XNode.NodePort> dynamicPorts = indexedPorts.OrderBy(x => x.index).Select(x => x.port).ToList();
 
             ReorderableList list = null;
-            Dictionary<string, ReorderableList> rlc;
-            if (reorderableListCache.TryGetValue(serializedObject.targetObject, out rlc)) {
+            if (reorderableListCache.TryGetValue(serializedObject.targetObject, out var rlc)) {
                 if (!rlc.TryGetValue(fieldName, out list)) list = null;
             }
             // If a ReorderableList isn't cached for this array, do so.

@@ -58,8 +58,7 @@ namespace XNodeEditor {
                 typeColors = new Dictionary<string, Color>();
                 string[] data = typeColorsData.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < data.Length; i += 2) {
-                    Color col;
-                    if (ColorUtility.TryParseHtmlString("#" + data[i + 1], out col)) {
+                    if (ColorUtility.TryParseHtmlString("#" + data[i + 1], out var col)) {
                         typeColors.Add(data[i], col);
                     }
                 }
@@ -214,8 +213,7 @@ namespace XNodeEditor {
         public static Color GetTypeColor(System.Type type) {
             VerifyLoaded();
             if (type == null) return Color.gray;
-            Color col;
-            if (!typeColors.TryGetValue(type, out col)) {
+            if (!typeColors.TryGetValue(type, out var col)) {
                 string typeName = type.PrettyName();
                 if (settings[lastKey].typeColors.ContainsKey(typeName)) typeColors.Add(type, settings[lastKey].typeColors[typeName]);
                 else {

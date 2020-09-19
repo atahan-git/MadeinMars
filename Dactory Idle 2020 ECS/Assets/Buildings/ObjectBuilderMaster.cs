@@ -23,9 +23,7 @@ public class ObjectBuilderMaster : MonoBehaviour
 		}
 		s = this;
 		beltBuildingData = _beltBuildingData;
-
-	}
-	private void Start () {
+		
 		GameLoader.CallWhenLoaded(LoadFromSave);
 	}
 
@@ -71,7 +69,30 @@ public class ObjectBuilderMaster : MonoBehaviour
 			return false;
 	}
 
-	static BeltObject BuildBelt (TileData tileS, bool isBuildingBelt) {
+	
+
+	public static BeltObject BuildBelt (TileData tileS) {
+		return _BuildBelt(tileS, false);
+	}
+	
+	public static BeltObject BuildBelt (TileData tileS, bool isBuildingBelt) {
+		return _BuildBelt(tileS, isBuildingBelt);
+	}
+
+	static bool BuildBeltFromSave (bool[] beltInData, bool[] beltOutData, Position location, bool isBuildingBelt) {
+		if (CheckPlaceable(location)) {
+			BeltObject myBelt = BuildBelt(Grid.s.GetTile(location), isBuildingBelt);
+			myBelt.beltInputs = beltInData;
+			myBelt.beltOutputs = beltOutData;
+			BeltMaster.s.AddOneBeltFromSave(myBelt);
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	static BeltObject _BuildBelt (TileData tileS, bool isBuildingBelt) {
 		GameObject prefab = isBuildingBelt ? s.buildingBeltPrefab : s.beltPrefab;
 
 		BeltObject myBelt = Instantiate(prefab, tileS.position.Vector3(Position.Type.belt) + new Vector3(0.5f, 0.5f, 0), Quaternion.identity).GetComponent<BeltObject>();
@@ -85,27 +106,19 @@ public class ObjectBuilderMaster : MonoBehaviour
 		return myBelt;
 	}
 
-	public static BeltObject BuildBelt (TileData tileS) {
-		return BuildBelt(tileS, false);
-	}
-
-	static bool BuildBeltFromSave (bool[] beltInData, bool[] beltOutData, Position location, bool isBuildingBelt) {
-		if (CheckPlaceable(location)) {
-			BeltObject myBelt = BuildBelt(Grid.s.GetTile(location), isBuildingBelt);
-			myBelt.beltInputs = beltInData;
-			myBelt.beltOutputs = beltOutData;
-
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	public static bool BuildObject (BuildingData myData, Position location) {
 		return BuildObject(myData, location, false);
 	}
 
-	public static bool BuildObject (BuildingData myData, Position location, bool forced) {
+	public static bool BuildObject(BuildingData myData, Position location, bool forced) {
+		return BuildObject(myData, location, forced, false);
+	}
+	
+	public static bool BuildObject(BuildingData myData, Position location, bool forced, bool spaceLandingBuild) {
+		return _BuildObject(myData, location, forced, spaceLandingBuild);
+	}
+
+	static bool _BuildObject (BuildingData myData, Position location, bool forced, bool spaceLandingBuild) {
 
 		if (CheckPlaceable(myData, location) || forced) {
 			GameObject InstantiatedItem = Instantiate(s.buidingWorldObjectPrefab, location.Vector3(Position.Type.building), Quaternion.identity);
@@ -145,8 +158,8 @@ public class ObjectBuilderMaster : MonoBehaviour
 			return true;
 		} else {
 			Debug.LogError(string.Format("A building of type {0} was tried to be built on {1}, " +
-				"but this was not possible. This should have been caught by the player_building controller, " +
-				"or shouldn't be able to saved like this!", 
+			                             "but this was not possible. This should have been caught by the player_building controller, " +
+			                             "or shouldn't be able to saved like this!", 
 				myData.myType, location.ToString()));
 			return false;
 		}

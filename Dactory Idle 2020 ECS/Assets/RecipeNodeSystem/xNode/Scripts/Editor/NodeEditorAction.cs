@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using XNode;
 
 namespace XNodeEditor {
     public partial class NodeEditorWindow {
@@ -94,16 +95,14 @@ namespace XNodeEditor {
                                     Vector2 offset = node.position - initial;
                                     if (offset.sqrMagnitude > 0) {
                                         foreach (XNode.NodePort output in node.Outputs) {
-                                            Rect rect;
-                                            if (portConnectionPoints.TryGetValue(output, out rect)) {
+                                            if (portConnectionPoints.TryGetValue(output, out var rect)) {
                                                 rect.position += offset;
                                                 portConnectionPoints[output] = rect;
                                             }
                                         }
 
                                         foreach (XNode.NodePort input in node.Inputs) {
-                                            Rect rect;
-                                            if (portConnectionPoints.TryGetValue(input, out rect)) {
+                                            if (portConnectionPoints.TryGetValue(input, out var rect)) {
                                                 rect.position += offset;
                                                 portConnectionPoints[input] = rect;
                                             }
@@ -366,8 +365,7 @@ namespace XNodeEditor {
         public void RenameSelectedNode() {
             if (Selection.objects.Length == 1 && Selection.activeObject is XNode.Node) {
                 XNode.Node node = Selection.activeObject as XNode.Node;
-                Vector2 size;
-                if (nodeSizes.TryGetValue(node, out size)) {
+                if (nodeSizes.TryGetValue(node, out var size)) {
                     RenamePopup.Show(Selection.activeObject, size.x);
                 } else {
                     RenamePopup.Show(Selection.activeObject);
@@ -409,8 +407,7 @@ namespace XNodeEditor {
                             XNode.NodePort inputPort = port.direction == XNode.NodePort.IO.Input ? port : port.GetConnection(c);
                             XNode.NodePort outputPort = port.direction == XNode.NodePort.IO.Output ? port : port.GetConnection(c);
 
-                            XNode.Node newNodeIn, newNodeOut;
-                            if (substitutes.TryGetValue(inputPort.node, out newNodeIn) && substitutes.TryGetValue(outputPort.node, out newNodeOut)) {
+                            if (substitutes.TryGetValue(inputPort.node, out var newNodeIn) && substitutes.TryGetValue(outputPort.node, out var newNodeOut)) {
                                 newNodeIn.UpdateStaticPorts();
                                 newNodeOut.UpdateStaticPorts();
                                 inputPort = newNodeIn.GetInputPort(inputPort.fieldName);
@@ -430,8 +427,7 @@ namespace XNodeEditor {
                 Color col = NodeEditorPreferences.GetTypeColor(draggedOutput.ValueType);
                 col.a = draggedOutputTarget != null ? 1.0f : 0.6f;
 
-                Rect fromRect;
-                if (!_portConnectionPoints.TryGetValue(draggedOutput, out fromRect)) return;
+                if (!_portConnectionPoints.TryGetValue(draggedOutput, out var fromRect)) return;
                 List<Vector2> gridPoints = new List<Vector2>();
                 gridPoints.Add(fromRect.center);
                 for (int i = 0; i < draggedOutputReroutes.Count; i++) {
@@ -464,8 +460,7 @@ namespace XNodeEditor {
             //Get node position
             Vector2 nodePos = GridToWindowPosition(node.position);
             float width;
-            Vector2 size;
-            if (nodeSizes.TryGetValue(node, out size)) width = size.x;
+            if (nodeSizes.TryGetValue(node, out var size)) width = size.x;
             else width = 200;
             Rect windowRect = new Rect(nodePos, new Vector2(width / zoom, 30 / zoom));
             return windowRect.Contains(mousePos);

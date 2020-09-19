@@ -17,6 +17,12 @@ public class BuildingWorldObject : MonoBehaviour
 	public BuildingCraftingController myCrafter;
 
 	SpriteGraphicsController myRend;
+	
+	
+	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts, bool spaceLanding) {
+		PlaceInWorld(_myData,_location,_myTiles,_buildingBelts);
+		
+	}
 
 	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts) {
 		myData = _myData;
@@ -24,6 +30,7 @@ public class BuildingWorldObject : MonoBehaviour
 		myTiles = _myTiles;
 		myBelts = _buildingBelts;
 		myCrafter.myBelts = myBelts;
+		myCrafter.myTiles = myTiles;
 
 		myRend = GetComponent<SpriteGraphicsController>();
 		myRend.sprite = myData.BuildingSprite;

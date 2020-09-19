@@ -9,7 +9,7 @@ public struct Position {
 
 	public static float defaultPositionVector3Z = 0;
 
-	public enum Type { world, belt, item, building };
+	public enum Type { world, belt, item, building, drone };
 
 	public Position (int _x, int _y) {
 		x = _x;
@@ -42,6 +42,9 @@ public struct Position {
 			break;
 		case Type.building:
 			zPos = DataHolder.buildingLayer;
+			break;
+		case Type.drone :
+			zPos = DataHolder.droneLayer;
 			break;
 		}
 		return new Vector3(x, y, zPos);

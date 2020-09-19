@@ -38,10 +38,13 @@ public class BeltGfx : MonoBehaviour {
 		}
 
 		if (isDirty) {
-			while (transform.childCount != 0) {
+			int childs = transform.childCount;
+			for (int i = childs - 1; i > 0; i--) {
+#if UNITY_EDITOR
 				if (Application.isEditor)
 					DestroyImmediate(transform.GetChild(0).gameObject);
 				else
+#endif
 					Destroy(transform.GetChild(0).gameObject);
 			}
 

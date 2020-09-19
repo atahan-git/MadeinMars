@@ -16,7 +16,8 @@ public class SpriteGraphicsController : MonoBehaviour {
 
     SpriteRenderer rend = null;
 
-    public static Vector3 shadowOffset = new Vector3(0.46f, 0.72f, 0.5f);
+    public static Vector3 shadowOffset = new Vector3(0.72f, 0.72f, 0.5f);
+    
     // Start is called before the first frame update
     void Start () {
         if (rend == null)
@@ -27,7 +28,7 @@ public class SpriteGraphicsController : MonoBehaviour {
         myShadow = Instantiate(ShadowPrefab, transform);
         rend = GetComponent<SpriteRenderer>();
         myShadow.GetComponent<SpriteRenderer>().sprite = rend.sprite;
-        myShadow.transform.localPosition = new Vector3(shadowOffset.x * height, shadowOffset.y * height, shadowOffset.z);
+        myShadow.transform.localPosition = new Vector3(shadowOffset.x * (height/2f), shadowOffset.y * height, shadowOffset.z);
     }
 
 

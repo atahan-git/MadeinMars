@@ -20,8 +20,7 @@ namespace XNodeEditor.Internal {
 
 		public static T GetEditor(K target, NodeEditorWindow window) {
 			if (target == null) return null;
-			T editor;
-			if (!editors.TryGetValue(target, out editor)) {
+			if (!editors.TryGetValue(target, out var editor)) {
 				Type type = target.GetType();
 				Type editorType = GetEditorType(type);
 				editor = Activator.CreateInstance(editorType) as T;
@@ -40,8 +39,7 @@ namespace XNodeEditor.Internal {
 		private static Type GetEditorType(Type type) {
 			if (type == null) return null;
 			if (editorTypes == null) CacheCustomEditors();
-			Type result;
-			if (editorTypes.TryGetValue(type, out result)) return result;
+			if (editorTypes.TryGetValue(type, out var result)) return result;
 			//If type isn't found, try base type
 			return GetEditorType(type.BaseType);
 		}

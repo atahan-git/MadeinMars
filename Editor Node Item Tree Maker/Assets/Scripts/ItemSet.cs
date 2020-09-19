@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Nova.NodeItemTree {
+//namespace Nova.NodeItemTree {
     [CreateAssetMenu]
     public class ItemSet : ScriptableObject {
         public Item[] items = new Item[10];
@@ -34,4 +34,4 @@ namespace Nova.NodeItemTree {
         public Material myMat;
         public Sprite mySprite;
     }
-}
+//}

@@ -19,6 +19,7 @@ MonoBehaviour:
     - Input 1
     - Input 2
     - Output 1
+    - Output 2
     values:
     - _fieldName: Input 1
       _node: {fileID: -9039585467559575749}
@@ -53,6 +54,15 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: Output 2
+      _node: {fileID: -9039585467559575749}
+      _typeQualifiedName: ItemOutput, RecipeNodeSystem, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
   CraftingType: 8
   CraftingTier: 0
   timeCost: 1
@@ -61,8 +71,9 @@ MonoBehaviour:
   - Empty
   inputItemCounts: 01000000
   outputItemUniqueNames:
+  - bBelt1
   - Empty
-  outputItemCounts: 
+  outputItemCounts: 01000000
 --- !u!114 &-8664233201081424687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2962,7 +2973,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  myUniqueName: bColony
+  myUniqueName: bBase
 --- !u!114 &4777914591007526908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,7 +3083,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 1
   CraftingTier: 0
-  timeCost: 3
+  timeCost: 6
   inputItemUniqueNames:
   - ironOre
   - Empty
@@ -3638,7 +3649,7 @@ MonoBehaviour:
   - Empty
   inputItemCounts: 64000000
   outputItemUniqueNames:
-  - bColony
+  - bBase
   - Empty
   outputItemCounts: 01000000
 --- !u!114 &7058421518136959276
@@ -4008,7 +4019,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 1
   CraftingTier: 0
-  timeCost: 2
+  timeCost: 4
   inputItemUniqueNames:
   - copperOre
   - Empty

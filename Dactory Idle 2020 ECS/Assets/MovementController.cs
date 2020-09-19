@@ -93,7 +93,11 @@ public class MovementController : MonoBehaviour {
 		float vertical = Input.GetAxis("Vertical") * myCam.GetComponent<Camera>().orthographicSize;
 		float scroll = Input.mouseScrollDelta.y;
 
-		myCam.GetComponent<Camera>().orthographicSize -= scroll;
+		if (scroll < 0) {
+			myCam.GetComponent<Camera>().orthographicSize *= 1.1f;
+		} else if(scroll > 0) {
+			myCam.GetComponent<Camera>().orthographicSize /= 1.1f;
+		}
 		myCam.GetComponent<Camera>().orthographicSize = Mathf.Clamp(myCam.GetComponent<Camera>().orthographicSize, minZoom, maxZoom);
 		myCam.Translate(new Vector3(horizontal, vertical, 0) * keyboardSpeed * Time.deltaTime);
 	}

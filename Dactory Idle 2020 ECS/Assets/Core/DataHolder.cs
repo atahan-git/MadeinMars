@@ -32,6 +32,7 @@ public class DataHolder : MonoBehaviour {
     public static int beltLayer = 0;
     public static int itemLayer = -1;
     public static int buildingLayer = -2;
+    public static int droneLayer = -3;
 
     private void Awake () {
         if (s != null) {
@@ -45,6 +46,18 @@ public class DataHolder : MonoBehaviour {
 
     public OreSpawnSettings[] GetAllOres () {
         return myOres;
+    }
+
+    public bool UniqueNameToOreId(string name, out int oreId) {
+        for (int i = 0; i < myOres.Length; i++) {
+            if (myOres[i].oreUniqueName == name) {
+                oreId = i + 1;
+                return true;
+            }
+        }
+
+        oreId = 0;
+        return false;
     }
 
     public bool OreIdtoUniqueName (int id, out string oreType) {
@@ -77,6 +90,9 @@ public class DataHolder : MonoBehaviour {
         return GetItem(uniqueName).myId;
     }
 
+    /// <summary>
+    /// Should be used for all long term saving purposes
+    /// </summary>
     public Item GetItem (string uniqueName) {
         int idCounter = 0;
         for (int m = 0; m < myItemSets.Length; m++) {
@@ -92,7 +108,9 @@ public class DataHolder : MonoBehaviour {
         throw new NullReferenceException("The item you are requesting " + uniqueName + " does not exist!");
     }
 
-
+    /// <summary>
+    /// Only use this while the game is running. Id's are assigned dynamically at start, and may not be the same between sessions
+    /// </summary>
     public Item GetItem (int itemId) {
         int itemSet = 0;
         while (itemId > myItemSets[itemSet].items.Length) {
@@ -181,10 +199,14 @@ public class DataHolder : MonoBehaviour {
         case BuildingData.ItemType.Building:        index = 8; break;
         }
         if (index == -1) {
-            Debug.LogError("Building does not support crafting! >> " + type.ToString());
+            Debug.Log("Building does not support crafting! >> " + type.ToString());
             return null;
         }
 
         return myCraftingProcessesDivided[index];
+    }
+
+    public CraftingProcessNode[][] GetAllCraftingProcessNodesDivided() {
+        return myCraftingProcessesDivided;
     }
 }

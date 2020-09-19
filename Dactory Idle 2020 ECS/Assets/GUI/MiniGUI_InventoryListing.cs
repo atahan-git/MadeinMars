@@ -7,7 +7,7 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
 
     public Text nameText;
     public Text numberText;
-    public RawImage img;
+    public Image img;
     public InventoryItemSlot myDat;
     GUI_InventoryController myCont;
 
@@ -23,12 +23,12 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
         if (myDat.count > 0) {
             nameText.text = myDat.myItem.name;
             numberText.text = "x" + myDat.count.ToString();
-            img.material = myDat.myItem.GetMaterial();
-            img.color = Color.white;
+            img.sprite = myDat.myItem.GetSprite();
+            img.enabled = true;
         } else {
             nameText.text = "Empty";
             numberText.text = "";
-            img.color = new Color(0, 0, 0, 0);
+            img.enabled = false;
         }
     }
 

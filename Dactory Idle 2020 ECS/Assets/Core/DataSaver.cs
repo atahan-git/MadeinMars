@@ -10,7 +10,7 @@ public class DataSaver : MonoBehaviour {
 	public static DataSaver s;
 
 	public static SaveFile mySave;
-	string saveName = "mySave";
+	public const string saveName = "mySave";
 
 	public static BuildingSaveData[] ItemsToBeSaved = new BuildingSaveData[99];
 	public static int n = 0;
@@ -18,6 +18,7 @@ public class DataSaver : MonoBehaviour {
 	public static int b = 0;
 	public static string[] BuildingBarDataToBeSaved;
 	public static TileData[,] TileDataToBeSaved;
+	public static InventoryData[] InventoryDataToBeSaved;
 
 	public delegate void SaveYourself ();
 	public static event SaveYourself saveEvent;
@@ -45,7 +46,7 @@ public class DataSaver : MonoBehaviour {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName + ".banana");
 
-		SaveFile data = new SaveFile(ItemsToBeSaved, BeltsToBeSaved, BuildingBarDataToBeSaved, TileDataToBeSaved);
+		SaveFile data = new SaveFile(ItemsToBeSaved, BeltsToBeSaved, BuildingBarDataToBeSaved, TileDataToBeSaved, InventoryDataToBeSaved);
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -75,6 +76,10 @@ public class DataSaver : MonoBehaviour {
 	}
 
 	public void DeleteSave () {
+		DeleteSave(saveName);
+	}
+
+	public static void DeleteSave(string filename) {
 		File.Delete(Application.persistentDataPath + "/" + saveName + ".banana");
 	}
 
@@ -84,12 +89,14 @@ public class DataSaver : MonoBehaviour {
 		public BeltData[] beltData = new BeltData[0];
 		public string[] buildingBarData = new string[0];
 		public TileData[,] tileData = new TileData[0,0];
+		public InventoryData[] inventoryData = new InventoryData[0];
 
-		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, string[] mybuilbar, TileData[,] myTiledata) {
+		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, string[] mybuilbar, TileData[,] myTiledata, InventoryData[] myInventoryData) {
 			buildingData = myit;
 			beltData = mybel;
 			buildingBarData = mybuilbar;
 			tileData = myTiledata;
+			inventoryData = myInventoryData;
 		}
 
 	}
@@ -133,6 +140,17 @@ public class DataSaver : MonoBehaviour {
 			material = _material;
 			oreType = _oreType;
 			oreAmount = _oreAmount;
+		}
+	}
+	
+	[System.Serializable]
+	public class InventoryData {
+		public string uniqueName = "";
+		public int count = 0;
+
+		public InventoryData (string _uniqueName, int _count) {
+			uniqueName = _uniqueName;
+			count = _count;
 		}
 	}
 }

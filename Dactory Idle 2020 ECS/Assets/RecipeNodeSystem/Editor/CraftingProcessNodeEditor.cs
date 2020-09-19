@@ -33,8 +33,7 @@ public class CraftingProcessNodeEditor : NodeEditor {
 			break;
 		}
 
-		Color color;
-		ColorUtility.TryParseHtmlString(myColor, out color);
+		ColorUtility.TryParseHtmlString(myColor, out var color);
 		GUI.color = color;
 		//if (graph.current == node) GUI.color = Color.blue;
 		string title = target.name +" Tier "+ node.CraftingTier.ToString();

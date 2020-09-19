@@ -47,15 +47,13 @@ namespace XNodeEditor {
 
         public virtual int GetWidth() {
             Type type = target.GetType();
-            int width;
-            if (NodeEditorWindow.nodeWidth.TryGetValue(type, out width)) return width;
+            if (NodeEditorWindow.nodeWidth.TryGetValue(type, out var width)) return width;
             else return 208;
         }
 
         public virtual Color GetTint() {
             Type type = target.GetType();
-            Color color;
-            if (NodeEditorWindow.nodeTint.TryGetValue(type, out color)) return color;
+            if (NodeEditorWindow.nodeTint.TryGetValue(type, out var color)) return color;
             else return Color.white;
         }
 

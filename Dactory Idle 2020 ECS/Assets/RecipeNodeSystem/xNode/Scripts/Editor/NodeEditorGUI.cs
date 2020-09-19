@@ -215,8 +215,7 @@ namespace XNodeEditor {
                 // Draw full connections and output > reroute
                 foreach (XNode.NodePort output in node.Outputs) {
                     //Needs cleanup. Null checks are ugly
-                    Rect fromRect;
-                    if (!_portConnectionPoints.TryGetValue(output, out fromRect)) continue;
+                    if (!_portConnectionPoints.TryGetValue(output, out var fromRect)) continue;
 
                     Color connectionColor = graphEditor.GetPortColor(output);
 
@@ -226,8 +225,7 @@ namespace XNodeEditor {
                         // Error handling
                         if (input == null) continue; //If a script has been updated and the port doesn't exist, it is removed and null is returned. If this happens, return.
                         if (!input.IsConnectedTo(output)) input.Connect(output);
-                        Rect toRect;
-                        if (!_portConnectionPoints.TryGetValue(input, out toRect)) continue;
+                        if (!_portConnectionPoints.TryGetValue(input, out var toRect)) continue;
 
                         List<Vector2> reroutePoints = output.GetReroutePoints(k);
 
