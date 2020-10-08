@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f129b6a04f912914a863d75a83f16c02, type: 3}
+  m_Name: fire
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1887253712276215298, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: -858502842928504659, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: 7161965258017213387, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: -3768611991854564415, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: 1464392902275080840, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: 4683099576450678173, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: 8383122224675578342, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: 2426326427365665341, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  - {fileID: -3103242375015111622, guid: 7fe17fe4d6b0bf64e8104bd31a5da05a, type: 3}
+  spritePerSecond: 4

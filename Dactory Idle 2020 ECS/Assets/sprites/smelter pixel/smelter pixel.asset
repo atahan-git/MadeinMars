@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f129b6a04f912914a863d75a83f16c02, type: 3}
+  m_Name: smelter pixel
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: d949ce5feba9fd145b174bfb6d8a7f91, type: 3}
+  - {fileID: 21300000, guid: 827c787fa50c71a4dae769d47f7fa996, type: 3}
+  - {fileID: 21300000, guid: c105a6777d2189146adc6470b9e5c8d4, type: 3}
+  - {fileID: 21300000, guid: 4a815117664dbd445b0464be9ebc96b2, type: 3}
+  - {fileID: 21300000, guid: 5d7fb9c7f6ee36d4d95cec2bb2ae0e10, type: 3}
+  - {fileID: 21300000, guid: f9cff7ea2e6149b44812db18f0f17d58, type: 3}
+  - {fileID: 21300000, guid: 0825485dc4e31e6448e4420bb9a92352, type: 3}
+  - {fileID: 21300000, guid: 01318a0b61515b04882b18071a05bc10, type: 3}
+  - {fileID: 21300000, guid: fe2c4531a667ed64f893fbd82f0ff23b, type: 3}
+  - {fileID: 21300000, guid: f5dafa474fa5bae4bb8e41e12211f2a6, type: 3}
+  spritePerSecond: 5
