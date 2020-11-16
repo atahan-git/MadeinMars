@@ -5,13 +5,13 @@ using UnityEngine;
 public class Player_InventoryController : MonoBehaviour {
     public static Player_InventoryController s;
 
+    // You can assume that this reference is always kept, and you don't need to re-reference the list ever again!
     public List<InventoryItemSlot> mySlots = new List<InventoryItemSlot>();
 
     public static bool isInventoryLoadingDone = false;
     public delegate void GenericCallback ();
     public static event GenericCallback drawInventoryEvent;
-
-
+    
     public static event GenericCallback inventoryContentsChangedEvent;
 
     private void Awake () {

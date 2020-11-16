@@ -22,7 +22,7 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
         myDat = _myDat;
         if (myDat != null) {
             nameText.text = myDat.name;
-            img.sprite = myDat.BuildingSprite;
+            img.sprite = myDat.gfxSprite;
             img.color = defColor;
         } else {
             nameText.text = "empty";

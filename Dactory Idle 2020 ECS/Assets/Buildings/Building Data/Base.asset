@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueName: bBase
   shape:
-    rows:
+    column:
     - row: 00000000000000
     - row: 00000101010000
     - row: 01010101010101
@@ -25,6 +25,9 @@ MonoBehaviour:
   myType: 10
   BuildingAbility: 0000000000
   energyUse: 0
-  BuildingSprite: {fileID: -8414089499890134879, guid: 303bb25d1c5eb4742be5b86894aba532,
+  gfxType: 0
+  gfxSprite: {fileID: -8414089499890134879, guid: 303bb25d1c5eb4742be5b86894aba532,
     type: 3}
+  gfxSpriteAnimation: {fileID: 0}
+  gfxPrefab: {fileID: 0}
   spriteOffset: {x: 0.5, y: 1}

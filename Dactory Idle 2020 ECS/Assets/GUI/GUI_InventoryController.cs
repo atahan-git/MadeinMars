@@ -30,7 +30,8 @@ public class GUI_InventoryController : MonoBehaviour {
         print("Drawing Inventory");
         bbar = GetComponent<GUI_BuildingBarController>();
         foreach (BuildingData dat in DataHolder.s.AllBuildings()) {
-            Instantiate(BuildingListingPrefab, BuildingsParent).GetComponent<MiniGUI_BuildingListing>().SetUp(dat, bbar);
+            if(dat.playerBuildable)
+                Instantiate(BuildingListingPrefab, BuildingsParent).GetComponent<MiniGUI_BuildingListing>().SetUp(dat, bbar);
         }
         print(DataHolder.s.AllBuildings().Length.ToString() + " Buildings are put into building list");
 

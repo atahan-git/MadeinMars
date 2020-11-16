@@ -45,8 +45,8 @@ public class BuildingNodeEditor : NodeEditor {
 		}
 		if (myBuilding != null) {
 			GUI.color = Color.white;
-			if (myBuilding.BuildingSprite != null) {
-				GUIDrawSprite(new Rect(10, 30, 60, 60), myBuilding.BuildingSprite);
+			if (myBuilding.gfxSprite != null) {
+				GUIDrawSprite(new Rect(10, 30, 60, 60), myBuilding.gfxSprite);
 			}
 		} else {
 			GUI.color = new Color(1, .5f, .5f);

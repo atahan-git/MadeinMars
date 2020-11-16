@@ -58,7 +58,7 @@ public class BeltGfx : MonoBehaviour {
 			if (myTable != null) {
 				Sprite mySprite = null;
 				if (myTable.mapping.TryGetValue(BeltGfxLookupTable.beltToKey(GetComponent<BeltObject>()), out mySprite)) {
-					myRend.sprite = mySprite;
+					myRend.SetGraphics(mySprite);
 				}
 				if (mySprite == null) {
 					Debug.Log(myTable.mapping.Count);

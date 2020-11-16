@@ -23,9 +23,9 @@ public class ItemPlacementHelper : MonoBehaviour
 	public void Setup (BuildingData _myData) {
 		myData = _myData;
 
-		for (int y = 0; y < myData.shape.rows.Length; y++) {
-			for (int x = 0; x < myData.shape.rows[y].row.Length; x++) {
-				if (myData.shape.rows[y].row[x]) {
+		for (int y = 0; y < myData.shape.column.Length; y++) {
+			for (int x = 0; x < myData.shape.column[y].row.Length; x++) {
+				if (myData.shape.column[y].row[x]) {
 					//print (x + " - " + y);
 					Position myPos = (new Position(x, y) - BuildingData.center);
 					//print(myPos);

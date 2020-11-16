@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueName: bLab
   shape:
-    rows:
+    column:
     - row: 00000000000000
     - row: 00000000000000
     - row: 00000001000000
@@ -24,6 +24,10 @@ MonoBehaviour:
     - row: 00000000000000
   myType: 8
   BuildingAbility: 0000000000
-  BuildingSprite: {fileID: 3870553844862940790, guid: 303bb25d1c5eb4742be5b86894aba532,
+  energyUse: 0
+  gfxType: 0
+  gfxSprite: {fileID: 3870553844862940790, guid: 303bb25d1c5eb4742be5b86894aba532,
     type: 3}
+  gfxSpriteAnimation: {fileID: 0}
+  gfxPrefab: {fileID: 0}
   spriteOffset: {x: 0, y: 0}

@@ -18,6 +18,19 @@ public class BuildingData : ScriptableObject {
 
 	public float energyUse = 0;
 
-	public Sprite BuildingSprite;
+	public enum BuildingGfxType {
+		SpriteBased, AnimationBased, PrefabBased
+	}
+
+	[Header("In the world, only one of these will be used")]
+	public BuildingGfxType gfxType = BuildingGfxType.SpriteBased;
+	[Header("but always set the sprite for UI uses")]
+	public Sprite gfxSprite;
+	[Space]
+	public Sprite gfxShadowSprite;
+	public SpriteAnimationHolder gfxSpriteAnimation;
+	public GameObject gfxPrefab;
 	public Vector2 spriteOffset = new Vector2(0.5f, 0.5f);
+
+	public bool playerBuildable = true;
 }

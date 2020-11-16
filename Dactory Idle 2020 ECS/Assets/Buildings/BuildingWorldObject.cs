@@ -21,9 +21,12 @@ public class BuildingWorldObject : MonoBehaviour
 	
 	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts, bool spaceLanding) {
 		PlaceInWorld(_myData,_location,_myTiles,_buildingBelts);
-		
+		if (spaceLanding)
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding();
 	}
 
+	public float width;
+	public float height;
 	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts) {
 		myData = _myData;
 		myPos = _location;
@@ -32,12 +35,32 @@ public class BuildingWorldObject : MonoBehaviour
 		myCrafter.myBelts = myBelts;
 		myCrafter.myTiles = myTiles;
 
-		myRend = GetComponent<SpriteGraphicsController>();
-		myRend.sprite = myData.BuildingSprite;
+		width = myData.shape.width;
+		height = myData.shape.height;
+		Vector3 centerOffset = new Vector3(0.5f, myData.shape.maxHeightFromCenter -1, 0);
+
+		myRend = GetComponentInChildren<SpriteGraphicsController>();
+		myRend.transform.localPosition = myData.spriteOffset.vector3() - centerOffset;
+
+		switch (myData.gfxType) {
+			case BuildingData.BuildingGfxType.SpriteBased:
+				myRend.SetGraphics(myData.gfxSprite, myData.gfxShadowSprite != null? myData.gfxShadowSprite : myData.gfxSprite);
+				break;
+			case BuildingData.BuildingGfxType.AnimationBased:
+				myRend.SetGraphics(myData.gfxSpriteAnimation);
+				
+				break;
+			case BuildingData.BuildingGfxType.PrefabBased:
+				myRend.SetGraphics(myData.gfxPrefab);
+				break;
+		}
+		
 		DataSaver.saveEvent += SaveYourself;
-		transform.position = _location.Vector3(Position.Type.building) + myData.spriteOffset.vector3();
+		transform.position = _location.Vector3(Position.Type.building) + centerOffset;
 		BuildingMaster.myBuildings.Add(myCrafter);
 		myCrafter.SetUpCraftingProcesses(myData);
+		
+		GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding();
 	}
 
 

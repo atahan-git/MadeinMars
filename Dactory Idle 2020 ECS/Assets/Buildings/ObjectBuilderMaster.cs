@@ -50,9 +50,9 @@ public class ObjectBuilderMaster : MonoBehaviour
 	}
 
 	public static bool CheckPlaceable (BuildingData myData, Position location) {
-		for (int y = 0; y < myData.shape.rows.Length; y++) {
-			for (int x = 0; x < myData.shape.rows[y].row.Length; x++) {
-				if (myData.shape.rows[y].row[x]) {
+		for (int y = 0; y < myData.shape.column.Length; y++) {
+			for (int x = 0; x < myData.shape.column[y].row.Length; x++) {
+				if (myData.shape.column[y].row[x]) {
 					if (!CheckPlaceable(new Position(x,y) + location - BuildingData.center)) {
 						return false;
 					}
@@ -125,9 +125,9 @@ public class ObjectBuilderMaster : MonoBehaviour
 
 			List<TileData> coveredTiles = new List<TileData>();
 			List<BeltBuildingObject> buildingBelts = new List<BeltBuildingObject>();
-			for (int y = 0; y < myData.shape.rows.Length; y++) {
-				for (int x = 0; x < myData.shape.rows[y].row.Length; x++) {
-					if (myData.shape.rows[y].row[x]) {
+			for (int y = 0; y < myData.shape.column.Length; y++) {
+				for (int x = 0; x < myData.shape.column[y].row.Length; x++) {
+					if (myData.shape.column[y].row[x]) {
 						TileData myTile = Grid.s.GetTile(new Position(x, y) + location - BuildingData.center);
 						//print(new Position(x, y) + location - BuildingData.center);
 						//myTile.itemPlaceable = false;

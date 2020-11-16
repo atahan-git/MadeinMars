@@ -81,8 +81,8 @@ public class BuildingCraftingController : MonoBehaviour
             }
         }*/
 
-        if (isActive && mydat.myType != BuildingData.ItemType.Base)
-            GetComponent<BuildingInfoDisplay>().SetUp();
+        /*if (isActive && mydat.myType != BuildingData.ItemType.Base)
+            GetComponent<BuildingInfoDisplay>().SetUp();*/
     }
 
     public void TakeItemsIn () {
@@ -96,6 +96,7 @@ public class BuildingCraftingController : MonoBehaviour
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             // Always continue from the last crafting we've made, so that we continue the same process
             if (myCraftingProcesses[lastCheckId].UpdateCraftingProcess(efficiency)) {
+                ContinueAnimations();
                 return myObj.myData.energyUse;
             } else {
                 // if we can't process this one, continue with the next one
@@ -103,6 +104,7 @@ public class BuildingCraftingController : MonoBehaviour
                 lastCheckId = lastCheckId % myCraftingProcesses.Length;
             }
         }
+        StopAnimations();
         return 0;
     }
 
@@ -111,6 +113,49 @@ public class BuildingCraftingController : MonoBehaviour
     public void PutItemsOut () {
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             myCraftingProcesses[i].PutItemsOut(ref outputIndex);
+        }
+    }
+
+    public bool animationState = true;
+    public AnimatedSpriteController[] anims = new AnimatedSpriteController[0];
+    public bool isAnimated = true;
+    
+    bool GetAnims() {
+        if (anims.Length <= 0) {
+            anims = GetComponentsInChildren<AnimatedSpriteController>();
+        }
+
+        if (anims.Length <= 0) {
+            isAnimated = false;
+            return false;
+        } else
+            return true;
+    }
+    void ContinueAnimations() {
+        if (isAnimated) {
+            if (!animationState) {
+                if (GetAnims()) {
+                    for (int i = 0; i < anims.Length; i++) {
+                        anims[i].Play();
+                    }
+
+                    animationState = true;
+                }
+            }
+        }
+    }
+
+    void StopAnimations() {
+        if (isAnimated) {
+            if (animationState) {
+                if (GetAnims()) {
+                    for (int i = 0; i < anims.Length; i++) {
+                        anims[i].Stop();
+                    }
+
+                    animationState = false;
+                }
+            }
         }
     }
 }

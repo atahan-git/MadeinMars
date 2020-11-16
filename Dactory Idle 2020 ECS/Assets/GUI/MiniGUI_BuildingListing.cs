@@ -13,7 +13,7 @@ public class MiniGUI_BuildingListing : MonoBehaviour {
     public void SetUp (BuildingData _myDat, GUI_BuildingBarController _myCont) {
         myDat = _myDat;
         nameText.text = myDat.name;
-        img.sprite = myDat.BuildingSprite;
+        img.sprite = myDat.gfxSprite;
         myCont = _myCont;
     }
 

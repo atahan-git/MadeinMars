@@ -15,10 +15,7 @@ public class GUI_SwitchController : MonoBehaviour
 
 	private void Start () {
 		bbarcont = GetComponent<GUI_BuildingBarController>();
-		GUI_Inventory.SetActive(false);
-		GUI_Settings.SetActive(false);
-		GUI_Crafting.SetActive(false);
-		bbarcont.isOnFocus = true;
+		HideAllMenus();
 	}
 
 	void HideAllMenus() {

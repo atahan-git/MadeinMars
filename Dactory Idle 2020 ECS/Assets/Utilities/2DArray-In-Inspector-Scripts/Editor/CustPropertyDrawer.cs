@@ -10,8 +10,8 @@ public class CustPropertyDrawer : PropertyDrawer {
 		EditorGUI.PrefixLabel(position,label);
 		Rect newposition = position;
 		newposition.y += 18f;
-		SerializedProperty data = property.FindPropertyRelative("rows");
-		//data.rows[0][]
+		SerializedProperty data = property.FindPropertyRelative("column");
+		//data.column[0][]
 		for(int j=6;j>=0;j--){
 			SerializedProperty row = data.GetArrayElementAtIndex(j).FindPropertyRelative("row");
 			newposition.height = 18f;

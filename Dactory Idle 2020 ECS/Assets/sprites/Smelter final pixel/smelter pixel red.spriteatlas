@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: smelter pixel red
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 9145fc62581f77148acd3afa525d9da1, type: 3}
+    - {fileID: 2800000, guid: 0ce9b64bf1db20e498414ab941f169d1, type: 3}
+    - {fileID: 2800000, guid: 15273b3b96e45544887034dd06f14276, type: 3}
+    - {fileID: 2800000, guid: 44da5f9eb524b244f958f2d444cebcaf, type: 3}
+    - {fileID: 2800000, guid: 22dff73165b0c114d8e5306195b370ca, type: 3}
+    - {fileID: 2800000, guid: 9150edf33d9cccc4993b29e75f7687a3, type: 3}
+    - {fileID: 2800000, guid: fb292c7787bb02d42b93e9385a103310, type: 3}
+    - {fileID: 2800000, guid: 226eea9e347dfe04d995fb194a6ffed6, type: 3}
+    - {fileID: 2800000, guid: f8282c310bcb0c94e9a322464a10b0f9, type: 3}
+    - {fileID: 2800000, guid: 51cc8a8c758706848a488b283ec7ad87, type: 3}
+    - {fileID: 2800000, guid: 5b268a586fa820545ba4483df62e0bd2, type: 3}
+    - {fileID: 2800000, guid: 0b02765ef1a2f1f4b8e5d86f9eea4e61, type: 3}
+    - {fileID: 2800000, guid: 0afa0a62a6f03c246b182a821347a814, type: 3}
+    - {fileID: 2800000, guid: 116c9563a2e88484db5ab8e685d1d204, type: 3}
+    - {fileID: 2800000, guid: 44d5a37f25e9edc4cae5d19018e76399, type: 3}
+    - {fileID: 2800000, guid: 451aa1e0b1042bd46a22ed66c108b7a6, type: 3}
+    - {fileID: 2800000, guid: d37a771ad8fd1094ab368a381e520209, type: 3}
+    - {fileID: 2800000, guid: eabf71619d4abc14f9a83cdacc384021, type: 3}
+    - {fileID: 2800000, guid: 20cdafc52adf3184f83cf84cbd6af5c6, type: 3}
+    - {fileID: 2800000, guid: cdb49bb8315a28b4997575bb9e6658cc, type: 3}
+    - {fileID: 2800000, guid: addf69fe80f19da4eb9119eb396ff54d, type: 3}
+    totalSpriteSurfaceArea: 344064
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 451aa1e0b1042bd46a22ed66c108b7a6, type: 3}
+  - {fileID: 21300000, guid: 22dff73165b0c114d8e5306195b370ca, type: 3}
+  - {fileID: 21300000, guid: f8282c310bcb0c94e9a322464a10b0f9, type: 3}
+  - {fileID: 21300000, guid: eabf71619d4abc14f9a83cdacc384021, type: 3}
+  - {fileID: 21300000, guid: 0afa0a62a6f03c246b182a821347a814, type: 3}
+  - {fileID: 21300000, guid: 9145fc62581f77148acd3afa525d9da1, type: 3}
+  - {fileID: 21300000, guid: 116c9563a2e88484db5ab8e685d1d204, type: 3}
+  - {fileID: 21300000, guid: 9150edf33d9cccc4993b29e75f7687a3, type: 3}
+  - {fileID: 21300000, guid: 20cdafc52adf3184f83cf84cbd6af5c6, type: 3}
+  - {fileID: 21300000, guid: fb292c7787bb02d42b93e9385a103310, type: 3}
+  - {fileID: 21300000, guid: 5b268a586fa820545ba4483df62e0bd2, type: 3}
+  - {fileID: 21300000, guid: cdb49bb8315a28b4997575bb9e6658cc, type: 3}
+  - {fileID: 21300000, guid: d37a771ad8fd1094ab368a381e520209, type: 3}
+  - {fileID: 21300000, guid: 15273b3b96e45544887034dd06f14276, type: 3}
+  - {fileID: 21300000, guid: 0ce9b64bf1db20e498414ab941f169d1, type: 3}
+  - {fileID: 21300000, guid: 51cc8a8c758706848a488b283ec7ad87, type: 3}
+  - {fileID: 21300000, guid: 0b02765ef1a2f1f4b8e5d86f9eea4e61, type: 3}
+  - {fileID: 21300000, guid: 226eea9e347dfe04d995fb194a6ffed6, type: 3}
+  - {fileID: 21300000, guid: 44da5f9eb524b244f958f2d444cebcaf, type: 3}
+  - {fileID: 21300000, guid: addf69fe80f19da4eb9119eb396ff54d, type: 3}
+  - {fileID: 21300000, guid: 44d5a37f25e9edc4cae5d19018e76399, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - smelter pixel red0015
+  - smelter pixel red0004
+  - smelter pixel red0008
+  - smelter pixel red0017
+  - smelter pixel red0012
+  - smelter pixel red0000
+  - smelter pixel red0013
+  - smelter pixel red0005
+  - smelter pixel red0018
+  - smelter pixel red0006
+  - smelter pixel red0010
+  - smelter pixel red0019
+  - smelter pixel red0016
+  - smelter pixel red0002
+  - smelter pixel red0001
+  - smelter pixel red0009
+  - smelter pixel red0011
+  - smelter pixel red0007
+  - smelter pixel red0003
+  - smelter DISABLED
+  - smelter pixel red0014
+  m_Tag: smelter pixel red
+  m_IsVariant: 0

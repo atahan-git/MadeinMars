@@ -7,13 +7,11 @@ public class Player_CommsController : MonoBehaviour {
 
     public ShopItem[] buyItems;
     public ShopItem[] sellItems;
+    
+    [Tooltip("Money is in units of Millions of dollars")]
+    public float money = 1000;
 
-    // Start is called before the first frame update
-    void Start() { }
-
-    // Update is called once per frame
-    void Update() { }
-
+    public ObjectiveHolder[] objectives;
     [Serializable]
     public class ShopItem {
         public string uniqueName = "";

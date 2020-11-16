@@ -79,3 +79,8 @@ Backup of *.doc*
 # Visio autosave temporary files
 *.~vsd*
 
+
+# my things
+/Media/
+/References/
+/IndustrialRevolution_1.0.12/

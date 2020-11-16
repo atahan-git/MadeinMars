@@ -84,9 +84,9 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
     void OnGUI () {
         if (inventoryDragBegun) {
-            float aspectRatio = dragBuildDat.BuildingSprite.rect.width / dragBuildDat.BuildingSprite.rect.height;
+            float aspectRatio = dragBuildDat.gfxSprite.rect.width / dragBuildDat.gfxSprite.rect.height;
             Rect target = new Rect(SmartInput.inputPos.x, Screen.height - SmartInput.inputPos.y, 200f* aspectRatio, 200f);
-            GUIDrawSprite(target, dragBuildDat.BuildingSprite);
+            GUIDrawSprite(target, dragBuildDat.gfxSprite);
         }
     }
 
