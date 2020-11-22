@@ -19,6 +19,7 @@ public class AnimatedSpriteController : MonoBehaviour {
 		get { return _isPlaying; }
 	}
 	bool _isPlaying = false;
+	bool _smoothStop = false;
 	[SerializeField]
     float index = 0;
 
@@ -87,6 +88,11 @@ public class AnimatedSpriteController : MonoBehaviour {
 						}
 						return;
 					}
+
+					if (_smoothStop) {
+						Stop();
+						return;
+					}
 				}
 				mySprite = myAnim.sprites [(int)index];
 			}
@@ -107,7 +113,6 @@ public class AnimatedSpriteController : MonoBehaviour {
 		myRend = GetComponent<SpriteRenderer> ();
 		myImg = GetComponent<Image> ();
 		myAnim = _anim;
-		_isPlaying = true;
 		isSprite = false;
 
 		if (randomIndex) {
@@ -115,6 +120,8 @@ public class AnimatedSpriteController : MonoBehaviour {
 				index = Random.Range (0, myAnim.sprites.Length);
 			}
 		}
+		
+		Play();
 
 		Update ();
 	}
@@ -134,14 +141,23 @@ public class AnimatedSpriteController : MonoBehaviour {
 
 	public void Play () {
 		_isPlaying = true;
+		_smoothStop = false;
 	}
 
 	public void Stop() {
 		_isPlaying = false;
+		_smoothStop = false;
 
 		if (myAnim.stopSprite) {
 			myRend.sprite = myAnim.stopSprite;
 			index = 0;
 		}
+	}
+
+	public void SmoothStop() {
+		if(index == 0 || !_isPlaying)
+			Stop();
+		else
+			_smoothStop = true;
 	}
 }

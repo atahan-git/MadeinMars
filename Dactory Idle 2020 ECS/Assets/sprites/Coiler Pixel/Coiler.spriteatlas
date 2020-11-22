@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Coiler
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 1c448bbd052b1c94ca1fa0190861daae, type: 3}
+    - {fileID: 2800000, guid: 059c7c150c51d5345a509b0dec518d0a, type: 3}
+    - {fileID: 2800000, guid: 9f4009b55094faf45817ae689f0d8dff, type: 3}
+    - {fileID: 2800000, guid: 7d7386e70de0bfa4b9491aad16776a02, type: 3}
+    - {fileID: 2800000, guid: 9637073465adfc54a837fa19c0097689, type: 3}
+    - {fileID: 2800000, guid: fa5446cbae94c1f48b7ecf4f79acf069, type: 3}
+    - {fileID: 2800000, guid: adffb2e7ac65a4e43b6102f41ff397f7, type: 3}
+    - {fileID: 2800000, guid: 1a0eb2604d1a5cc4ca36b3eb041b6052, type: 3}
+    - {fileID: 2800000, guid: eaf59ff757515844e8aa9b86053918ce, type: 3}
+    - {fileID: 2800000, guid: c04bd7ae158be0f428108e99bc9cacaa, type: 3}
+    totalSpriteSurfaceArea: 163840
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1a0eb2604d1a5cc4ca36b3eb041b6052, type: 3}
+  - {fileID: 21300000, guid: 9637073465adfc54a837fa19c0097689, type: 3}
+  - {fileID: 21300000, guid: 059c7c150c51d5345a509b0dec518d0a, type: 3}
+  - {fileID: 21300000, guid: 9f4009b55094faf45817ae689f0d8dff, type: 3}
+  - {fileID: 21300000, guid: adffb2e7ac65a4e43b6102f41ff397f7, type: 3}
+  - {fileID: 21300000, guid: 7d7386e70de0bfa4b9491aad16776a02, type: 3}
+  - {fileID: 21300000, guid: eaf59ff757515844e8aa9b86053918ce, type: 3}
+  - {fileID: 21300000, guid: fa5446cbae94c1f48b7ecf4f79acf069, type: 3}
+  - {fileID: 21300000, guid: 1c448bbd052b1c94ca1fa0190861daae, type: 3}
+  - {fileID: 21300000, guid: c04bd7ae158be0f428108e99bc9cacaa, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Coiler0007
+  - Coiler0004
+  - Coiler0001
+  - Coiler0002
+  - Coiler0006
+  - Coiler0003
+  - Coiler0008
+  - Coiler0005
+  - Coiler0000
+  - Coiler0009
+  m_Tag: Coiler
+  m_IsVariant: 0

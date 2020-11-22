@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4afd542f70fd2a469402a72086f39f3, type: 3}
+  m_Name: Coiler
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 1c448bbd052b1c94ca1fa0190861daae, type: 3}
+  - {fileID: 21300000, guid: 059c7c150c51d5345a509b0dec518d0a, type: 3}
+  - {fileID: 21300000, guid: 9f4009b55094faf45817ae689f0d8dff, type: 3}
+  - {fileID: 21300000, guid: 7d7386e70de0bfa4b9491aad16776a02, type: 3}
+  - {fileID: 21300000, guid: 9637073465adfc54a837fa19c0097689, type: 3}
+  - {fileID: 21300000, guid: fa5446cbae94c1f48b7ecf4f79acf069, type: 3}
+  - {fileID: 21300000, guid: adffb2e7ac65a4e43b6102f41ff397f7, type: 3}
+  - {fileID: 21300000, guid: 1a0eb2604d1a5cc4ca36b3eb041b6052, type: 3}
+  - {fileID: 21300000, guid: eaf59ff757515844e8aa9b86053918ce, type: 3}
+  - {fileID: 21300000, guid: c04bd7ae158be0f428108e99bc9cacaa, type: 3}
+  spritePerSecond: 10
+  stopSprite: {fileID: 21300000, guid: 1c448bbd052b1c94ca1fa0190861daae, type: 3}

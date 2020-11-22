@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Press
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 14de4c564d0d5f34491ac1fcfbe4a41b, type: 3}
+    - {fileID: 2800000, guid: ed89cbcb315f7a242abc46216746e9b9, type: 3}
+    - {fileID: 2800000, guid: a33d66ea88c5d9c47b2eb24cc39b6084, type: 3}
+    - {fileID: 2800000, guid: 3964474cc86ad5441b916a8bef798891, type: 3}
+    - {fileID: 2800000, guid: 95b98425c54e0b144b21f58d602976b9, type: 3}
+    - {fileID: 2800000, guid: 5b83b25d18a9e5d4ab3e2f21b1b91636, type: 3}
+    - {fileID: 2800000, guid: 60f22dc6aed2108488df34dc750249e0, type: 3}
+    - {fileID: 2800000, guid: 2ee7232c20355ec49987e77c54c004ad, type: 3}
+    - {fileID: 2800000, guid: c92a7220f9a59fd4cb6a996867a105ca, type: 3}
+    - {fileID: 2800000, guid: 3667984655338f14488c19345f937647, type: 3}
+    - {fileID: 2800000, guid: ab4065954f586804ea1cff472bdc2a44, type: 3}
+    - {fileID: 2800000, guid: 29e9d5ac20a11fd448d3562b940b834b, type: 3}
+    - {fileID: 2800000, guid: 8ffc6d15a58cba642a81c901e6de29b3, type: 3}
+    - {fileID: 2800000, guid: 146318fbcce1b254d8d2456b6414e089, type: 3}
+    - {fileID: 2800000, guid: 0e8455e3e41f59043bad58e50a9948ca, type: 3}
+    - {fileID: 2800000, guid: 9fd5e3afba5a21e45a9f92ef7767b323, type: 3}
+    - {fileID: 2800000, guid: a220e67ed37df074289ed0cea62d9d0b, type: 3}
+    - {fileID: 2800000, guid: 1e9b9a68179934849b0c743c9baefb6f, type: 3}
+    - {fileID: 2800000, guid: 02ac2aaa46242b647b53321fead94b9e, type: 3}
+    - {fileID: 2800000, guid: 83450fdd61075f44986b390bc8dddca9, type: 3}
+    totalSpriteSurfaceArea: 327680
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c92a7220f9a59fd4cb6a996867a105ca, type: 3}
+  - {fileID: 21300000, guid: 0e8455e3e41f59043bad58e50a9948ca, type: 3}
+  - {fileID: 21300000, guid: 8ffc6d15a58cba642a81c901e6de29b3, type: 3}
+  - {fileID: 21300000, guid: 95b98425c54e0b144b21f58d602976b9, type: 3}
+  - {fileID: 21300000, guid: ab4065954f586804ea1cff472bdc2a44, type: 3}
+  - {fileID: 21300000, guid: 3667984655338f14488c19345f937647, type: 3}
+  - {fileID: 21300000, guid: 14de4c564d0d5f34491ac1fcfbe4a41b, type: 3}
+  - {fileID: 21300000, guid: 60f22dc6aed2108488df34dc750249e0, type: 3}
+  - {fileID: 21300000, guid: 1e9b9a68179934849b0c743c9baefb6f, type: 3}
+  - {fileID: 21300000, guid: 02ac2aaa46242b647b53321fead94b9e, type: 3}
+  - {fileID: 21300000, guid: a33d66ea88c5d9c47b2eb24cc39b6084, type: 3}
+  - {fileID: 21300000, guid: ed89cbcb315f7a242abc46216746e9b9, type: 3}
+  - {fileID: 21300000, guid: 146318fbcce1b254d8d2456b6414e089, type: 3}
+  - {fileID: 21300000, guid: 2ee7232c20355ec49987e77c54c004ad, type: 3}
+  - {fileID: 21300000, guid: 3964474cc86ad5441b916a8bef798891, type: 3}
+  - {fileID: 21300000, guid: 29e9d5ac20a11fd448d3562b940b834b, type: 3}
+  - {fileID: 21300000, guid: 5b83b25d18a9e5d4ab3e2f21b1b91636, type: 3}
+  - {fileID: 21300000, guid: 83450fdd61075f44986b390bc8dddca9, type: 3}
+  - {fileID: 21300000, guid: a220e67ed37df074289ed0cea62d9d0b, type: 3}
+  - {fileID: 21300000, guid: 9fd5e3afba5a21e45a9f92ef7767b323, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Press0008
+  - Press0014
+  - Press0012
+  - Press0004
+  - Press0010
+  - Press0009
+  - Press0000
+  - Press0006
+  - Press0017
+  - Press0018
+  - Press0002
+  - Press0001
+  - Press0013
+  - Press0007
+  - Press0003
+  - Press0011
+  - Press0005
+  - Press0019
+  - Press0016
+  - Press0015
+  m_Tag: Press
+  m_IsVariant: 0

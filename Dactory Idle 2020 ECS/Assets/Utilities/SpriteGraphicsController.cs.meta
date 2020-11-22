@@ -6,6 +6,8 @@ MonoImporter:
   defaultReferences:
   - ShadowPrefab: {fileID: 4245691249430997310, guid: fa9c94dc8554cdc4e924a75a872e0263,
       type: 3}
+  - spaceLandingPrefab: {fileID: 8771660242109145277, guid: 55ea5ef7c1b915d4b9d0484d0c5ae596,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

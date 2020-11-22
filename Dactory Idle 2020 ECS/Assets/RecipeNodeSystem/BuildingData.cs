@@ -28,6 +28,7 @@ public class BuildingData : ScriptableObject {
 	public Sprite gfxSprite;
 	[Space]
 	public Sprite gfxShadowSprite;
+	public bool isAnimatedShadow = false;
 	public SpriteAnimationHolder gfxSpriteAnimation;
 	public GameObject gfxPrefab;
 	public Vector2 spriteOffset = new Vector2(0.5f, 0.5f);

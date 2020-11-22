@@ -356,7 +356,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 2
   CraftingTier: 0
-  timeCost: 1
+  timeCost: 2
   inputItemUniqueNames:
   - ironPlate
   - Empty
@@ -1814,7 +1814,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 0
   CraftingTier: 0
-  timeCost: 2
+  timeCost: 4
   inputItemUniqueNames:
   - Empty
   inputItemCounts: 
@@ -2186,7 +2186,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 0
   CraftingTier: 0
-  timeCost: 1
+  timeCost: 2
   inputItemUniqueNames:
   - Empty
   inputItemCounts: 
@@ -3570,7 +3570,7 @@ MonoBehaviour:
       _dynamic: 1
   CraftingType: 0
   CraftingTier: 0
-  timeCost: 1
+  timeCost: 2
   inputItemUniqueNames:
   - Empty
   inputItemCounts: 

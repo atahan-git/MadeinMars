@@ -22,7 +22,7 @@ public class BuildingWorldObject : MonoBehaviour
 	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts, bool spaceLanding) {
 		PlaceInWorld(_myData,_location,_myTiles,_buildingBelts);
 		if (spaceLanding)
-			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding();
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
 	}
 
 	public float width;
@@ -47,8 +47,8 @@ public class BuildingWorldObject : MonoBehaviour
 				myRend.SetGraphics(myData.gfxSprite, myData.gfxShadowSprite != null? myData.gfxShadowSprite : myData.gfxSprite);
 				break;
 			case BuildingData.BuildingGfxType.AnimationBased:
-				myRend.SetGraphics(myData.gfxSpriteAnimation);
-				
+				myRend.SetGraphics(myData.gfxSpriteAnimation, myData.isAnimatedShadow);
+
 				break;
 			case BuildingData.BuildingGfxType.PrefabBased:
 				myRend.SetGraphics(myData.gfxPrefab);
@@ -60,7 +60,7 @@ public class BuildingWorldObject : MonoBehaviour
 		BuildingMaster.myBuildings.Add(myCrafter);
 		myCrafter.SetUpCraftingProcesses(myData);
 		
-		GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding();
+		//myRend.DoSpaceLanding();
 	}
 
 

@@ -93,7 +93,7 @@ public class BuildingCraftingController : MonoBehaviour
 
     public int lastCheckId = 0;
     public float UpdateCraftingProcess (float efficiency) {
-        for (int i = 0; i < myCraftingProcesses.Length; i++) {
+        for (int i = 0; i < myCraftingProcesses.Length +1; i++) {
             // Always continue from the last crafting we've made, so that we continue the same process
             if (myCraftingProcesses[lastCheckId].UpdateCraftingProcess(efficiency)) {
                 ContinueAnimations();
@@ -104,7 +104,9 @@ public class BuildingCraftingController : MonoBehaviour
                 lastCheckId = lastCheckId % myCraftingProcesses.Length;
             }
         }
+
         StopAnimations();
+
         return 0;
     }
 
@@ -119,6 +121,8 @@ public class BuildingCraftingController : MonoBehaviour
     public bool animationState = true;
     public AnimatedSpriteController[] anims = new AnimatedSpriteController[0];
     public bool isAnimated = true;
+    public ParticleSystem[] particles = new ParticleSystem[0];
+    public bool isParticled = true;
     
     bool GetAnims() {
         if (anims.Length <= 0) {
@@ -127,6 +131,18 @@ public class BuildingCraftingController : MonoBehaviour
 
         if (anims.Length <= 0) {
             isAnimated = false;
+            return false;
+        } else
+            return true;
+    }
+    
+    bool GetParticles() {
+        if (particles.Length <= 0) {
+            particles = GetComponentsInChildren<ParticleSystem>();
+        }
+
+        if (particles.Length <= 0) {
+            isParticled = false;
             return false;
         } else
             return true;
@@ -141,6 +157,14 @@ public class BuildingCraftingController : MonoBehaviour
 
                     animationState = true;
                 }
+                
+                if (isParticled) {
+                    if (GetParticles()) {
+                        for (int i = 0; i < particles.Length; i++) {
+                            particles[i].Play();
+                        }
+                    }
+                }
             }
         }
     }
@@ -150,10 +174,18 @@ public class BuildingCraftingController : MonoBehaviour
             if (animationState) {
                 if (GetAnims()) {
                     for (int i = 0; i < anims.Length; i++) {
-                        anims[i].Stop();
+                        anims[i].SmoothStop();
                     }
 
                     animationState = false;
+                }
+
+                if (isParticled) {
+                    if (GetParticles()) {
+                        for (int i = 0; i < particles.Length; i++) {
+                            particles[i].Stop();
+                        }
+                    }
                 }
             }
         }
@@ -229,35 +261,39 @@ public class MiningProcess : IProcess {
     }
 
     private int cycleoffset = 0;
+    private int oreUsed = 0;
+    private bool initialized = false;
     public void TakeItemsIn() {
-        if (stillHaveOreLeft && !isCrafting) {
+        if (stillHaveOreLeft && (!initialized || oreUsed>0)) {
+            stillHaveOreLeft = false;
+            
             for (int i = 0; i < myTiles.Count; i++) {
-                if (myTiles[(i + cycleoffset) % myTiles.Count].oreAmount > 0 && myTiles[(i + cycleoffset) % myTiles.Count].oreType == oreInId) {
-                    myTiles[(i + cycleoffset) % myTiles.Count].oreAmount -= 1;
-                    cycleoffset = (cycleoffset + i + 1) % myTiles.Count;
+                int index = (i + cycleoffset) % myTiles.Count;
+                if (myTiles[index].oreAmount > 0 && myTiles[index].oreType == oreInId) {
+                    myTiles[index].oreAmount -= oreUsed;
+                    oreUsed = 0;
+                    if (myTiles[index].oreAmount < 0)
+                        myTiles[index].oreAmount = 0;
+                    
+                    cycleoffset = (index + 1) % myTiles.Count;
+                    stillHaveOreLeft = true;
+                    initialized = true;
                     isCrafting = true;
                     break;
                 }
-            }
-
-            if (!isCrafting) {
-                stillHaveOreLeft = false;
             }
         }
     }
 
     public bool UpdateCraftingProcess(float efficiency) {
-        if (!isCrafting) {
-            return false;
-        }
-
-        if (isCrafting) {
+        if (stillHaveOreLeft && initialized) {
             curCraftingProgress += efficiency;
 
             if (curCraftingProgress >= craftingProgressTickReq) {
+                oreUsed += outputItemAmounts[0];
                 outputItemCounts[0] += outputItemAmounts[0];
-                isCrafting = false;
                 curCraftingProgress = 0;
+                isCrafting = false;
                 return false;
             }
 

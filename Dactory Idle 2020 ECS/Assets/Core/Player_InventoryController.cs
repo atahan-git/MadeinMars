@@ -14,6 +14,7 @@ public class Player_InventoryController : MonoBehaviour {
     
     public static event GenericCallback inventoryContentsChangedEvent;
 
+    public bool cheatMode = false;
     private void Awake () {
         if (s != null) {
             Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
@@ -110,6 +111,9 @@ public class Player_InventoryController : MonoBehaviour {
     // Ugly
     public bool CanPlaceBuilding (BuildingData dat) {
         CraftingProcessNode[] ps = DataHolder.s.GetCraftingProcessesOfType(BuildingData.ItemType.Building);
+        if (cheatMode)
+            return true;
+        
         if (ps != null) {
             for (int i = 0; i < ps.Length; i++) {
                 if (dat == null) {
@@ -129,6 +133,7 @@ public class Player_InventoryController : MonoBehaviour {
                                 }
                             }
                         }
+                        
                         if (!hasEnoughOfThisType) {
                             return false;
                         }

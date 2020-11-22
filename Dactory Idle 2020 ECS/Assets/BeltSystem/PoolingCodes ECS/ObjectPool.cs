@@ -55,7 +55,7 @@ public class ObjectPool : MonoBehaviour {
 				material = material,
 			});
 
-			entityManager.SetComponentData(entity, new Scale { Value = 0.25f });
+			entityManager.SetComponentData(entity, new Scale { Value = 0.45f });
 
 			isActiveArray[i] = false;
 		}

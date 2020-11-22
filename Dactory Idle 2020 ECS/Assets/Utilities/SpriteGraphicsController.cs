@@ -15,6 +15,8 @@ public class SpriteGraphicsController : MonoBehaviour {
     private AnimatedSpriteController anim = null;
 
     private GameObject instantiatedPrefab = null;
+
+    Vector3 originalPos;
     // Start is called before the first frame update
     void Start () {
         /*if (rend == null)
@@ -26,7 +28,7 @@ public class SpriteGraphicsController : MonoBehaviour {
     }
     
     public void SetGraphics(Sprite sprite, Sprite shadowSprite) {
-        SetGraphics(sprite,shadowSprite, 0);
+        SetGraphics(sprite, shadowSprite, 0);
     }
     
     void SetGraphics(Sprite sprite, Sprite shadowSprite, float height) {
@@ -35,9 +37,10 @@ public class SpriteGraphicsController : MonoBehaviour {
             CreateShadow(height);
         rend.sprite = sprite;
         myShadow.GetComponent<SpriteRenderer>().sprite = shadowSprite;
+        originalPos = transform.localPosition;
     }
 
-    public void SetGraphics(SpriteAnimationHolder animationHolder) {
+    public void SetGraphics(SpriteAnimationHolder animationHolder, bool isShadowAnimated) {
         Clear();
         if (rend == null || myShadow == null)
             CreateShadow(height);
@@ -45,12 +48,20 @@ public class SpriteGraphicsController : MonoBehaviour {
             anim = gameObject.AddComponent<AnimatedSpriteController>();
         
         anim.SetAnimation(animationHolder);
-        myShadow.GetComponent<SpriteRenderer>().sprite = animationHolder.sprites[0];
+        if(!isShadowAnimated)
+            myShadow.GetComponent<SpriteRenderer>().sprite = animationHolder.sprites[0];
+        else {
+            var shadAnim = myShadow.AddComponent<AnimatedSpriteController>();
+            shadAnim.SetAnimation(animationHolder);
+            shadAnim.syncWith = anim;
+        }
+        originalPos = transform.localPosition;
     }
 
     public void SetGraphics(GameObject prefab) {
         Clear();
         instantiatedPrefab = Instantiate(prefab, transform);
+        originalPos = transform.localPosition;
     }
 
     public void Clear() {
@@ -64,57 +75,72 @@ public class SpriteGraphicsController : MonoBehaviour {
     }
 
     public GameObject spaceLandingPrefab;
-    private GameObject landingFx;
-    private GameObject landingFloor;
-    
-    private Vector3 originalPos;
-    public void DoSpaceLanding() {
-        originalPos = transform.localPosition;
 
-        landingFx = Instantiate(spaceLandingPrefab, transform);
-        landingFx.transform.localPosition = Vector3.zero;
-        landingFloor = landingFx.transform.Find("Landing Floor").gameObject;
-        landingFloor.transform.SetParent(transform.parent);
-        
-        StartCoroutine(SpaceLanding());
+    public delegate void SpaceLandingCallback();
+    public void DoSpaceLanding(SpaceLandingCallback callback) {
+        StartCoroutine(SpaceLanding(true, callback));
+    }
+    
+    public void DoSpaceLiftoff(SpaceLandingCallback callback) {
+        StartCoroutine(SpaceLanding(false, callback));
     }
 
-    private const float SpaceLandingHeight = 100;
-    private const float SpaceLandingStartSpeed = -10;
-    private const float SpaceLandingDeceleration = (SpaceLandingStartSpeed*SpaceLandingStartSpeed)/(2*(SpaceLandingHeight));
+    private const float SpaceLandingHeightMultiplier = 2f/3f;
+    private const float SpaceLandingHeight = 100f * SpaceLandingHeightMultiplier * SpaceLandingHeightMultiplier;
+    private const float SpaceLandingStartSpeed = -10f * SpaceLandingHeightMultiplier;
+    private const float SpaceLandingDeceleration = (SpaceLandingStartSpeed*SpaceLandingStartSpeed)/(2f*(SpaceLandingHeight));
     //0 = u^2 + 2as
     //u^2 = 2as
     //u^2/2s = a
+
+    private bool launchInProgress = false;
     
-    IEnumerator SpaceLanding() {
-        float curHeight = SpaceLandingHeight;
-        float curSpeed = SpaceLandingStartSpeed;
-        float acceleration = SpaceLandingDeceleration;
-        while (curHeight > 0) {
-            SetHeight(curHeight);
+    IEnumerator SpaceLanding(bool isLanding, SpaceLandingCallback callback) {
+        while (launchInProgress) {
+            yield return null;
+        }
+
+        launchInProgress = true;
+
+        var landingFx = Instantiate(spaceLandingPrefab, transform);
+        landingFx.transform.localPosition = Vector3.zero;
+        var landingFloor = landingFx.transform.Find("Landing Floor").gameObject;
+        landingFloor.transform.SetParent(transform.parent);
+        landingFloor.transform.localPosition = originalPos + Vector3.down*2;
+        
+        // If we are landing, start from the space and go down.
+        // If we are lifting off, start from zero and go up.
+        float curHeight = isLanding ? SpaceLandingHeight : 0;
+        float curSpeed = isLanding? SpaceLandingStartSpeed : 0;
+        float acceleration = isLanding ? SpaceLandingDeceleration : SpaceLandingDeceleration;
+        while (isLanding ? curHeight > 0 : curHeight < SpaceLandingHeight) {
+            SetHeight(originalPos, curHeight);
             curHeight += curSpeed * Time.deltaTime;
             curSpeed += acceleration * Time.deltaTime;
             
-            yield return 0;
+            yield return null;
         }
         
-        SetHeight(0);
+        SetHeight(originalPos, isLanding ? 0 : SpaceLandingHeight);
 
         landingFx.transform.Find("Landing Rocket").GetComponent<ParticleSystem>().Stop();
-        Invoke("DestroyLandingFx",10f);
-        Invoke("DestroyLandingFloor",1f);
-        yield break;
+        StartCoroutine(DestroyLandingFx(landingFx, landingFloor));
+        
+        
+        yield return new WaitForSeconds(1f);
+
+        launchInProgress = false;
+        callback?.Invoke();
     }
 
-    void DestroyLandingFloor() {
-        Destroy(landingFloor);
-    }
-    void DestroyLandingFx() {
-        Destroy(landingFx);
-        Destroy(landingFloor);
+    IEnumerator DestroyLandingFx(GameObject fx, GameObject floor) {
+        yield return new WaitForSeconds(10f);
+        
+        Destroy(fx);
+        Destroy(floor);
     }
 
-    void SetHeight(float offset) {
+    void SetHeight(Vector3 originalPos, float offset) {
         transform.localPosition = originalPos + new Vector3(0,1f,-1) * offset;
         if(myShadow)
             myShadow.transform.localPosition =  new Vector3(shadowOffset.x*(offset+(height/2)), shadowOffset.y*height, shadowOffset.z);
