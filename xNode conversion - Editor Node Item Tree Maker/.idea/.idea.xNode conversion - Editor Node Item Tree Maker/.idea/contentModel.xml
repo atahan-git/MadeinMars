@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\ataha\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\ataha\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_xNode conversion - Editor Node Item Tree Maker.-1976445595.00" t="ExcludeRecursive" />
+    <e p="D:\_Unity\2020\_Dactory Idle 2020\xNode conversion - Editor Node Item Tree Maker" t="IncludeRecursive">
+      <e p="2DArrayEditor.csproj" t="IncludeRecursive" />
+      <e p="2DArrayInspector.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Bezier.cs" t="Include" />
+        <e p="CraftingNodeGfx.cs" t="Include" />
+        <e p="Editor" t="Include">
+          <e p="PropertyDrawers.cs" t="Include" />
+        </e>
+        <e p="GUI" t="Include">
+          <e p="DragMe.cs" t="Include" />
+          <e p="DragPanel.cs" t="Include" />
+          <e p="DropMe.cs" t="Include" />
+        </e>
+        <e p="ItemNodeGfx.cs" t="Include" />
+        <e p="NodeItemTreeMakerMaster.cs" t="Include" />
+        <e p="NodePortGfx.cs" t="Include" />
+        <e p="PinchableScrollRect.cs" t="Include" />
+        <e p="RecipeNodeSystem" t="Include">
+          <e p="BuildingData.cs" t="Include" />
+          <e p="BuildingNode.cs" t="Include" />
+          <e p="CraftingProcessNode.cs" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="BuildingNodeEditor.cs" t="Include" />
+            <e p="CraftingProcessNodeEditor.cs" t="Include" />
+            <e p="ItemNodeEditor.cs" t="Include" />
+            <e p="RecipeSetEditor.cs" t="Include" />
+          </e>
+          <e p="ItemNode.cs" t="Include" />
+          <e p="ItemSet.cs" t="Include" />
+          <e p="OreSpawnSettings.cs" t="Include" />
+          <e p="RecipeSet.cs" t="Include" />
+          <e p="xNode" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Attributes" t="Include">
+                <e p="NodeEnum.cs" t="Include" />
+              </e>
+              <e p="Editor" t="Include">
+                <e p="Drawers" t="Include">
+                  <e p="NodeEnumDrawer.cs" t="Include" />
+                </e>
+                <e p="NodeEditor.cs" t="Include" />
+                <e p="NodeEditorAction.cs" t="Include" />
+                <e p="NodeEditorAssetModProcessor.cs" t="Include" />
+                <e p="NodeEditorBase.cs" t="Include" />
+                <e p="NodeEditorGUI.cs" t="Include" />
+                <e p="NodeEditorGUILayout.cs" t="Include" />
+                <e p="NodeEditorPreferences.cs" t="Include" />
+                <e p="NodeEditorReflection.cs" t="Include" />
+                <e p="NodeEditorResources.cs" t="Include" />
+                <e p="NodeEditorUtilities.cs" t="Include" />
+                <e p="NodeEditorWindow.cs" t="Include" />
+                <e p="NodeGraphEditor.cs" t="Include" />
+                <e p="RenamePopup.cs" t="Include" />
+                <e p="Resources" t="Include">
+                  <e p="ScriptTemplates" t="Include">
+                    <e p="xNode_NodeGraphTemplate.cs.txt" t="Include" />
+                    <e p="xNode_NodeTemplate.cs.txt" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Node.cs" t="Include" />
+              <e p="NodeDataCache.cs" t="Include" />
+              <e p="NodeGraph.cs" t="Include" />
+              <e p="NodePort.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="ItemSet.cs" t="Include" />
+          <e p="RecipeSet.cs" t="Include" />
+        </e>
+        <e p="UI samples" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="Jupiter" t="Include">
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Materials" t="Include">
+            <e p="UI-Default-No-Alpha.shader" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="ActiveStateToggler.cs" t="Include" />
+            <e p="ApplicationManager.cs" t="Include" />
+            <e p="ChangeColor.cs" t="Include" />
+            <e p="PanelManager.cs" t="Include" />
+            <e p="ResizePanel.cs" t="Include" />
+            <e p="ScrollDetailTexture.cs" t="Include" />
+            <e p="ShowSliderValue.cs" t="Include" />
+            <e p="TiltWindow.cs" t="Include" />
+          </e>
+          <e p="Textures and Sprites" t="Include">
+            <e p="SF UI" t="Include">
+              <e p="Background" t="Include">
+                <e p="LICENSE.txt" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="UIGraph" t="Include">
+          <e p="Editor" t="Include">
+            <e p="ConnectionEditor.cs" t="Include" />
+            <e p="ConnectionManagerEditor.cs" t="Include" />
+            <e p="ConnectionPointDrawer.cs" t="Include" />
+            <e p="GraphNodeEditor.cs" t="Include" />
+            <e p="UIGraphUtilities.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Connection.cs" t="Include" />
+            <e p="ConnectionManager.cs" t="Include" />
+            <e p="ConnectionPoint.cs" t="Include" />
+            <e p="GraphNode.cs" t="Include" />
+            <e p="Util" t="Include">
+              <e p="NewBehaviourScript.cs" t="Include" />
+              <e p="ObfuscateObject.cs" t="Include" />
+              <e p="ObfuscateText.cs" t="Include" />
+              <e p="SpinCamera.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Utilities" t="Include">
+          <e p="2DArray-In-Inspector-Scripts" t="Include">
+            <e p="ArrayLayout.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="CustPropertyDrawer.cs" t="Include" />
+            </e>
+          </e>
+          <e p="AnimatedSpriteController.cs" t="Include" />
+          <e p="CameraBackgrounColorLooper.cs" t="Include" />
+          <e p="FPSDisplay.cs" t="Include" />
+          <e p="PinchableScrollRect.cs" t="Include" />
+          <e p="SpriteAnimationHolder.cs" t="Include" />
+          <e p="SpriteGraphicsController.cs" t="Include" />
+          <e p="Version Incrementer" t="Include">
+            <e p="$CommonUtils.cs" t="Include" />
+            <e p="$VersionIncrementor.cs" t="Include" />
+            <e p="VersionDisplay.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Atahan.NodeItemTree.csproj" t="IncludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="RecipeNodeSystem.csproj" t="IncludeRecursive" />
+      <e p="RecipeNodeSystemEditor.csproj" t="IncludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Utilities.csproj" t="IncludeRecursive" />
+      <e p="VersionIncrementer.csproj" t="IncludeRecursive" />
+      <e p="xNode conversion - Editor Node Item Tree Maker.sln" t="IncludeFlat" />
+      <e p="xNode.csproj" t="IncludeRecursive" />
+      <e p="xNodeEditor.csproj" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>

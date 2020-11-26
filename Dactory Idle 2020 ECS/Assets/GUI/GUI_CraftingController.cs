@@ -21,7 +21,7 @@ public class GUI_CraftingController : MonoBehaviour {
             allCraftingProcesses.AddRange(dividedCraftingProcesses[i]);
         }
 
-        for (int i = 1; i < allCraftingProcesses.Count; i++) {
+        for (int i = 0; i < allCraftingProcesses.Count; i++) {;
             var disp = Instantiate(CraftingDisplayPrefab, CraftingDisplayParent);
             disp.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = DataHolder.s.GetItem(allCraftingProcesses[i].inputItemUniqueNames[0]).GetSprite();
             disp.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = allCraftingProcesses[i].inputItemCounts[0].ToString();
@@ -43,6 +43,7 @@ public class GUI_CraftingController : MonoBehaviour {
             x = i;
             disp.transform.GetChild(7).GetComponent<Button>().onClick.AddListener(delegate { CraftItem(x); });
         }
+        
     }
 
     public void CraftItem(int craftingProcessIndex) {

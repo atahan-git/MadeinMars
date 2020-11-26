@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7dcba6f7-4f91-409b-b9b5-e881701cafed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Coiler.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Coiler.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Cutter.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Cutter.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Lab.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Lab.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_CraftingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_CraftingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Monkirta Pursuit NC.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Monkirta Pursuit NC.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Play Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Play Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Logs/Packages-Update.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CraftingNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CraftingNode.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Example Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Example Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Input Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input Port.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ItemNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ItemNode.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Output Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Output Port.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Node Item Tree Making Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Node Item Tree Making Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/Packages-Update.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Assets/New Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Assets/New Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Logs/Packages-Update.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/97/ef4be968/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bezier.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PinchableScrollRect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/55/9172aa9d/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemSet.cs" />
+        <option value="$PROJECT_DIR$/Assets/ItemNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DropMe.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DragMe.cs" />
+        <option value="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bezier.cs" />
+        <option value="$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/PinchableScrollRect.cs" />
+        <option value="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodePortGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" />
+        <option value="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hSbvlpv4kGx1ohy09zJI4F2Vhz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30010834" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7dcba6f7-4f91-409b-b9b5-e881701cafed" name="Default Changelist" comment="" />
+      <created>1600007673399</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600007673399</updated>
+      <workItem from="1600007688368" duration="26057000" />
+      <workItem from="1600238602264" duration="1837000" />
+      <workItem from="1606407258934" duration="3266000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="987" y="432" key="#xdebugger.evaluate" timestamp="1600110562957">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="987" y="432" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1600110562957" />
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1600199348284">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
+    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1600199348284">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
+    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1600199348284">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1600199348284">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
+    <state width="1877" height="283" key="GridCell.Tab.1.bottom" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.1.center" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.1.left" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.1.right" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.2.bottom" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.2.center" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.2.left" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.2.right" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.3.bottom" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.3.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.3.center" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.3.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.3.left" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.3.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="283" key="GridCell.Tab.3.right" timestamp="1600199348285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.3.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state x="670" y="228" key="RiderGenerateDialog" timestamp="1600022896413">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="670" y="228" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1600022896413" />
+    <state x="281" y="113" width="1413" height="1067" key="dock-window-1" timestamp="1600018756470">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="281" y="113" width="1413" height="1067" key="dock-window-1/0.0.1920.1080@0.0.1920.1080" timestamp="1600018756470" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1606410546312">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606410546312" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs</url>
+          <line>318</line>
+          <properties documentPath="D:\_Unity\2020\_Dactory Idle 2020\Editor Node Item Tree Maker\Assets\NodeItemTreeMakerMaster.cs" initialLine="308">
+            <startOffsets>
+              <option value="15046" />
+            </startOffsets>
+            <endOffsets>
+              <option value="15064" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

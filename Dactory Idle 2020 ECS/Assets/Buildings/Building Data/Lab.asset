@@ -25,9 +25,11 @@ MonoBehaviour:
   myType: 8
   BuildingAbility: 0000000000
   energyUse: 0
-  gfxType: 0
-  gfxSprite: {fileID: 3870553844862940790, guid: 303bb25d1c5eb4742be5b86894aba532,
-    type: 3}
-  gfxSpriteAnimation: {fileID: 0}
+  gfxType: 1
+  gfxSprite: {fileID: 21300000, guid: 12ef33dc1c89f9f4188d02efe19e8934, type: 3}
+  gfxShadowSprite: {fileID: 0}
+  isAnimatedShadow: 0
+  gfxSpriteAnimation: {fileID: 11400000, guid: 58ac088a8ce09b445a5b4a0d258768c2, type: 2}
   gfxPrefab: {fileID: 0}
-  spriteOffset: {x: 0, y: 0}
+  spriteOffset: {x: 1, y: 1}
+  playerBuildable: 1

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\ataha\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\ataha\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_xNode - Editor Node Item Tree Maker.-1018826269.00" t="ExcludeRecursive" />
+    <e p="D:\_Unity\2020\_Dactory Idle 2020\xNode - Editor Node Item Tree Maker" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="RecipeNodeSystem" t="Include">
+          <e p="CraftingProcessNode.cs" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="CraftingProcessNodeEditor.cs" t="Include" />
+            <e p="ItemNodeEditor.cs" t="Include" />
+            <e p="RecipeSetEditor.cs" t="Include" />
+          </e>
+          <e p="ItemNode.cs" t="Include" />
+          <e p="ItemSet.cs" t="Include" />
+          <e p="RecipeSet.cs" t="Include" />
+          <e p="xNode" t="Include">
+            <e p="Examples" t="Include">
+              <e p="MathGraph" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="MathGraphEditor.cs" t="Include" />
+                </e>
+                <e p="MathGraph.cs" t="Include" />
+                <e p="Nodes" t="Include">
+                  <e p="DisplayValue.cs" t="Include" />
+                  <e p="Editor" t="Include">
+                    <e p="DisplayValueEditor.cs" t="Include" />
+                  </e>
+                  <e p="MathNode.cs" t="Include" />
+                  <e p="Vector.cs" t="Include" />
+                </e>
+              </e>
+              <e p="RuntimeMathGraph" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="Connection.cs" t="Include" />
+                  <e p="NodeDrag.cs" t="Include" />
+                  <e p="RuntimeMathGraph.cs" t="Include" />
+                  <e p="RuntimeNodes" t="Include">
+                    <e p="UGUIDisplayValue.cs" t="Include" />
+                    <e p="UGUIMathBaseNode.cs" t="Include" />
+                    <e p="UGUIMathNode.cs" t="Include" />
+                    <e p="UGUIVector.cs" t="Include" />
+                  </e>
+                  <e p="UGUIContextMenu.cs" t="Include" />
+                  <e p="UGUIPort.cs" t="Include" />
+                  <e p="UGUITooltip.cs" t="Include" />
+                </e>
+              </e>
+              <e p="StateMachine" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="StateGraphEditor.cs" t="Include" />
+                </e>
+                <e p="Nodes" t="Include">
+                  <e p="Editor" t="Include">
+                    <e p="StateNodeEditor.cs" t="Include" />
+                  </e>
+                  <e p="StateNode.cs" t="Include" />
+                </e>
+                <e p="StateGraph.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="Attributes" t="Include">
+                <e p="NodeEnum.cs" t="Include" />
+              </e>
+              <e p="Editor" t="Include">
+                <e p="Drawers" t="Include">
+                  <e p="NodeEnumDrawer.cs" t="Include" />
+                </e>
+                <e p="NodeEditor.cs" t="Include" />
+                <e p="NodeEditorAction.cs" t="Include" />
+                <e p="NodeEditorAssetModProcessor.cs" t="Include" />
+                <e p="NodeEditorBase.cs" t="Include" />
+                <e p="NodeEditorGUI.cs" t="Include" />
+                <e p="NodeEditorGUILayout.cs" t="Include" />
+                <e p="NodeEditorPreferences.cs" t="Include" />
+                <e p="NodeEditorReflection.cs" t="Include" />
+                <e p="NodeEditorResources.cs" t="Include" />
+                <e p="NodeEditorUtilities.cs" t="Include" />
+                <e p="NodeEditorWindow.cs" t="Include" />
+                <e p="NodeGraphEditor.cs" t="Include" />
+                <e p="RenamePopup.cs" t="Include" />
+                <e p="Resources" t="Include">
+                  <e p="ScriptTemplates" t="Include">
+                    <e p="xNode_NodeGraphTemplate.cs.txt" t="Include" />
+                    <e p="xNode_NodeTemplate.cs.txt" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Node.cs" t="Include" />
+              <e p="NodeDataCache.cs" t="Include" />
+              <e p="NodeGraph.cs" t="Include" />
+              <e p="NodePort.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="xNode - Editor Node Item Tree Maker.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

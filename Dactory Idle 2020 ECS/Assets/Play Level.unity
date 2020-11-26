@@ -702,7 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySlots: []
-  cheatMode: 1
+  cheatMode: 0
   startingInventory:
   - uniqueName: buildingMat
     count: 150

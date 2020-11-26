@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lab
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 12ef33dc1c89f9f4188d02efe19e8934, type: 3}
+    - {fileID: 2800000, guid: 73034e9fbe84cb04cafe04e75a23d745, type: 3}
+    - {fileID: 2800000, guid: 2860ba25ce754954e98fdd3b2599db0e, type: 3}
+    - {fileID: 2800000, guid: 327af4042a6acf34c9acc8350e1ffdf0, type: 3}
+    - {fileID: 2800000, guid: 6c4838e1a85f32d47885bce088cdb9fe, type: 3}
+    - {fileID: 2800000, guid: 8a02e83b2cd27504ea6353360a5178aa, type: 3}
+    - {fileID: 2800000, guid: 8a885f247b06f4b44a225b82da97a01e, type: 3}
+    - {fileID: 2800000, guid: 54f75df59ac424a40bf313a5ffa0fe25, type: 3}
+    - {fileID: 2800000, guid: e81331c87ae1d104fb99baaf311715a4, type: 3}
+    - {fileID: 2800000, guid: c4b4e15a3a4cf574ba648b2950b11db5, type: 3}
+    - {fileID: 2800000, guid: 9c96aa0aaa68ce84a827bd54812ae40a, type: 3}
+    - {fileID: 2800000, guid: 7fc3ee0694503fc4cb262b1f0057e8f6, type: 3}
+    - {fileID: 2800000, guid: 0a0918b88d1ae024990dfea577976fd8, type: 3}
+    - {fileID: 2800000, guid: 6e201206d14993242914513199fc53f3, type: 3}
+    - {fileID: 2800000, guid: def71408085c0a54097d1b4f682bd70d, type: 3}
+    - {fileID: 2800000, guid: 1c89589fbfd11b84d89856697788315a, type: 3}
+    - {fileID: 2800000, guid: 1ad5166d48c4af44c8b24e6c42973cd6, type: 3}
+    - {fileID: 2800000, guid: f6d97e23dd11aed488260ffb4710d35a, type: 3}
+    - {fileID: 2800000, guid: fb9f99fb43d943a49b29d5cb9b71049d, type: 3}
+    - {fileID: 2800000, guid: 27db4b3b02a4de84299df5f8ad8e98f3, type: 3}
+    totalSpriteSurfaceArea: 327680
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 6c4838e1a85f32d47885bce088cdb9fe, type: 3}
+  - {fileID: 21300000, guid: f6d97e23dd11aed488260ffb4710d35a, type: 3}
+  - {fileID: 21300000, guid: 327af4042a6acf34c9acc8350e1ffdf0, type: 3}
+  - {fileID: 21300000, guid: 8a885f247b06f4b44a225b82da97a01e, type: 3}
+  - {fileID: 21300000, guid: 2860ba25ce754954e98fdd3b2599db0e, type: 3}
+  - {fileID: 21300000, guid: 54f75df59ac424a40bf313a5ffa0fe25, type: 3}
+  - {fileID: 21300000, guid: 6e201206d14993242914513199fc53f3, type: 3}
+  - {fileID: 21300000, guid: 7fc3ee0694503fc4cb262b1f0057e8f6, type: 3}
+  - {fileID: 21300000, guid: def71408085c0a54097d1b4f682bd70d, type: 3}
+  - {fileID: 21300000, guid: 0a0918b88d1ae024990dfea577976fd8, type: 3}
+  - {fileID: 21300000, guid: e81331c87ae1d104fb99baaf311715a4, type: 3}
+  - {fileID: 21300000, guid: 9c96aa0aaa68ce84a827bd54812ae40a, type: 3}
+  - {fileID: 21300000, guid: c4b4e15a3a4cf574ba648b2950b11db5, type: 3}
+  - {fileID: 21300000, guid: 8a02e83b2cd27504ea6353360a5178aa, type: 3}
+  - {fileID: 21300000, guid: 27db4b3b02a4de84299df5f8ad8e98f3, type: 3}
+  - {fileID: 21300000, guid: fb9f99fb43d943a49b29d5cb9b71049d, type: 3}
+  - {fileID: 21300000, guid: 12ef33dc1c89f9f4188d02efe19e8934, type: 3}
+  - {fileID: 21300000, guid: 1ad5166d48c4af44c8b24e6c42973cd6, type: 3}
+  - {fileID: 21300000, guid: 1c89589fbfd11b84d89856697788315a, type: 3}
+  - {fileID: 21300000, guid: 73034e9fbe84cb04cafe04e75a23d745, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Lab0004
+  - Lab0017
+  - Lab0003
+  - Lab0006
+  - Lab0002
+  - Lab0007
+  - Lab0013
+  - Lab0011
+  - Lab0014
+  - Lab0012
+  - Lab0008
+  - Lab0010
+  - Lab0009
+  - Lab0005
+  - Lab0019
+  - Lab0018
+  - Lab0000
+  - Lab0016
+  - Lab0015
+  - Lab0001
+  m_Tag: Lab
+  m_IsVariant: 0

@@ -28,7 +28,7 @@ MonoBehaviour:
   gfxType: 1
   gfxSprite: {fileID: 21300000, guid: 5b39f0edbc857364eb34d53a36fc2d8f, type: 3}
   gfxShadowSprite: {fileID: 0}
-  isAnimatedShadow: 0
+  isAnimatedShadow: 1
   gfxSpriteAnimation: {fileID: 11400000, guid: daa41c6ed48eff14f8bd6807820cd3d5, type: 2}
   gfxPrefab: {fileID: 0}
   spriteOffset: {x: 1, y: 1}
