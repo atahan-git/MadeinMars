@@ -1,0 +1,17 @@
+{
+    "name": "NewGameStartingSystems",
+    "references": [
+        "GUID:d57d5f01a2a2dce4fb04cbc951411332",
+        "GUID:c87700ed8d985264f8e5e1dbe65240d7",
+        "GUID:0a644bb01a5dd3540bb796167189dcb2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -7,27 +7,74 @@ using UnityEngine.UI;
 public class ItemNodeGfx : NodeGfx {
     public Image icon;
     public Text uniqueName;
-    
-    public void SetUp(NodeItemTreeMakerMaster master, ItemNode node) {
+
+
+    public void SetUp(RecipeTreeMaster master, ItemNode node) {
         base.SetUp(master, node);
         
         myNode = node;
         icon.sprite = ((ItemNode)myNode).myItem.mySprite;
         uniqueName.text = ((ItemNode)myNode).myItem.uniqueName;
+    }
+
+    public override void SetupPorts(){
+        ItemNode node = myNode as ItemNode;
+        for(int i =0 ; i < node.inputs.Count ; i ++) {
+            inputPorts.Add(
+                Instantiate(inputPortPrefab,inputParent).GetComponent<NodePortGfx>()
+                    .Setup(
+                        this, 
+                        NodePortGfx.PortType.itemInput,
+                        -1
+                    )
+            );
+        }
+
+        for(int i =0 ; i < node.outputs.Count ; i ++) {
+            outputPorts.Add(
+                Instantiate(outputPortPrefab,outputParent).GetComponent<NodePortGfx>()
+                    .Setup(
+                        this, 
+                        NodePortGfx.PortType.itemOutput,
+                        -1
+                    )
+            );
+            
+        }
         
-        inputPorts.Add(Instantiate(inputPortPrefab,inputParent).GetComponent<NodePortGfx>()
-            .Setup(this, NodePortGfx.PortType.itemInput));
-        outputPorts.Add(Instantiate(outputPortPrefab,outputParent).GetComponent<NodePortGfx>()
-            .Setup(this,NodePortGfx.PortType.itemOutput));
+        AddPort(true);
+        AddPort(false);
+    }
+
+    public override void SetupConnections() {
+        ItemNode node = myNode as ItemNode;
         
-        LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
+        for(int i =0 ; i < node.inputs.Count ; i ++) {
+            inputPorts[i].AddConnection(myMaster.GetNodeGfxFromNode(node.inputs[i] as Node).GetNextEmptyNode(false));
+        }
+
+        for(int i =0 ; i < node.outputs.Count ; i ++) {
+            outputPorts[i].AddConnection(myMaster.GetNodeGfxFromNode(node.outputs[i] as Node).GetNextEmptyNode(true));
+        }
+    }
+    
+    public void AddPort(bool isInput) {
+        if (!isInput) {
+            inputPorts.Add(Instantiate(inputPortPrefab,inputParent).GetComponent<NodePortGfx>()
+                .Setup(this, NodePortGfx.PortType.itemInput, -1));
+        } else {
+            outputPorts.Add(Instantiate(outputPortPrefab,outputParent).GetComponent<NodePortGfx>()
+                .Setup(this,NodePortGfx.PortType.itemOutput, -1));
+        }
+        
+        RebuildLayout();
     }
 }
 
 
 
 public abstract class NodeGfx : MonoBehaviour {
-    private NodeItemTreeMakerMaster myMaster;
+    protected RecipeTreeMaster myMaster;
     public Node myNode;
     
     public GameObject inputPortPrefab;
@@ -38,7 +85,19 @@ public abstract class NodeGfx : MonoBehaviour {
     public List<NodePortGfx> inputPorts = new List<NodePortGfx>();
     public List<NodePortGfx> outputPorts = new List<NodePortGfx>();
 
-    protected void SetUp(NodeItemTreeMakerMaster master, Node node) {
+    private int lastInputGiven = -1;
+    private int lastOutputGiven = -1;
+    public NodePortGfx GetNextEmptyNode(bool isInput) {
+        if (isInput) {
+            lastInputGiven += 1;
+            return inputPorts[lastInputGiven];
+        } else {
+            lastOutputGiven += 1;
+            return outputPorts[lastOutputGiven];
+        }
+    }
+    
+    protected void SetUp(RecipeTreeMaster master, Node node) {
         myMaster = master;
         myNode = node;
     }
@@ -59,7 +118,41 @@ public abstract class NodeGfx : MonoBehaviour {
     }
 
     public void DeleteNode() {
+        foreach(var input in inputPorts)
+            input.DeleteSelf();
+        foreach(var output in outputPorts)
+            output.DeleteSelf();
+        
         myMaster.DeleteNode(this);
         Destroy(gameObject);
+    }
+
+    public void RemoveConnectionAtPort(NodePortGfx.PortType portType, int index) {
+        try {
+            switch (portType) {
+                case NodePortGfx.PortType.craftInput:
+                    (myNode as CraftingNode).inputs.RemoveAt(index);
+                    break;
+                case NodePortGfx.PortType.craftOutput:
+                    (myNode as CraftingNode).outputs.RemoveAt(index);
+                    break;
+                case NodePortGfx.PortType.itemInput:
+                    (myNode as ItemNode).inputs.RemoveAt(index);
+                    break;
+                case NodePortGfx.PortType.itemOutput:
+                    (myNode as ItemNode).outputs.RemoveAt(index);
+                    break;
+            }
+        }catch{}
+
+        if(this is CraftingNodeGfx)
+            (this as CraftingNodeGfx).UpdateVisuals();
+    }
+
+    public abstract void SetupPorts();
+    public abstract void SetupConnections();
+
+    public void RebuildLayout() {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
     }
 }

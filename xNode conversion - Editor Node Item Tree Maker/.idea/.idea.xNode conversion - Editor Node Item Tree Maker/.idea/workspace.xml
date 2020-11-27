@@ -2,37 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42b7412f-6935-4d21-824d-838056415d87" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Coiler.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Coiler.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Cutter.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Cutter.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Lab.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Lab.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_CraftingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_CraftingController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Monkirta Pursuit NC.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Monkirta Pursuit NC.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Play Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Play Level.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Logs/Packages-Update.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/CraftingNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/CraftingNode.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/CraftingNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/CraftingNodeGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Example Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Example Recipe Set.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/Item List Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/GUI/Item List Prefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Input Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Input Port.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/ItemNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/ItemNode.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Output Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Output Port.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scenes/Node Item Tree Making Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scenes/Node Item Tree Making Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Logs/Packages-Update.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Assets/New Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Assets/New Recipe Set.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Logs/Packages-Update.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode - Editor Node Item Tree Maker/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/DragMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DragMe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/DropMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DropMe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NodePortGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NodePortGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemSet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +31,14 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Utilities/FPSDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" />
+        <option value="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DragMe.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DropMe.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodePortGfx.cs" />
       </list>
     </option>
   </component>
@@ -90,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606411082817</updated>
       <workItem from="1606411090271" duration="135000" />
+      <workItem from="1606411476684" duration="736000" />
     </task>
     <servers />
   </component>

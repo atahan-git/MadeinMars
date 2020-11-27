@@ -45,11 +45,10 @@ public class Node {
 public class CraftingNode : Node {
 
     public int tier;
-    public float craftingTime;
+    public int craftingTime = 5;
 
     public enum CraftingTypes {
-        Processing,
-        Melting
+        Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building
     }
 
     public CraftingTypes myCraftingType;
@@ -61,7 +60,7 @@ public class CraftingNode : Node {
         this.id = id;
     }
     
-    public CraftingNode(int id, int tier, float craftingTime, CraftingTypes myCraftingType) : base(id) {
+    public CraftingNode(int id, int tier, int craftingTime, CraftingTypes myCraftingType) : base(id) {
         this.id = id;
         this.tier = tier;
         this.craftingTime = craftingTime;
@@ -83,8 +82,10 @@ public class CountedItemNode {
 
 [Serializable]
 public class ItemNode : Node {
-
     public Item myItem;
+    
+    public List<Node> inputs = new List<Node>();
+    public List<Node> outputs = new List<Node>();
 
     public ItemNode(int id, Item item) : base(id) {
         this.id = id;

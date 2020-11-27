@@ -36,7 +36,9 @@ public class NodePortGfx : MonoBehaviour
 
     CubicBezierCurve path = new CubicBezierCurve(new Vector3[4]);
     
+    /*
     public void Update() {
+        
         if (myRend.enabled) {
             Vector3 startWorldPoint = NodeItemTreeMakerMaster.s.mycam.ScreenToWorldPoint(lineConnectionPoint.position) + Vector3.forward*5;
             Vector3 endWorldPoint = NodeItemTreeMakerMaster.s.mycam.ScreenToWorldPoint(myConnection.lineConnectionPoint.position)+ Vector3.forward*5;
@@ -50,7 +52,7 @@ public class NodePortGfx : MonoBehaviour
             /*Debug.DrawLine(lineConnectionPoint.position, lineConnectionPoint.position+Vector3.up);
             Debug.DrawLine(lineConnectionPoint.position + (isInput? Vector3.left : Vector3.right), lineConnectionPoint.position + (isInput? Vector3.left : Vector3.right)+Vector3.up);
             Debug.DrawLine(myConnection.lineConnectionPoint.position + (isInput? Vector3.left : Vector3.right), myConnection.lineConnectionPoint.position + (isInput? Vector3.left : Vector3.right)+Vector3.up);
-            Debug.DrawLine(myConnection.lineConnectionPoint.position, myConnection.lineConnectionPoint.position+Vector3.up);*/
+            Debug.DrawLine(myConnection.lineConnectionPoint.position, myConnection.lineConnectionPoint.position+Vector3.up);/
             
             path.SetControlVerts(knots);
             for (int i = 0; i <= resolution; i++) {
@@ -108,11 +110,11 @@ public class NodePortGfx : MonoBehaviour
     //private bool isDragging = false;
     public void BeginClickConnect() {
         ConnectionInProgressShowObject.SetActive(true);
-        myMaster.BeginClickConnect(this);
+        //myMaster.BeginClickConnect(this);
     }
 
     public void ClickConnectDone() {
         ConnectionInProgressShowObject.SetActive(false);
     }
-    
+    */
 }

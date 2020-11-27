@@ -1,0 +1,17 @@
+{
+    "name": "GenericEditor",
+    "references": [
+        "GUID:0a644bb01a5dd3540bb796167189dcb2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

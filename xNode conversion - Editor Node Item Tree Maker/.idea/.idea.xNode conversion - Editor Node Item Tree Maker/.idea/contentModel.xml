@@ -71,10 +71,6 @@
             </e>
           </e>
         </e>
-        <e p="Scripts" t="Include">
-          <e p="ItemSet.cs" t="Include" />
-          <e p="RecipeSet.cs" t="Include" />
-        </e>
         <e p="UI samples" t="Include">
           <e p="Fonts" t="Include">
             <e p="Jupiter" t="Include">

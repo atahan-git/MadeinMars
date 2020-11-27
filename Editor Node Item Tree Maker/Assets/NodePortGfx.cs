@@ -3,24 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using  UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
-public class NodePortGfx : MonoBehaviour
-{
+public class NodePortGfx : MonoBehaviour {
 
+    public ValueRegion myRegion;
+    
     public enum PortType {
         itemInput, itemOutput, craftInput, craftOutput
     }
 
-    [HideInInspector]
+    //[HideInInspector]
     public NodeGfx myMaster;
-    [HideInInspector]
+
+    public int myIndex {
+        get { return transform.GetSiblingIndex(); }
+    }
+
+    //[HideInInspector]
     public PortType myType;
 
     public GameObject ConnectionInProgressShowObject;
     
     [HideInInspector]
     public NodePortGfx myConnection;
-    LineRenderer myRend;
+    UILineRenderer myRend;
 
     public Transform lineConnectionPoint;
 
@@ -35,15 +42,22 @@ public class NodePortGfx : MonoBehaviour
     public Image colorChangeImage;
 
     CubicBezierCurve path = new CubicBezierCurve(new Vector3[4]);
-    
+
+    private bool pathActive = false;
     public void Update() {
-        if (myRend.enabled) {
-            Vector3 startWorldPoint = NodeItemTreeMakerMaster.s.mycam.ScreenToWorldPoint(lineConnectionPoint.position) + Vector3.forward*5;
-            Vector3 endWorldPoint = NodeItemTreeMakerMaster.s.mycam.ScreenToWorldPoint(myConnection.lineConnectionPoint.position)+ Vector3.forward*5;
+        if (pathActive) {
+            float canvasScale = Screen.width / RecipeTreeMaster.myCanvas.GetComponent<CanvasScaler>().referenceResolution.x;
+            //canvasScale = 1;
+            //canvasScale = 1f / canvasScale;
+            float localScale = 1/myRend.transform.lossyScale.x;
+            //print(canvasScale);
+            Vector3 startWorldPoint = /*RecipeTreeMaster.mainCam.ScreenToWorldPoint*/(lineConnectionPoint.position-myRend.transform.position)*localScale /*+ Vector3.forward*5*/ ;
+            Vector3 endWorldPoint = /*RecipeTreeMaster.mainCam.ScreenToWorldPoint*/(myConnection.lineConnectionPoint.position-myRend.transform.position)*localScale /*+ Vector3.forward*5*/;
+            float pushDistance = Mathf.Abs(startWorldPoint.x - endWorldPoint.x)/2f;
             Vector3[] knots = new[] {
                 startWorldPoint, 
-                startWorldPoint + (isInput ? Vector3.left : Vector3.right), 
-                endWorldPoint + (!isInput ? Vector3.left : Vector3.right),
+                startWorldPoint + (isInput ? Vector3.left : Vector3.right) *pushDistance, 
+                endWorldPoint + (!isInput ? Vector3.left : Vector3.right)*pushDistance,
                 endWorldPoint
             };
             
@@ -54,19 +68,22 @@ public class NodePortGfx : MonoBehaviour
             
             path.SetControlVerts(knots);
             for (int i = 0; i <= resolution; i++) {
-                myRend.SetPosition(i, path.GetPoint(((float)i)/(float)resolution));
+                Vector3 pos = path.GetPoint(((float) i) / (float) resolution);
+                myRend.m_points[i] = new Vector2(pos.x,pos.y);
             }
+            myRend.SetAllDirty();
         }
     }
 
-    public NodePortGfx Setup(NodeGfx master,PortType type) {
+    public NodePortGfx Setup(NodeGfx master, PortType type, int value) {
         myMaster = master;
         myType = type;
         
-        myRend = GetComponentInChildren<LineRenderer>();
+        myRend = GetComponentInChildren<UILineRenderer>();
         ConnectionInProgressShowObject.SetActive(false);
         myRend.enabled = false;
-        myRend.positionCount = resolution+1;
+        pathActive = false;
+        myRend.m_points = new Vector2[resolution+1];
 
         if (isCrafting) {
             if (isInput) {
@@ -82,11 +99,28 @@ public class NodePortGfx : MonoBehaviour
             }
         }
 
+        if (myRegion) {
+            switch (myType) {
+                case PortType.itemInput:
+                    myRegion.SetUp(ValueRegion.type.itemInput,null,this, value);
+                    break;
+                case PortType.itemOutput:
+                    myRegion.SetUp(ValueRegion.type.itemOutput,null,this, value);
+                    break;
+                case PortType.craftInput:
+                    myRegion.SetUp(ValueRegion.type.craftInput,null,this, value);
+                    break;
+                case PortType.craftOutput:
+                    myRegion.SetUp(ValueRegion.type.craftOutput,null,this, value);
+                    break;
+            }
+        }
+
         return this;
     }
     
-    public NodePortGfx Setup(NodeGfx master,PortType type, NodePortGfx connection) {
-        Setup(master, type);
+    public NodePortGfx Setup(NodeGfx master,PortType type, int value, NodePortGfx connection) {
+        Setup(master, type, value);
         
         AddConnection(connection);
 
@@ -94,15 +128,30 @@ public class NodePortGfx : MonoBehaviour
     }
 
     public void AddConnection(NodePortGfx target) {
+        RemoveConnections();
         myConnection = target;
-        if(myType == PortType.craftOutput || myType == PortType.craftInput)
+        if (myType == PortType.craftOutput || myType == PortType.craftInput) {
             myRend.enabled = true;
+            pathActive = true;
+        }
+
         ClickConnectDone();
     }
 
+    public void DeleteSelf() {
+        if(myConnection != null)
+            myMaster.RemoveConnectionAtPort(myType, myIndex);
+        Destroy(gameObject);
+    }
+
     public void RemoveConnections() {
+        if (myConnection != null) {
+            myConnection.DeleteSelf();
+            myMaster.RemoveConnectionAtPort(myType, myIndex);
+        }
         myConnection = null;
         myRend.enabled = false;
+        pathActive = false;
     }
 
     //private bool isDragging = false;
@@ -114,5 +163,9 @@ public class NodePortGfx : MonoBehaviour
     public void ClickConnectDone() {
         ConnectionInProgressShowObject.SetActive(false);
     }
-    
+
+
+    public void ValueUpdated(ValueRegion.type type, int value) {
+        (myMaster as CraftingNodeGfx).ValueUpdated(type, value, myIndex); // Only the crafting node has updateable value regions, so we can assume this
+    }
 }

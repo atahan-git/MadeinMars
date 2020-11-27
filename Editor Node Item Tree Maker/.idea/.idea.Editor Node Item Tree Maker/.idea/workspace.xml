@@ -20,110 +20,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7dcba6f7-4f91-409b-b9b5-e881701cafed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/riderModule.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/.idea/.idea.Assets.dir/.idea/.idea.Assets.dir.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/.idea/.idea.Assets.dir/riderModule.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/backdrop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/backdrop.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/merged.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/merged.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Media/random/Building crafting.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Media/random/Course builder doesnt like emojis.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Media/random/Snek level 1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Media/random/Snek.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Media/random/fireworks.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Media/random/hc wheel graceful.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/00.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/03.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/05.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/07.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/21.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/26.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/27.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/28.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/29.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/30.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/31.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/33.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/34.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/backdrop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/merged.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../crafting tree stich/tree/merged.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/BeltSystem/Scripts/BeltMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Colony.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/Building Data/Colony.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingCraftingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingCraftingController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingInfoDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingInfoDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingWorldObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingWorldObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/ObjectBuilderMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/ObjectBuilderMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataHolder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataSaver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataSaver.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/GameLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/GameLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Player_InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Player_InventoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Position.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Position.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/SpriteGraphicsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/SpriteGraphicsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_BuildingBarController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_BuildingBarController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_InventoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_SwitchController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_SwitchController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Inventory Listing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Inventory Listing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Item in&amp;out display.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/Item in&amp;out display.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/MiniGUI_InventoryListing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/MiniGUI_InventoryListing.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GameMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GameMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Grid/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Grid/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/MovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/MovementController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/CraftingProcessNodeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/CraftingProcessNodeEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemSet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUILayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUILayout.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorPreferences.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorPreferences.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorUtilities.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorUtilities.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeGraphEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeGraphEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Node.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeDataCache.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeDataCache.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Items.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Items.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/testLevel.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/testLevel.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 1 render/Assembler.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 1 render/Assembler.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 2/Assembler 2.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 2/Assembler 2.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Coiler Pixel/Coiler.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Coiler Pixel/Coiler.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Cutter Pixel/Cutter.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Cutter Pixel/Cutter.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Lab Pixel/Lab.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Lab Pixel/Lab.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Press pixel/Press.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Press pixel/Press.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Smelter final pixel/smelter pixel red.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Smelter final pixel/smelter pixel red.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel just shadow/miner pixel shadow.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel just shadow/miner pixel shadow.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel/miner pixel.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel/miner pixel.spriteatlas" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CraftingNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CraftingNode.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Example Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Example Recipe Set.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/DragMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DragMe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/DropMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DropMe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Input Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input Port.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ItemNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ItemNode.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nova.NodeItemTree.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nova.NodeItemTree.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NodePortGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NodePortGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Output Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Output Port.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Node Item Tree Making Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Node Item Tree Making Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ItemSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ItemSet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/Packages-Update.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Basic Shapes/inner shadow smooth edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Basic Shapes/inner shadow smooth edges.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/CraftingNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/CraftingNodeGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragMe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DropMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DropMe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/ItemNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/ItemNodeGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodePortGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodePortGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,10 +76,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/97/ef4be968/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/RecipeTreeViewer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/04/9656a681/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Bezier.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PinchableScrollRect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/NodeFocusCatcher.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -150,13 +94,16 @@
         <option value="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Bezier.cs" />
         <option value="$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" />
-        <option value="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" />
         <option value="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/PinchableScrollRect.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" />
         <option value="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" />
         <option value="$PROJECT_DIR$/Assets/NodePortGfx.cs" />
         <option value="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodeFocusCatcher.cs" />
+        <option value="$PROJECT_DIR$/Assets/ValueRegion.cs" />
+        <option value="$PROJECT_DIR$/Assets/RecipeTreeViewer.cs" />
       </list>
     </option>
   </component>
@@ -180,20 +127,20 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="35472">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="35472" />
       <option name="selectedOptions">
         <set />
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="35472">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="35472" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -210,6 +157,7 @@
       <updated>1600007673399</updated>
       <workItem from="1600007688368" duration="26057000" />
       <workItem from="1600238602264" duration="1837000" />
+      <workItem from="1606412664166" duration="23577000" />
     </task>
     <servers />
   </component>
@@ -234,78 +182,86 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="414" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606419238671">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="414" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606419238671" />
     <state x="987" y="432" key="#xdebugger.evaluate" timestamp="1600110562957">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="987" y="432" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1600110562957" />
-    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1600199348284">
+    <state width="1877" height="29" key="GridCell.Tab.0.bottom" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
-    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1600199348284">
+    <state width="1877" height="29" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.0.center" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
-    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1600199348284">
+    <state width="1877" height="29" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.0.left" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
-    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1600199348284">
+    <state width="1877" height="29" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.0.right" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348284" />
-    <state width="1877" height="283" key="GridCell.Tab.1.bottom" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.bottom" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.1.center" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.center" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.1.left" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.left" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.1.right" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.right" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.2.bottom" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.2.bottom" timestamp="1606492040330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.2.center" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.2.center" timestamp="1606492040330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.2.left" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.2.left" timestamp="1606492040329">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.2.right" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.2.right" timestamp="1606492040330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.3.bottom" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.bottom" timestamp="1606492040330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.3.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.3.center" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.3.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.center" timestamp="1606492040330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.3.center/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.3.left" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.3.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.left" timestamp="1606492040330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.3.left/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
-    <state width="1877" height="283" key="GridCell.Tab.3.right" timestamp="1600199348285">
+    <state width="1877" height="29" key="GridCell.Tab.3.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.right" timestamp="1606492040330">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.3.right/0.0.1920.1080@0.0.1920.1080" timestamp="1600199348285" />
+    <state width="1877" height="29" key="GridCell.Tab.3.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
     <state x="670" y="228" key="RiderGenerateDialog" timestamp="1600022896413">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="670" y="228" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1600022896413" />
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog" timestamp="1606479050338">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606479050338" />
     <state x="281" y="113" width="1413" height="1067" key="dock-window-1" timestamp="1600018756470">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -314,24 +270,5 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1600008633914" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs</url>
-          <line>321</line>
-          <properties documentPath="D:\_Unity\2020\_Dactory Idle 2020\Editor Node Item Tree Maker\Assets\NodeItemTreeMakerMaster.cs" initialLine="308">
-            <startOffsets>
-              <option value="15153" />
-            </startOffsets>
-            <endOffsets>
-              <option value="15171" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

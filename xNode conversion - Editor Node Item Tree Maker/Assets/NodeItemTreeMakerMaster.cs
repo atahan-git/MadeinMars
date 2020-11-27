@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 //namespace Atahan.NodeItemTree {
     public class NodeItemTreeMakerMaster : MonoBehaviour {
-        public static NodeItemTreeMakerMaster s;
+        /*public static NodeItemTreeMakerMaster s;
 
         public RecipeSet myRecipeSet;
 
@@ -216,7 +216,7 @@ using UnityEngine.UI;
             print(xmin);
             print(xmax);
             print(ymin);
-            print(ymax);*/
+            print(ymax);/
 
             var rect = NodeAreaInnerRect.rect;
             //var scale = NodeAreaRect.localScale.x;
@@ -231,7 +231,7 @@ using UnityEngine.UI;
             print(leftSide);
             print(rightSide);
             print(topSide);
-            print(bottomSide);*/
+            print(bottomSide)/
             
             //NodeParent.SetParent(canvas);
 
@@ -320,7 +320,7 @@ using UnityEngine.UI;
             }
 
             //NodeParent.anchoredPosition = Vector3.zero;
-        }
+        }*/
         
     }
 

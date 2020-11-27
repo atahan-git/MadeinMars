@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemNodeGfx : NodeGfx {
-    public Image icon;
+    /*public Image icon;
     public Text uniqueName;
     
     public void SetUp(NodeItemTreeMakerMaster master, ItemNode node) {
@@ -21,13 +21,13 @@ public class ItemNodeGfx : NodeGfx {
             .Setup(this,NodePortGfx.PortType.itemOutput));
         
         LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
-    }
+    }*/
 }
 
 
 
 public abstract class NodeGfx : MonoBehaviour {
-    private NodeItemTreeMakerMaster myMaster;
+    /*private NodeItemTreeMakerMaster myMaster;
     public Node myNode;
     
     public GameObject inputPortPrefab;
@@ -38,7 +38,7 @@ public abstract class NodeGfx : MonoBehaviour {
     public List<NodePortGfx> inputPorts = new List<NodePortGfx>();
     public List<NodePortGfx> outputPorts = new List<NodePortGfx>();
 
-    protected void SetUp(NodeItemTreeMakerMaster master, Node node) {
+    protected void SetUp(NodeItemTreeMakerMaster master/*, Node node/) {
         myMaster = master;
         myNode = node;
     }
@@ -53,7 +53,7 @@ public abstract class NodeGfx : MonoBehaviour {
         //Snapping is done by DragPanel.cs
         /*myNode.x = ((int) (transform.position.x*snapMult))/snapMult;
         myNode.y = ((int) (transform.position.y*snapMult))/snapMult;
-        transform.position = new Vector3(myNode.x,myNode.y,0);*/
+        transform.position = new Vector3(myNode.x,myNode.y,0);*=/
         myMaster.RescaleNodeArea();
         myNode.pos = (transform as RectTransform).anchoredPosition;
     }
@@ -61,5 +61,5 @@ public abstract class NodeGfx : MonoBehaviour {
     public void DeleteNode() {
         myMaster.DeleteNode(this);
         Destroy(gameObject);
-    }
+    }*/
 }

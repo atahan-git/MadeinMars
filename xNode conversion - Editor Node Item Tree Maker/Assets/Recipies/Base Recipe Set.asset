@@ -2125,15 +2125,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9427da8f80d849340bc3314ec68eee65, type: 2}
   myBuildings:
   - {fileID: 11400000, guid: ba231f49a8aba3446a75e21413b1b077, type: 2}
-  - {fileID: 11400000, guid: 083597dc2ebf77f46a79e22709987166, type: 2}
+  - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
   - {fileID: 11400000, guid: 2f1242d7254920046bd3966523742832, type: 2}
+  - {fileID: 11400000, guid: b1cb88f9cb208454fbf8fe40f959f985, type: 2}
+  - {fileID: 11400000, guid: 083597dc2ebf77f46a79e22709987166, type: 2}
   - {fileID: 11400000, guid: 68d403cecda93af489e4609a79e60d9f, type: 2}
   - {fileID: 11400000, guid: 100a719508880084abd0d3fdba96fe00, type: 2}
   - {fileID: 11400000, guid: 8a8742bdeef186546b5d5f9cc1208f04, type: 2}
   - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
   - {fileID: 11400000, guid: 23a2e5f0ee7f46a4d98e77a03f014ab1, type: 2}
-  - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
-  - {fileID: 11400000, guid: b1cb88f9cb208454fbf8fe40f959f985, type: 2}
+  - {fileID: 11400000, guid: 5b86394760a5b5140a1b45f52a9180ba, type: 2}
 --- !u!114 &896045736394307463
 MonoBehaviour:
   m_ObjectHideFlags: 0

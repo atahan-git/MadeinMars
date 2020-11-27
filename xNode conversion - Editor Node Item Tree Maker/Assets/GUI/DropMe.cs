@@ -20,7 +20,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 	{
 		containerImage.color = normalColor;
 
-		NodeItemTreeMakerMaster.s.CreateItemNodeAtPosition(data);
+		//NodeItemTreeMakerMaster.s.CreateItemNodeAtPosition(data);
 
 
 		if (receivingImage == null)

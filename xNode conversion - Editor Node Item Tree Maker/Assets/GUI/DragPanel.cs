@@ -30,7 +30,7 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 		Vector2 localPointerPosition;
 		if (RectTransformUtility.ScreenPointToLocalPointInRectangle (parentRectTransform, data.position, data.pressEventCamera, out localPointerPosition)) {
 			Vector3 offsetToOriginal = localPointerPosition - originalLocalPointerPosition;
-			panelRectTransform.localPosition = SnapToGrid(originalPanelLocalPosition + offsetToOriginal,NodeGfx.snapMultUI);
+			//panelRectTransform.localPosition = SnapToGrid(originalPanelLocalPosition + offsetToOriginal,NodeGfx.snapMultUI);
 		}
 		
 		//ClampToWindow ();
@@ -46,9 +46,9 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
 	public void OnPointerUp(PointerEventData eventData) {
 		if (eventData.position.y < 200) {
-			myNode.DeleteNode();
+			//myNode.DeleteNode();
 		}
-		myNode.PositionUpdated();
+		//myNode.PositionUpdated();
 	}
 	
 	// Clamp panel to area of parent
