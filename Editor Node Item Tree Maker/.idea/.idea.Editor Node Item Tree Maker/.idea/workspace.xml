@@ -20,51 +20,218 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7dcba6f7-4f91-409b-b9b5-e881701cafed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/.idea/.idea.Dactory Idle 2020 ECS/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 1 render/Assembler.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 1 render/Assembler.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 2/Assembler 2.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Assembler 2/Assembler 2.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Coiler Pixel/Coiler.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Coiler Pixel/Coiler.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Cutter Pixel/Cutter.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Cutter Pixel/Cutter.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Lab Pixel/Lab.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Lab Pixel/Lab.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Press pixel/Press.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Press pixel/Press.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Smelter final pixel/smelter pixel red.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/Smelter final pixel/smelter pixel red.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel just shadow/miner pixel shadow.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel just shadow/miner pixel shadow.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel/miner pixel.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/sprites/drill/miner pixel/miner pixel.spriteatlas" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CraftingNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CraftingNode.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Example Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Example Recipe Set.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GUI/Item List Prefab.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input Port.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ItemNode.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ItemNode.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Atahan.NodeItemTree.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Atahan.NodeItemTree.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NodePortGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NodePortGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Output Port.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Output Port.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Node Item Tree Making Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Node Item Tree Making Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI Basic Shapes/inner shadow smooth edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Basic Shapes/inner shadow smooth edges.psd.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/.idea/.idea.xNode conversion - Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/CraftingNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/CraftingNodeGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragMe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DragPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DropMe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/GUI/DropMe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/ItemNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/ItemNodeGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodeItemTreeMakerMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodePortGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/NodePortGfx.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xNode conversion - Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Closed.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Closed.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/MainMenu.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/MainMenu.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Open.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Open.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closed.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closed.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closing.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closing.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Open.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Open.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Panel.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Panel.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Rotation.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Rotation.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/SF Button.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/SF Button.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Closed.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Closed.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Open.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Open.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/SettingsMenu.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/SettingsMenu.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/Jupiter.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/Jupiter.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/LICENSE.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Background.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Background.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Fill.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Fill.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Knob.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Knob.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI Opaque.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI Opaque.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI-Default-No-Alpha.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI-Default-No-Alpha.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Window.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Window.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_dome_mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_dome_mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_metal_mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_metal_mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcLand_clean_dome_mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcLand_clean_dome_mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_dff.tif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_dff.tif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_nrm.tif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_nrm.tif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/vehicle_rcFlyer_clean.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/vehicle_rcFlyer_clean.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Button.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Button.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Grid Button.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Grid Button.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Scene Elements.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Scene Elements.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Slider.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Slider.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Title.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Title.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Toggle.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Toggle.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/Slider Lit.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/Slider Lit.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Controls.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Controls.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Drag And Drop.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Drag And Drop.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Draggable Panel.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Draggable Panel.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Layout Groups.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Layout Groups.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Lighting.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Lighting.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Menu 3D.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Menu 3D.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/RenderTexture.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/RenderTexture.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ActiveStateToggler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ActiveStateToggler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ApplicationManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ApplicationManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ChangeColor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ChangeColor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/PanelManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/PanelManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ResizePanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ResizePanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ScrollDetailTexture.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ScrollDetailTexture.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ShowSliderValue.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ShowSliderValue.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/TiltWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/TiltWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRectFilled.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRectFilled.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Unity Logo Unlit.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Unity Logo Unlit.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/BackgroundNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/BackgroundNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalSpritesNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalSpritesNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalStripes.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalStripes.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/KnobNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/KnobNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/UISpriteNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/UISpriteNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/White.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/White.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/RenderTexture.renderTexture" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/RenderTexture.renderTexture.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonCorner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonCorner.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonDefault.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonDefault.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIPanel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIPanel.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIToggleButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIToggleButton.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/LICENSE.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/SF Background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/SF Background.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Button.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Button.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Generic.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Generic.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Title.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Title.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Window.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Window.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionManagerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionManagerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionPointDrawer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionPointDrawer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/GraphNodeEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/GraphNodeEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/UIGraphUtilities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/UIGraphUtilities.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Prefab/connection.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Prefab/connection.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/ReadMe.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/ReadMe.pdf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/3D Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/3D Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/Dark Souls Layout.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/Dark Souls Layout.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/UI Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/UI Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Connection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Connection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionPoint.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionPoint.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/GraphNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/GraphNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/NewBehaviourScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/NewBehaviourScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateObject.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/SpinCamera.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/SpinCamera.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,13 +243,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/97/ef4be968/List`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/RecipeTreeViewer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/04/9656a681/Transform.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Bezier.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/PinchableScrollRect.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/NodeFocusCatcher.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -94,16 +255,16 @@
         <option value="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs" />
         <option value="$PROJECT_DIR$/Assets/Bezier.cs" />
         <option value="$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" />
-        <option value="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/PinchableScrollRect.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" />
-        <option value="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" />
         <option value="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" />
         <option value="$PROJECT_DIR$/Assets/NodePortGfx.cs" />
         <option value="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" />
         <option value="$PROJECT_DIR$/Assets/NodeFocusCatcher.cs" />
         <option value="$PROJECT_DIR$/Assets/ValueRegion.cs" />
         <option value="$PROJECT_DIR$/Assets/RecipeTreeViewer.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" />
       </list>
     </option>
   </component>
@@ -128,19 +289,19 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="35472">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="35472" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="35472">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="35472" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -158,6 +319,7 @@
       <workItem from="1600007688368" duration="26057000" />
       <workItem from="1600238602264" duration="1837000" />
       <workItem from="1606412664166" duration="23577000" />
+      <workItem from="1606495833931" duration="547000" />
     </task>
     <servers />
   </component>
