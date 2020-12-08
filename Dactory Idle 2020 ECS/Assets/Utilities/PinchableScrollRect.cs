@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+
+/// <summary>
+/// A class I got from the internet and edited to make the scroll/pinchable scroll rect for zooming functionality.
+/// It sort of works...
+/// This also exists in Recipe Node System/Scripts, and I don't know why, and am too afraid to delete one of them
+/// </summary>
 public class PinchableScrollRect : ScrollRect {
     [SerializeField] float _minZoom = .1f;
     [SerializeField] float _maxZoom = 10;

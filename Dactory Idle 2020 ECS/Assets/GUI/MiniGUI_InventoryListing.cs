@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// A helper class for the individual inventory slot listings in the inventory ui panel
+/// </summary>
 public class MiniGUI_InventoryListing : MonoBehaviour {
 
     public Text nameText;

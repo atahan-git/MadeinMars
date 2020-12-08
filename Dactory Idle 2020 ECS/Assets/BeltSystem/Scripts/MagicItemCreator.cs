@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/// <summary>
+/// Continuously creates items for debug purposes.
+/// </summary>
 public class MagicItemCreator : BeltObject {
 
 
@@ -12,16 +17,17 @@ public class MagicItemCreator : BeltObject {
 
     public int itemIdToCreate = 0;
 
-    public void CreateItemsBasedOnTick () {
+    public void CreateItemsBasedOnTick() {
 
         if (curTick >= tickCount) {
-                for (int i = 0; i < allBeltItemSlotsArray.Length; i++) {
-                    BeltItemSlot slot = allBeltItemSlotsArray[i]; 
-                    if (slot != null) {
-                        if (slot.myItem == null)
-                            BeltMaster.s.CreateItemAtBeltSlot(slot, itemIdToCreate);
+            for (int i = 0; i < allBeltItemSlotsArray.Length; i++) {
+                BeltItemSlot slot = allBeltItemSlotsArray[i];
+                if (slot != null) {
+                    if (slot.myItem == null)
+                        BeltMaster.s.CreateItemAtBeltSlot(slot, itemIdToCreate);
                 }
             }
+
             curTick = 0;
         }
 

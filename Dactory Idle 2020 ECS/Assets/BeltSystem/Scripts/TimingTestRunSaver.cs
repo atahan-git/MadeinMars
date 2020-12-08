@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+
+/// <summary>
+/// Use for saving timing test runs to file.
+/// </summary>
 public class TimingTestRunSaver : MonoBehaviour {
 
     public static void WriteTestRunDataToFile (List<string> results) {

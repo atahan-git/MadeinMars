@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Runs the belt loop a bunch of times and stores the timings into a file
+/// </summary>
 public class BeltExecutionTimingTestRunner : BeltMaster {
 
     public List<string> allResults = new List<string>();

@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This was briefly used for some sprite animations. I will keep it in case I need it again
+/// Basically makes a sprite vibrate
+/// Check \Media\Issue 7\Different art styles.gif
+/// </summary>
 public class SpriteVibrate : MonoBehaviour {
     Vector3 originalPos;
     public Vector2 vibrationSize = new Vector2(0.05f,0.05f);

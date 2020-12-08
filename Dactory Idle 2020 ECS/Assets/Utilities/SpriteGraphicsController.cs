@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Controls the graphics for all the world objects.
+/// Creates the shadows, and sets the correct sprite/animation mode accordingly
+/// Also does the orbital landing thing.
+/// </summary>
 public class SpriteGraphicsController : MonoBehaviour {
 
     public GameObject ShadowPrefab;

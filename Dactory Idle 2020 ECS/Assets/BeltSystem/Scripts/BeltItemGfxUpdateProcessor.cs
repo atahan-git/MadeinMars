@@ -6,6 +6,10 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using static Unity.Mathematics.math;
 
+
+/// <summary>
+/// Uses Unity Job system dark magic to update the positions of the items really efficiently
+/// </summary>
 public class BeltItemGfxUpdateProcessor : JobComponentSystem {
     // This declares a new kind of job, which is a unit of work to do.
     // The job is declared as an IJobForEach<Translation, Rotation>,
@@ -21,8 +25,6 @@ public class BeltItemGfxUpdateProcessor : JobComponentSystem {
         // the delta we want to move - calculated with slot distance + Time.deltatime
         public float deltaMovementWithDeltaTime;
 
-
-
         public void Execute (ref Translation translation, [ReadOnly] ref ItemMovement movData) {
             // Implement the work to perform for each entity here.
             // You should only access data that is local or that is a
@@ -36,10 +38,10 @@ public class BeltItemGfxUpdateProcessor : JobComponentSystem {
             // Calculate Vector3.MoveTowards ourselves:
             float3 direction = movData.targetWithOffset - translation.Value;
             float magnitude = length(direction);
-            if (magnitude <= deltaMovementWithDeltaTime || magnitude == 0f) {
-                translation.Value = movData.targetWithOffset;
+            if (magnitude <= deltaMovementWithDeltaTime || magnitude == 0f) { // As long as the distance is more than the move delta, move
+                translation.Value = movData.targetWithOffset; // Set the position as the target
             } else {
-                translation.Value = translation.Value + direction / magnitude * deltaMovementWithDeltaTime;
+                translation.Value = translation.Value + direction / magnitude * deltaMovementWithDeltaTime; // vector math move
             }
         }
     }
@@ -60,6 +62,10 @@ public class BeltItemGfxUpdateProcessor : JobComponentSystem {
         return job.Schedule(this, inputDependencies);
     }
 
+    
+    // These things below didn't work, but I'm keeping them for the future.
+    
+    
     /*[BurstCompile]
     struct ApplyItemPosToEntitiesJob : IJobForEach<ItemMovement> {
 

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Controls the inventory UI panel
+/// </summary>
 public class GUI_InventoryController : MonoBehaviour {
 
     public static bool isExtraInfoVisible = false;

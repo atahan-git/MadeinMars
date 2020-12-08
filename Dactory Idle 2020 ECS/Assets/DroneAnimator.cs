@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
+/// <summary>
+/// Controls the animations of the drone.
+/// </summary>
 public class DroneAnimator : MonoBehaviour {
 
     public GameObject animTarget;

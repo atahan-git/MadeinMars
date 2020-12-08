@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// A smart input helper that gives the mouse location, or the touch input location based on your device.
+/// </summary>
 public static class SmartInput
 {
 

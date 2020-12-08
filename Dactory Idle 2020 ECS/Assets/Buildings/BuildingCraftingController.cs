@@ -5,27 +5,37 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+
+/// <summary>
+/// This exists on all buildings that can craft.
+/// Deals with everything related to building crafting
+/// The periodic updates to this should come from the BuildingMaster.cs script.
+/// </summary>
 public class BuildingCraftingController : MonoBehaviour
 {
-    public BuildingWorldObject myObj;
-    public List<BeltBuildingObject> myBelts;
-    public List<TileData> myTiles;
+    public BuildingWorldObject myObj; // The master script
+    public List<BeltBuildingObject> myBelts; // The BeltBuildingObjects our buildings occupy. We will put items on these and take items from these
+    public List<TileData> myTiles; // the tiles the building occupies
 
     public bool isActive = false;
 
     public IProcess[] myCraftingProcesses = new IProcess[0];
 
+    /// <summary>
+    /// Do the setup tasks, which means figuring out which crafting processes this building can do based on the BuildingData and the RecipeSet
+    /// </summary>
+    /// <param name="mydat"></param>
     public void SetUpCraftingProcesses(BuildingData mydat) {
-        CraftingProcessNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
+        CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
         if (ps != null) {
             if (mydat.myType == BuildingData.ItemType.Miner) {
                 myCraftingProcesses = new IProcess[ps.Length];
-
+                
                 for (int i = 0; i < ps.Length; i++) {
-                    if (DataHolder.s.UniqueNameToOreId(ps[i].outputItemUniqueNames[0], out int oreId)) {
+                    if (DataHolder.s.UniqueNameToOreId(ps[i].outputs[0].itemUniqueName, out int oreId)) {
                         myCraftingProcesses[i] = new MiningProcess(myBelts, myTiles, oreId,
-                            ps[i].outputItemUniqueNames.GetRange(0, ps[i].outputItemUniqueNames.Count - 1),
-                            ps[i].outputItemCounts.GetRange(0, ps[i].outputItemCounts.Count),
+                            ps[i].outputs,
                             ps[i].timeCost
                         );
                     }
@@ -35,10 +45,8 @@ public class BuildingCraftingController : MonoBehaviour
 
                 for (int i = 0; i < ps.Length; i++) {
                     myCraftingProcesses[i] = new CraftingProcess(myBelts,
-                        ps[i].inputItemUniqueNames.GetRange(0, ps[i].inputItemUniqueNames.Count - 1),
-                        ps[i].inputItemCounts.GetRange(0, ps[i].inputItemCounts.Count),
-                        ps[i].outputItemUniqueNames.GetRange(0, ps[i].outputItemUniqueNames.Count - 1),
-                        ps[i].outputItemCounts.GetRange(0, ps[i].outputItemCounts.Count),
+                        ps[i].inputs,
+                        ps[i].outputs,
                         ps[i].timeCost
                     );
                 }
@@ -56,7 +64,7 @@ public class BuildingCraftingController : MonoBehaviour
 
 
         // Miners are special, they should only be mining if there is an item deposit under them!
-        // This is now done in a check in the mining process thing
+        // This is now done in a check in the mining IProcess update check
         /*if (mydat.myType == BuildingData.ItemType.Miner && isActive) {
             List<IProcess> possibleOreProcesses = new List<IProcess>();
             foreach (TileData tile in myObj.myTiles) {
@@ -85,6 +93,9 @@ public class BuildingCraftingController : MonoBehaviour
             GetComponent<BuildingInfoDisplay>().SetUp();*/
     }
 
+    /// <summary>
+    /// Take items in for all the crafting processes
+    /// </summary>
     public void TakeItemsIn () {
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             myCraftingProcesses[i].TakeItemsIn();
@@ -92,12 +103,17 @@ public class BuildingCraftingController : MonoBehaviour
     }
 
     public int lastCheckId = 0;
+    /// <summary>
+    /// Update the crafting processes. When we are done with one of them, try to continue crafting a different one
+    /// </summary>
+    /// <param name="efficiency"></param>
+    /// <returns></returns>
     public float UpdateCraftingProcess (float efficiency) {
         for (int i = 0; i < myCraftingProcesses.Length +1; i++) {
             // Always continue from the last crafting we've made, so that we continue the same process
             if (myCraftingProcesses[lastCheckId].UpdateCraftingProcess(efficiency)) {
                 ContinueAnimations();
-                return myObj.myData.energyUse;
+                return myObj.myData.energyUse; // Return the energy use back for efficiency calculations
             } else {
                 // if we can't process this one, continue with the next one
                 lastCheckId++;
@@ -112,12 +128,20 @@ public class BuildingCraftingController : MonoBehaviour
 
 
     int outputIndex = 0;
+    /// <summary>
+    /// Put the crafting results out
+    /// </summary>
     public void PutItemsOut () {
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             myCraftingProcesses[i].PutItemsOut(ref outputIndex);
         }
     }
 
+    
+    // ------------------------------------------------------
+    // The following are things to run the animations properly
+    
+    
     public bool animationState = true;
     public AnimatedSpriteController[] anims = new AnimatedSpriteController[0];
     public bool isAnimated = true;
@@ -192,12 +216,18 @@ public class BuildingCraftingController : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Every crafting processes will be an IProcess
+/// </summary>
 public interface IProcess {
     void TakeItemsIn();
     bool UpdateCraftingProcess (float efficiency);
     void PutItemsOut (ref int outputIndex);
 }
 
+/// <summary>
+/// This is the simplest process. Belongs to the "Base", this process will just take the items in, and put them to the player inventory.
+/// </summary>
 public class InputProcess : IProcess {
 
     List<BeltBuildingObject> myBelts;
@@ -227,6 +257,9 @@ public class InputProcess : IProcess {
 
 }
 
+/// <summary>
+/// This is the process used by the miners.
+/// </summary>
 public class MiningProcess : IProcess {
     public int oreInId = -1;
 
@@ -235,7 +268,7 @@ public class MiningProcess : IProcess {
     public float curCraftingProgress = 0;
     public float craftingProgressTickReq = 20;
 
-    public int[] outputItemCounts = new int[1];
+    public int[] toBePutOnBeltsAmounts = new int[1];
     public int[] outputItemIds = new int[] {1};
     public int[] outputItemAmounts = new int[] {2};
 
@@ -243,18 +276,19 @@ public class MiningProcess : IProcess {
 
     private List<TileData> myTiles;
 
-    public MiningProcess(List<BeltBuildingObject> belts, List<TileData> tiles, int orein, List<string> outputItems, List<int> outputCounts, float timeReq) {
+    public MiningProcess(List<BeltBuildingObject> belts, List<TileData> tiles, int orein, List<CountedItemNode> _outputs, float timeReq) {
         myBelts = belts;
         myTiles = tiles;
 
         oreInId = orein;
 
-        outputItemCounts = new int[outputItems.Count];
-        outputItemIds = new int[outputItems.Count];
-        outputItemAmounts = outputCounts.ToArray();
-
-        for (int i = 0; i < outputItems.Count; i++) {
-            outputItemIds[i] = DataHolder.s.GetItemIDFromName(outputItems[i]);
+        toBePutOnBeltsAmounts = new int[_outputs.Count];
+        outputItemIds = new int[_outputs.Count];
+        outputItemAmounts = new int[_outputs.Count];
+        
+        for (int i = 0; i < _outputs.Count; i++) {
+            outputItemIds[i] = DataHolder.s.GetItemIDFromName(_outputs[i].itemUniqueName); 
+            outputItemAmounts[i] = _outputs[i].count;
         }
 
         craftingProgressTickReq = (timeReq * BuildingMaster.buildingUpdatePerSecond);
@@ -291,7 +325,7 @@ public class MiningProcess : IProcess {
 
             if (curCraftingProgress >= craftingProgressTickReq) {
                 oreUsed += outputItemAmounts[0];
-                outputItemCounts[0] += outputItemAmounts[0];
+                toBePutOnBeltsAmounts[0] += outputItemAmounts[0];
                 curCraftingProgress = 0;
                 isCrafting = false;
                 return false;
@@ -305,8 +339,8 @@ public class MiningProcess : IProcess {
 
     public void PutItemsOut(ref int outputIndex) {
         int totalItemToOutput = 0;
-        for (int i = 0; i < outputItemCounts.Length; i++) {
-            totalItemToOutput += outputItemCounts[i];
+        for (int i = 0; i < toBePutOnBeltsAmounts.Length; i++) {
+            totalItemToOutput += toBePutOnBeltsAmounts[i];
         }
 
         if (totalItemToOutput <= 0) {
@@ -321,7 +355,7 @@ public class MiningProcess : IProcess {
                     if (curCount == outputIndex) {
                         outputIndex++;
                         if (myBelts[i].myCreationSlots[k].CreateItem(outputItemIds[0])) {
-                            outputItemCounts[0]--;
+                            toBePutOnBeltsAmounts[0]--;
                             totalItemToOutput--;
 
                             if (totalItemToOutput <= 0) {
@@ -343,40 +377,46 @@ public class MiningProcess : IProcess {
 }
 
 
+/// <summary>
+/// This is used by all the crafter buildings
+/// </summary>
 public class CraftingProcess : IProcess {
-    public int[] inputItemCounts = new int[1];
-    public int[] inputItemIds = new int[] {0};
-    public int[] inputItemRequirements = new int[] {5};
+    public int[] toBeTakenFromBeltsAmounts = new int[1];
+    public int[] inputItemIds = new int[] {1};
+    public int[] inputItemAmounts = new int[] {2};
 
     public bool isCrafting = false;
     public float curCraftingProgress = 0;
     public float craftingProgressTickReq = 20;
 
-    public int[] outputItemCounts = new int[1];
+    public int[] toBePutOnBeltsAmounts = new int[1];
     public int[] outputItemIds = new int[] {1};
     public int[] outputItemAmounts = new int[] {2};
 
     List<BeltBuildingObject> myBelts;
 
-    public CraftingProcess(List<BeltBuildingObject> belts, List<string> inputItems, List<int> inputCounts,
-        List<string> outputItems, List<int> outputCounts, float timeReq) {
+    public CraftingProcess(List<BeltBuildingObject> belts, List<CountedItemNode> _inputs, List<CountedItemNode> _outputs, float timeReq) {
         myBelts = belts;
 
-        inputItemCounts = new int[inputItems.Count];
-        inputItemIds = new int[inputItems.Count];
-        inputItemRequirements = inputCounts.ToArray();
-
-        for (int i = 0; i < inputItems.Count; i++) {
-            inputItemIds[i] = DataHolder.s.GetItemIDFromName(inputItems[i]);
+        toBeTakenFromBeltsAmounts = new int[_inputs.Count];
+        inputItemIds = new int[_inputs.Count];
+        inputItemAmounts = new int[_inputs.Count];
+        
+        for (int i = 0; i < _inputs.Count; i++) {
+            inputItemIds[i] = DataHolder.s.GetItemIDFromName(_inputs[i].itemUniqueName);
+            inputItemAmounts[i] = _inputs[i].count;
         }
 
-        outputItemCounts = new int[outputItems.Count];
-        outputItemIds = new int[outputItems.Count];
-        outputItemAmounts = outputCounts.ToArray();
 
-        for (int i = 0; i < outputItems.Count; i++) {
-            outputItemIds[i] = DataHolder.s.GetItemIDFromName(outputItems[i]);
+        toBePutOnBeltsAmounts = new int[_outputs.Count];
+        outputItemIds = new int[_outputs.Count];
+        outputItemAmounts = new int[_outputs.Count];
+        
+        for (int i = 0; i < _outputs.Count; i++) {
+            outputItemIds[i] = DataHolder.s.GetItemIDFromName(_outputs[i].itemUniqueName);
+            outputItemAmounts[i] = _outputs[i].count;
         }
+
 
         craftingProgressTickReq = (timeReq * BuildingMaster.buildingUpdatePerSecond);
     }
@@ -386,9 +426,9 @@ public class CraftingProcess : IProcess {
         for (int i = 0; i < myBelts.Count; i++) {
             for (int k = 0; k < myBelts[i].myInputSlots.Count; k++) {
                 for (int item = 0; item < inputItemIds.Length; item++) {
-                    if (inputItemCounts[item] < inputItemRequirements[item] * 2) {
+                    if (toBeTakenFromBeltsAmounts[item] < inputItemAmounts[item] * 2) {
                         if (myBelts[i].myInputSlots[k].TakeItem(inputItemIds[item]) != -1) {
-                            inputItemCounts[item]++;
+                            toBeTakenFromBeltsAmounts[item]++;
                         }
                     }
                 }
@@ -398,20 +438,20 @@ public class CraftingProcess : IProcess {
 
     public bool UpdateCraftingProcess(float efficiency) {
         if (!isCrafting) {
-            for (int i = 0; i < outputItemCounts.Length; i++) {
-                if (outputItemCounts[i] >= outputItemAmounts[i] * 2) {
+            for (int i = 0; i < toBePutOnBeltsAmounts.Length; i++) {
+                if (toBePutOnBeltsAmounts[i] >= outputItemAmounts[i] * 2) {
                     return false;
                 }
             }
 
-            for (int i = 0; i < inputItemCounts.Length; i++) {
-                if (inputItemCounts[i] < inputItemRequirements[i]) {
+            for (int i = 0; i < toBeTakenFromBeltsAmounts.Length; i++) {
+                if (toBeTakenFromBeltsAmounts[i] < inputItemAmounts[i]) {
                     return false;
                 }
             }
 
-            for (int i = 0; i < inputItemCounts.Length; i++) {
-                inputItemCounts[i] -= inputItemRequirements[i];
+            for (int i = 0; i < toBeTakenFromBeltsAmounts.Length; i++) {
+                toBeTakenFromBeltsAmounts[i] -= inputItemAmounts[i];
             }
 
             isCrafting = true;
@@ -421,7 +461,7 @@ public class CraftingProcess : IProcess {
             curCraftingProgress += efficiency;
 
             if (curCraftingProgress >= craftingProgressTickReq) {
-                outputItemCounts[0] += outputItemAmounts[0];
+                toBePutOnBeltsAmounts[0] += outputItemAmounts[0];
                 isCrafting = false;
                 curCraftingProgress = 0;
                 return false;
@@ -435,8 +475,8 @@ public class CraftingProcess : IProcess {
 
     public void PutItemsOut(ref int outputIndex) {
         int totalItemToOutput = 0;
-        for (int i = 0; i < outputItemCounts.Length; i++) {
-            totalItemToOutput += outputItemCounts[i];
+        for (int i = 0; i < toBePutOnBeltsAmounts.Length; i++) {
+            totalItemToOutput += toBePutOnBeltsAmounts[i];
         }
 
         if (totalItemToOutput <= 0) {
@@ -451,7 +491,7 @@ public class CraftingProcess : IProcess {
                     if (curCount == outputIndex) {
                         outputIndex++;
                         if (myBelts[i].myCreationSlots[k].CreateItem(outputItemIds[0])) {
-                            outputItemCounts[0]--;
+                            toBePutOnBeltsAmounts[0]--;
                             totalItemToOutput--;
 
                             if (totalItemToOutput <= 0) {

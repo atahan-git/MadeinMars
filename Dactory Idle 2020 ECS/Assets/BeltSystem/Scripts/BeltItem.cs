@@ -4,6 +4,9 @@ using UnityEngine;
 using Unity.Entities;
 using UnityEngine.PlayerLoop;
 
+/// <summary>
+/// The items that go on belts. These don't actually have graphics, but are used for data storage and processing.
+/// </summary>
 public class BeltItem : IPoolableClass {
 
 	public bool isProcessedThisLoop = false;
@@ -19,7 +22,7 @@ public class BeltItem : IPoolableClass {
 
 	public float randAmount = 0.03f;
 	public void Setup () {
-		//myRandomOffset = new Vector3(Random.Range(-randAmount, randAmount), Random.Range(-randAmount, randAmount), 0);
+		myRandomOffset = new Vector3(Random.Range(-randAmount, randAmount), Random.Range(-randAmount, randAmount), 0);
 	}
 
 	/*public void DestroyItem () {

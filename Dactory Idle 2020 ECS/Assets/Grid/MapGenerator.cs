@@ -2,6 +2,10 @@
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
+
+/// <summary>
+/// Generates the fancy Martian surface, and deals with the graphics loading/saving
+/// </summary>
 public class MapGenerator : MonoBehaviour {
 
     public Tilemap ground;

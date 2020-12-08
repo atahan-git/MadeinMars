@@ -5,6 +5,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Displays the FPS
+/// </summary>
 public class FPSDisplay : MonoBehaviour
 {
 	float deltaTime = 0.0f;

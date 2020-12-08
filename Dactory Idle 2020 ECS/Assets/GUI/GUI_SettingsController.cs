@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
+/// <summary>
+/// Controls the settings UI panel
+/// </summary>
 public class GUI_SettingsController : MonoBehaviour
 {
     public void ResetData () {

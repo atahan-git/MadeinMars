@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This was briefly used for some sprite animations. I will keep it in case I need it again
+/// Basically makes an object go up and down
+/// Check \Media\Issue 7\Different art styles.gif
+/// </summary>
 public class SpriteUpDown : MonoBehaviour {
-
-
+	
 	Vector3 originalPos;
 	Vector3 animPos;
 

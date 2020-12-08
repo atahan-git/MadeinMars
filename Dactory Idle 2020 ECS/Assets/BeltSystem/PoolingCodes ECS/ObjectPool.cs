@@ -8,6 +8,9 @@ using Unity.Rendering;
 using Unity.Mathematics;
 
 
+/// <summary>
+/// A Unity ECS system based object pooler.
+/// </summary>
 public class ObjectPool : MonoBehaviour {
 
 	[SerializeField] private Mesh mesh;
@@ -107,7 +110,13 @@ public class ObjectPool : MonoBehaviour {
 		return true;
 	}
 
-
+	/// <summary>
+	/// Spawns an object
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <param name="componentData"></param>
+	/// <param name="item"></param>
+	/// <returns>Returns the object id</returns>
 	public int Spawn (Vector3 pos, Vector3 componentData, Item item) {
 		for (int i = 0; i < isActiveArray.Length; i++) {
 			if (!isActiveArray[i]) {
@@ -144,7 +153,7 @@ public class ObjectPool : MonoBehaviour {
 	}*/
 
 	/// <summary>
-	/// You shouldn't use this method unless absolutely necessary. Decoupling!
+	/// You shouldn't use this method unless absolutely necessary. Individual entities shouldn't really be handled on their own.
 	/// </summary>
 	/// <param name="id"></param>
 	/// <returns></returns>

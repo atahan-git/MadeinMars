@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
+
+
+/// <summary>
+/// Helps with the UI menu switching
+/// </summary>
 public class GUI_SwitchController : MonoBehaviour
 {
 

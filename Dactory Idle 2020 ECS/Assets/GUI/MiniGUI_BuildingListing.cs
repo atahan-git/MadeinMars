@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// A helper class for the individual building listing in the inventory panel
+/// </summary>
 public class MiniGUI_BuildingListing : MonoBehaviour {
 
     public Text nameText;

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Keeps track of all the buildings and runs their update loops.
+/// </summary>
 public class BuildingMaster : MonoBehaviour {
     public static BuildingMaster s;
 	public const float buildingUpdatePerSecond = 4;

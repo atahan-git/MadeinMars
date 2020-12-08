@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Holds some debugging things
+/// </summary>
 public class MasterDebug : MonoBehaviour {
 
     public static bool changeColorOnPlacedItemOnTop = false;

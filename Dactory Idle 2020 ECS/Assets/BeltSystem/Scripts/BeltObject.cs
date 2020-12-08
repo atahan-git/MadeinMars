@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The base class all belts should have.
+/// The reasoning behind some parts of this code is lost to time. Read at your own risk.
+/// </summary>
 public class BeltObject : MonoBehaviour {
 
+	// Used when building belts to use up resources.
 	public BuildingData myData;
 
 	// variable to see if this belt was gone through the setup processing for list generation
@@ -73,8 +78,10 @@ public class BeltObject : MonoBehaviour {
 	}
 
 
-	// call this if you wanna remove previous connections as well
-	public void RemoveOldItemSlots () {
+	/// <summary>
+	/// This removes all of the item slots, and deletes the items on top
+	/// </summary>
+	public virtual void RemoveOldItemSlots () {
 		// go around the edges and remove connections
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 4; y++) {

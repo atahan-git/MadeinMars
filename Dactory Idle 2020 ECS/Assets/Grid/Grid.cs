@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Holds the game's grid data These grids are more lightweight than the actual tiles underneath. The graphics are controlled by the build in "Grid"
+/// Handles all the access to the tiles/getting data out operations, and works as an abstraction. Edit this to add chunking functionality
+/// </summary>
 public class Grid : MonoBehaviour
 {
 	public static Grid s;
@@ -22,9 +26,6 @@ public class Grid : MonoBehaviour
 		mapGen = GetComponent<MapGenerator>();
 
 		DataSaver.saveEvent += SaveTiles;
-	}
-
-	private void Start () {
 		GameLoader.CallWhenLoaded(GameLoadingComplete, 0);
 	}
 

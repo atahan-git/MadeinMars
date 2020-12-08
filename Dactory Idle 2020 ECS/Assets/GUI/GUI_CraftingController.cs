@@ -5,8 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
+
+/// <summary>
+/// Controls the crafting UI panel
+/// </summary>
 public class GUI_CraftingController : MonoBehaviour {
-    private List<CraftingProcessNode> allCraftingProcesses = new List<CraftingProcessNode>();
+    private List<CraftingNode> allCraftingProcesses = new List<CraftingNode>();
 
     public Transform CraftingDisplayParent;
     public GameObject CraftingDisplayPrefab;
@@ -23,12 +27,12 @@ public class GUI_CraftingController : MonoBehaviour {
 
         for (int i = 0; i < allCraftingProcesses.Count; i++) {;
             var disp = Instantiate(CraftingDisplayPrefab, CraftingDisplayParent);
-            disp.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = DataHolder.s.GetItem(allCraftingProcesses[i].inputItemUniqueNames[0]).GetSprite();
-            disp.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = allCraftingProcesses[i].inputItemCounts[0].ToString();
+            disp.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = DataHolder.s.GetItem(allCraftingProcesses[i].inputs[0].itemUniqueName).GetSprite();
+            disp.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = allCraftingProcesses[i].inputs[0].count.ToString();
             
-            if (allCraftingProcesses[i].inputItemUniqueNames.Count > 1 && allCraftingProcesses[i].inputItemUniqueNames[1] != "Empty") {
-                disp.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = DataHolder.s.GetItem(allCraftingProcesses[i].inputItemUniqueNames[1]).GetSprite();
-                disp.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = allCraftingProcesses[i].inputItemCounts[1].ToString();
+            if (allCraftingProcesses[i].inputs.Count > 1) {
+                disp.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = DataHolder.s.GetItem(allCraftingProcesses[i].inputs[1].itemUniqueName).GetSprite();
+                disp.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = allCraftingProcesses[i].inputs[1].count.ToString();
             } else {
                 disp.transform.GetChild(0).GetChild(1).GetComponent<Image>().enabled = false;
                 disp.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "";
@@ -36,8 +40,8 @@ public class GUI_CraftingController : MonoBehaviour {
 
             disp.transform.GetChild(3).GetComponent<Text>().text = allCraftingProcesses[i].timeCost.ToString() + " s";
             
-            disp.transform.GetChild(5).GetChild(0).GetComponent<Image>().sprite = DataHolder.s.GetItem(allCraftingProcesses[i].outputItemUniqueNames[0]).GetSprite();
-            disp.transform.GetChild(6).GetChild(0).GetComponent<Text>().text = allCraftingProcesses[i].outputItemCounts[0].ToString();
+            disp.transform.GetChild(5).GetChild(0).GetComponent<Image>().sprite = DataHolder.s.GetItem(allCraftingProcesses[i].outputs[0].itemUniqueName).GetSprite();
+            disp.transform.GetChild(6).GetChild(0).GetComponent<Text>().text = allCraftingProcesses[i].outputs[0].count.ToString();
             
             int x = new int();
             x = i;

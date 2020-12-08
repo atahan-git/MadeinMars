@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Some helpful methods for drawing nice debug things.
+/// </summary>
 public static class DebugExtensions {
-
-
+	
 	public static void DrawSquare (Vector3 pos, Vector3 siz, Color col, bool isTimed) {
 		if (!isTimed) {
 			pos -= Vector3.forward;

@@ -10,6 +10,10 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+/// <summary>
+/// This guy adds a version tracker to the game, and increments it every time you make a code change.
+/// Works really well to see which version you are currently running on a device, but I'm not sure how it will work with more than one working at the same time.
+/// </summary>
 [InitializeOnLoad]
 public class VersionIncrementor {
     static VersionIncrementor () {

@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Controls the "Comms" UI panel
+/// </summary>
 public class GUI_CommsController : MonoBehaviour {
 
 

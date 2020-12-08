@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This is just for the menu, to set the sprites of the assets in the menu manually.
+/// </summary>
 [RequireComponent(typeof(SpriteGraphicsController))]
 public class AutoSetSpriteGraphics : MonoBehaviour {
 

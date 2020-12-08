@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+/// <summary>
+/// An object pool that can be used to pool any kind of Class
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class ObjectPoolSimple<T> where T : IPoolableClass, new() {
 
 	T[] _objectPool;
@@ -89,9 +92,7 @@ public class ObjectPoolSimple<T> where T : IPoolableClass, new() {
 		}
 	}
 
-
-
-
+	
 
 	public T Spawn () {
 		return _Spawn();

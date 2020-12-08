@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// An example class showcasing how you would spawn pooled objects vs regular objects
+/// </summary>
 [RequireComponent(typeof(ObjectPool))]
 public class PoolingExample :  MonoBehaviour {
 

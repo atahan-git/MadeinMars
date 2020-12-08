@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Helps with controlling the green/red squares that are generated when placing an building down
+/// See ItemPlacementHelper
+/// </summary>
 public class ItemPlacementSpriteHelper : MonoBehaviour {
 
 	public int x = 0;

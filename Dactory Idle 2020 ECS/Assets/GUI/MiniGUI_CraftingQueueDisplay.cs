@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+/// <summary>
+/// A helper class for the individual Crafting queue's in the crafting ui panel
+/// </summary>
 public class MiniGUI_CraftingQueueDisplay : MonoBehaviour
 {
     public float progress = 0;
@@ -18,12 +21,12 @@ public class MiniGUI_CraftingQueueDisplay : MonoBehaviour
 
     GUI_CraftingController cont;
 
-    private CraftingProcessNode cp;
-    public void SetUp(CraftingProcessNode _cp, GUI_CraftingController c) {
+    private CraftingNode cp;
+    public void SetUp(CraftingNode _cp, GUI_CraftingController c) {
         cp = _cp;
         progress = 0;
         timeReq = cp.timeCost;
-        myItem = DataHolder.s.GetItem(cp.outputItemUniqueNames[0]);
+        myItem =  DataHolder.s.GetItem(cp.outputs[0].itemUniqueName);
         myImg.sprite = myItem.GetSprite();
         cont = c;
     }

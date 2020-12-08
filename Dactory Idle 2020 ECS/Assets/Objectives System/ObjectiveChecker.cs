@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is supposed to be the class that holds all the objectives and check when they are done or not
+/// Functionality is not there yet
+/// </summary>
 public class ObjectiveChecker {
 	private readonly ObjectiveHolder[] allObjectives;
 	private readonly List<InventoryItemSlot> allInventory;

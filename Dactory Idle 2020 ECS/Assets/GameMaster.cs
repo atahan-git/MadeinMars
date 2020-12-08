@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/// <summary>
+/// Controls the main game flow, with loading the game and starting various systems.
+/// Ideally any long term process should start from here.
+/// Also deals with quitting/saving the game
+/// </summary>
 public class GameMaster : MonoBehaviour {
 
 	public static GameMaster s;

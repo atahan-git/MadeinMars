@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueName: bBelt1
   shape:
-    rows:
+    column:
     - row: 00000000000000
     - row: 00000000000000
     - row: 00000000000000
@@ -24,6 +24,13 @@ MonoBehaviour:
     - row: 00000000000000
   myType: 0
   BuildingAbility: 0000000000
-  BuildingSprite: {fileID: 1781132548449239830, guid: ef5be55c1a6aa764f93f1929c9745a59,
+  energyUse: 0
+  gfxType: 0
+  gfxSprite: {fileID: 4704767108662335422, guid: ef5be55c1a6aa764f93f1929c9745a59,
     type: 3}
+  gfxShadowSprite: {fileID: 0}
+  isAnimatedShadow: 0
+  gfxSpriteAnimation: {fileID: 0}
+  gfxPrefab: {fileID: 0}
   spriteOffset: {x: 0, y: 0}
+  playerBuildable: 1

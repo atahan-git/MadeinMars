@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// Used just as a stroge object. Should have no functionality of its own
+/// The main building object. Should work to store data for the other components, and deal with placing/removing the building.
 /// </summary>
 public class BuildingWorldObject : MonoBehaviour
 {

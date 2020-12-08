@@ -5,6 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+
+
+/// <summary>
+/// A lightweight animated sprite controller.
+/// Unity's own animation system is too heavy for simple sprite cycles on every object, so a lightweight controller like this is necessary.
+/// </summary>
 public class AnimatedSpriteController : MonoBehaviour {
 
 	[SerializeField]

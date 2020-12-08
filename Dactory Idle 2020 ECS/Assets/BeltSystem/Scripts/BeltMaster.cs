@@ -11,35 +11,46 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using static Unity.Mathematics.math;
 
+
+
+/// <summary>
+/// Controls the flow of the belt processes.
+/// The belt update loop starts here, and generally all of the belt connection/destruction operations should go through here as well.
+/// </summary>
 public class BeltMaster : MonoBehaviour {
 	public static BeltMaster s;
 
+	// These are serialized for debugging ease from the inspector.
 	[SerializeField] protected List<BeltObject> allBelts = new List<BeltObject>();
 	[SerializeField] protected List<BeltPreProcessor.BeltGroup> beltGroups = new List<BeltPreProcessor.BeltGroup>();
 
 	[SerializeField] protected List<BeltItem> allBeltItems = new List<BeltItem>();
 
+	// We need a copy of these classes to run the updates
 	protected BeltPreProcessor beltPreProc;
 	protected BeltItemSlotUpdateProcessor beltItemSlotProc;
 
+	// Starts the belt loops automatically
 	public bool autoStart = true;
+	// debug overlay draws for belt slots
 	public bool debugDraw = false;
 
+	// Every update items on belt will move one slot.
 	public const float beltUpdatePerSecond = 4;
 	public const float itemWorldPositionZOffset = -1f;
-
+	
 	public ObjectPoolSimple<BeltItem> itemPool;
 	[HideInInspector]
 	public ObjectPool entityPool; //refactor this asap pls, belt item slot should not access this
 
 
+	private bool debugCreatorsActive = false;
 	protected List<MagicItemCreator> allCreators = new List<MagicItemCreator>();
 	protected List<MagicItemDestroyer> allDestroyers = new List<MagicItemDestroyer>();
 
 	public int maxItemCount = 4000;
 
 	EntityManager entityManager;
-	// Start is called before the first frame update
 
 	private void Awake() {
 		if (s != null) {
@@ -55,23 +66,30 @@ public class BeltMaster : MonoBehaviour {
 			StartBeltSystem();
 	}
 
-	public void StartBeltSystem () {
+	/// <summary>
+	/// Starts the belt systems. Should be called at the start of the game once, after the belts are created.
+	/// </summary>
+	public void StartBeltSystem() {
 		print("Starting Belt System");
 		itemPool = new ObjectPoolSimple<BeltItem>(maxItemCount, maxItemCount);
 		itemPool.SetUp();
 
 		entityPool = GetComponent<ObjectPool>();
-
+		
 		SetupBeltSystem();
 
 		CreateGfxs();
 		StartBeltSystemLoops();
 
-
-		allCreators = new List<MagicItemCreator>(FindObjectsOfType<MagicItemCreator>());
-		allDestroyers = new List<MagicItemDestroyer>(FindObjectsOfType<MagicItemDestroyer>());
+		if (debugCreatorsActive) {
+			allCreators = new List<MagicItemCreator>(FindObjectsOfType<MagicItemCreator>());
+			allDestroyers = new List<MagicItemDestroyer>(FindObjectsOfType<MagicItemDestroyer>());
+		}
 	}
 
+	/// <summary>
+	/// Belts need an initial update to their graphics. After starting this is handled by the building belts systems
+	/// </summary>
 	void CreateGfxs () {
 		for (int i = 0; i < allBelts.Count; i++) {
 			allBelts[i].UpdateGraphics();
@@ -79,32 +97,49 @@ public class BeltMaster : MonoBehaviour {
 	}
 
 	public void SetupBeltSystem () {
+		// Get all the belts
 		allBelts = new List<BeltObject>(FindObjectsOfType<BeltObject>());
 
+		// Update the belts internal position data based on world position
 		for (int i = 0; i <  allBelts.Count; i++) {
 			BeltObject belt = allBelts[i];
 			belt.SetPosBasedOnWorlPos();
 		}
 
+		// Create the helper class, and run the prepass
 		beltPreProc = new BeltPreProcessor(beltGroups, allBeltItems, GetBeltAtLocation);
-
 		beltPreProc.PrepassBelts(allBelts);
-
+		// Create the other helper class
 		beltItemSlotProc = new BeltItemSlotUpdateProcessor(itemPool, beltGroups);
 	}
 
+	/// <summary>
+	/// Starts the belt loops so that items actually move. Should only be called once.
+	/// </summary>
 	public void StartBeltSystemLoops () {
 		StartCoroutine(BeltItemSlotUpdateLoop());
 	}
 
+	/// <summary>
+	/// Used to remove a belt from the belt update system.
+	/// This does NOT physical delete the belt!
+	/// </summary>
+	/// <param name="Destroyed Belt"></param>
 	public void DestroyABelt (BeltObject destroyedBelt){
 		if (beltPreProc == null) {
+			Debug.LogError("Belt Processor not found! Please run the SetupBeltSystem before deleting any belts!");
 			return;
 		}
 		allBelts.Remove(destroyedBelt);
 		beltPreProc.RemoveBelt(destroyedBelt);
 	}
 
+	/// <summary>
+	/// Used to add a belt connected to another belt in the belt system.
+	/// This does NOT physically add a belt!
+	/// </summary>
+	/// <param name="newBelt"></param>
+	/// <param name="updatedBelt"></param>
 	public void AddOneBeltConnectedToOne (BeltObject newBelt, BeltObject updatedBelt) {
 		allBelts.Add(newBelt);
 		beltPreProc.ResetBeltSlots(newBelt);
@@ -112,12 +147,22 @@ public class BeltMaster : MonoBehaviour {
 		ProcessBeltGroupingChange(newBelt);
 	}
 
+	/// <summary>
+	/// Used to add a single belt to the belt update system, not connected to anything yet
+	/// This does NOT physically add a belt!
+	/// </summary>
+	/// <param name="newBelt"></param>
 	public void AddOneBelt (BeltObject newBelt) {
 		allBelts.Add(newBelt);
 		beltPreProc.ResetBeltSlots(newBelt);
 		ProcessBeltGroupingChange(newBelt);
 	}
 
+	/// <summary>
+	/// Used when adding a belt from a save file.
+	/// This actually does nothing because you need to run the "SetupBeltSystem", so doing updates for every new belt is redundant.
+	/// </summary>
+	/// <param name="savedBelt"></param>
 	public void AddOneBeltFromSave(BeltObject savedBelt) {
 		return;
 		savedBelt.CreateBeltItemSlots();
@@ -125,24 +170,38 @@ public class BeltMaster : MonoBehaviour {
 		allBelts.Add(savedBelt);
 	}
 
+	/// <summary>
+	/// Used when connections of a belt has changed, and underlying system needs to be re-calculated
+	/// This does NOT physically change a belt.
+	/// </summary>
+	/// <param name="updatedBelt"></param>
 	public void ChangeOneBelt (BeltObject updatedBelt) {
 		beltPreProc.ResetBeltSlots(updatedBelt);
 		ProcessBeltGroupingChange(updatedBelt);
 	}
 
+	/// <summary>
+	/// Internal function to update a belt's grouping when anything has happened to the belt
+	/// </summary>
+	/// <param name="updatedBelt"></param>
 	private void ProcessBeltGroupingChange (BeltObject updatedBelt) {
 		beltPreProc.ProcessBeltGroupingChange(updatedBelt);
 	}
 
+	/// <summary>
+	/// The main update loop for the belt system. Makes sure the relevant updates are called in the correct order
+	/// </summary>
 	IEnumerator BeltItemSlotUpdateLoop () {
 		while (true) {
+			// Update the internal item positions
 			beltItemSlotProc.UpdateBeltItemSlots();
-
+			// Update the visual item positions
 			ApplyPositionsToEntities();
 
-			CreateItems();
-
-			DestroyItems();
+			if (debugCreatorsActive) {
+				CreateItems();
+				DestroyItems();
+			}
 
 			//BeltItemGfxUpdateProcessor.UpdateBeltItemPositions();
 
@@ -150,6 +209,9 @@ public class BeltMaster : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Applies the internal lightweight items' positions to the ECS system entities.
+	/// </summary>
 	void ApplyPositionsToEntities () {
 		for (int i = 0; i < itemPool.objectPool.Length; i++) {
 			if (itemPool.objectPool[i].isMovedThisLoop) {
@@ -176,9 +238,12 @@ public class BeltMaster : MonoBehaviour {
 	}
 
 
+	
+	/// <summary>
+	/// The actual Update is only needed for debug drawing.
+	/// </summary>
 	float timer = 500f;
 	float maxTime = 500f;
-	// Update is called once per frame
 	void Update () {
 		if (debugDraw) {
 			if (timer > maxTime) {
@@ -194,16 +259,22 @@ public class BeltMaster : MonoBehaviour {
 
 			/*for (int i = 0; i < itemPool.objectpool.Length; i++)
 				itemPool.objectpool[i].DebugDraw();*/
+			
+			timer += Time.deltaTime;
+			
+			//print("####");
+			//print(beltGroups.Count);
+			//print(beltGroups[0].beltItemSlotGroups.Count);
+			//print(beltGroups[0].beltItemSlotGroups[0].Count);
 		}
-
-
-		timer += Time.deltaTime;
-		//print("####");
-		//print(beltGroups.Count);
-		//print(beltGroups[0].beltItemSlotGroups.Count);
-		//print(beltGroups[0].beltItemSlotGroups[0].Count);
 	}
 
+	/// <summary>
+	/// An easy to edit function that the helper methods require to find the belts.
+	/// Can be replaced with other functions for unit testing, or edited if the underlying tile system changes.
+	/// </summary>
+	/// <param name="pos"></param>
+	/// <returns></returns>
 	protected BeltObject GetBeltAtLocation (Position pos) {
 		BeltObject belt = null;
 		try {
@@ -213,7 +284,15 @@ public class BeltMaster : MonoBehaviour {
 	}
 
 
+	
 	public int activeItemCount = 0;
+	/// <summary>
+	/// ALL item creation must go through this method.
+	/// Creates 1 item at the designated BeltItemSlot
+	/// </summary>
+	/// <param name="slot"></param>
+	/// <param name="itemId">Use the Ids generated by the DataHolder</param>
+	/// <returns>Return true if item creation was successful</returns>
 	public bool CreateItemAtBeltSlot (BeltItemSlot slot , int itemId) {
 		if (slot != null) {
 			if (slot.myItem == null) {
@@ -228,6 +307,12 @@ public class BeltMaster : MonoBehaviour {
 		return false;
 	}
 
+	/// <summary>
+	/// ALL item destruction should go through this method
+	/// Destroys the item at the given BeltItemSlot
+	/// </summary>
+	/// <param name="slot"></param>
+	/// <returns>Returns the itemId for successful destruction, -1 if failed.</returns>
 	public int DestroyItemAtSlot (BeltItemSlot slot) {
 		if (slot != null) {
 			if (slot.myItem != null) {
@@ -243,6 +328,13 @@ public class BeltMaster : MonoBehaviour {
 		return -1;
 	}
 
+	/// <summary>
+	/// Used when wanting to destroy a particular item
+	/// Only destroys the correct item
+	/// </summary>
+	/// <param name="slot"></param>
+	/// <param name="itemId"></param>
+	/// <returns>Return the itemId on success, -1 on failure</returns>
 	public int DestroyItemAtSlot (BeltItemSlot slot, int itemId) {
 		if (slot != null)
 			if (slot.myItem != null)

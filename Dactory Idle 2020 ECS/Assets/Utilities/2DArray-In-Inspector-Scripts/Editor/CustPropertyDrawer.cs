@@ -2,10 +2,12 @@
 using UnityEditor;
 using System.Collections;
 
+
+/// <summary>
+/// This guy makes the "ArrayLayout" actually work
+/// </summary>
 [CustomPropertyDrawer(typeof(ArrayLayout))]
 public class CustPropertyDrawer : PropertyDrawer {
-
-
 	public override void OnGUI(Rect position,SerializedProperty property,GUIContent label){
 		EditorGUI.PrefixLabel(position,label);
 		Rect newposition = position;

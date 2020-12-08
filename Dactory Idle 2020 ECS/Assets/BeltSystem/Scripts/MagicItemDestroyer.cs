@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// A custom belt object for debugging purposes. Works as a 'thrash'
+/// </summary>
 public class MagicItemDestroyer : BeltObject
 {
     public void DestroyItemsOnSlots () {

@@ -5,6 +5,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Controls the Building Bar in the UI, the three slots that you can build buildings out from, and also the connections for the belt and sell buttons.
+/// </summary>
 public class GUI_BuildingBarController : MonoBehaviour {
 
     public bool isOnFocus = true;
@@ -21,9 +25,11 @@ public class GUI_BuildingBarController : MonoBehaviour {
     public Image PlaceBeltsButton;
     public bool CanPlaceBelts = true;
 
-    private void Start () {
+    private void Awake() {
         GameLoader.CallWhenLoaded(LoadBuildingSlots);
+    }
 
+    private void Start () {
         DataSaver.saveEvent += SaveBuildingSlots;
 
         Player_InventoryController.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;

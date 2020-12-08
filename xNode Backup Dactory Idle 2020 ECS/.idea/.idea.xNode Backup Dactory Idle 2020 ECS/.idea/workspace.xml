@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="abae5af8-8618-479d-a797-4e1025e8cb85" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.xNode Backup Dactory Idle 2020 ECS/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingCraftingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/BuildingCraftingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/ObjectBuilderMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Buildings/ObjectBuilderMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/DataHolder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/GameLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/GameLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Player_InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Core/Player_InventoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/BuildingInfoDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/BuildingInfoDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_BuildingBarController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_BuildingBarController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_CraftingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/GUI_CraftingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/MiniGUI_CraftingQueueDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/MiniGUI_CraftingQueueDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Edges 30 30 30 30.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Edges 30 30 30 30.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Edges.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Just the Edges 30 30 30 30.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Just the Edges 30 30 30 30.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Shadow 40 40 40 40.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With Shadow 40 40 40 40.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With smooth Edges 30 30 30 30.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle With smooth Edges 30 30 30 30.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edge shadow smooth edges Smaller edge.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edge shadow smooth edges Smaller edge.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edge shadow smooth edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edge shadow smooth edges.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edge shadow.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edge shadow.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edges and inner shadow.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with edges and inner shadow.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with gradient + - + -.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with gradient + - + -.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with inner shadow smooth edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle with inner shadow smooth edges.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/Rectangle.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/circle with gradient edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/circle with gradient edges.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/circle.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/circle.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/edge shadow smooth edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/edge shadow smooth edges.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/edge shadow.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/edge shadow.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/inner shadow smooth edges.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/inner shadow smooth edges.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/inner shadow.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/inner shadow.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/rectangle with hole 2.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/rectangle with hole 2.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/rectangle with hole.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/rectangle with hole.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/ring.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/GUI/UI Basic Shapes/ring.psd.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Grid/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Grid/Grid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Play Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Play Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/BuildingData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/BuildingData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/BuildingNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/BuildingNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/CraftingProcessNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/CraftingProcessNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/BuildingNodeEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/BuildingNodeEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/CraftingProcessNodeEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/CraftingProcessNodeEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/ItemNodeEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/ItemNodeEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/RecipeNodeSystemEditor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/RecipeNodeSystemEditor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/RecipeSetEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/Editor/RecipeSetEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/ItemSet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/OreSpawnSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/OreSpawnSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/RecipeNodeSystem.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/RecipeNodeSystem.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/RecipeSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/RecipeSet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/CONTRIBUTING.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/LICENSE.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/README.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Attributes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Attributes/NodeEnum.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Attributes/NodeEnum.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Drawers.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Drawers/NodeEnumDrawer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Drawers/NodeEnumDrawer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAction.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAction.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAssetModProcessor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorAssetModProcessor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUILayout.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorGUILayout.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorPreferences.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorPreferences.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorReflection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorReflection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorResources.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorResources.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorUtilities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorUtilities.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeEditorWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeGraphEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/NodeGraphEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/RenamePopup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/RenamePopup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/ScriptTemplates.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/ScriptTemplates/xNode_NodeGraphTemplate.cs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/ScriptTemplates/xNode_NodeGraphTemplate.cs.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/ScriptTemplates/xNode_NodeTemplate.cs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/ScriptTemplates/xNode_NodeTemplate.cs.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_dot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_dot.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_dot_outer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_dot_outer.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_node.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_node.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_node_highlight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_node_highlight.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_node_workfile.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/Resources/xnode_node_workfile.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/xNodeEditor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Editor/xNodeEditor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Node.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/Node.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeDataCache.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeDataCache.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeGraph.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodeGraph.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodePort.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/Scripts/NodePort.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/xNode.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/RecipeNodeSystem/xNode/xNode.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Items.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Recipies/Items.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Example Item Set.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Example Item Set.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Example Recipe Set.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Example Recipe Set.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Iron Processed.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Iron Processed.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Iron Processed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Iron Processed.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Iron.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/Iron.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/iron.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Examples/iron.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Prefabs/Recipe Tree Viewer.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Prefabs/Recipe Tree Viewer.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/RecipeNodeSystem.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/RecipeNodeSystem.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scenes/Node Item Tree Making Scene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scenes/Node Item Tree Making Scene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/CraftingNodeGfx.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/CraftingNodeGfx.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Editor/PropertyDrawers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Editor/PropertyDrawers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Editor/RecipeNodeSystemEditor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Editor/RecipeNodeSystemEditor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Bezier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Bezier.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/CraftingNode.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/CraftingNode.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/DragMe.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/DragMe.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/DragPanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/DragPanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/DropMe.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/DropMe.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Input Port.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Input Port.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Item List Prefab.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Item List Prefab.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/ItemNode.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/ItemNode.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/NodeFocusCatcher.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/NodeFocusCatcher.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Output Port.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/Output Port.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/ValueRegion.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/ValueRegion.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/ValueRegion.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/Helper Scripts/ValueRegion.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/ItemNodeGfx.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/ItemNodeGfx.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/ItemSet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/NodeItemTreeMakerMaster.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/NodeItemTreeMakerMaster.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/NodePortGfx.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/NodePortGfx.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/PinchableScrollRect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/PinchableScrollRect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeSet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeTreeViewer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/RecipeTreeViewer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/AccordionElementEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/AccordionElementEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/BezierLineRendererEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/BezierLineRendererEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/BoxSliderEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/BoxSliderEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUIBezierCurveEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUIBezierCurveEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUIGraphicEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUIGraphicEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUIImageEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUIImageEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUITextEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CUITextEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CanvasGroupActivator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/CanvasGroupActivator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/ColorPickerPresetsEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/ColorPickerPresetsEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/FancyScrollView.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/FancyScrollView/ScrollerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/FancyScrollView/ScrollerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/NonDrawingGraphicEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/NonDrawingGraphicEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/RangeSliderEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/RangeSliderEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/ReadOnlyDrawer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/ReadOnlyDrawer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/ScrollPositionControllerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/ScrollPositionControllerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicIconEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicIconEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicIconListCopier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicIconListCopier.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicRenameEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/TextPicRenameEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/UIExtensionsMenuOptions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/UIExtensionsMenuOptions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/uGUITools.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Editor/uGUITools.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/LICENSE.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/README.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/RELEASENOTES.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/RELEASENOTES.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/SoftMaskShader.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/SoftMaskShader.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Add.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Add.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle AddMultiply.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle AddMultiply.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle AddSmooth.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle AddSmooth.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Alpha Blend.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Alpha Blend.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Blend.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Blend.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Multiply.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Multiply.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle MultiplyDouble.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle MultiplyDouble.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Premultiply Blend.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle Premultiply Blend.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle VertexLit Blended.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UI Particle VertexLit Blended.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIAdditive.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIAdditive.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIImageCrop.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIImageCrop.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UILinearDodge.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UILinearDodge.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIMultiply.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIMultiply.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIParticleHidden.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIParticleHidden.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIScreen.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UIScreen.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UISoftAdditive.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Resources/Shaders/UISoftAdditive.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Accordion.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Accordion.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/AccordionElement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/AccordionElement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Tweening.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Tweening/FloatTween.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Tweening/FloatTween.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Tweening/ITweenValue.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Tweening/ITweenValue.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Tweening/TweenRunner.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Accordion/Tweening/TweenRunner.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/BoxSlider.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/BoxSlider.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorImage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorImage.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorLabel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorLabel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorPickerControl.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorPickerControl.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorPickerPresets.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorPickerPresets.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorPickerTester.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorPickerTester.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorSampler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorSampler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorSlider.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorSlider.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorSliderImage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorSliderImage.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorValues.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/ColorValues.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/Events.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/Events/ColorChangedEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/Events/ColorChangedEvent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/Events/HSVChangedEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/Events/HSVChangedEvent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/HSVUtil.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/HSVUtil.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/HexColorField.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/HexColorField.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/SVBoxSlider.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/SVBoxSlider.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/TiltWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ColorPicker/TiltWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/AutoCompleteComboBox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/AutoCompleteComboBox.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/ComboBox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/ComboBox.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/DropDownList.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/DropDownList.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/DropDownListButton.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/DropDownListButton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/DropDownListItem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ComboBox/DropDownListItem.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/CooldownButton.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/CooldownButton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/InputFocus.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/InputFocus.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/MultiTouchScrollRect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/MultiTouchScrollRect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RadialSlider.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RadialSlider.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RangeSlider.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RangeSlider.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableList.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableList.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableListContent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableListContent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableListDebug.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableListDebug.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableListElement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/ReorderableList/ReorderableListElement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RescalingPanels.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RescalingPanels/RescaleDragPanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RescalingPanels/RescaleDragPanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RescalingPanels/RescalePanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RescalingPanels/RescalePanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RescalingPanels/ResizePanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/RescalingPanels/ResizePanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Segment.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Segment.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SegmentedControl.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SegmentedControl.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SelectionBox.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SelectionBox/ExampleSelectable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SelectionBox/ExampleSelectable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SelectionBox/IBoxSelectable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SelectionBox/IBoxSelectable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SelectionBox/SelectionBox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/SelectionBox/SelectionBox.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Stepper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/Stepper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/StepperSide.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/StepperSide.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/TextPic.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/TextPic.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/UI_Knob.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Controls/UI_Knob.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/BestFitOutline.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/BestFitOutline.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIBezierCurve.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIBezierCurve.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIGraphic.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIGraphic.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIImage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIImage.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIMisc.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIMisc.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurlyUI/CUIText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurvedText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CurvedText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CylinderText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/CylinderText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/Gradient.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/Gradient.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/Gradient2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/Gradient2.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/LetterSpacing.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/LetterSpacing.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/MonoSpacing.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/MonoSpacing.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/NicerOutline.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/NicerOutline.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/RaycastMask.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/RaycastMask.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIAdditiveEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIAdditiveEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIImageCrop.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIImageCrop.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UILinearDodgeEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UILinearDodgeEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIMultiplyEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIMultiplyEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIScreenEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UIScreenEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UISoftAdditiveEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShaderEffects/UISoftAdditiveEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShineEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShineEffect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShineEffector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/ShineEffector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/SoftMaskScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/SoftMaskScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/UIFlippable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/UIFlippable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/UIParticleSystem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Effects/UIParticleSystem.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/InputModules.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/InputModules/AimerInputModule.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/InputModules/AimerInputModule.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/InputModules/GamePadInputModule.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/InputModules/GamePadInputModule.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/2D Cards.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/2D Cards/CardExpanding2D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/2D Cards/CardExpanding2D.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/2D Cards/CardPopup2D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/2D Cards/CardPopup2D.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/2D Cards/CardStack2D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/2D Cards/CardStack2D.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/3D Cards.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/3D Cards/CardExpanding3D.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/3D Cards/CardExpanding3D.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/Superellipse Creation.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/Superellipse Creation/MeshCreator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/Superellipse Creation/MeshCreator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/Superellipse Creation/SuperellipsePoints.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/Superellipse Creation/SuperellipsePoints.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/Superellipse Creation/Triangulator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CardUI/Superellipse Creation/Triangulator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ContentScrollSnapHorizontal.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ContentScrollSnapHorizontal.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CurvedLayout.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/CurvedLayout.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Core/FancyCell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Core/FancyCell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Core/FancyScrollView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Core/FancyScrollView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyCellGroup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyCellGroup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyGridView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyGridView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyGridViewCell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyGridViewCell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyGridViewContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/FancyGridViewContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/IFancyCellGroupContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/IFancyCellGroupContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/IFancyGridViewContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/GridView/IFancyGridViewContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/FancyScrollRect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/FancyScrollRect.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/FancyScrollRectCell.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/FancyScrollRectCell.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/FancyScrollRectContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/FancyScrollRectContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/IFancyScrollRectContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/ScrollRect/IFancyScrollRectContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/EasingCore.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/EasingCore.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/MovementDirection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/MovementDirection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/MovementType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/MovementType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/ScrollDirection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/ScrollDirection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/Scroller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FancyScrollView/Scroller/Scroller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FlowLayoutGroup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/FlowLayoutGroup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/HorizontalScrollSnap.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/HorizontalScrollSnap.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/IScrollSnap.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/IScrollSnap.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/RadialLayout.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/RadialLayout.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollPositionController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollPositionController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollSnap.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollSnap.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollSnapBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollSnapBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollSnapScrollbarHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/ScrollSnapScrollbarHelper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/TableLayoutGroup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/TableLayoutGroup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/TileSizeFitter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/TileSizeFitter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/UIVerticalScroller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/UIVerticalScroller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/VerticalScrollSnap.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Layout/VerticalScrollSnap.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/MenuSystem.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/MenuSystem/Menu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/MenuSystem/Menu.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/MenuSystem/MenuManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/MenuSystem/MenuManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/MenuSystem/SimpleMenu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/MenuSystem/SimpleMenu.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/DiamondGraph.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/DiamondGraph.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UICircle.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UICircle.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UICornerCut.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UICornerCut.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UIGridRenderer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UIGridRenderer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UILineRenderer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UILineRenderer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UILineRendererList.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UILineRendererList.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UILineTextureRenderer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UILineTextureRenderer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UIPolygon.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UIPolygon.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UIPrimitiveBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Primitives/UIPrimitiveBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/TabNavigationHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/TabNavigationHelper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/BoundTooltip.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/BoundTooltip/BoundTooltipItem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/BoundTooltip/BoundTooltipItem.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/BoundTooltip/BoundTooltipTrigger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/BoundTooltip/BoundTooltipTrigger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/HoverTooltip.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/HoverTooltip.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/ToolTip.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/ToolTip.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/TooltipTrigger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/ToolTips/TooltipTrigger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/UIWindowBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/UIWindowBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/BezierPath.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/BezierPath.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/CLFZ2-CompressionHelper-ReadME.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/CLFZ2-CompressionHelper-ReadME.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/CLZF2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/CLZF2.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/CableCurve.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/CableCurve.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/Circle.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/Circle.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/DragCorrector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/DragCorrector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ExtensionsToggle.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ExtensionsToggle.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ExtensionsToggleGroup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ExtensionsToggleGroup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ExtentionMethods.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ExtentionMethods.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/InputFieldEnterSubmit.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/InputFieldEnterSubmit.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/NonDrawingGraphic.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/NonDrawingGraphic.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/PPIViewer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/PPIViewer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/PaginationManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/PaginationManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ReadOnlyAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ReadOnlyAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ReturnKeyTriggersButton.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ReturnKeyTriggersButton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollConflictManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollConflictManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectEx.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectEx.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectLinker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectLinker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectTweener.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/ScrollRectTweener.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/SelectableScaler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/SelectableScaler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/SetPropertyUtility.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/SetPropertyUtility.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/TestCompression.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/TestCompression.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIExtensionMethods.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIExtensionMethods.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIHighlightable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIHighlightable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UILineConnector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UILineConnector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIScrollToSelection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIScrollToSelection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIScrollToSelectionXY.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UIScrollToSelectionXY.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UISelectableExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UISelectableExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UI_InfiniteScroll.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UI_InfiniteScroll.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UI_ScrollRectOcclusion.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UI_ScrollRectOcclusion.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UI_TweenScale.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/UI_TweenScale.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/switchToRectTransform.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/Utilities/switchToRectTransform.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/VR Extensions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/VR Extensions/VRCursor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/VR Extensions/VRCursor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/VR Extensions/VRInputModule.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/Runtime/Scripts/VR Extensions/VRInputModule.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/Scripts/unity-ui-extensions/package.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/DottedRoundedRect.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/DottedRoundedRect.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/DottedRoundedRectFilled.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/DottedRoundedRectFilled.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Monkirta Pursuit NC.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Monkirta Pursuit NC.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Edges 30 30 30 30.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Edges 30 30 30 30.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Edges.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Edges.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Just the Edges 30 30 30 30.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Just the Edges 30 30 30 30.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Shadow 40 40 40 40.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With Shadow 40 40 40 40.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With smooth Edges 30 30 30 30.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle With smooth Edges 30 30 30 30.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edge shadow smooth edges Smaller edge.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edge shadow smooth edges Smaller edge.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edge shadow smooth edges.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edge shadow smooth edges.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edge shadow.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edge shadow.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edges and inner shadow.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with edges and inner shadow.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with gradient + - + -.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with gradient + - + -.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with inner shadow smooth edges.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle with inner shadow smooth edges.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/Rectangle.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/circle with gradient edges.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/circle with gradient edges.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/circle.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/circle.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/edge shadow smooth edges.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/edge shadow smooth edges.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/edge shadow.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/edge shadow.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/inner shadow smooth edges.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/inner shadow smooth edges.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/inner shadow.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/inner shadow.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/rectangle with hole 2.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/rectangle with hole 2.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/rectangle with hole.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/rectangle with hole.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/ring.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Editor Node Item Tree Maker/Assets/UI Basic Shapes/ring.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Recipies/Base Recipe Set.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Recipies/Base Recipe Set.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/version.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1kuv3OFRXtEVM9l4BuiC1oP1vCd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="abae5af8-8618-479d-a797-4e1025e8cb85" name="Default Changelist" comment="" />
+      <created>1606563090652</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606563090652</updated>
+      <workItem from="1606563097040" duration="1358000" />
+      <workItem from="1606581325919" duration="1942000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

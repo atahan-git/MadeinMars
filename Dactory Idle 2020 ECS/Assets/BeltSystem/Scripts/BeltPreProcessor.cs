@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
+
+/// <summary>
+/// Deals with the creation of belt groups
+/// For the belt system to work they need to be pre-processed, assigned to update groups, and the belt slots need to be correctly ordered.
+/// See the gif _Dactory Idle 2020\Media\Issues 1-4\gifs\Advanced passes for more info.
+/// </summary>
 public class BeltPreProcessor {
 
 	public List<BeltGroup> allBeltGroups = new List<BeltGroup>();

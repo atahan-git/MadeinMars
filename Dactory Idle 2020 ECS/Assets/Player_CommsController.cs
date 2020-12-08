@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Handles the background buy/sell operations of the comms menu.
+/// Will also handle the objectives
+/// </summary>
 public class Player_CommsController : MonoBehaviour {
 
     public ShopItem[] buyItems;

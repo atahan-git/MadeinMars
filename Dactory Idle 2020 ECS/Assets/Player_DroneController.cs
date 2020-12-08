@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Handles the drone controls
+/// </summary>
 public class Player_DroneController : MonoBehaviour {
 	public GameObject drone;
 	public GameObject droneCommandOverlay;

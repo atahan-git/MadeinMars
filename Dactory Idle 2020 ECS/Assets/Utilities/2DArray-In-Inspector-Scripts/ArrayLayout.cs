@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.Serialization;
 
+/// <summary>
+/// A helper script making the fancy 2D bool array for the BuildingData script
+/// </summary>
 [System.Serializable]
 public class ArrayLayout  {
 

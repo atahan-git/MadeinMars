@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6b088b2b659e546801133562ef6571, type: 3}
+  m_Script: {fileID: 11500000, guid: 8aaf9feccf8abdb4dbfdba831424188a, type: 3}
   m_Name: Items
   m_EditorClassIdentifier: 
   myMaterial: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
@@ -17,7 +17,7 @@ MonoBehaviour:
   items:
   - uniqueName: ironOre
     name: Iron Ore
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 0
     myTextureOffset: {x: 0, y: 0}
@@ -25,9 +25,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: ironIngot
     name: Iron Ingot
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 1
     myTextureOffset: {x: 1, y: 0}
@@ -35,9 +33,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: ironPlate
     name: Iron Plate
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 2
     myTextureOffset: {x: 2, y: 0}
@@ -45,9 +41,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: copperOre
     name: Copper Ore
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 3
     myTextureOffset: {x: 0, y: 1}
@@ -55,9 +49,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: copperIngot
     name: Copper Ingot
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 4
     myTextureOffset: {x: 1, y: 1}
@@ -65,9 +57,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: copperCoil
     name: Copper Coils
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 5
     myTextureOffset: {x: 2, y: 1}
@@ -75,9 +65,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: concrete
     name: Concrete
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 6
     myTextureOffset: {x: 0, y: 2}
@@ -85,9 +73,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: buildingMat
     name: Building Materials
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 7
     myTextureOffset: {x: 1, y: 2}
@@ -95,7 +81,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: ironGear
     name: Iron Gear
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 8
     myTextureOffset: {x: 3, y: 0}
@@ -103,7 +89,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: ironDril
     name: Iron Drill Bits
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 9
     myTextureOffset: {x: 4, y: 0}
@@ -111,7 +97,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: ironPipe
     name: Iron Pipe
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 10
     myTextureOffset: {x: 5, y: 0}
@@ -119,7 +105,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: thermometer
     name: Thermometer
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 11
     myTextureOffset: {x: 3, y: 1}
@@ -127,7 +113,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: motor
     name: Motor
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 12
     myTextureOffset: {x: 4, y: 1}
@@ -135,7 +121,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: ironArm
     name: Assembler Arm
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 13
     myTextureOffset: {x: 5, y: 1}
@@ -143,7 +129,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: solarCell
     name: Solar Cells
-    desctiption: desc
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 14
     myTextureOffset: {x: 6, y: 1}
@@ -151,9 +137,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: laser
     name: Laser components
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 15
     myTextureOffset: {x: 7, y: 1}
@@ -161,9 +145,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: drillPrefab
     name: Drill Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 16
     myTextureOffset: {x: 0, y: 3}
@@ -171,9 +153,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: smelterPrefab
     name: Smelter Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 17
     myTextureOffset: {x: 1, y: 3}
@@ -181,9 +161,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: assembler1Prefab
     name: Assembler Tier 1 Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 18
     myTextureOffset: {x: 2, y: 3}
@@ -191,9 +169,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: pressPrefab
     name: Plate Maker Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 19
     myTextureOffset: {x: 3, y: 3}
@@ -201,9 +177,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: coilerPrefab
     name: Coil Maker Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 20
     myTextureOffset: {x: 4, y: 3}
@@ -211,9 +185,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: cutterPrefab
     name: Laser Cutter Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 21
     myTextureOffset: {x: 5, y: 3}
@@ -221,9 +193,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: labPrefab
     name: Science Building Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 22
     myTextureOffset: {x: 6, y: 3}
@@ -231,9 +201,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: solarPrefab
     name: Solar Panel Array Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 23
     myTextureOffset: {x: 7, y: 3}
@@ -241,9 +209,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: batteryPrefab
     name: Energy Storage Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 24
     myTextureOffset: {x: 8, y: 3}
@@ -251,9 +217,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: transformerPrefab
     name: Energy Transformer Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 25
     myTextureOffset: {x: 9, y: 3}
@@ -261,9 +225,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: storagePrefab
     name: Storage Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 26
     myTextureOffset: {x: 11, y: 3}
@@ -271,9 +233,7 @@ MonoBehaviour:
       type: 3}
   - uniqueName: assembler2Prefab
     name: Assembler Tier 2 Prefab
-    desctiption: 'desc
-
-'
+    description: This is a new Item
     myItemSet: {fileID: 11400000}
     myId: 27
     myTextureOffset: {x: 3, y: 4}

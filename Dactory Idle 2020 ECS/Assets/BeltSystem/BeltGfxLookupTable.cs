@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
+/// <summary>
+/// Belts have a lot of different graphics. This asset holds the various graphics, and deals with producing the correct sprite when asked.
+/// </summary>
 [CreateAssetMenu]
 public class BeltGfxLookupTable : ScriptableObject
 {

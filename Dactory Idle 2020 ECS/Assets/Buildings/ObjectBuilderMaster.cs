@@ -6,6 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Any placement of an object to the world should happen through this singleton
 /// Also handles placement checks
+/// See Player_BuildingController for seeing how the player puts down the buildings. This component just deals with the busywork of the placement.
 /// </summary>
 public class ObjectBuilderMaster : MonoBehaviour
 {
@@ -163,5 +164,9 @@ public class ObjectBuilderMaster : MonoBehaviour
 				myData.myType, location.ToString()));
 			return false;
 		}
+	}
+
+	public void OnDestroy() {
+		GameLoader.RemoveFromCall(LoadFromSave);
 	}
 }

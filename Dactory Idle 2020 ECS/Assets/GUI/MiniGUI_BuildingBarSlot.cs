@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+/// <summary>
+/// A helper class for the individual building slots in the building bar
+/// </summary>
 public class MiniGUI_BuildingBarSlot : MonoBehaviour
 {
     public int myID;

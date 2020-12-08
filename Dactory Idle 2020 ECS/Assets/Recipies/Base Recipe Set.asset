@@ -2042,98 +2042,708 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebed907818813d64d8267c307c8017ac, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9cc694e24fc9c4c9c95565e5896703, type: 3}
   m_Name: Base Recipe Set
   m_EditorClassIdentifier: 
-  nodes:
-  - {fileID: 7058421518136959276}
-  - {fileID: 4806882596363312630}
-  - {fileID: -5603118792784446991}
-  - {fileID: 4777914591007526908}
-  - {fileID: 7909929281203855048}
-  - {fileID: 6789401536184634643}
-  - {fileID: -8664233201081424687}
-  - {fileID: -1189855339667758864}
-  - {fileID: -8369109708272232732}
-  - {fileID: 5842919704912968515}
-  - {fileID: -1363793797473808960}
-  - {fileID: 8210405110212262982}
-  - {fileID: 4469622414673102226}
-  - {fileID: 6836010482048901933}
-  - {fileID: 896045736394307463}
-  - {fileID: -762605788741162168}
-  - {fileID: 8979879361829848666}
-  - {fileID: -6406476675420097952}
-  - {fileID: 1387470139177025970}
-  - {fileID: 4167461917153813648}
-  - {fileID: -8268182286270037484}
-  - {fileID: -5087291913837023495}
-  - {fileID: 8368265896796058044}
-  - {fileID: -3590468594447176143}
-  - {fileID: 7668246268088401665}
-  - {fileID: 6812510803653435492}
-  - {fileID: 3406452345235118198}
-  - {fileID: -4433889575350925962}
-  - {fileID: -1309565666745959301}
-  - {fileID: 5240404383081967775}
-  - {fileID: -5114068982726303328}
-  - {fileID: 2147154570993858288}
-  - {fileID: -6257839741694455486}
-  - {fileID: 7405102405701075404}
-  - {fileID: 7761434054783285807}
-  - {fileID: -1688968373250648880}
-  - {fileID: 8837443993572891877}
-  - {fileID: -476995168956678288}
-  - {fileID: 8800168232135583221}
-  - {fileID: -2042140588336518990}
-  - {fileID: -7190017827507913206}
-  - {fileID: -5862093622780274217}
-  - {fileID: 8964677774357987973}
-  - {fileID: -942884612930018995}
-  - {fileID: -6299724287939834406}
-  - {fileID: -8056522804058838860}
-  - {fileID: 3461308175318980561}
-  - {fileID: -3786796773676445331}
-  - {fileID: 1638832094591408282}
-  - {fileID: 8974431919284015638}
-  - {fileID: 5559607654129159868}
-  - {fileID: 5030564884186278203}
-  - {fileID: -4505391448473469457}
-  - {fileID: -575463486991976285}
-  - {fileID: -6694303850754303897}
-  - {fileID: -8270906818348169204}
-  - {fileID: -8598315192928729449}
-  - {fileID: 932419775403570639}
-  - {fileID: 5200611331648817077}
-  - {fileID: 4929792575864577968}
-  - {fileID: 3192855341833934330}
-  - {fileID: -85064771063888710}
-  - {fileID: -203835818889536501}
-  - {fileID: 2420622470197751644}
-  - {fileID: 6901542669554546331}
-  - {fileID: 4540379507891934707}
-  - {fileID: -705831732486764219}
-  - {fileID: -1996931631646315759}
-  - {fileID: -3977792636992447051}
-  - {fileID: -1460370045657293801}
-  - {fileID: -2016089689385829602}
-  - {fileID: -5045918249110811292}
-  - {fileID: 1562075611671498947}
-  - {fileID: 7308381756287489227}
-  - {fileID: -9039585467559575749}
   myItemSets:
   - {fileID: 11400000, guid: 9427da8f80d849340bc3314ec68eee65, type: 2}
   myBuildings:
   - {fileID: 11400000, guid: ba231f49a8aba3446a75e21413b1b077, type: 2}
-  - {fileID: 11400000, guid: 083597dc2ebf77f46a79e22709987166, type: 2}
+  - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
   - {fileID: 11400000, guid: 2f1242d7254920046bd3966523742832, type: 2}
+  - {fileID: 11400000, guid: b1cb88f9cb208454fbf8fe40f959f985, type: 2}
+  - {fileID: 11400000, guid: 083597dc2ebf77f46a79e22709987166, type: 2}
   - {fileID: 11400000, guid: 68d403cecda93af489e4609a79e60d9f, type: 2}
   - {fileID: 11400000, guid: 100a719508880084abd0d3fdba96fe00, type: 2}
   - {fileID: 11400000, guid: 8a8742bdeef186546b5d5f9cc1208f04, type: 2}
   - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
   - {fileID: 11400000, guid: 23a2e5f0ee7f46a4d98e77a03f014ab1, type: 2}
-  - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
-  - {fileID: 11400000, guid: b1cb88f9cb208454fbf8fe40f959f985, type: 2}
+  - {fileID: 11400000, guid: 5b86394760a5b5140a1b45f52a9180ba, type: 2}
+  myOres:
+  - {fileID: 11400000, guid: e531984f8b4f3394384424387800c875, type: 2}
+  - {fileID: 11400000, guid: eb647e993e4883b42a27e878e38fe18c, type: 2}
+  - {fileID: 11400000, guid: 5f762e3692cc6a24ba6a35780f241bba, type: 2}
+  myCraftingNodes:
+  - id: 5
+    pos: {x: -271.84467, y: 271.84467, z: 0}
+    tier: 0
+    timeCost: 2
+    CraftingType: 0
+    inputs: []
+    outputs:
+    - nodeId: 3
+      itemUniqueName: ironOre
+      count: 2
+  - id: 6
+    pos: {x: -271.84467, y: 0, z: 0}
+    tier: 0
+    timeCost: 4
+    CraftingType: 0
+    inputs: []
+    outputs:
+    - nodeId: 4
+      itemUniqueName: copperOre
+      count: 3
+  - id: 7
+    pos: {x: 504.85437, y: 233.0097, z: 0}
+    tier: 0
+    timeCost: 6
+    CraftingType: 1
+    inputs:
+    - nodeId: 3
+      itemUniqueName: ironOre
+      count: 8
+    outputs:
+    - nodeId: 9
+      itemUniqueName: ironIngot
+      count: 1
+  - id: 8
+    pos: {x: 504.85437, y: -116.50485, z: 0}
+    tier: 0
+    timeCost: 4
+    CraftingType: 1
+    inputs:
+    - nodeId: 4
+      itemUniqueName: copperOre
+      count: 5
+    outputs:
+    - nodeId: 10
+      itemUniqueName: copperIngot
+      count: 2
+  - id: 11
+    pos: {x: 504.85437, y: 543.68933, z: 0}
+    tier: 0
+    timeCost: 4
+    CraftingType: 0
+    inputs: []
+    outputs:
+    - nodeId: 12
+      itemUniqueName: concrete
+      count: 4
+  - id: 13
+    pos: {x: 1242.7185, y: 582.5243, z: 0}
+    tier: 0
+    timeCost: 2
+    CraftingType: 3
+    inputs:
+    - nodeId: 12
+      itemUniqueName: concrete
+      count: 4
+    - nodeId: 9
+      itemUniqueName: ironIngot
+      count: 1
+    outputs:
+    - nodeId: 17
+      itemUniqueName: buildingMat
+      count: 1
+  - id: 14
+    pos: {x: 1203.8835, y: 38.834953, z: 0}
+    tier: 0
+    timeCost: 1
+    CraftingType: 4
+    inputs:
+    - nodeId: 9
+      itemUniqueName: ironIngot
+      count: 1
+    outputs:
+    - nodeId: 16
+      itemUniqueName: ironPlate
+      count: 2
+  - id: 15
+    pos: {x: 1166.5609, y: -292.36932, z: 0}
+    tier: 0
+    timeCost: 1
+    CraftingType: 5
+    inputs:
+    - nodeId: 10
+      itemUniqueName: copperIngot
+      count: 1
+    outputs:
+    - nodeId: 18
+      itemUniqueName: copperCoil
+      count: 1
+  - id: 20
+    pos: {x: 1786.4077, y: 271.84467, z: 0}
+    tier: 0
+    timeCost: 10
+    CraftingType: 3
+    inputs:
+    - nodeId: 9
+      itemUniqueName: ironIngot
+      count: 5
+    - nodeId: 16
+      itemUniqueName: ironPlate
+      count: 2
+    outputs:
+    - nodeId: 19
+      itemUniqueName: ironDril
+      count: 1
+  - id: 21
+    pos: {x: 1864.0776, y: -38.834953, z: 0}
+    tier: 0
+    timeCost: 2
+    CraftingType: 6
+    inputs:
+    - nodeId: 16
+      itemUniqueName: ironPlate
+      count: 1
+    outputs:
+    - nodeId: 22
+      itemUniqueName: ironGear
+      count: 1
+  - id: 23
+    pos: {x: 1864.0776, y: -233.0097, z: 0}
+    tier: 0
+    timeCost: 2
+    CraftingType: 2
+    inputs:
+    - nodeId: 16
+      itemUniqueName: ironPlate
+      count: 2
+    outputs:
+    - nodeId: 24
+      itemUniqueName: ironPipe
+      count: 1
+  - id: 25
+    pos: {x: 2454.8416, y: 328.41278, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 3
+    inputs:
+    - nodeId: 19
+      itemUniqueName: ironDril
+      count: 1
+    - nodeId: 22
+      itemUniqueName: ironGear
+      count: 6
+    outputs:
+    - nodeId: 26
+      itemUniqueName: drillPrefab
+      count: 1
+  - id: 28
+    pos: {x: 2601.9417, y: 699.0291, z: 0}
+    tier: 0
+    timeCost: 10
+    CraftingType: 3
+    inputs:
+    - nodeId: 27
+      itemUniqueName: copperCoil
+      count: 10
+    - nodeId: 29
+      itemUniqueName: thermometer
+      count: 2
+    outputs:
+    - nodeId: 30
+      itemUniqueName: smelterPrefab
+      count: 1
+  - id: 31
+    pos: {x: 3262.136, y: 621.35925, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 30
+      itemUniqueName: smelterPrefab
+      count: 1
+    - nodeId: 33
+      itemUniqueName: buildingMat
+      count: 10
+    outputs:
+    - nodeId: 35
+      itemUniqueName: bFurnace
+      count: 1
+  - id: 32
+    pos: {x: 3262.136, y: 349.51456, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 33
+      itemUniqueName: buildingMat
+      count: 10
+    - nodeId: 26
+      itemUniqueName: drillPrefab
+      count: 1
+    outputs:
+    - nodeId: 37
+      itemUniqueName: bMiner
+      count: 1
+  - id: 38
+    pos: {x: 2368.9321, y: -582.5243, z: 0}
+    tier: 0
+    timeCost: 10
+    CraftingType: 3
+    inputs:
+    - nodeId: 24
+      itemUniqueName: ironPipe
+      count: 1
+    - nodeId: 18
+      itemUniqueName: copperCoil
+      count: 10
+    outputs:
+    - nodeId: 39
+      itemUniqueName: motor
+      count: 1
+  - id: 42
+    pos: {x: 2990.2913, y: -932.0388, z: 0}
+    tier: 0
+    timeCost: 10
+    CraftingType: 3
+    inputs:
+    - nodeId: 44
+      itemUniqueName: copperCoil
+      count: 4
+    - nodeId: 39
+      itemUniqueName: motor
+      count: 2
+    outputs:
+    - nodeId: 43
+      itemUniqueName: pressPrefab
+      count: 1
+  - id: 45
+    pos: {x: 2990.2913, y: -1281.5533, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 3
+    inputs:
+    - nodeId: 41
+      itemUniqueName: ironPlate
+      count: 5
+    - nodeId: 39
+      itemUniqueName: motor
+      count: 1
+    outputs:
+    - nodeId: 46
+      itemUniqueName: coilerPrefab
+      count: 1
+  - id: 48
+    pos: {x: 3048.0623, y: -481.08002, z: 0}
+    tier: 0
+    timeCost: 20
+    CraftingType: 3
+    inputs:
+    - nodeId: 47
+      itemUniqueName: ironIngot
+      count: 4
+    - nodeId: 39
+      itemUniqueName: motor
+      count: 3
+    outputs:
+    - nodeId: 49
+      itemUniqueName: ironArm
+      count: 1
+  - id: 51
+    pos: {x: 3728.1553, y: 116.50485, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 59
+      itemUniqueName: ironPlate
+      count: 1
+    outputs:
+    - nodeId: 62
+      itemUniqueName: bBelt1
+      count: 1
+  - id: 52
+    pos: {x: 3611.6504, y: -1320.3883, z: 0}
+    tier: 0
+    timeCost: 4
+    CraftingType: 8
+    inputs:
+    - nodeId: 46
+      itemUniqueName: coilerPrefab
+      count: 1
+    - nodeId: 53
+      itemUniqueName: buildingMat
+      count: 2
+    outputs:
+    - nodeId: 55
+      itemUniqueName: bCoiler
+      count: 1
+  - id: 56
+    pos: {x: 3728.1553, y: -660.19415, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 3
+    inputs:
+    - nodeId: 49
+      itemUniqueName: ironArm
+      count: 1
+    - nodeId: 50
+      itemUniqueName: laser
+      count: 1
+    outputs:
+    - nodeId: 65
+      itemUniqueName: cutterPrefab
+      count: 1
+  - id: 57
+    pos: {x: 3728.1553, y: -427.18448, z: 0}
+    tier: 0
+    timeCost: 10
+    CraftingType: 2
+    inputs:
+    - nodeId: 49
+      itemUniqueName: ironArm
+      count: 2
+    outputs:
+    - nodeId: 64
+      itemUniqueName: assembler1Prefab
+      count: 1
+  - id: 58
+    pos: {x: 3717.3682, y: -164.98352, z: 0}
+    tier: 0
+    timeCost: 15
+    CraftingType: 3
+    inputs:
+    - nodeId: 49
+      itemUniqueName: ironArm
+      count: 3
+    - nodeId: 60
+      itemUniqueName: copperCoil
+      count: 2
+    outputs:
+    - nodeId: 63
+      itemUniqueName: assembler2Prefab
+      count: 1
+  - id: 61
+    pos: {x: 3611.6504, y: -1048.5437, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 43
+      itemUniqueName: pressPrefab
+      count: 1
+    - nodeId: 53
+      itemUniqueName: buildingMat
+      count: 3
+    outputs:
+    - nodeId: 54
+      itemUniqueName: bPress
+      count: 1
+  - id: 66
+    pos: {x: 4427.1846, y: 77.66991, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 62
+      itemUniqueName: bBelt1
+      count: 100
+    - nodeId: 70
+      itemUniqueName: buildingMat
+      count: 1
+    outputs:
+    - nodeId: 71
+      itemUniqueName: bBase
+      count: 1
+  - id: 67
+    pos: {x: 4427.1846, y: -155.33981, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 63
+      itemUniqueName: assembler2Prefab
+      count: 1
+    - nodeId: 70
+      itemUniqueName: buildingMat
+      count: 5
+    outputs:
+    - nodeId: 72
+      itemUniqueName: bAssembler2
+      count: 1
+  - id: 68
+    pos: {x: 4427.1846, y: -388.34952, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 64
+      itemUniqueName: assembler1Prefab
+      count: 1
+    - nodeId: 70
+      itemUniqueName: buildingMat
+      count: 3
+    outputs:
+    - nodeId: 73
+      itemUniqueName: bAssembler1
+      count: 1
+  - id: 69
+    pos: {x: 4427.1846, y: -621.35925, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 65
+      itemUniqueName: cutterPrefab
+      count: 1
+    - nodeId: 70
+      itemUniqueName: buildingMat
+      count: 5
+    outputs:
+    - nodeId: 74
+      itemUniqueName: bCutter
+      count: 1
+  - id: 77
+    pos: {x: 3766.9902, y: -1747.5728, z: 0}
+    tier: 1
+    timeCost: 5
+    CraftingType: 3
+    inputs:
+    - nodeId: 75
+      itemUniqueName: laser
+      count: 4
+    - nodeId: 76
+      itemUniqueName: thermometer
+      count: 3
+    outputs:
+    - nodeId: 78
+      itemUniqueName: labPrefab
+      count: 1
+  - id: 79
+    pos: {x: 4349.5146, y: -1941.7476, z: 0}
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+    inputs:
+    - nodeId: 78
+      itemUniqueName: labPrefab
+      count: 1
+    - nodeId: 80
+      itemUniqueName: buildingMat
+      count: 6
+    outputs:
+    - nodeId: 81
+      itemUniqueName: bLab
+      count: 1
+  myItemNodes:
+  - id: 3
+    pos: {x: 116.50485, y: 194.17476, z: 0}
+    itemUniqueName: ironOre
+    inputIds: 05000000
+    outputIds: 07000000
+  - id: 4
+    pos: {x: 116.50485, y: -77.66991, z: 0}
+    itemUniqueName: copperOre
+    inputIds: 06000000
+    outputIds: 08000000
+  - id: 9
+    pos: {x: 815.534, y: 194.17476, z: 0}
+    itemUniqueName: ironIngot
+    inputIds: 07000000
+    outputIds: 0d000000140000000e000000
+  - id: 10
+    pos: {x: 815.534, y: -194.17476, z: 0}
+    itemUniqueName: copperIngot
+    inputIds: 08000000
+    outputIds: 0f000000
+  - id: 12
+    pos: {x: 815.534, y: 504.85437, z: 0}
+    itemUniqueName: concrete
+    inputIds: 0b000000
+    outputIds: 0d000000
+  - id: 16
+    pos: {x: 1475.7281, y: 0, z: 0}
+    itemUniqueName: ironPlate
+    inputIds: 0e000000
+    outputIds: 140000001500000017000000
+  - id: 17
+    pos: {x: 1592.233, y: 543.68933, z: 0}
+    itemUniqueName: buildingMat
+    inputIds: 0d000000
+    outputIds: 
+  - id: 18
+    pos: {x: 1475.7281, y: -349.51456, z: 0}
+    itemUniqueName: copperCoil
+    inputIds: 0f000000
+    outputIds: 26000000
+  - id: 19
+    pos: {x: 2097.0874, y: 427.18448, z: 0}
+    itemUniqueName: ironDril
+    inputIds: 14000000
+    outputIds: 19000000
+  - id: 22
+    pos: {x: 2174.7573, y: -77.66991, z: 0}
+    itemUniqueName: ironGear
+    inputIds: 15000000
+    outputIds: 19000000
+  - id: 24
+    pos: {x: 2174.7573, y: -271.84467, z: 0}
+    itemUniqueName: ironPipe
+    inputIds: 17000000
+    outputIds: 26000000
+  - id: 26
+    pos: {x: 2796.1165, y: 310.67963, z: 0}
+    itemUniqueName: drillPrefab
+    inputIds: 19000000
+    outputIds: 20000000
+  - id: 27
+    pos: {x: 2252.4272, y: 660.19415, z: 0}
+    itemUniqueName: copperCoil
+    inputIds: 
+    outputIds: 1c000000
+  - id: 29
+    pos: {x: 2291.2622, y: 893.20386, z: 0}
+    itemUniqueName: thermometer
+    inputIds: 
+    outputIds: 1c000000
+  - id: 30
+    pos: {x: 2912.6213, y: 621.35925, z: 0}
+    itemUniqueName: smelterPrefab
+    inputIds: 1c000000
+    outputIds: 1f000000
+  - id: 33
+    pos: {x: 2834.9514, y: 466.0194, z: 0}
+    itemUniqueName: buildingMat
+    inputIds: 
+    outputIds: 200000001f000000
+  - id: 35
+    pos: {x: 3611.6504, y: 582.5243, z: 0}
+    itemUniqueName: bFurnace
+    inputIds: 1f000000
+    outputIds: 
+  - id: 37
+    pos: {x: 3611.6504, y: 349.51456, z: 0}
+    itemUniqueName: bMiner
+    inputIds: 20000000
+    outputIds: 
+  - id: 39
+    pos: {x: 2640.7766, y: -621.35925, z: 0}
+    itemUniqueName: motor
+    inputIds: 26000000
+    outputIds: 300000002a0000002d000000
+  - id: 41
+    pos: {x: 2601.9417, y: -1320.3883, z: 0}
+    itemUniqueName: ironPlate
+    inputIds: 
+    outputIds: 2d000000
+  - id: 43
+    pos: {x: 3300.971, y: -1048.5437, z: 0}
+    itemUniqueName: pressPrefab
+    inputIds: 2a000000
+    outputIds: 3d000000
+  - id: 44
+    pos: {x: 2563.1067, y: -970.8738, z: 0}
+    itemUniqueName: copperCoil
+    inputIds: 
+    outputIds: 2a000000
+  - id: 46
+    pos: {x: 3300.971, y: -1398.0582, z: 0}
+    itemUniqueName: coilerPrefab
+    inputIds: 2d000000
+    outputIds: 34000000
+  - id: 47
+    pos: {x: 2757.2815, y: -310.67963, z: 0}
+    itemUniqueName: ironIngot
+    inputIds: 
+    outputIds: 30000000
+  - id: 49
+    pos: {x: 3378.6409, y: -504.85437, z: 0}
+    itemUniqueName: ironArm
+    inputIds: 30000000
+    outputIds: 3a0000003900000038000000
+  - id: 50
+    pos: {x: 3417.4758, y: -737.8641, z: 0}
+    itemUniqueName: laser
+    inputIds: 
+    outputIds: 38000000
+  - id: 53
+    pos: {x: 3262.136, y: -1203.8835, z: 0}
+    itemUniqueName: buildingMat
+    inputIds: 
+    outputIds: 3d00000034000000
+  - id: 54
+    pos: {x: 3922.33, y: -1087.3787, z: 0}
+    itemUniqueName: bPress
+    inputIds: 3d000000
+    outputIds: 
+  - id: 55
+    pos: {x: 3922.33, y: -1320.3883, z: 0}
+    itemUniqueName: bCoiler
+    inputIds: 34000000
+    outputIds: 
+  - id: 59
+    pos: {x: 3339.806, y: 38.834953, z: 0}
+    itemUniqueName: ironPlate
+    inputIds: 
+    outputIds: 33000000
+  - id: 60
+    pos: {x: 3300.971, y: -155.33981, z: 0}
+    itemUniqueName: copperCoil
+    inputIds: 
+    outputIds: 3a000000
+  - id: 62
+    pos: {x: 4116.505, y: 77.66991, z: 0}
+    itemUniqueName: bBelt1
+    inputIds: 33000000
+    outputIds: 42000000
+  - id: 63
+    pos: {x: 4038.835, y: -116.50485, z: 0}
+    itemUniqueName: assembler2Prefab
+    inputIds: 3a000000
+    outputIds: 43000000
+  - id: 64
+    pos: {x: 4038.835, y: -466.0194, z: 0}
+    itemUniqueName: assembler1Prefab
+    inputIds: 39000000
+    outputIds: 44000000
+  - id: 65
+    pos: {x: 4038.835, y: -660.19415, z: 0}
+    itemUniqueName: cutterPrefab
+    inputIds: 38000000
+    outputIds: 45000000
+  - id: 70
+    pos: {x: 4000, y: -271.84467, z: 0}
+    itemUniqueName: buildingMat
+    inputIds: 
+    outputIds: 43000000420000004400000045000000
+  - id: 71
+    pos: {x: 4776.699, y: 0, z: 0}
+    itemUniqueName: bBase
+    inputIds: 42000000
+    outputIds: 
+  - id: 72
+    pos: {x: 4776.699, y: -233.0097, z: 0}
+    itemUniqueName: bAssembler2
+    inputIds: 43000000
+    outputIds: 
+  - id: 73
+    pos: {x: 4776.699, y: -427.18448, z: 0}
+    itemUniqueName: bAssembler1
+    inputIds: 44000000
+    outputIds: 
+  - id: 74
+    pos: {x: 4776.699, y: -660.19415, z: 0}
+    itemUniqueName: bCutter
+    inputIds: 45000000
+    outputIds: 
+  - id: 75
+    pos: {x: 3417.4758, y: -1631.068, z: 0}
+    itemUniqueName: laser
+    inputIds: 
+    outputIds: 4d000000
+  - id: 76
+    pos: {x: 3417.4758, y: -1825.2427, z: 0}
+    itemUniqueName: thermometer
+    inputIds: 
+    outputIds: 4d000000
+  - id: 78
+    pos: {x: 4038.835, y: -1747.5728, z: 0}
+    itemUniqueName: labPrefab
+    inputIds: 4d000000
+    outputIds: 4f000000
+  - id: 80
+    pos: {x: 4000, y: -2058.2524, z: 0}
+    itemUniqueName: buildingMat
+    inputIds: 
+    outputIds: 4f000000
+  - id: 81
+    pos: {x: 4621.3594, y: -1980.5825, z: 0}
+    itemUniqueName: bLab
+    inputIds: 4f000000
+    outputIds: 
 --- !u!114 &896045736394307463
 MonoBehaviour:
   m_ObjectHideFlags: 0

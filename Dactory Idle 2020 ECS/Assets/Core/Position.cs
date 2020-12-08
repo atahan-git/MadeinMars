@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/// <summary>
+/// A helper class to hold positional information
+/// Basically a sort of Vector2 specifically made for this game
+/// </summary>
 [System.Serializable]
 public struct Position {
 	public int x;

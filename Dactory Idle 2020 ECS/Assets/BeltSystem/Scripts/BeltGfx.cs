@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Deals with updateing the graphics of the belt objects
+/// </summary>
 [ExecuteInEditMode]
 public class BeltGfx : MonoBehaviour {
 

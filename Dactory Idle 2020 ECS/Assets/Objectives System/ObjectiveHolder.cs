@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This is the holder asset for objectives.
+/// </summary>
 [CreateAssetMenu(fileName = "New Objective", menuName = "Objective Holder")]
 public class ObjectiveHolder : ScriptableObject {
     public string uniqueName;

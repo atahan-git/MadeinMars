@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Controls the player inventory.
+/// Deals with putting items in there, taking them out, and seeing if we have enough items to builds things that we want.
+/// </summary>
 public class Player_InventoryController : MonoBehaviour {
     public static Player_InventoryController s;
 
@@ -10,9 +15,9 @@ public class Player_InventoryController : MonoBehaviour {
 
     public static bool isInventoryLoadingDone = false;
     public delegate void GenericCallback ();
-    public static event GenericCallback drawInventoryEvent;
+    public static event GenericCallback drawInventoryEvent; // This is for the initial drawing of the inventory. Only needs to be called when slot counts change
     
-    public static event GenericCallback inventoryContentsChangedEvent;
+    public static event GenericCallback inventoryContentsChangedEvent; // Sign up to this if you want to be updated whenever the inventory contents are changed
 
     public bool cheatMode = false;
     private void Awake () {
@@ -21,11 +26,11 @@ public class Player_InventoryController : MonoBehaviour {
         }
         s = this;
         isInventoryLoadingDone = false;
+        GameLoader.CallWhenLoaded(GameLoadingComplete);
     }
 
     // Start is called before the first frame update
     void Start () {
-        GameLoader.CallWhenLoaded(GameLoadingComplete);
         DataSaver.saveEvent += SaveInventory;
     }
     
@@ -56,7 +61,7 @@ public class Player_InventoryController : MonoBehaviour {
 
     public DataSaver.InventoryData[] startingInventory;
     public int startingInventorySlotCount = 42;
-
+    // AKA the start of the game inventory.
     void InitializeStarterInventory() {
         int totalItemCount = startingInventory.Length;
         for (int i = 0; i < totalItemCount; i++) {
@@ -88,6 +93,12 @@ public class Player_InventoryController : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Try to add an item to the inventory, if there is empty space.
+    /// I may replace this with infinite inventory later.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
     public bool TryAddItem (Item item) {
         for (int i = 0; i < mySlots.Count; i++) {
             if (mySlots[i].myItem == item) {
@@ -110,7 +121,7 @@ public class Player_InventoryController : MonoBehaviour {
 
     // Ugly
     public bool CanPlaceBuilding (BuildingData dat) {
-        CraftingProcessNode[] ps = DataHolder.s.GetCraftingProcessesOfType(BuildingData.ItemType.Building);
+        CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(BuildingData.ItemType.Building);
         if (cheatMode)
             return true;
         
@@ -118,16 +129,16 @@ public class Player_InventoryController : MonoBehaviour {
             for (int i = 0; i < ps.Length; i++) {
                 if (dat == null) {
                     print(i);
-                    print(ps[i].outputItemUniqueNames[0]);
+                    print(ps[i].outputs[0]);
                     print(dat);
                     print(dat.uniqueName);
                 }
-                if (ps[i].outputItemUniqueNames[0] == dat.uniqueName) {
-                    for (int m = 0; m < ps[i].inputItemCounts.Count; m++) {
+                if (ps[i].outputs[0].itemUniqueName == dat.uniqueName) {
+                    for (int m = 0; m < ps[i].inputs.Count; m++) {
                         bool hasEnoughOfThisType = false;
                         for (int k = 0; k < mySlots.Count; k++) {
-                            if (mySlots[k].myItem != null && mySlots[k].myItem.uniqueName == ps[i].inputItemUniqueNames[m]) {
-                                if (mySlots[k].count >= ps[i].inputItemCounts[m]) {
+                            if (mySlots[k].myItem != null && mySlots[k].myItem.uniqueName == ps[i].inputs[m].itemUniqueName) {
+                                if (mySlots[k].count >= ps[i].inputs[m].count) {
                                     hasEnoughOfThisType = true;
                                     break;
                                 }
@@ -153,14 +164,14 @@ public class Player_InventoryController : MonoBehaviour {
     /// Use multiplier == -1 for when selling a building
     /// </summary>
     public void UseBuildingResources (BuildingData dat, int multiplier) {
-        CraftingProcessNode[] ps = DataHolder.s.GetCraftingProcessesOfType(BuildingData.ItemType.Building);
+        CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(BuildingData.ItemType.Building);
         if (ps != null) {
             for (int i = 0; i < ps.Length; i++) {
-                if (ps[i].outputItemUniqueNames[0] == dat.uniqueName) {
-                    for (int m = 0; m < ps[i].inputItemUniqueNames.Count; m++) {
+                if (ps[i].outputs[0].itemUniqueName == dat.uniqueName) {
+                    for (int m = 0; m < ps[i].inputs.Count; m++) {
                         for (int k = 0; k < mySlots.Count; k++) {
-                            if (mySlots[k].myItem != null && mySlots[k].myItem.uniqueName == ps[i].inputItemUniqueNames[m]) {
-                                mySlots[k].count -= ps[i].inputItemCounts[m] * multiplier;
+                            if (mySlots[k].myItem != null && mySlots[k].myItem.uniqueName == ps[i].inputs[m].itemUniqueName) {
+                                mySlots[k].count -= ps[i].inputs[m].count * multiplier;
                                 break;
                             }
                         }
@@ -173,13 +184,13 @@ public class Player_InventoryController : MonoBehaviour {
     }
 
 
-    public bool CanCraftItem (CraftingProcessNode ps) {
+    public bool CanCraftItem (CraftingNode ps) {
         if (ps != null) {
-            for (int m = 0; m < ps.inputItemCounts.Count; m++) {
+            for (int m = 0; m < ps.inputs.Count; m++) {
                 bool hasEnoughOfThisType = false;
                 for (int k = 0; k < mySlots.Count; k++) {
-                    if (mySlots[k].myItem != null && mySlots[k].myItem.uniqueName == ps.inputItemUniqueNames[m]) {
-                        if (mySlots[k].count >= ps.inputItemCounts[m]) {
+                    if (mySlots[k].myItem != null && mySlots[k].myItem.uniqueName == ps.inputs[m].itemUniqueName) {
+                        if (mySlots[k].count >= ps.inputs[m].count) {
                             hasEnoughOfThisType = true;
                             break;
                         }
@@ -200,7 +211,7 @@ public class Player_InventoryController : MonoBehaviour {
     /// Also doesn't reward the resulting item. That needs to be done manually
     /// Use multiplier == -1 for cancelling crafting
     /// </summary>
-    public void UseCraftingResources (CraftingProcessNode ps, int multiplier) {
+    public void UseCraftingResources (CraftingNode ps, int multiplier) {
         
     }
     

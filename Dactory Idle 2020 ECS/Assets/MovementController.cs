@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/// <summary>
+/// Controls the movement of the player. Should be renamed to Player_MovementController, but I'm too lazy to change the name and update the references at this point
+/// </summary>
 public class MovementController : MonoBehaviour {
 
 	Vector2?[] oldTouchPositions = {

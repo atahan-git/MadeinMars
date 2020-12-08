@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\ataha\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\ataha\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_xNode Backup Dactory Idle 2020 ECS.-732076571.00" t="ExcludeRecursive" />
+    <e p="D:\_Unity\2020\_Dactory Idle 2020\xNode Backup Dactory Idle 2020 ECS" t="IncludeRecursive">
+      <e p="2DArrayEditor.csproj" t="IncludeRecursive" />
+      <e p="2DArrayInspector.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="AutoSetSpriteGraphics.cs" t="Include" />
+        <e p="BeltSystem" t="Include">
+          <e p="BeltGfxLookupTable.cs" t="Include" />
+          <e p="BeltGfxLookupTableMaker.cs" t="Include" />
+          <e p="PoolingCodes ECS" t="Include">
+            <e p="ObjectPool.cs" t="Include" />
+            <e p="ObjectPoolSimple.cs" t="Include" />
+            <e p="PoolingExample.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="AutoRotate.cs" t="Include" />
+            <e p="BeltBuildingObject.cs" t="Include" />
+            <e p="BeltExecutionTimingTestRunner.cs" t="Include" />
+            <e p="BeltGfx.cs" t="Include" />
+            <e p="BeltItem.cs" t="Include" />
+            <e p="BeltItemGfxUpdateProcessor.cs" t="Include" />
+            <e p="BeltItemSlot.cs" t="Include" />
+            <e p="BeltItemSlotUpdateProcessor.cs" t="Include" />
+            <e p="BeltMaster.cs" t="Include" />
+            <e p="BeltObject.cs" t="Include" />
+            <e p="BeltPreProcessor.cs" t="Include" />
+            <e p="DebugExtensions.cs" t="Include" />
+            <e p="ItemEntityData.cs" t="Include" />
+            <e p="MagicItemCreator.cs" t="Include" />
+            <e p="MagicItemDestroyer.cs" t="Include" />
+            <e p="TimingTestRunSaver.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Buildings" t="Include">
+          <e p="BuildingCraftingController.cs" t="Include" />
+          <e p="BuildingMaster.cs" t="Include" />
+          <e p="BuildingWorldObject.cs" t="Include" />
+          <e p="ItemPlacementHelper.cs" t="Include" />
+          <e p="ItemPlacementSpriteHelper.cs" t="Include" />
+          <e p="ObjectBuilderMaster.cs" t="Include" />
+        </e>
+        <e p="Core" t="Include">
+          <e p="DataHolder.cs" t="Include" />
+          <e p="DataSaver.cs" t="Include" />
+          <e p="ExtensionMethods.cs" t="Include" />
+          <e p="GameLoader.cs" t="Include" />
+          <e p="MasterDebug.cs" t="Include" />
+          <e p="Player_InventoryController.cs" t="Include" />
+          <e p="Position.cs" t="Include" />
+          <e p="SmartInput.cs" t="Include" />
+        </e>
+        <e p="DroneAnimator.cs" t="Include" />
+        <e p="Editor" t="Include">
+          <e p="PropertyDrawers.cs" t="Include" />
+        </e>
+        <e p="Elemental Free" t="Include">
+          <e p="Readme.txt" t="Include" />
+        </e>
+        <e p="GameMaster.cs" t="Include" />
+        <e p="GameQuitter.cs" t="Include" />
+        <e p="Grid" t="Include">
+          <e p="Editor" t="Include">
+            <e p="MapGeneratorEditor.cs" t="Include" />
+          </e>
+          <e p="Grid.cs" t="Include" />
+          <e p="MapGenerator.cs" t="Include" />
+        </e>
+        <e p="GUI" t="Include">
+          <e p="BuildingInfoDisplay.cs" t="Include" />
+          <e p="GUI_BuildingBarController.cs" t="Include" />
+          <e p="GUI_CommsController.cs" t="Include" />
+          <e p="GUI_CraftingController.cs" t="Include" />
+          <e p="GUI_InventoryController.cs" t="Include" />
+          <e p="GUI_MainMenuController.cs" t="Include" />
+          <e p="GUI_SettingsController.cs" t="Include" />
+          <e p="GUI_SwitchController.cs" t="Include" />
+          <e p="MiniGUI_BuildingBarSlot.cs" t="Include" />
+          <e p="MiniGUI_BuildingListing.cs" t="Include" />
+          <e p="MiniGUI_CraftingProcess.cs" t="Include" />
+          <e p="MiniGUI_CraftingQueueDisplay.cs" t="Include" />
+          <e p="MiniGUI_InOutDisplay.cs" t="Include" />
+          <e p="MiniGUI_InventoryListing.cs" t="Include" />
+          <e p="MiniGUI_ItemSelectionBox.cs" t="Include" />
+        </e>
+        <e p="MenuBackgroundController.cs" t="Include" />
+        <e p="MovementController.cs" t="Include" />
+        <e p="New Game Starting Systems" t="Include">
+          <e p="NewGameWorldSetup.cs" t="Include" />
+        </e>
+        <e p="Objectives System" t="Include">
+          <e p="ObjectiveChecker.cs" t="Include" />
+          <e p="ObjectiveHolder.cs" t="Include" />
+        </e>
+        <e p="Player_BuildingController.cs" t="Include" />
+        <e p="Player_CommsController.cs" t="Include" />
+        <e p="Player_CraftingController.cs" t="Include" />
+        <e p="Player_DroneController.cs" t="Include" />
+        <e p="Player_MasterControlCheck.cs" t="Include" />
+        <e p="RecipeNodeSystem" t="Include">
+          <e p="BuildingData.cs" t="Include" />
+          <e p="BuildingNode.cs" t="Include" />
+          <e p="CraftingProcessNode.cs" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="BuildingNodeEditor.cs" t="Include" />
+            <e p="CraftingProcessNodeEditor.cs" t="Include" />
+            <e p="ItemNodeEditor.cs" t="Include" />
+            <e p="RecipeSetEditor.cs" t="Include" />
+          </e>
+          <e p="ItemNode.cs" t="Include" />
+          <e p="ItemSet.cs" t="Include" />
+          <e p="OreSpawnSettings.cs" t="Include" />
+          <e p="RecipeSet.cs" t="Include" />
+          <e p="xNode" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Attributes" t="Include">
+                <e p="NodeEnum.cs" t="Include" />
+              </e>
+              <e p="Editor" t="Include">
+                <e p="Drawers" t="Include">
+                  <e p="NodeEnumDrawer.cs" t="Include" />
+                </e>
+                <e p="NodeEditor.cs" t="Include" />
+                <e p="NodeEditorAction.cs" t="Include" />
+                <e p="NodeEditorAssetModProcessor.cs" t="Include" />
+                <e p="NodeEditorBase.cs" t="Include" />
+                <e p="NodeEditorGUI.cs" t="Include" />
+                <e p="NodeEditorGUILayout.cs" t="Include" />
+                <e p="NodeEditorPreferences.cs" t="Include" />
+                <e p="NodeEditorReflection.cs" t="Include" />
+                <e p="NodeEditorResources.cs" t="Include" />
+                <e p="NodeEditorUtilities.cs" t="Include" />
+                <e p="NodeEditorWindow.cs" t="Include" />
+                <e p="NodeGraphEditor.cs" t="Include" />
+                <e p="RenamePopup.cs" t="Include" />
+                <e p="Resources" t="Include">
+                  <e p="ScriptTemplates" t="Include">
+                    <e p="xNode_NodeGraphTemplate.cs.txt" t="Include" />
+                    <e p="xNode_NodeTemplate.cs.txt" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Node.cs" t="Include" />
+              <e p="NodeDataCache.cs" t="Include" />
+              <e p="NodeGraph.cs" t="Include" />
+              <e p="NodePort.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="version.txt" t="Include" />
+        </e>
+        <e p="SaveMaster.cs" t="Include" />
+        <e p="SpriteBasePos.cs" t="Include" />
+        <e p="SpriteUpDown.cs" t="Include" />
+        <e p="SpriteVibrate.cs" t="Include" />
+        <e p="Tests" t="Include">
+          <e p="BeltSystemTester.cs" t="Include" />
+        </e>
+        <e p="Utilities" t="Include">
+          <e p="2DArray-In-Inspector-Scripts" t="Include">
+            <e p="ArrayLayout.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="CustPropertyDrawer.cs" t="Include" />
+            </e>
+          </e>
+          <e p="AnimatedSpriteController.cs" t="Include" />
+          <e p="CameraBackgrounColorLooper.cs" t="Include" />
+          <e p="FPSDisplay.cs" t="Include" />
+          <e p="PinchableScrollRect.cs" t="Include" />
+          <e p="SpriteAnimationHolder.cs" t="Include" />
+          <e p="SpriteGraphicsController.cs" t="Include" />
+          <e p="Version Incrementer" t="Include">
+            <e p="$CommonUtils.cs" t="Include" />
+            <e p="$VersionIncrementor.cs" t="Include" />
+            <e p="VersionDisplay.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="BeltScripts.csproj" t="IncludeRecursive" />
+      <e p="Buildings.csproj" t="IncludeRecursive" />
+      <e p="Core.csproj" t="IncludeRecursive" />
+      <e p="GenericEditor.csproj" t="IncludeRecursive" />
+      <e p="Grid.csproj" t="IncludeRecursive" />
+      <e p="GridEditor.csproj" t="IncludeRecursive" />
+      <e p="GUI.csproj" t="IncludeRecursive" />
+      <e p="NewGameStartingSystems.csproj" t="IncludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="ObjectivesSystem.csproj" t="IncludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="RecipeNodeSystem.csproj" t="IncludeRecursive" />
+      <e p="RecipeNodeSystemEditor.csproj" t="IncludeRecursive" />
+      <e p="Scripts.csproj" t="IncludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Tests.csproj" t="IncludeRecursive" />
+      <e p="Utilities.csproj" t="IncludeRecursive" />
+      <e p="VersionIncrementer.csproj" t="IncludeRecursive" />
+      <e p="xNode Backup Dactory Idle 2020 ECS.sln" t="IncludeFlat" />
+      <e p="xNode.csproj" t="IncludeRecursive" />
+      <e p="xNodeEditor.csproj" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>

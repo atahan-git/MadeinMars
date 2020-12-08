@@ -5,12 +5,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
-using XNode;
 
 
 /// <summary>
-/// Holds all the building data, item data, recipe data etc. needed
+/// Holds all the needed building data, item data, recipe data etc.
+/// Assigns UniqueId's to items at the start of the game, and deals with connecting item to id.
 /// Mods and stuff will somehow add data here.
+/// eg if you add another RecipeSet, congrats! you've modded in extra crafting recipes to the game.
 /// </summary>
 public class DataHolder : MonoBehaviour {
     public static DataHolder s;
@@ -20,14 +21,10 @@ public class DataHolder : MonoBehaviour {
     private ItemSet[] myItemSets;
     [SerializeField]
     private RecipeSet[] myRecipeSets; 
-    CraftingProcessNode[] myCraftingProcesses;
-    CraftingProcessNode[][] myCraftingProcessesDivided;
+    CraftingNode[] myCraftingProcesses;
+    CraftingNode[][] myCraftingProcessesDivided;
 
-    [Header ("please note that the higher ups in the lists will override the others during generation")]
-    [SerializeField]
-	private OreSpawnSettings[] myOres;
-
-    //Layers
+    // Layers - the z coordinates for various objects
     public static int worldLayer = 1;
     public static int beltLayer = 0;
     public static int itemLayer = -1;
@@ -45,12 +42,17 @@ public class DataHolder : MonoBehaviour {
     }
 
     public OreSpawnSettings[] GetAllOres () {
-        return myOres;
+        return myRecipeSets[0].myOres;
     }
 
+    
+    //---------------------------------------------
+    // All of the following could probably be converted to hash tables or sth to make them more efficient,
+    // but it isn't particularly necessary yet, so the added complexity isn't worth it
+    
     public bool UniqueNameToOreId(string name, out int oreId) {
-        for (int i = 0; i < myOres.Length; i++) {
-            if (myOres[i].oreUniqueName == name) {
+        for (int i = 0; i < GetAllOres().Length; i++) {
+            if (GetAllOres()[i].oreUniqueName == name) {
                 oreId = i + 1;
                 return true;
             }
@@ -61,8 +63,8 @@ public class DataHolder : MonoBehaviour {
     }
 
     public bool OreIdtoUniqueName (int id, out string oreType) {
-        if (id > 0 && id <= myOres.Length) {
-            oreType = myOres[id - 1].oreUniqueName;
+        if (id > 0 && id <= GetAllOres().Length) {
+            oreType = GetAllOres()[id - 1].oreUniqueName;
             return true;
         } else {
             oreType = null;
@@ -92,9 +94,10 @@ public class DataHolder : MonoBehaviour {
 
     /// <summary>
     /// Should be used for all long term saving purposes
+    /// The "UniqueName"s will never change! but the specific objects may change
     /// </summary>
     public Item GetItem (string uniqueName) {
-        int idCounter = 0;
+        //int idCounter = 0;
         for (int m = 0; m < myItemSets.Length; m++) {
             for (int i = 0; i < myItemSets[m].items.Length; i++) {
                 if (myItemSets[m].items[i] != null) {
@@ -102,7 +105,7 @@ public class DataHolder : MonoBehaviour {
                         return myItemSets[m].items[i];
                     }
                 }
-                idCounter++;
+                //idCounter++;
             }
         }
         throw new NullReferenceException("The item you are requesting " + uniqueName + " does not exist!");
@@ -110,6 +113,7 @@ public class DataHolder : MonoBehaviour {
 
     /// <summary>
     /// Only use this while the game is running. Id's are assigned dynamically at start, and may not be the same between sessions
+    /// Used by the belt system and the crafting system for efficiency over the unique name system.
     /// </summary>
     public Item GetItem (int itemId) {
         int itemSet = 0;
@@ -145,37 +149,39 @@ public class DataHolder : MonoBehaviour {
     }
 
     void GenerateCraftingProcessesArray () {
-        List<CraftingProcessNode> cp = new List<CraftingProcessNode>();
+        List<CraftingNode> cp = new List<CraftingNode>();
 
         for (int i = 0; i < myRecipeSets.Length; i++) {
-            for (int m = 0; m < myRecipeSets[i].nodes.Count; m++) {
-                if (myRecipeSets[i].nodes[m] is CraftingProcessNode) {
-                    cp.Add((CraftingProcessNode)myRecipeSets[i].nodes[m]);
-                }
+            for (int m = 0; m < myRecipeSets[i].myCraftingNodes.Count; m++) {
+                cp.Add((CraftingNode)myRecipeSets[i].myCraftingNodes[m]);
             }
         }
 
         myCraftingProcesses = cp.ToArray();
     }
 
+    /// <summary>
+    /// We kinda need to convert the rather ugly set of crafting nodes to easily useable categories for the BuildingCraftingController to use
+    /// That is done here.
+    /// </summary>
     void DivideCraftingProcessesArray () {
-        Dictionary<CraftingProcessNode.cTypes, int> cTypetoIndexMatch = new Dictionary<CraftingProcessNode.cTypes, int>();
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Miner]             = 0;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Furnace]           = 1;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorSingle]   = 2;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.ProcessorDouble]   = 3;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Press]             = 4;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Coiler]            = 5;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Cutter]            = 6;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Lab]               = 7;
-        cTypetoIndexMatch[CraftingProcessNode.cTypes.Building]          = 8;
+        Dictionary<CraftingNode.cTypes, int> cTypetoIndexMatch = new Dictionary<CraftingNode.cTypes, int>();
+        cTypetoIndexMatch[CraftingNode.cTypes.Miner]             = 0;
+        cTypetoIndexMatch[CraftingNode.cTypes.Furnace]           = 1;
+        cTypetoIndexMatch[CraftingNode.cTypes.ProcessorSingle]   = 2;
+        cTypetoIndexMatch[CraftingNode.cTypes.ProcessorDouble]   = 3;
+        cTypetoIndexMatch[CraftingNode.cTypes.Press]             = 4;
+        cTypetoIndexMatch[CraftingNode.cTypes.Coiler]            = 5;
+        cTypetoIndexMatch[CraftingNode.cTypes.Cutter]            = 6;
+        cTypetoIndexMatch[CraftingNode.cTypes.Lab]               = 7;
+        cTypetoIndexMatch[CraftingNode.cTypes.Building]          = 8;
         // Make sure this matches with the switch statement in GetCraftingProcessesOfType function!
 
 
-        List<List<CraftingProcessNode>> cp = new List<List<CraftingProcessNode>>();
+        List<List<CraftingNode>> cp = new List<List<CraftingNode>>();
 
         for (int i = 0; i < cTypetoIndexMatch.Count; i++) {
-            cp.Add(new List<CraftingProcessNode>());
+            cp.Add(new List<CraftingNode>());
         }
 
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
@@ -185,7 +191,7 @@ public class DataHolder : MonoBehaviour {
         myCraftingProcessesDivided = cp.Select(a => a.ToArray()).ToArray();
     }
 
-    public CraftingProcessNode[] GetCraftingProcessesOfType (BuildingData.ItemType type) {
+    public CraftingNode[] GetCraftingProcessesOfType (BuildingData.ItemType type) {
         int index = -1;
         switch (type) {
         case BuildingData.ItemType.Miner:           index = 0; break;
@@ -206,7 +212,7 @@ public class DataHolder : MonoBehaviour {
         return myCraftingProcessesDivided[index];
     }
 
-    public CraftingProcessNode[][] GetAllCraftingProcessNodesDivided() {
+    public CraftingNode[][] GetAllCraftingProcessNodesDivided() {
         return myCraftingProcessesDivided;
     }
 }

@@ -2,19 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// All belts have these BeltItemSlots. This is the smallest part of the belt, and each slot can hold one item, and store its connections.
+/// This object is also used in the BeltSlotUpdateProcessor to move items around.
+/// </summary>
 public class BeltItemSlot {
 
+	// Various flags for the processing
 	public bool isProcessed = false;
 	public int index;
+	
+	// The processing group we belong to.
 	public List<BeltItemSlot> beltItemSlotGroup;
 
 	public Vector3 position = new Vector3();
 
 	public List<BeltItemSlot> outsideConnections = new List<BeltItemSlot>();
-	public List<BeltItemSlot> insideConnections = new List<BeltItemSlot>(); // needed just for setup
+	public List<BeltItemSlot> insideConnections = new List<BeltItemSlot>(); 
 
 	public BeltItem myItem;
 
+	// Debugging bools
 	const bool coreDraw = true;
 	const bool numberDraw = false;
 
@@ -35,6 +44,10 @@ public class BeltItemSlot {
 	}
 
 	int updateOffset = 0;
+	/// <summary>
+	/// The updating for the belt slot. This will get called by the slot processor.
+	/// </summary>
+	/// <param name="isMarkedUpdate"></param>
 	public void BeltItemSlotUpdate (bool isMarkedUpdate) {
 		//Go through all of the possible outside connections, using update Offset as the starting point so that we use a different one each tick
 		if (myItem != null) {
@@ -73,6 +86,11 @@ public class BeltItemSlot {
 		return false;
 	}
 
+	/// <summary>
+	/// Connects two slots together.
+	/// </summary>
+	/// <param name="from"></param>
+	/// <param name="to"></param>
 	public static void ConnectBeltItemSlots (BeltItemSlot from, BeltItemSlot to) {
 		if (from == null || to == null)
 			return;
@@ -86,6 +104,11 @@ public class BeltItemSlot {
 		to.insideConnections.Add(from);
 	}
 
+	/// <summary>
+	/// Disconnects two slots
+	/// </summary>
+	/// <param name="from"></param>
+	/// <param name="to"></param>
 	public static void DisconnectBeltItemSlots (BeltItemSlot from, BeltItemSlot to) {
 		if (from == null || to == null)
 			return;
@@ -97,6 +120,10 @@ public class BeltItemSlot {
 	}
 
 
+	/// <summary>
+	/// "Resets" the slot, deleting the item on top, and removing the connections
+	/// </summary>
+	/// <param name="target"></param>
 	public static void ResetBeltItemSlot (BeltItemSlot target) {
 		if (target == null)
 			return;
@@ -106,6 +133,10 @@ public class BeltItemSlot {
 		RemoveAllConnections(target);
 	}
 
+	/// <summary>
+	/// Removes all the connections from the slot
+	/// </summary>
+	/// <param name="from"></param>
 	static void RemoveAllConnections (BeltItemSlot from) {
 		if (from == null)
 			return;
@@ -119,6 +150,7 @@ public class BeltItemSlot {
 		}
 	}
 
+	// Constructor
 	public BeltItemSlot (Vector3 p) {
 		position = p;
 	}

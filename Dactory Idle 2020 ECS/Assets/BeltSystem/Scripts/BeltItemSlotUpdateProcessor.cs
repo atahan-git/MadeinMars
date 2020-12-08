@@ -10,9 +10,14 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using static Unity.Mathematics.math;
 
+
+/// <summary>
+/// Processes the belt item slots every update.
+/// See the gif _Dactory Idle 2020\Media\Issues 1-4\gifs\Advanced passes for more info.
+/// </summary>
 public class BeltItemSlotUpdateProcessor
 {
-	public ObjectPoolSimple<BeltItem> beltItemPool;
+	public ObjectPoolSimple<BeltItem> beltItemPool; // Items are pooled for performance
 	public List<BeltPreProcessor.BeltGroup> beltGroups = new List<BeltPreProcessor.BeltGroup>();
 
 	public BeltItemSlotUpdateProcessor (ObjectPoolSimple<BeltItem> _beltItemPool, List<BeltPreProcessor.BeltGroup> _beltGroups) {

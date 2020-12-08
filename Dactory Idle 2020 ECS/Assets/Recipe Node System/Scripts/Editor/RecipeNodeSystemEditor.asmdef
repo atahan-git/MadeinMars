@@ -1,0 +1,17 @@
+{
+    "name": "RecipeNodeSystemEditor",
+    "references": [
+        "GUID:09b3620e92863634684f039ee6c397c0"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

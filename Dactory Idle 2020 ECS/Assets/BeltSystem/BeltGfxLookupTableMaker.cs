@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/// <summary>
+/// Go to the special "Belt Lookup table setup" scene to see how this works.
+/// Basically you put all the belts in a special order, add sprites to your table, and run the scene for this to magically attach the sprites to the correct places.
+/// </summary>
 public class BeltGfxLookupTableMaker : MonoBehaviour
 {
 

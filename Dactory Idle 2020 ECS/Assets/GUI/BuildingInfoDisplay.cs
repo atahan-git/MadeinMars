@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Displays the "details" button building information
+/// </summary>
 public class BuildingInfoDisplay : MonoBehaviour {
     public static bool isExtraInfoVisible = false; //Controlled by gui inventory controller
 
@@ -17,8 +21,7 @@ public class BuildingInfoDisplay : MonoBehaviour {
 
     public GameObject ProcessDisplayPrefab;
     public GameObject ProcessinoutPrefab;
-
-
+    
     static float infoDisplayTimeoutTime = 5f;
 
     private void Start() {
@@ -49,7 +52,7 @@ public class BuildingInfoDisplay : MonoBehaviour {
                 for (int input = 0; input < curProcess.inputItemIds.Length; input++) {
                     GameObject pIn = Instantiate(ProcessinoutPrefab, pDisp.GetComponent<MiniGUI_CraftingProcess>().InputsParent);
                     pIn.GetComponent<MiniGUI_InOutDisplay>().itemImage.sprite = DataHolder.s.GetItem(curProcess.inputItemIds[input]).GetSprite();
-                    pIn.GetComponent<MiniGUI_InOutDisplay>().totalText.text = curProcess.inputItemRequirements[input].ToString();
+                    pIn.GetComponent<MiniGUI_InOutDisplay>().totalText.text = curProcess.inputItemAmounts[input].ToString();
                 }
 
                 for (int output = 0; output < curProcess.outputItemIds.Length; output++) {
@@ -92,14 +95,14 @@ public class BuildingInfoDisplay : MonoBehaviour {
                     int totalItemCount = 0;
                     for (int input = 0; input < curProcess.inputItemIds.Length; input++) {
                         // Manually set madness
-                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().InputsParent.GetChild(input).GetComponent<MiniGUI_InOutDisplay>().valueText.text = curProcess.inputItemCounts[input].ToString();
-                        totalItemCount += curProcess.inputItemCounts[input];
+                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().InputsParent.GetChild(input).GetComponent<MiniGUI_InOutDisplay>().valueText.text = curProcess.toBeTakenFromBeltsAmounts[input].ToString();
+                        totalItemCount += curProcess.toBeTakenFromBeltsAmounts[input];
                     }
 
-                    for (int output = 0; output < curProcess.outputItemIds.Length; output++) {
+                    for (int output = 0; output < curProcess.inputItemIds.Length; output++) {
                         // Manually set madness
-                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().OutputsParent.GetChild(output).GetComponent<MiniGUI_InOutDisplay>().valueText.text = curProcess.outputItemCounts[output].ToString();
-                        totalItemCount += curProcess.outputItemCounts[output];
+                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().OutputsParent.GetChild(output).GetComponent<MiniGUI_InOutDisplay>().valueText.text = curProcess.toBePutOnBeltsAmounts[output].ToString();
+                        totalItemCount += curProcess.toBePutOnBeltsAmounts[output];
                     }
 
                     if (curProcess.isCrafting)
@@ -126,8 +129,8 @@ public class BuildingInfoDisplay : MonoBehaviour {
 
                         for (int output = 0; output < miningProcess.outputItemIds.Length; output++) {
                             // Manually set madness
-                            craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().OutputsParent.GetChild(output).GetComponent<MiniGUI_InOutDisplay>().valueText.text = miningProcess.outputItemCounts[output].ToString();
-                            totalItemCount += miningProcess.outputItemCounts[output];
+                            craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().OutputsParent.GetChild(output).GetComponent<MiniGUI_InOutDisplay>().valueText.text = miningProcess.toBePutOnBeltsAmounts[output].ToString();
+                            totalItemCount += miningProcess.toBePutOnBeltsAmounts[output];
                         }
 
                         if (miningProcess.isCrafting)

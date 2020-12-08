@@ -5,6 +5,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
 
+/// <summary>
+/// Deals with all the saving processes.
+/// If a data is saved, it should be here.
+/// </summary>
 public class DataSaver : MonoBehaviour {
 
 	public static DataSaver s;

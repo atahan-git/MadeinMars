@@ -2,53 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Does what it says, for the main screen.
+/// Mostly a placeholder.
+/// </summary>
 public class CameraBackgrounColorLooper : MonoBehaviour {
 
     public Camera target;
-    // Start is called before the first frame update
 
     public float h = 0;
     public float hdelta = 20f;
-    [Range(0,1)]
-    public float s = 0.1f;
-    [Range(0,1)]
-    public float v = 0.8f;
-    void Start()
-    {
-        
-    }
+    [Range(0, 1)] public float s = 0.1f;
+    [Range(0, 1)] public float v = 0.8f;
 
-    // Update is called once per frame
     void Update() {
         HsvToRgb(h, s, v, out var r, out var g, out var b);
-        target.backgroundColor = new Color(r/255f, g/255f, b/255f);
+        target.backgroundColor = new Color(r / 255f, g / 255f, b / 255f);
 
-        h += hdelta * Time.deltaTime; 
+        h += hdelta * Time.deltaTime;
     }
-    
-    
-    void HsvToRgb(float h, float S, float V, out int r, out int g, out int b)
-    {    
+
+
+    void HsvToRgb(float h, float S, float V, out int r, out int g, out int b) {
         float H = h;
-        while (H < 0) { H += 360; };
-        while (H >= 360) { H -= 360; };
-        float R, G, B;
-        if (V <= 0)
-        { R = G = B = 0; }
-        else if (S <= 0)
-        {
-            R = G = B = V;
+        while (H < 0) {
+            H += 360;
         }
-        else
-        {
+
+        ;
+        while (H >= 360) {
+            H -= 360;
+        }
+
+        ;
+        float R, G, B;
+        if (V <= 0) {
+            R = G = B = 0;
+        } else if (S <= 0) {
+            R = G = B = V;
+        } else {
             float hf = H / 60.0f;
-            int i = (int)Mathf.Floor(hf);
+            int i = (int) Mathf.Floor(hf);
             float f = hf - i;
             float pv = V * (1 - S);
             float qv = V * (1 - S * f);
             float tv = V * (1 - S * (1 - f));
-            switch (i)
-            {
+            switch (i) {
 
                 // Red is the dominant color
 
@@ -113,16 +113,16 @@ public class CameraBackgrounColorLooper : MonoBehaviour {
                     break;
             }
         }
-        r = Clamp((int)(R * 255.0));
-        g = Clamp((int)(G * 255.0));
-        b = Clamp((int)(B * 255.0));
+
+        r = Clamp((int) (R * 255.0));
+        g = Clamp((int) (G * 255.0));
+        b = Clamp((int) (B * 255.0));
     }
 
     /// <summary>
     /// Clamp a value to 0-255
     /// </summary>
-    int Clamp(int i)
-    {
+    int Clamp(int i) {
         if (i < 0) return 0;
         if (i > 255) return 255;
         return i;

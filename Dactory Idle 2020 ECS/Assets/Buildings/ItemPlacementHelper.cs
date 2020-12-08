@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Controls the pre-placement item 'shadow' that you move around with your pointer before placing a building down
+/// Spawns and controls the green/red placement blocks
+/// </summary>
 public class ItemPlacementHelper : MonoBehaviour
 {
 	[HideInInspector]

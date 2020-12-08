@@ -8,6 +8,9 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
+	/// <summary>
+	/// Some tests I've set-up ages ago. They all still work, but we need much much more tests to actually test all the functionality
+	/// </summary>
 	public class BeltSystemTester {
 
 		[SetUp]

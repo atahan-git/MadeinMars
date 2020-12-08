@@ -3055,10 +3055,7 @@ MonoBehaviour:
       _node: {fileID: 4806882596363312630}
       _typeQualifiedName: ItemInput, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: CraftingInput
-        node: {fileID: 7058421518136959276}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -3680,9 +3677,6 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: Input 1
-        node: {fileID: 4806882596363312630}
-        reroutePoints: []
-      - fieldName: Input 2
         node: {fileID: 4806882596363312630}
         reroutePoints: []
       _direction: 1

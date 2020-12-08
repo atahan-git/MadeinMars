@@ -12,6 +12,9 @@ public class BeltBuildingObject : BeltObject {
 	public List<ItemCreationSlot> myCreationSlots = new List<ItemCreationSlot>();
 	public List<ItemInputSlot> myInputSlots = new List<ItemInputSlot>();
 
+	/// <summary>
+	/// A setup method used by the belt updating system
+	/// </summary>
 	public override void CreateBeltItemSlots () {
 		myBeltItemSlots = new BeltItemSlot[4, 4];
 		myBeltItemSlotsLayer2 = new BeltItemSlot[4, 4];
@@ -35,6 +38,9 @@ public class BeltBuildingObject : BeltObject {
 	}
 
 
+	/// <summary>
+	/// A debug method for continuous item generation
+	/// </summary>
 	public void CreateItemsPeriodically () {
 		for (int i = 0; i < myCreationSlots.Count; i++) {
 			ItemCreationSlot slot = myCreationSlots[i];
@@ -52,6 +58,7 @@ public class BeltBuildingObject : BeltObject {
 	}
 
 	void CreateItemCreationSlots () {
+		RemoveOldItemSlots();
 		myCreationSlots.Clear();
 
 		for (int i = 0; i < 4; i++) {
@@ -79,6 +86,7 @@ public class BeltBuildingObject : BeltObject {
 	}
 
 	void CreateItemInputSlots () {
+		RemoveOldItemSlots();
 		myInputSlots.Clear();
 
 		for (int i = 0; i < 4; i++) {
@@ -104,6 +112,18 @@ public class BeltBuildingObject : BeltObject {
 			}
 		}
 	}
+
+	public override void RemoveOldItemSlots() {
+		foreach (var slot in myInputSlots) {
+			slot.ResetBeltItemSlot();
+			slot.ResetBeltItemGroup();
+		}
+
+		foreach (var slot in myCreationSlots) {
+			slot.ResetBeltItemSlot();
+			slot.ResetBeltItemGroup();
+		}
+	}
 }
 
 public class ItemInputSlot {
@@ -127,6 +147,14 @@ public class ItemInputSlot {
 	public int TakeItem () {
 		return BeltMaster.s.DestroyItemAtSlot(mySlot);
 	}
+
+	public void ResetBeltItemSlot() {
+		BeltItemSlot.ResetBeltItemSlot(mySlot);
+	}
+	public void ResetBeltItemGroup() {
+		if (mySlot.beltItemSlotGroup != null)
+			mySlot.beltItemSlotGroup.Remove(mySlot);
+	}
 }
 
 public class ItemCreationSlot {
@@ -138,5 +166,14 @@ public class ItemCreationSlot {
 
 	public bool CreateItem (int itemId) {
 		return BeltMaster.s.CreateItemAtBeltSlot(mySlot, itemId);
+	}
+	
+	public void ResetBeltItemSlot() {
+		BeltItemSlot.ResetBeltItemSlot(mySlot);
+	}
+	
+	public void ResetBeltItemGroup() {
+		if (mySlot.beltItemSlotGroup != null)
+			mySlot.beltItemSlotGroup.Remove(mySlot);
 	}
 }
