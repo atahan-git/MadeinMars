@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Play Level.unity
     guid: c63c9c81112eb0649b968897e6e17bbc
+  - enabled: 1
+    path: Assets/Node Item Tree Making Scene.unity
+    guid: e01a0fd9f85c95145a03958954afc639
   m_configObjects: {}

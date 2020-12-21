@@ -2043,7 +2043,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd9cc694e24fc9c4c9c95565e5896703, type: 3}
-  m_Name: Base Recipe Set
+  m_Name: Base Recipe Set 2
   m_EditorClassIdentifier: 
   myItemSets:
   - {fileID: 11400000, guid: 9427da8f80d849340bc3314ec68eee65, type: 2}
@@ -2428,9 +2428,12 @@ MonoBehaviour:
     timeCost: 5
     CraftingType: 8
     inputs:
+    - nodeId: 62
+      itemUniqueName: bBelt1
+      count: 100
     - nodeId: 70
       itemUniqueName: buildingMat
-      count: 100
+      count: 1
     outputs:
     - nodeId: 71
       itemUniqueName: bBase
@@ -2672,10 +2675,10 @@ MonoBehaviour:
     inputIds: 
     outputIds: 3a000000
   - id: 62
-    pos: {x: 4116.505, y: 271.84467, z: 0}
+    pos: {x: 4116.505, y: 77.66991, z: 0}
     itemUniqueName: bBelt1
     inputIds: 33000000
-    outputIds: 
+    outputIds: 42000000
   - id: 63
     pos: {x: 4038.835, y: -116.50485, z: 0}
     itemUniqueName: assembler2Prefab

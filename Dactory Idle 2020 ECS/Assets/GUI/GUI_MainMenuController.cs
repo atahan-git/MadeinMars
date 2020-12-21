@@ -15,6 +15,10 @@ public class GUI_MainMenuController : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void OpenModRecipes() {
+        SceneManager.LoadScene(2);
+    }
+
     public void ResetProgress() {
         DataSaver.DeleteSave(DataSaver.saveName);
     }

@@ -92,7 +92,7 @@ public class NodeItemTreeMakerMaster : RecipeTreeMaster {
         Invoke("LateStart",0.5f);
         RescaleNodeArea();
         
-        UpdateValues();
+        //UpdateValues();
     }
 
     void UpdateValues() {
@@ -409,6 +409,10 @@ public class NodeItemTreeMakerMaster : RecipeTreeMaster {
         }
 
         //NodeParent.anchoredPosition = Vector3.zero;
+    }
+
+    public void BackToMenu() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
 }
