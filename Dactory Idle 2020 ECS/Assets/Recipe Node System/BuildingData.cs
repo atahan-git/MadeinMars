@@ -17,8 +17,8 @@ public class BuildingData : ScriptableObject {
 
 	public ItemType myType;
 
-	[Tooltip("Grade 1 factory will only be able to process grade 1 items etc.")]
-	public bool[] BuildingAbility = new bool[5];
+	[Tooltip("Grade 1 factory will only be able to process grade 1 items etc. Also determines miner range")]
+	public int buildingGrade = 0;
 
 	public float energyUse = 0;
 

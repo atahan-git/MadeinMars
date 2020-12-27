@@ -8,8 +8,8 @@ using UnityEngine;
 /// </summary>
 public static class DebugExtensions {
 	
-	public static void DrawSquare (Vector3 pos, Vector3 siz, Color col, bool isTimed) {
-		if (!isTimed) {
+	public static void DrawSquare (Vector3 pos, Vector3 siz, Color col, bool isPersistent) {
+		if (!isPersistent) {
 			pos -= Vector3.forward;
 			Vector3 xOff = new Vector3(siz.x, 0, 0);
 			Vector3 yOff = new Vector3(0, siz.y, 0);
@@ -24,7 +24,7 @@ public static class DebugExtensions {
 	}
 
 	public static void DrawSquare (Vector3 pos, Vector3 siz, Color col) {
-		DrawSquare(pos, siz, col, 500f);
+		DrawSquare(pos, siz, col, 1);
 	}
 
 		public static void DrawSquare (Vector3 pos, Vector3 siz, Color col, float time) {
@@ -43,9 +43,9 @@ public static class DebugExtensions {
 		start -= Vector3.forward;
 		end -= Vector3.forward;
 
-		Debug.DrawLine(start, end, col, 500f);
-		Debug.DrawLine(end, end + (start - end) / 3f + Vector3.Cross(end - start, Vector3.forward) / 3f, col, 500f);
-		Debug.DrawLine(end, end + (start - end) / 3f - Vector3.Cross(end - start, Vector3.forward) / 3f, col, 500f);
+		Debug.DrawLine(start, end, col, 1);
+		Debug.DrawLine(end, end + (start - end) / 3f + Vector3.Cross(end - start, Vector3.forward) / 3f, col, 1);
+		Debug.DrawLine(end, end + (start - end) / 3f - Vector3.Cross(end - start, Vector3.forward) / 3f, col, 1);
 	}
 
 	public static void DrawNumber (Vector3 pos, int num) {
@@ -56,6 +56,6 @@ public static class DebugExtensions {
 			Debug.DrawLine(pos + (Vector3.up / 20f) - (Vector3.forward / 30f * i), pos - (Vector3.up / 20f) - (Vector3.forward / 30f * i), Color.white);
 		}*/
 
-		Debug.DrawLine(pos , pos - (Vector3.forward / 30f * num), Color.white, 500f);
+		Debug.DrawLine(pos , pos - (Vector3.forward / 30f * num), Color.white, 1);
 	}
 }

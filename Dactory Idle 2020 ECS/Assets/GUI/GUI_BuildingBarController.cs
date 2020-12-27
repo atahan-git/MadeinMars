@@ -25,6 +25,8 @@ public class GUI_BuildingBarController : MonoBehaviour {
     public Image PlaceBeltsButton;
     public bool CanPlaceBelts = true;
 
+    public Toggle beltSafeModeToggle;
+
     private void Awake() {
         GameLoader.CallWhenLoaded(LoadBuildingSlots);
     }
@@ -32,7 +34,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
     private void Start () {
         DataSaver.saveEvent += SaveBuildingSlots;
 
-        Player_InventoryController.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;
+        Player_InventoryController.s.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;
 
         scont = GetComponent<GUI_SwitchController>();
     }
@@ -142,6 +144,10 @@ public class GUI_BuildingBarController : MonoBehaviour {
         scont.BringBuildingBarToFocus();
     }
 
+    public void ToggleBeltSafeMode() {
+        Player_MasterControlCheck.s.buildingController.ToggleBeltSafeMode(beltSafeModeToggle.isOn);
+    }
+
     public void Deselect () {
         beltBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
@@ -160,7 +166,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
 	public void OnDestroy () {
         GameLoader.RemoveFromCall(LoadBuildingSlots);
         DataSaver.saveEvent -= SaveBuildingSlots;
-        Player_InventoryController.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
+        Player_InventoryController.s.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
     }
 
 

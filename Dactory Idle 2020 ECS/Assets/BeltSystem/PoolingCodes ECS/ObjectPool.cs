@@ -80,7 +80,7 @@ public class ObjectPool : MonoBehaviour {
 		temp.CopyTo(isActiveArray, 0);
 
 		NativeArray<Entity> tempArray1 = allEntitiesArray;
-		NativeArray<Entity> tempArray2 = new NativeArray<Entity>(newPoolSize-poolSize, Allocator.Temp);
+		NativeArray<Entity> tempArray2 = new NativeArray<Entity>(newPoolSize-poolSize, Allocator.Persistent);
 		entityManager.CreateEntity(entityArchetype, tempArray2);
 
 		allEntitiesArray = new NativeArray<Entity>(newPoolSize, Allocator.Persistent);

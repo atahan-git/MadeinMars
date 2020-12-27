@@ -43,9 +43,14 @@ public class ItemSet : ScriptableObject {
 public class InventoryItemSlot{
     public Item myItem;
     public int count = 0; // If 0, means the slot is empty.
+    public int maxCount = -1; // -1 means no limit
+
+    public bool isOutputSlot;
 
     public InventoryItemSlot () { }
     public InventoryItemSlot (Item item, int _count) { myItem = item; count = _count; }
+    public InventoryItemSlot (Item item, int _count, int _maxcount) { myItem = item; count = _count; maxCount = _maxcount; }
+    public InventoryItemSlot (Item item, int _count, int _maxcount, bool _isOutputSlot) { myItem = item; count = _count; maxCount = _maxcount; isOutputSlot = _isOutputSlot; }
 }
 
 
@@ -69,7 +74,17 @@ public class Item {
     public Sprite mySprite;
 
     private Material myMat = null;
+    
+    
+    public float weight = 1;
 
+    [Header("Buy/Sell")]
+
+    public int butsellamount = 1;
+    [Tooltip("Note that 1 cost = $1 M.")]
+    public float buyCost = 10;
+    [Tooltip("Note that 1 cost = $1 M.")]
+    public float sellCost = 1;
 
     public Sprite GetSprite() {
         return mySprite;
@@ -91,5 +106,25 @@ public class Item {
     public Vector2 GetScale () {
         float scale = 64f / 1024f;
         return new Vector2(scale, scale);
+    }
+    
+    public static bool operator == (Item a, Item b) {
+        if (ReferenceEquals(a, null))
+            return ReferenceEquals(b, null);
+        
+        if (ReferenceEquals(b, null))
+            return false;
+        
+        return a.uniqueName == b.uniqueName;
+    }
+	
+    public static bool operator != (Item a, Item b) {
+        if (ReferenceEquals(a, null))
+            return !ReferenceEquals(b, null);
+        
+        if (ReferenceEquals(b, null))
+            return true;
+        
+        return a.uniqueName != b.uniqueName;
     }
 }

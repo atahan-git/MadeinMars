@@ -13,6 +13,7 @@ public class MiniGUI_CraftingQueueDisplay : MonoBehaviour
     public float timeReq = -1f;
     public int index = -1;
     public Item myItem;
+    public CraftingNode myCraftingNode;
 
     public Image myImg;
 
@@ -21,12 +22,11 @@ public class MiniGUI_CraftingQueueDisplay : MonoBehaviour
 
     GUI_CraftingController cont;
 
-    private CraftingNode cp;
     public void SetUp(CraftingNode _cp, GUI_CraftingController c) {
-        cp = _cp;
+        myCraftingNode = _cp;
         progress = 0;
-        timeReq = cp.timeCost;
-        myItem =  DataHolder.s.GetItem(cp.outputs[0].itemUniqueName);
+        timeReq = myCraftingNode.timeCost;
+        myItem =  DataHolder.s.GetItem(myCraftingNode.outputs[0].itemUniqueName);
         myImg.sprite = myItem.GetSprite();
         cont = c;
     }
@@ -73,8 +73,11 @@ public class MiniGUI_CraftingQueueDisplay : MonoBehaviour
         foreach (var img in allImgs) {
             img.color = new Color(0,0,0,0);
         }*/
+        if (isActiveAndEnabled)
+            StartCoroutine(ThinnerToDestroy());
+        else
+            Destroy(gameObject);
 
-        StartCoroutine(ThinnerToDestroy());
     }
 
     IEnumerator ThinnerToDestroy() {

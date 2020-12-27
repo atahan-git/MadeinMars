@@ -36,6 +36,7 @@
       <Path>.vs</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Temp</Path>
       <Path>Tests</Path>
       <Path>obj</Path>
     </explicitExcludes>

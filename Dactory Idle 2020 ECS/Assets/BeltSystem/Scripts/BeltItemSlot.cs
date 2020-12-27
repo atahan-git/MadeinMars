@@ -26,6 +26,7 @@ public class BeltItemSlot {
 	// Debugging bools
 	const bool coreDraw = true;
 	const bool numberDraw = false;
+	const bool itemDraw = true;
 
 	public void DebugDraw () {
 		// Draw a yellow cube at the transform position
@@ -40,6 +41,14 @@ public class BeltItemSlot {
 		}
 		if (numberDraw) {
 			DebugExtensions.DrawNumber(position, index);
+		}
+	}
+
+	public void DebugItemDraw() {
+		if (itemDraw) {
+			if (myItem != null) {
+				DebugExtensions.DrawSquare(position, new Vector3(0.08f, 0.08f, 0.08f), Color.black, false);
+			}
 		}
 	}
 

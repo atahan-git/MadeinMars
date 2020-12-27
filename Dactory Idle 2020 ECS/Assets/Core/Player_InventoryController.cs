@@ -7,17 +7,17 @@ using UnityEngine;
 /// Controls the player inventory.
 /// Deals with putting items in there, taking them out, and seeing if we have enough items to builds things that we want.
 /// </summary>
-public class Player_InventoryController : MonoBehaviour {
+public class Player_InventoryController : MonoBehaviour, IInventoryController {
     public static Player_InventoryController s;
 
     // You can assume that this reference is always kept, and you don't need to re-reference the list ever again!
     public List<InventoryItemSlot> mySlots = new List<InventoryItemSlot>();
 
     public static bool isInventoryLoadingDone = false;
-    public delegate void GenericCallback ();
-    public static event GenericCallback drawInventoryEvent; // This is for the initial drawing of the inventory. Only needs to be called when slot counts change
     
-    public static event GenericCallback inventoryContentsChangedEvent; // Sign up to this if you want to be updated whenever the inventory contents are changed
+    
+    public event GenericCallback drawInventoryEvent;
+    public event GenericCallback inventoryContentsChangedEvent;
 
     public bool cheatMode = false;
     private void Awake () {
@@ -219,5 +219,14 @@ public class Player_InventoryController : MonoBehaviour {
         GameLoader.RemoveFromCall(GameLoadingComplete);
         DataSaver.saveEvent -= SaveInventory;
 	}
+
+}
+
+public delegate void GenericCallback ();
+
+public interface IInventoryController {
+    event GenericCallback drawInventoryEvent; // This is for the initial drawing of the inventory. Only needs to be called when slot counts change
+    
+    event GenericCallback inventoryContentsChangedEvent; // Sign up to this if you want to be updated whenever the inventory contents are changed
 }
 

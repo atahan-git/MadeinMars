@@ -22,7 +22,10 @@ public class Player_CommsController : MonoBehaviour {
         public string uniqueName = "";
         public int rewardAmount = 1;
         public float cost = 100;
+        public float weight = 1;
     }
+
+    public int availableShipCount = 3;
 }
 
 

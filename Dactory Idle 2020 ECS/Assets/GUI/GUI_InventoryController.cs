@@ -23,7 +23,7 @@ public class GUI_InventoryController : MonoBehaviour {
         if (Player_InventoryController.isInventoryLoadingDone)
             DrawInventory();
         else
-            Player_InventoryController.drawInventoryEvent += DrawInventory;
+            Player_InventoryController.s.drawInventoryEvent += DrawInventory;
 
         if (PlayerPrefs.GetInt("extrainfo", 0) == 1) {
             ToggleExtraInfo();
@@ -32,6 +32,8 @@ public class GUI_InventoryController : MonoBehaviour {
 
     void DrawInventory () {
         print("Drawing Inventory");
+        
+        // Draw the buildings
         bbar = GetComponent<GUI_BuildingBarController>();
         foreach (BuildingData dat in DataHolder.s.AllBuildings()) {
             if(dat.playerBuildable)
@@ -39,15 +41,17 @@ public class GUI_InventoryController : MonoBehaviour {
         }
         print(DataHolder.s.AllBuildings().Length.ToString() + " Buildings are put into building list");
 
+        
+        // Draw the items
         pcont = transform.parent.GetComponentInChildren<Player_InventoryController>();
         foreach (InventoryItemSlot it in pcont.mySlots) {
-            Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, this);
+            Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, Player_InventoryController.s, false);
         }
         print(pcont.mySlots.Count.ToString() + " ItemSlots are drawn");
     }
 
     void OnDestroy() {
-        Player_InventoryController.drawInventoryEvent -= DrawInventory;
+        Player_InventoryController.s.drawInventoryEvent -= DrawInventory;
     }
 
     public void ToggleExtraInfo () {

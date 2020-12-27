@@ -132,7 +132,7 @@ public class BeltPreProcessor {
 			if (BeltMaster.s != null) {
 				if (BeltMaster.s.debugDraw) {
 					for (int i = 0; i < beltItemSlotGroup.Count - 1; i++) {
-						Debug.DrawLine(beltItemSlotGroup[i].position - Vector3.forward * i * 0.05f, beltItemSlotGroup[i + 1].position - Vector3.forward * (i + 1) * 0.05f, Color.magenta, 200f);
+						Debug.DrawLine(beltItemSlotGroup[i].position - Vector3.forward * i * 0.05f, beltItemSlotGroup[i + 1].position - Vector3.forward * (i + 1) * 0.05f, Color.magenta, 10f);
 					}
 				}
 			}

@@ -26,6 +26,7 @@ public class BeltBuildingObject : BeltObject {
 				if (x + y != 3) {
 					if (math.abs(x - y) == 1 || math.abs(x - y) == 2) {
 						myBeltItemSlots[x, y] = new BeltItemSlot(GetBeltItemSlotPos(x, y));
+						allBeltItemSlots.Add(myBeltItemSlots[x, y]);
 					}
 				}
 			}
@@ -33,8 +34,7 @@ public class BeltBuildingObject : BeltObject {
 
 		allBeltItemSlotsArray = allBeltItemSlots.ToArray();
 
-		CreateItemCreationSlots();
-		CreateItemInputSlots();
+		CreateBuildingBeltSpecificSlots();
 	}
 
 
@@ -57,9 +57,13 @@ public class BeltBuildingObject : BeltObject {
 		}
 	}
 
-	void CreateItemCreationSlots () {
+	void CreateBuildingBeltSpecificSlots() {
 		RemoveOldItemSlots();
-		myCreationSlots.Clear();
+		CreateItemCreationSlots();
+		CreateItemInputSlots();
+	}
+	
+	void CreateItemCreationSlots () {
 
 		for (int i = 0; i < 4; i++) {
 			if (beltOutputs[i]) {
@@ -86,8 +90,6 @@ public class BeltBuildingObject : BeltObject {
 	}
 
 	void CreateItemInputSlots () {
-		RemoveOldItemSlots();
-		myInputSlots.Clear();
 
 		for (int i = 0; i < 4; i++) {
 			if (beltInputs[i]) {
@@ -118,11 +120,13 @@ public class BeltBuildingObject : BeltObject {
 			slot.ResetBeltItemSlot();
 			slot.ResetBeltItemGroup();
 		}
+		myInputSlots.Clear();
 
 		foreach (var slot in myCreationSlots) {
 			slot.ResetBeltItemSlot();
 			slot.ResetBeltItemGroup();
 		}
+		myCreationSlots.Clear();
 	}
 }
 

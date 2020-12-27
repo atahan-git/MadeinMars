@@ -111,6 +111,32 @@ public class DataHolder : MonoBehaviour {
         throw new NullReferenceException("The item you are requesting " + uniqueName + " does not exist!");
     }
 
+    private Item[] allItems = new Item[0];
+    /// <summary>
+    /// Automatically generate an array containing all the items currently available
+    /// </summary>
+    /// <returns>An array of items</returns>
+    public Item[] GetAllItems() {
+        if (allItems.Length == 0) {
+
+            int length = 0;
+
+            for (int m = 0; m < myItemSets.Length; m++) {
+                length += myItemSets[m].items.Length;
+            }
+
+            allItems = new Item[length];
+
+            int lastIndex = 0;
+            for (int m = 0; m < myItemSets.Length; m++) {
+                myItemSets[m].items.CopyTo(allItems, lastIndex);
+                lastIndex += myItemSets[m].items.Length;
+            }
+        }
+
+        return allItems;
+    }
+
     /// <summary>
     /// Only use this while the game is running. Id's are assigned dynamically at start, and may not be the same between sessions
     /// Used by the belt system and the crafting system for efficiency over the unique name system.

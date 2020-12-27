@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 6554930031985089224}
   - component: {fileID: 223134351451608469}
   - component: {fileID: 480200267000676485}
+  - component: {fileID: 5858420731606483647}
   m_Layer: 5
   m_Name: CraftingProcess
   m_TagString: Untagged
@@ -327,6 +328,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputsParent: {fileID: 9010159420487282236}
   OutputsParent: {fileID: 4873776366276743223}
+--- !u!222 &5858420731606483647
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3193192259405869338}
+  m_CullTransparentMesh: 0
 --- !u!1 &3898734465525508436
 GameObject:
   m_ObjectHideFlags: 0

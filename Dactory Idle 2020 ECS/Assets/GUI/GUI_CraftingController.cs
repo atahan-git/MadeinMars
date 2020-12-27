@@ -51,13 +51,17 @@ public class GUI_CraftingController : MonoBehaviour {
     }
 
     public void CraftItem(int craftingProcessIndex) {
-        print("Crafting item " + craftingProcessIndex.ToString());
-        
-        var newCraftingProcess = Instantiate(CraftingQueuePrefab, CraftingQueueParent).GetComponent<MiniGUI_CraftingQueueDisplay>();
-        newCraftingProcess.transform.SetAsFirstSibling();
-        
-        newCraftingProcess.SetUp(allCraftingProcesses[craftingProcessIndex],this);
-        CraftingQueue.Enqueue(newCraftingProcess);
+
+        if (Player_InventoryController.s.CanCraftItem(allCraftingProcesses[craftingProcessIndex])) {
+            print("Crafting item " + craftingProcessIndex.ToString());
+            var newCraftingProcess = Instantiate(CraftingQueuePrefab, CraftingQueueParent).GetComponent<MiniGUI_CraftingQueueDisplay>();
+            newCraftingProcess.transform.SetAsFirstSibling();
+
+            newCraftingProcess.SetUp(allCraftingProcesses[craftingProcessIndex], this);
+            CraftingQueue.Enqueue(newCraftingProcess);
+        } else {
+            print("Cannot craft item " + craftingProcessIndex.ToString() + " - not enough resources");
+        }
     }
 
     public void CancelCraftItem(MiniGUI_CraftingQueueDisplay target) {
@@ -80,7 +84,14 @@ public class GUI_CraftingController : MonoBehaviour {
             curActiveProcess.progress += (1f / curActiveProcess.timeReq) * Time.deltaTime;
             curActiveProcess.UpdateDisplay();
             if (curActiveProcess.progress >= 1) {
-                Player_InventoryController.s.TryAddItem(curActiveProcess.myItem);
+                if (Player_InventoryController.s.CanCraftItem(curActiveProcess.myCraftingNode)) {
+                    if (Player_InventoryController.s.TryAddItem(curActiveProcess.myItem)) {
+                        Player_InventoryController.s.UseCraftingResources(curActiveProcess.myCraftingNode, 1);
+                        print("Item Craftin success: " + curActiveProcess.myItem.uniqueName);
+                    }
+                }
+                print("Item Crafting failed: " + curActiveProcess.myItem.uniqueName);
+
                 curActiveProcess.DestroySelf();
                 curActiveProcess = null;
             }

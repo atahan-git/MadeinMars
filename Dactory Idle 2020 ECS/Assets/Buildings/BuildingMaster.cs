@@ -10,7 +10,8 @@ public class BuildingMaster : MonoBehaviour {
     public static BuildingMaster s;
 	public const float buildingUpdatePerSecond = 4;
 
-	public static List<BuildingCraftingController> myBuildings = new List<BuildingCraftingController>();
+	public static List<BuildingCraftingController> myBuildingCrafters = new List<BuildingCraftingController>();
+	public static List<BuildingInOutController> myBuildingInOuters = new List<BuildingInOutController>();
 
 	private void Awake () {
 		if (s != null) {
@@ -42,12 +43,19 @@ public class BuildingMaster : MonoBehaviour {
 			energyUsed = 1;
 			energyProduced = 100000;
 
-			for (int i = 0; i < myBuildings.Count; i++) {
-				if (myBuildings[i] != null) {
-					if (myBuildings[i].isActive) {
-						myBuildings[i].TakeItemsIn();
-						energyUsed += myBuildings[i].UpdateCraftingProcess(efficiency);
-						myBuildings[i].PutItemsOut();
+			for (int i = 0; i < myBuildingCrafters.Count; i++) {
+				if (myBuildingCrafters[i] != null) {
+					if (myBuildingCrafters[i].isActive) {
+						energyUsed += myBuildingCrafters[i].UpdateCraftingProcess(efficiency);
+					}
+				}
+			}
+			
+			for (int i = 0; i < myBuildingInOuters.Count; i++) {
+				if (myBuildingInOuters[i] != null) {
+					if (myBuildingInOuters[i].isActive) {
+						myBuildingInOuters[i].TakeItemsIn();
+						myBuildingInOuters[i].PutItemsOut();
 					}
 				}
 			}

@@ -12,6 +12,7 @@ public class BuildingInfoDisplay : MonoBehaviour {
     public static bool isExtraInfoVisible = false; //Controlled by gui inventory controller
 
     BuildingCraftingController crafter;
+    BuildingInventoryController inventory;
 
     public GameObject canvas;
     public Transform Parent;
@@ -21,11 +22,14 @@ public class BuildingInfoDisplay : MonoBehaviour {
 
     public GameObject ProcessDisplayPrefab;
     public GameObject ProcessinoutPrefab;
+
+    public GameObject InventoryListingPrefab;
+    public Transform InventoryParent;
     
     static float infoDisplayTimeoutTime = 5f;
 
     private void Start() {
-        SetUp();
+        Invoke("SetUp",1f);
     }
 
     // Update is called once per frame
@@ -41,6 +45,7 @@ public class BuildingInfoDisplay : MonoBehaviour {
 
     public void SetUp () {
         crafter = GetComponent<BuildingCraftingController>();
+        inventory = GetComponent<BuildingInventoryController>();
         craftingProcesses = new List<GameObject>();
         timeoutCounters = new List<float>();
         for (int i = 0; i < crafter.myCraftingProcesses.Length; i++) {
@@ -62,27 +67,12 @@ public class BuildingInfoDisplay : MonoBehaviour {
                 }
 
                 //craftingProcesses[craftingProcesses.Count-1].SetActive(false);
-            } else {
-                MiningProcess miningProcess = crafter.myCraftingProcesses[i] as MiningProcess;
-                if (miningProcess != null) {
-                    GameObject pDisp = Instantiate(ProcessDisplayPrefab, Parent);
-                    craftingProcesses.Add(pDisp);
-                    timeoutCounters.Add(infoDisplayTimeoutTime-1f);
-
-                    /*GameObject pIn = Instantiate(ProcessinoutPrefab, pDisp.transform.GetChild(0));
-                    pIn.GetComponentInChildren<Image>().sprite = DataHolder.s.GetItem(curProcess.outputItemIds[0]).GetSprite();
-                    pIn.transform.GetChild(1).GetComponent<Text>().text = curProcess.outputItemAmounts[0].ToString();*/
-
-
-                    for (int output = 0; output < miningProcess.outputItemIds.Length; output++) {
-                        GameObject pOut = Instantiate(ProcessinoutPrefab, pDisp.GetComponent<MiniGUI_CraftingProcess>().OutputsParent);
-                        pOut.GetComponent<MiniGUI_InOutDisplay>().itemImage.sprite = DataHolder.s.GetItem(miningProcess.outputItemIds[output]).GetSprite();
-                        pOut.GetComponent<MiniGUI_InOutDisplay>().totalText.text = miningProcess.outputItemAmounts[output].ToString();
-                    }
-
-                    //craftingProcesses[craftingProcesses.Count - 1].SetActive(false);
-                }
-            }
+            } 
+        }
+        
+        
+        foreach (InventoryItemSlot it in inventory.inventory) {
+            Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, inventory,true);
         }
     }
 
@@ -93,16 +83,18 @@ public class BuildingInfoDisplay : MonoBehaviour {
                 if (curProcess != null) {
                     craftingProcesses[i].GetComponentInChildren<Slider>().value = (float)curProcess.curCraftingProgress / (float)curProcess.craftingProgressTickReq;
                     int totalItemCount = 0;
-                    for (int input = 0; input < curProcess.inputItemIds.Length; input++) {
+                    for (int input = 0; input < curProcess.inputItems.Length; input++) {
                         // Manually set madness
-                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().InputsParent.GetChild(input).GetComponent<MiniGUI_InOutDisplay>().valueText.text = curProcess.toBeTakenFromBeltsAmounts[input].ToString();
-                        totalItemCount += curProcess.toBeTakenFromBeltsAmounts[input];
+                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().InputsParent.GetChild(input).GetComponent<MiniGUI_InOutDisplay>().valueText.text 
+                            = inventory.GetAmountOfItems(curProcess.inputItems[input]).ToString();
+                        totalItemCount += inventory.GetAmountOfItems(curProcess.inputItems[input]);
                     }
 
-                    for (int output = 0; output < curProcess.inputItemIds.Length; output++) {
+                    for (int output = 0; output < curProcess.outputItems.Length; output++) {
                         // Manually set madness
-                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().OutputsParent.GetChild(output).GetComponent<MiniGUI_InOutDisplay>().valueText.text = curProcess.toBePutOnBeltsAmounts[output].ToString();
-                        totalItemCount += curProcess.toBePutOnBeltsAmounts[output];
+                        craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().OutputsParent.GetChild(output).GetComponent<MiniGUI_InOutDisplay>().valueText.text 
+                            = inventory.GetAmountOfItems(curProcess.outputItems[output]).ToString();
+                        totalItemCount += inventory.GetAmountOfItems(curProcess.outputItems[output]);
                     }
 
                     if (curProcess.isCrafting)
@@ -120,35 +112,6 @@ public class BuildingInfoDisplay : MonoBehaviour {
                         else
                             craftingProcesses[i].SetActive(false);
 
-                    }
-                } else {
-                    MiningProcess miningProcess = crafter.myCraftingProcesses[i] as MiningProcess;
-                    if (miningProcess != null) {
-                        craftingProcesses[i].GetComponentInChildren<Slider>().value = (float)miningProcess.curCraftingProgress / (float)miningProcess.craftingProgressTickReq;
-                        int totalItemCount = 0;
-
-                        for (int output = 0; output < miningProcess.outputItemIds.Length; output++) {
-                            // Manually set madness
-                            craftingProcesses[i].GetComponent<MiniGUI_CraftingProcess>().OutputsParent.GetChild(output).GetComponent<MiniGUI_InOutDisplay>().valueText.text = miningProcess.toBePutOnBeltsAmounts[output].ToString();
-                            totalItemCount += miningProcess.toBePutOnBeltsAmounts[output];
-                        }
-
-                        if (miningProcess.isCrafting)
-                            totalItemCount += 1;
-
-                        // Disable the crafting process display if there are no items
-                        if (totalItemCount > 0) {
-                            timeoutCounters[i] = -1;
-                            craftingProcesses[i].SetActive(true);
-                        } else {
-                            if (timeoutCounters[i] == -1)
-                                timeoutCounters[i] = 0;
-                            else if (timeoutCounters[i] < infoDisplayTimeoutTime)
-                                timeoutCounters[i] += Time.deltaTime;
-                            else
-                                craftingProcesses[i].SetActive(false);
-
-                        }
                     }
                 }
             }

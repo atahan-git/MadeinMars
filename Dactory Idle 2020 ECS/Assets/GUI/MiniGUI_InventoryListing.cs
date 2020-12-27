@@ -13,18 +13,33 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
     public Text numberText;
     public Image img;
     public InventoryItemSlot myDat;
-    GUI_InventoryController myCont;
+    private IInventoryController myCont;
 
-    public void SetUp (InventoryItemSlot _myDat, GUI_InventoryController _myCont) {
+    public Color inputColor = Color.green;
+    public Color outputColor = Color.red;
+
+    public Image bg;
+    private bool updateColor;
+    public void SetUp (InventoryItemSlot _myDat, IInventoryController _myCont, bool _updateColor) {
         myDat = _myDat;
         myCont = _myCont;
+        updateColor = _updateColor;
+        
         UpdateAmount();
 
-        Player_InventoryController.inventoryContentsChangedEvent += UpdateAmount;
+        myCont.inventoryContentsChangedEvent += UpdateAmount;
+
+        if (updateColor) {
+            if (myDat.isOutputSlot) {
+                bg.color = outputColor;
+            } else {
+                bg.color = inputColor;
+            }
+        }
     }
 
     public void UpdateAmount () {
-        if (myDat.count > 0) {
+        if (myDat.count > 0 || (updateColor && myDat.myItem != null)) {
             nameText.text = myDat.myItem.name;
             numberText.text = "x" + myDat.count.ToString();
             img.sprite = myDat.myItem.GetSprite();
@@ -37,6 +52,6 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
     }
 
 	private void OnDestroy () {
-        Player_InventoryController.inventoryContentsChangedEvent -= UpdateAmount;
+        myCont.inventoryContentsChangedEvent -= UpdateAmount;
     }
 }

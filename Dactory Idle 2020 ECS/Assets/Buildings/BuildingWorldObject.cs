@@ -14,7 +14,9 @@ public class BuildingWorldObject : MonoBehaviour
 	public Position myPos;
 	public List<TileData> myTiles;
 	public List<BeltBuildingObject> myBelts;
-	public BuildingCraftingController myCrafter;
+	BuildingCraftingController myCrafter;
+	BuildingInventoryController myInventory;
+	BuildingInOutController myInOut;
 
 	SpriteGraphicsController myRend;
 	
@@ -32,8 +34,10 @@ public class BuildingWorldObject : MonoBehaviour
 		myPos = _location;
 		myTiles = _myTiles;
 		myBelts = _buildingBelts;
-		myCrafter.myBelts = myBelts;
-		myCrafter.myTiles = myTiles;
+
+		myCrafter = GetComponent<BuildingCraftingController>();
+		myInventory = GetComponent<BuildingInventoryController>();
+		myInOut = GetComponent<BuildingInOutController>();
 
 		width = myData.shape.width;
 		height = myData.shape.height;
@@ -57,8 +61,13 @@ public class BuildingWorldObject : MonoBehaviour
 		
 		DataSaver.saveEvent += SaveYourself;
 		transform.position = _location.Vector3(Position.Type.building) + centerOffset;
-		BuildingMaster.myBuildings.Add(myCrafter);
-		myCrafter.SetUpCraftingProcesses(myData);
+		
+		BuildingMaster.myBuildingCrafters.Add(myCrafter);
+		BuildingMaster.myBuildingInOuters.Add(myInOut);
+		
+		myCrafter.SetUp(myData, this, myInventory);
+		myInventory.SetUp(myCrafter, myData);
+		myInOut.SetUp(this, myData, myInventory);
 		
 		//myRend.DoSpaceLanding();
 	}
@@ -82,7 +91,7 @@ public class BuildingWorldObject : MonoBehaviour
 			if (myBelt != null)
 				myBelt.DestroyYourself();
 		}
-		BuildingMaster.myBuildings.Remove(myCrafter);
+		BuildingMaster.myBuildingCrafters.Remove(myCrafter);
 		Destroy(gameObject);
 	}
 

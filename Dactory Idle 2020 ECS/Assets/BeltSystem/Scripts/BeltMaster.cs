@@ -242,8 +242,8 @@ public class BeltMaster : MonoBehaviour {
 	/// <summary>
 	/// The actual Update is only needed for debug drawing.
 	/// </summary>
-	float timer = 500f;
-	float maxTime = 500f;
+	public float timer = 20f;
+	public float maxTime = 20f;
 	void Update () {
 		if (debugDraw) {
 			if (timer > maxTime) {
@@ -255,7 +255,11 @@ public class BeltMaster : MonoBehaviour {
 
 
 			}
-
+			
+			foreach (BeltPreProcessor.BeltGroup beltGroup in beltGroups)
+				foreach (List<BeltItemSlot> beltItemSlotGroup in beltGroup.beltItemSlotGroups)
+					foreach (BeltItemSlot beltItemSlot in beltItemSlotGroup)
+						beltItemSlot.DebugItemDraw();
 
 			/*for (int i = 0; i < itemPool.objectpool.Length; i++)
 				itemPool.objectpool[i].DebugDraw();*/

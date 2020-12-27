@@ -17,15 +17,37 @@ public class GUI_CommsController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         coms = transform.parent.GetComponentInChildren<Player_CommsController>();
+        UpdateMoneyText();
+        SetUpPanels();
     }
-
-    // Update is called once per frame
-    void Update() {
+    
+    void UpdateMoneyText() {
         moneyDisp.text = FormatMoney(coms.money);
     }
 
-
-    static string FormatMoney(float money) {
+    public static string FormatMoney(float money) {
         return "$" + String.Format("{0:0,0}", money).Replace(',',' ') + "M";
+    }
+
+    public GameObject BuyMenuPrefab;
+    public Transform BuyMenuParent;
+
+    private MiniGUI_BuySellMenu buymenu;
+    private MiniGUI_BuySellMenu sellmenu;
+    void SetUpPanels () {
+        buymenu = Instantiate(BuyMenuPrefab, BuyMenuParent).GetComponent<MiniGUI_BuySellMenu>();
+        buymenu.SetUp(DataHolder.s.GetAllItems(),true, coms.availableShipCount);
+        buymenu.ClosePanel();
+        sellmenu = Instantiate(BuyMenuPrefab, BuyMenuParent).GetComponent<MiniGUI_BuySellMenu>();
+        sellmenu.SetUp(DataHolder.s.GetAllItems(),false, coms.availableShipCount);
+        sellmenu.ClosePanel();
+    }
+    
+    public void OpenBuyPanel() {
+        buymenu.OpenPanel();
+    }
+
+    public void OpenSellPanel() {
+        sellmenu.OpenPanel();
     }
 }
