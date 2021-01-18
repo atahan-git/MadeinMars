@@ -70,6 +70,15 @@ public class BuildingInventoryController : MonoBehaviour, IInventoryController {
         drawInventoryEvent?.Invoke();
         InventoryContentsChanged();
     }
+
+    public void SetUp(List<InventoryItemSlot> _inventory) {
+        myType = InventoryType.NormalBuilding;
+
+        inventory = _inventory;
+
+        drawInventoryEvent?.Invoke();
+        InventoryContentsChanged();
+    }
     
     
     /// <summary>

@@ -13,6 +13,9 @@ public class Player_BuildingController : MonoBehaviour {
 	ItemPlacementHelper curItemPlacementScript;
 
 	public bool isSpaceLanding = false;
+	public bool isInventory = false;
+	private List<InventoryItemSlot> inventory = null;
+	public GenericCallback buildCompleteCallback;
 	public bool isPlacingItem = false;
 	public bool isBeltPlacing = false;
 	public bool isSelling = false;
@@ -52,8 +55,9 @@ public class Player_BuildingController : MonoBehaviour {
 			if (curItemPlacementScript != null) {
 				if (SmartInput.inputPos.y > 200 && ObjectBuilderMaster.CheckPlaceable(buildingItem, lastTile.position)) {
 					curItemPlacementScript.PlaceSelf();
-					ObjectBuilderMaster.BuildObject(buildingItem, lastTile.position,false,isSpaceLanding);
+					ObjectBuilderMaster.BuildObject(buildingItem, lastTile.position,false, isSpaceLanding, isInventory, inventory);
 					Player_MasterControlCheck.s.inventoryController.UseBuildingResources(buildingItem, 1);
+					buildCompleteCallback?.Invoke();
 				} else {
 					curItemPlacementScript.FailedPlacingSelf();
 				}
@@ -61,14 +65,26 @@ public class Player_BuildingController : MonoBehaviour {
 		}
 	}
 
-	public void TryToPlaceItem (BuildingData myData) {
-		TryToPlaceItem(myData, false);
-	}
+	/*public void TryToPlaceItem (BuildingData myData) {
+		TryToPlaceItem(myData, false, false, null);
+	}*/
 	
 	
-	public void TryToPlaceItem (BuildingData myData, bool _isSpaceLanding) {
+	/// <summary>
+	/// spawns a placement helper and lets the user try and place an item down in the world based on the parameters.
+	/// </summary>
+	/// <param name="myData"></param>
+	/// <param name="_isSpaceLanding"></param>
+	/// <param name="_isInventory"></param>
+	/// <param name="_inventory"></param>
+	public void TryToPlaceItem (BuildingData myData, bool _isSpaceLanding, bool _isInventory, List<InventoryItemSlot> _inventory, GenericCallback _buildCompleteCallback) {
 		Deselect();
 		print("Placing Item");
+		buildCompleteCallback = _buildCompleteCallback;
+		if (_isInventory) {
+			isInventory = _isInventory;
+			inventory = _inventory;
+		}
 		isSpaceLanding = _isSpaceLanding;
 		isPlacingItem = true;
 		isBeltPlacing = false;

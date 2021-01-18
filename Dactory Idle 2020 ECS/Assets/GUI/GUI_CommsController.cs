@@ -36,11 +36,25 @@ public class GUI_CommsController : MonoBehaviour {
     private MiniGUI_BuySellMenu sellmenu;
     void SetUpPanels () {
         buymenu = Instantiate(BuyMenuPrefab, BuyMenuParent).GetComponent<MiniGUI_BuySellMenu>();
-        buymenu.SetUp(DataHolder.s.GetAllItems(),true, coms.availableShipCount);
+        buymenu.SetUp(this, DataHolder.s.GetAllItems(),true, coms.availableShipCount);
         buymenu.ClosePanel();
         sellmenu = Instantiate(BuyMenuPrefab, BuyMenuParent).GetComponent<MiniGUI_BuySellMenu>();
-        sellmenu.SetUp(DataHolder.s.GetAllItems(),false, coms.availableShipCount);
+        sellmenu.SetUp(this, DataHolder.s.GetAllItems(),false, coms.availableShipCount);
         sellmenu.ClosePanel();
+    }
+
+    [Space]
+    public GameObject RocketJourneyPrefab;
+    public Transform RocketJourneyParent;
+
+    public BuildingData rocketData;
+    public void BuyShipWithMaterial(List<InventoryItemSlot> items) {
+        var myShip = Instantiate(RocketJourneyPrefab, RocketJourneyParent);
+        myShip.GetComponent<MiniGUI_BuildingBarSlot>().ChangeBuilding(rocketData, true,true, true, items,true,20);
+    }
+    
+    public void SellShipWithMaterial(List<InventoryItemSlot> items) {
+        
     }
     
     public void OpenBuyPanel() {

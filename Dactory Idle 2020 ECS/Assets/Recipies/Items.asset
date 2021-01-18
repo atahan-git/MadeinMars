@@ -23,7 +23,7 @@ MonoBehaviour:
     myTextureOffset: {x: 0, y: 0}
     mySprite: {fileID: -3990283934829925723, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 100
+    weight: 10
     butsellamount: 50
     buyCost: 5
     sellCost: 1
@@ -156,8 +156,8 @@ MonoBehaviour:
     mySprite: {fileID: 9011217702622440246, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
-    butsellamount: 1
-    buyCost: 10
+    butsellamount: 3
+    buyCost: 50
     sellCost: 1
   - uniqueName: motor
     name: Motor
@@ -167,8 +167,8 @@ MonoBehaviour:
     myTextureOffset: {x: 4, y: 1}
     mySprite: {fileID: -3656881673128225340, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
-    butsellamount: 1
+    weight: 5
+    butsellamount: 2
     buyCost: 10
     sellCost: 1
   - uniqueName: ironArm
@@ -181,7 +181,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     butsellamount: 1
-    buyCost: 10
+    buyCost: 50
     sellCost: 1
   - uniqueName: solarCell
     name: Solar Cells
@@ -192,8 +192,8 @@ MonoBehaviour:
     mySprite: {fileID: 2309438470800066299, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
-    butsellamount: 1
-    buyCost: 10
+    butsellamount: 10
+    buyCost: 20
     sellCost: 1
   - uniqueName: laser
     name: Laser components
@@ -204,8 +204,8 @@ MonoBehaviour:
     mySprite: {fileID: 9097735631333442121, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
-    butsellamount: 1
-    buyCost: 10
+    butsellamount: 5
+    buyCost: 30
     sellCost: 1
   - uniqueName: drillPrefab
     name: Drill Prefab
@@ -215,7 +215,7 @@ MonoBehaviour:
     myTextureOffset: {x: 0, y: 3}
     mySprite: {fileID: 4136111383171953538, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 10
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -227,9 +227,9 @@ MonoBehaviour:
     myTextureOffset: {x: 1, y: 3}
     mySprite: {fileID: -1955862808891544455, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 75
     sellCost: 1
   - uniqueName: assembler1Prefab
     name: Assembler Tier 1 Prefab
@@ -239,9 +239,9 @@ MonoBehaviour:
     myTextureOffset: {x: 2, y: 3}
     mySprite: {fileID: 1059719246363598755, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 20
     sellCost: 1
   - uniqueName: pressPrefab
     name: Plate Maker Prefab
@@ -251,9 +251,9 @@ MonoBehaviour:
     myTextureOffset: {x: 3, y: 3}
     mySprite: {fileID: -5174558471401020031, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 15
     sellCost: 1
   - uniqueName: coilerPrefab
     name: Coil Maker Prefab
@@ -263,9 +263,9 @@ MonoBehaviour:
     myTextureOffset: {x: 4, y: 3}
     mySprite: {fileID: -2771961633130186902, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 15
     sellCost: 1
   - uniqueName: cutterPrefab
     name: Laser Cutter Prefab
@@ -275,9 +275,9 @@ MonoBehaviour:
     myTextureOffset: {x: 5, y: 3}
     mySprite: {fileID: 8075237605014610649, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 100
     sellCost: 1
   - uniqueName: labPrefab
     name: Science Building Prefab
@@ -287,9 +287,9 @@ MonoBehaviour:
     myTextureOffset: {x: 6, y: 3}
     mySprite: {fileID: 7575746216006269157, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 200
     sellCost: 1
   - uniqueName: solarPrefab
     name: Solar Panel Array Prefab
@@ -299,9 +299,9 @@ MonoBehaviour:
     myTextureOffset: {x: 7, y: 3}
     mySprite: {fileID: -7798748683335524603, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 50
     sellCost: 1
   - uniqueName: batteryPrefab
     name: Energy Storage Prefab
@@ -311,9 +311,9 @@ MonoBehaviour:
     myTextureOffset: {x: 8, y: 3}
     mySprite: {fileID: -7205496494148649469, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 50
     sellCost: 1
   - uniqueName: transformerPrefab
     name: Energy Transformer Prefab
@@ -323,9 +323,9 @@ MonoBehaviour:
     myTextureOffset: {x: 9, y: 3}
     mySprite: {fileID: 4157161978780210668, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 50
     sellCost: 1
   - uniqueName: storagePrefab
     name: Storage Prefab
@@ -335,9 +335,9 @@ MonoBehaviour:
     myTextureOffset: {x: 11, y: 3}
     mySprite: {fileID: 6523061527111195370, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 200
     sellCost: 1
   - uniqueName: assembler2Prefab
     name: Assembler Tier 2 Prefab
@@ -347,7 +347,7 @@ MonoBehaviour:
     myTextureOffset: {x: 3, y: 4}
     mySprite: {fileID: 7849572968307523696, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
-    weight: 1
+    weight: 5
     butsellamount: 1
-    buyCost: 10
+    buyCost: 125
     sellCost: 1

@@ -85,6 +85,7 @@ MonoBehaviour:
   - {fileID: -8349631009484852119, guid: ef5be55c1a6aa764f93f1929c9745a59, type: 3}
   - {fileID: 2144298132426728274, guid: ef5be55c1a6aa764f93f1929c9745a59, type: 3}
   - {fileID: -6943510228005647909, guid: ef5be55c1a6aa764f93f1929c9745a59, type: 3}
+  unsetSprite: {fileID: 21300026, guid: 0e230e37d7e55af419519d9bfcfea9d4, type: 3}
   keys:
   - False, False, False, False; False, False, True, False
   - False, False, True, False; True, False, False, False

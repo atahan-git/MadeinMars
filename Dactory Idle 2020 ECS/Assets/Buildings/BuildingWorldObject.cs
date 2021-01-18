@@ -21,15 +21,16 @@ public class BuildingWorldObject : MonoBehaviour
 	SpriteGraphicsController myRend;
 	
 	
-	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts, bool spaceLanding) {
-		PlaceInWorld(_myData,_location,_myTiles,_buildingBelts);
-		if (spaceLanding)
-			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
+	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts, 
+		bool isSpaceLanding, bool isInventory, List<InventoryItemSlot> inventory) {
+		_PlaceInWorld(_myData, _location, _myTiles, _buildingBelts, isSpaceLanding, isInventory, inventory);
 	}
 
 	public float width;
 	public float height;
-	public void PlaceInWorld (BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts) {
+
+	void _PlaceInWorld(BuildingData _myData, Position _location, List<TileData> _myTiles, List<BeltBuildingObject> _buildingBelts,
+		bool isSpaceLanding, bool isInventory, List<InventoryItemSlot> inventory) {
 		myData = _myData;
 		myPos = _location;
 		myTiles = _myTiles;
@@ -41,14 +42,14 @@ public class BuildingWorldObject : MonoBehaviour
 
 		width = myData.shape.width;
 		height = myData.shape.height;
-		Vector3 centerOffset = new Vector3(0.5f, myData.shape.maxHeightFromCenter -1, 0);
+		Vector3 centerOffset = new Vector3(0.5f, myData.shape.maxHeightFromCenter - 1, 0);
 
 		myRend = GetComponentInChildren<SpriteGraphicsController>();
 		myRend.transform.localPosition = myData.spriteOffset.vector3() - centerOffset;
 
 		switch (myData.gfxType) {
 			case BuildingData.BuildingGfxType.SpriteBased:
-				myRend.SetGraphics(myData.gfxSprite, myData.gfxShadowSprite != null? myData.gfxShadowSprite : myData.gfxSprite);
+				myRend.SetGraphics(myData.gfxSprite, myData.gfxShadowSprite != null ? myData.gfxShadowSprite : myData.gfxSprite);
 				break;
 			case BuildingData.BuildingGfxType.AnimationBased:
 				myRend.SetGraphics(myData.gfxSpriteAnimation, myData.isAnimatedShadow);
@@ -58,18 +59,23 @@ public class BuildingWorldObject : MonoBehaviour
 				myRend.SetGraphics(myData.gfxPrefab);
 				break;
 		}
-		
+
 		DataSaver.saveEvent += SaveYourself;
 		transform.position = _location.Vector3(Position.Type.building) + centerOffset;
-		
+
 		BuildingMaster.myBuildingCrafters.Add(myCrafter);
 		BuildingMaster.myBuildingInOuters.Add(myInOut);
 		
 		myCrafter.SetUp(myData, this, myInventory);
-		myInventory.SetUp(myCrafter, myData);
+		if (isInventory)
+			myInventory.SetUp(inventory);
+		else
+			myInventory.SetUp(myCrafter, myData);
 		myInOut.SetUp(this, myData, myInventory);
-		
-		//myRend.DoSpaceLanding();
+
+
+		if (isSpaceLanding)
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
 	}
 
 

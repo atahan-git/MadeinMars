@@ -10,7 +10,8 @@ using UnityEngine.UI;
 /// Controls the Building Bar in the UI, the three slots that you can build buildings out from, and also the connections for the belt and sell buttons.
 /// </summary>
 public class GUI_BuildingBarController : MonoBehaviour {
-
+    public static GUI_BuildingBarController s;
+    
     public bool isOnFocus = true;
     GUI_SwitchController scont;
 
@@ -27,7 +28,11 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
     public Toggle beltSafeModeToggle;
 
-    private void Awake() {
+    private void Awake () {
+        if (s != null) {
+            Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
+        }
+        s = this;
         GameLoader.CallWhenLoaded(LoadBuildingSlots);
     }
 
@@ -45,7 +50,9 @@ public class GUI_BuildingBarController : MonoBehaviour {
                 for (int i = 0; i < DataSaver.mySave.buildingBarData.Length; i++) {
                     if (DataSaver.mySave.buildingBarData[i] != null)
                         if (DataSaver.mySave.buildingBarData[i].Length > 0)
-                            myBuildingBarSlots[i].ChangeBuilding(DataHolder.s.GetBuilding(DataSaver.mySave.buildingBarData[i]));
+                            myBuildingBarSlots[i].ChangeBuilding(
+                                DataHolder.s.GetBuilding(DataSaver.mySave.buildingBarData[i]),
+                                false,false,false,null, false ,0);
 
                 }
             }
@@ -101,8 +108,10 @@ public class GUI_BuildingBarController : MonoBehaviour {
     BuildingData barSlotOldBuilding;
     public void PointerEnterBuildingBarSlot (int slot) {
         if (inventoryDragBegun) {
-            barSlotOldBuilding = myBuildingBarSlots[slot].myDat;
-            myBuildingBarSlots[slot].ChangeBuilding(dragBuildDat);
+            if (slot != -1) {
+                barSlotOldBuilding = myBuildingBarSlots[slot].myDat;
+                myBuildingBarSlots[slot].ChangeBuilding(dragBuildDat, false,false, false, null, false , 0);
+            }
         }
     }
 
@@ -111,20 +120,22 @@ public class GUI_BuildingBarController : MonoBehaviour {
             RectTransform myRect = myBuildingBarSlots[slot].GetComponent<RectTransform>();
             Vector2 localMousePosition = myRect.InverseTransformPoint(SmartInput.inputPos);
             if (!myRect.rect.Contains(localMousePosition)) {
-                myBuildingBarSlots[slot].ChangeBuilding(barSlotOldBuilding);
+                myBuildingBarSlots[slot].ChangeBuilding(barSlotOldBuilding, false,false,false,null, false, 0);
                 barSlotOldBuilding = null;
             }
         }
     }
 
 
-    public void StartBuildingFromSlot (BuildingData dat) {
+    public void StartBuildingFromSlot (BuildingData dat, bool isSpaceLanding, bool isInventory, List<InventoryItemSlot> inv, GenericCallback buildCompleteCallback) {
         beltBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
-        Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat);
+        Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat, isSpaceLanding,  isInventory, inv, buildCompleteCallback);
         
         scont.BringBuildingBarToFocus();
     }
+    
+    
 
     public void SellMode () {
         beltBuildingOverlay.SetActive(false);

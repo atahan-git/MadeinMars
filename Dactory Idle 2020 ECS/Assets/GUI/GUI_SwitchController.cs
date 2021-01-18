@@ -9,8 +9,8 @@ using UnityEngine.Serialization;
 /// <summary>
 /// Helps with the UI menu switching
 /// </summary>
-public class GUI_SwitchController : MonoBehaviour
-{
+public class GUI_SwitchController : MonoBehaviour {
+	public static GUI_SwitchController s;
 
 	public GameObject GUI_Inventory;
 	public GameObject GUI_Settings;
@@ -18,12 +18,20 @@ public class GUI_SwitchController : MonoBehaviour
 	public GameObject GUI_Comms;
 	GUI_BuildingBarController bbarcont;
 
+	private void Awake() {
+		if (s != null) {
+			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
+		}
+
+		s = this;
+	}
+
 	private void Start () {
 		bbarcont = GetComponent<GUI_BuildingBarController>();
 		HideAllMenus();
 	}
 
-	void HideAllMenus() {
+	public void HideAllMenus() {
 		GUI_Inventory.SetActive(false);
 		GUI_Settings.SetActive(false);
 		GUI_Crafting.SetActive(false);

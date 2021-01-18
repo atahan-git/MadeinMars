@@ -15,6 +15,8 @@ public class MiniGUI_ItemSelectionBox : MonoBehaviour {
     
     public Image icon;
     public Text itemName;
+    public Color itemAvailableColor = Color.black;
+    public Color itemNotAvailableColor = Color.red;
     public Text itemCost;
     public Text itemWeight;
     public Text itemCurrentAmount;
@@ -23,9 +25,12 @@ public class MiniGUI_ItemSelectionBox : MonoBehaviour {
 
     public int amount = 0;
 
-    public void SetUp(Item item, bool _isBuy) {
+    private MiniGUI_BuySellMenu master;
+
+    public void SetUp(Item item, bool _isBuy, MiniGUI_BuySellMenu _master) {
         myItem = item;
         isBuy = _isBuy;
+        master = _master;
         icon.sprite = myItem.GetSprite();
         itemName.text = myItem.name;
 
@@ -37,10 +42,11 @@ public class MiniGUI_ItemSelectionBox : MonoBehaviour {
         
         itemWeight.text = myItem.weight.ToString() + " kg";
 
-        UpdateAmountText();
+        SetAvailabilityInInventory(true);
+        UpdateAmountText(false);
     }
 
-    void UpdateAmountText() {
+    void UpdateAmountText(bool isCallback) {
         itemCurrentAmount.text = amount.ToString();
         itemCurrentWeight.text = (amount * myItem.weight).ToString() + "kg";
         if (isBuy) {
@@ -48,12 +54,15 @@ public class MiniGUI_ItemSelectionBox : MonoBehaviour {
         } else {
             itemCurrentCost.text = GUI_CommsController.FormatMoney(myItem.sellCost *amount);
         }
+        
+        if(isCallback)
+            master.ValueChangedCallback();   
     }
 
     public void IncreaseAmount() {
         amount += myItem.butsellamount;
         
-        UpdateAmountText();
+        UpdateAmountText(true);
     }
 
     public void DecreaseAmount() {
@@ -62,6 +71,22 @@ public class MiniGUI_ItemSelectionBox : MonoBehaviour {
         if (amount < 0)
             amount = 0;
         
-        UpdateAmountText();
+        UpdateAmountText(true);
+    }
+
+    public void ResetAmount() {
+        amount = 0;
+        UpdateAmountText(false);
+    }
+
+
+    private bool itemAvailable = true;
+    public void SetAvailabilityInInventory(bool state) {
+        itemAvailable = state;
+        if (itemAvailable) {
+            itemName.color = itemAvailableColor;
+        } else {
+            itemName.color = itemNotAvailableColor;
+        }
     }
 }

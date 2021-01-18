@@ -1322,6 +1322,8 @@ MonoBehaviour:
   isBuy: 0
   icon: {fileID: 2567713269516949432}
   itemName: {fileID: 2567713269212236819}
+  itemAvailableColor: {r: 0, g: 0, b: 0, a: 1}
+  itemNotAvailableColor: {r: 1, g: 0, b: 0, a: 1}
   itemCost: {fileID: 2567713270114846426}
   itemWeight: {fileID: 2567713270152040956}
   itemCurrentAmount: {fileID: 2567713268511032327}

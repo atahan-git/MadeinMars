@@ -112,17 +112,17 @@ public class ObjectBuilderMaster : MonoBehaviour
 	}
 
 	public static bool BuildObject(BuildingData myData, Position location, bool forced) {
-		return BuildObject(myData, location, forced, false);
+		return BuildObject(myData, location, forced, false, false,null);
 	}
 	
-	public static bool BuildObject(BuildingData myData, Position location, bool forced, bool spaceLandingBuild) {
-		return _BuildObject(myData, location, forced, spaceLandingBuild);
+	public static bool BuildObject(BuildingData myData, Position location, bool forced, bool spaceLandingBuild, bool isInventory, List<InventoryItemSlot> inventory) {
+		return _BuildObject(myData, location, forced, spaceLandingBuild, isInventory, inventory);
 	}
 
-	static bool _BuildObject (BuildingData myData, Position location, bool forced, bool spaceLandingBuild) {
+	static bool _BuildObject (BuildingData myData, Position location, bool forced, bool spaceLandingBuild, bool isInventory, List<InventoryItemSlot> inventory) {
 
 		if (CheckPlaceable(myData, location) || forced) {
-			GameObject InstantiatedItem = Instantiate(s.buidingWorldObjectPrefab, location.Vector3(Position.Type.building), Quaternion.identity);
+			GameObject instantiatedItem = Instantiate(s.buidingWorldObjectPrefab, location.Vector3(Position.Type.building), Quaternion.identity);
 
 			List<TileData> coveredTiles = new List<TileData>();
 			List<BeltBuildingObject> buildingBelts = new List<BeltBuildingObject>();
@@ -132,29 +132,29 @@ public class ObjectBuilderMaster : MonoBehaviour
 						TileData myTile = Grid.s.GetTile(new Position(x, y) + location - BuildingData.center);
 						//print(new Position(x, y) + location - BuildingData.center);
 						//myTile.itemPlaceable = false;
-						myTile.myBuilding = InstantiatedItem;
+						myTile.myBuilding = instantiatedItem;
 						coveredTiles.Add(myTile);
 
 
-						GameObject InstantiatedBuildingBelt;
+						GameObject instantiatedBuildingBelt;
 						if (myTile.areThereBelt) {
 							if (myTile.myBelt.GetComponent<BeltBuildingObject>()) {
-								InstantiatedBuildingBelt = myTile.myBelt.gameObject;
+								instantiatedBuildingBelt = myTile.myBelt.gameObject;
 							} else {
 								myTile.myBelt.GetComponent<BeltObject>().DestroyYourself();
-								InstantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
+								instantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
 							}
 						} else {
-							InstantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
+							instantiatedBuildingBelt = BuildBelt(myTile, s.buildingBeltPrefab).gameObject;
 						}
 
-						buildingBelts.Add(InstantiatedBuildingBelt.GetComponent<BeltBuildingObject>());
+						buildingBelts.Add(instantiatedBuildingBelt.GetComponent<BeltBuildingObject>());
 					}
 				}
 			}
 
-			InstantiatedItem.GetComponent<BuildingWorldObject>().PlaceInWorld(myData, location, coveredTiles, buildingBelts);
-			InstantiatedItem.gameObject.name = Grid.s.GetTile(location).position.ToString() + " - " + InstantiatedItem.gameObject.name; 
+			instantiatedItem.GetComponent<BuildingWorldObject>().PlaceInWorld(myData, location, coveredTiles, buildingBelts, spaceLandingBuild, isInventory, inventory);
+			instantiatedItem.gameObject.name = Grid.s.GetTile(location).position.ToString() + " - " + instantiatedItem.gameObject.name; 
 
 			return true;
 		} else {

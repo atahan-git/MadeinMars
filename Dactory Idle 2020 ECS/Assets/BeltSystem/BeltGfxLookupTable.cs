@@ -11,6 +11,8 @@ using System.Linq;
 public class BeltGfxLookupTable : ScriptableObject
 {
     public Sprite[] sprites;
+
+    public Sprite unsetSprite;
     public Dictionary<string, Sprite> mapping { get { 
             if (_mapping != null) return _mapping; 
             else return GenerateDictionary(); 
@@ -43,5 +45,17 @@ public class BeltGfxLookupTable : ScriptableObject
 
     public static string beltToKey (BeltObject belt) {
         return string.Join(", ", belt.beltInputs.Select(i => i.ToString()).ToArray()) + "; " + string.Join(", ", belt.beltOutputs.Select(i => i.ToString()).ToArray());
+    }
+
+
+    public bool TryGetSprite(BeltObject obj, out Sprite sprite) {
+        if (mapping.TryGetValue(beltToKey(obj), out Sprite _outsprite)) {
+            sprite = _outsprite;
+            return true;
+        } else {
+            Debug.LogError("BeltGfxLookupTable failed to get the correct belt sprite for belt" +obj.pos.ToString()+" key " + beltToKey(obj));
+            sprite = unsetSprite;
+            return false;
+        }
     }
 }

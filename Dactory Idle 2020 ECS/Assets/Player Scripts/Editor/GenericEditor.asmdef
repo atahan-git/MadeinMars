@@ -1,7 +1,7 @@
 {
     "name": "GenericEditor",
     "references": [
-        "GUID:0a644bb01a5dd3540bb796167189dcb2"
+        "GUID:50136c74b66d5bb458f3a5ec4c8818c2"
     ],
     "includePlatforms": [
         "Editor"

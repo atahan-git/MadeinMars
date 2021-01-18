@@ -184,6 +184,12 @@ public class Player_InventoryController : MonoBehaviour, IInventoryController {
     }
 
 
+    /// <summary>
+    /// Checks if you have enough resources to craft an item.
+    /// Does NOT actually use the resources! 
+    /// </summary>
+    /// <param name="ps"></param>
+    /// <returns></returns>
     public bool CanCraftItem (CraftingNode ps) {
         if (ps != null) {
             for (int m = 0; m < ps.inputs.Count; m++) {
@@ -208,11 +214,36 @@ public class Player_InventoryController : MonoBehaviour, IInventoryController {
 
     /// <summary>
     /// Use crafting resources to craft an item. Please note that it doesn't check if you have enough resources or not
-    /// Also doesn't reward the resulting item. That needs to be done manually
+    /// Also doesn't reward the resulting item. That needs to be done manually using TryAddItem
     /// Use multiplier == -1 for cancelling crafting
     /// </summary>
-    public void UseCraftingResources (CraftingNode ps, int multiplier) {
-        
+    public bool UseCraftingResources (CraftingNode ps, int multiplier) {
+        if (ps != null) {
+            for (int m = 0; m < ps.inputs.Count; m++) {
+                for (int k = 0; k < mySlots.Count; k++) {
+                    if (mySlots[k].myItem != null && mySlots[k].myItem.uniqueName == ps.inputs[m].itemUniqueName) {
+                        mySlots[k].count -= ps.inputs[m].count * multiplier;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+
+    /// <summary>
+    /// Returns the amount of the item available in the inventory. Returns 0 if not found.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public int GetItemCount(Item item) {
+        for (int i = 0; i < mySlots.Count; i++) {
+            if (mySlots[i].myItem != null && mySlots[i].myItem == item) {
+                return mySlots[i].count;
+            }
+        }
+        return 0;
     }
     
 	private void OnDestroy () {
