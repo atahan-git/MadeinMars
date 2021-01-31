@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9cc694e24fc9c4c9c95565e5896703, type: 3}
+  m_Name: Example Recipe Set
+  m_EditorClassIdentifier: 
+  myItemSets:
+  - {fileID: 11400000, guid: 1a8a1f90dc7f4864e911970a4b783a92, type: 2}
+  myCraftingNodes:
+  - id: 1
+    pos: {x: 157, y: 214.8, z: 0}
+    tier: 0
+    craftingTime: 7
+    myCraftingType: 3
+    inputs:
+    - itemNode:
+        id: 2
+        pos: {x: -224.2, y: -9.6, z: 0}
+        myItem:
+          uniqueName: base_iron_processed
+          name: Iron Processed
+          description: Used to make other items
+          myMat: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+          mySprite: {fileID: 21300000, guid: bbc0dd5619c911d4c852e7ee819f9db5, type: 3}
+        inputs: []
+        outputs:
+        - id: 1
+          pos: {x: 152, y: 219, z: 0}
+      count: 4
+    - itemNode:
+        id: 2
+        pos: {x: -224.2, y: -9.6, z: 0}
+        myItem:
+          uniqueName: base_iron_processed
+          name: Iron Processed
+          description: Used to make other items
+          myMat: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+          mySprite: {fileID: 21300000, guid: bbc0dd5619c911d4c852e7ee819f9db5, type: 3}
+        inputs: []
+        outputs:
+        - id: 1
+          pos: {x: 152, y: 219, z: 0}
+        - id: 1
+          pos: {x: 157, y: 214.8, z: 0}
+      count: 4
+    outputs:
+    - itemNode:
+        id: 4
+        pos: {x: 525.4, y: 69.2, z: 0}
+        myItem:
+          uniqueName: base_iron_processed
+          name: Iron Processed
+          description: Used to make other items
+          myMat: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+          mySprite: {fileID: 21300000, guid: bbc0dd5619c911d4c852e7ee819f9db5, type: 3}
+        inputs:
+        - id: 1
+          pos: {x: 163.8, y: 240.2, z: 0}
+        outputs: []
+      count: 1
+  - id: 3
+    pos: {x: 159, y: -144.6, z: 0}
+    tier: 0
+    craftingTime: 5
+    myCraftingType: 0
+    inputs: []
+    outputs: []
+  myItemNodes:
+  - id: 2
+    pos: {x: -224.2, y: -9.6, z: 0}
+    myItem:
+      uniqueName: base_iron_processed
+      name: Iron Processed
+      description: Used to make other items
+      myMat: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+      mySprite: {fileID: 21300000, guid: bbc0dd5619c911d4c852e7ee819f9db5, type: 3}
+    inputs: []
+    outputs:
+    - id: 1
+      pos: {x: 152, y: 219, z: 0}
+    - id: 1
+      pos: {x: 157, y: 214.8, z: 0}
+  - id: 4
+    pos: {x: 525.4, y: 69.2, z: 0}
+    myItem:
+      uniqueName: base_iron_processed
+      name: Iron Processed
+      description: Used to make other items
+      myMat: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+      mySprite: {fileID: 21300000, guid: bbc0dd5619c911d4c852e7ee819f9db5, type: 3}
+    inputs:
+    - id: 1
+      pos: {x: 163.8, y: 240.2, z: 0}
+    outputs: []

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7dcba6f7-4f91-409b-b9b5-e881701cafed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/Assets/Resources/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Dactory Idle 2020 ECS/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Editor Node Item Tree Maker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Atahan.NodeItemTree.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Atahan.NodeItemTree.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Closed.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Closed.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/MainMenu.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/MainMenu.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Open.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/MainMenu/Open.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closed.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closed.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closing.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Closing.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Open.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Open.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Panel.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Panel/Panel.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Rotation.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Rotation.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/SF Button.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/SF Button.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Closed.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Closed.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Open.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/Open.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/SettingsMenu.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Animation/Settings/SettingsMenu.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/Jupiter.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/Jupiter.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Fonts/Jupiter/LICENSE.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Background.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Background.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Fill.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Fill.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Knob.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Slider Knob.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI Opaque.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI Opaque.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI-Default-No-Alpha.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/UI-Default-No-Alpha.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Window.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Materials/Window.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_dome_mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_dome_mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_metal_mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcFlyer_metal_mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcLand_clean_dome_mat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Materials/vehicle_rcLand_clean_dome_mat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_dff.tif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_dff.tif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_nrm.tif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/Textures/vehicle_rcFlyer_nrm.tif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/vehicle_rcFlyer_clean.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Models/vehicle_rcFlyer_clean.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Button.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Button.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Grid Button.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Grid Button.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Scene Elements.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Scene Elements.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Slider.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Slider.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Title.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Title.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Toggle.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/SF Toggle.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/Slider Lit.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Prefabs/Slider Lit.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Controls.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Controls.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Drag And Drop.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Drag And Drop.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Draggable Panel.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Draggable Panel.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Layout Groups.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Layout Groups.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Lighting.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Lighting.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Menu 3D.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/Menu 3D.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/RenderTexture.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scenes/RenderTexture.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ActiveStateToggler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ActiveStateToggler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ApplicationManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ApplicationManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ChangeColor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ChangeColor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/PanelManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/PanelManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ResizePanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ResizePanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ScrollDetailTexture.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ScrollDetailTexture.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ShowSliderValue.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/ShowSliderValue.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/TiltWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Scripts/TiltWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRect.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRectFilled.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/DottedRoundedRectFilled.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Icon3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Unity Logo Unlit.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Decoration/Unity Logo Unlit.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/BackgroundNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/BackgroundNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalSpritesNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalSpritesNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalStripes.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/DiagonalStripes.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/KnobNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/KnobNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/UISpriteNormal.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/UISpriteNormal.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/White.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Lit UI/White.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/RenderTexture.renderTexture" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/RenderTexture.renderTexture.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonCorner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonCorner.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonDefault.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIButtonDefault.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIPanel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIPanel.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIToggleButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/Rounded UI/UIToggleButton.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/LICENSE.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/SF Background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/Background/SF Background.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Button.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Button.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Generic.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Generic.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Title.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Title.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Window.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI samples/Textures and Sprites/SF UI/SF Window.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionManagerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionManagerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionPointDrawer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionPointDrawer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/GraphNodeEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/GraphNodeEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/UIGraphUtilities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Editor/UIGraphUtilities.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Prefab/connection.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Prefab/connection.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/ReadMe.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/ReadMe.pdf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/3D Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/3D Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/Dark Souls Layout.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/Dark Souls Layout.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/UI Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scenes/UI Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Connection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Connection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionPoint.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/ConnectionPoint.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/GraphNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/GraphNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/NewBehaviourScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/NewBehaviourScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateObject.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/ObfuscateText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/SpinCamera.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UIGraph/Scripts/Util/SpinCamera.cs.meta" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406A456-CF73-4443-B3D0-2A7D123287F1/97/ef4be968/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/526469D5-A48C-43EE-BD9A-F19F8745AFA1/04/9656a681/Transform.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/ItemSet.cs" />
+        <option value="$PROJECT_DIR$/Assets/ItemNode.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DropMe.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DragMe.cs" />
+        <option value="$PROJECT_DIR$/Assets/UIGraph/Editor/ConnectionEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bezier.cs" />
+        <option value="$PROJECT_DIR$/Assets/Editor/PropertyDrawers.cs" />
+        <option value="$PROJECT_DIR$/Assets/PinchableScrollRect.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RecipeSet.cs" />
+        <option value="$PROJECT_DIR$/Assets/CraftingNodeGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodePortGfx.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodeItemTreeMakerMaster.cs" />
+        <option value="$PROJECT_DIR$/Assets/NodeFocusCatcher.cs" />
+        <option value="$PROJECT_DIR$/Assets/ValueRegion.cs" />
+        <option value="$PROJECT_DIR$/Assets/RecipeTreeViewer.cs" />
+        <option value="$PROJECT_DIR$/Assets/GUI/DragPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/ItemNodeGfx.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hSbvlpv4kGx1ohy09zJI4F2Vhz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30010834" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7dcba6f7-4f91-409b-b9b5-e881701cafed" name="Default Changelist" comment="" />
+      <created>1600007673399</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600007673399</updated>
+      <workItem from="1600007688368" duration="26057000" />
+      <workItem from="1600238602264" duration="1837000" />
+      <workItem from="1606412664166" duration="23577000" />
+      <workItem from="1606495833931" duration="547000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606419238671">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="414" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606419238671" />
+    <state x="987" y="432" key="#xdebugger.evaluate" timestamp="1600110562957">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="987" y="432" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1600110562957" />
+    <state width="1877" height="29" key="GridCell.Tab.0.bottom" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.0.center" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.0.left" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.0.right" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.bottom" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.center" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.left" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.1.right" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.2.bottom" timestamp="1606492040330">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.2.center" timestamp="1606492040330">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.2.left" timestamp="1606492040329">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040329" />
+    <state width="1877" height="29" key="GridCell.Tab.2.right" timestamp="1606492040330">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.bottom" timestamp="1606492040330">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.3.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.center" timestamp="1606492040330">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.3.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.left" timestamp="1606492040330">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.3.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state width="1877" height="29" key="GridCell.Tab.3.right" timestamp="1606492040330">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="29" key="GridCell.Tab.3.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606492040330" />
+    <state x="670" y="228" key="RiderGenerateDialog" timestamp="1600022896413">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="670" y="228" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1600022896413" />
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog" timestamp="1606479050338">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606479050338" />
+    <state x="281" y="113" width="1413" height="1067" key="dock-window-1" timestamp="1600018756470">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="281" y="113" width="1413" height="1067" key="dock-window-1/0.0.1920.1080@0.0.1920.1080" timestamp="1600018756470" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1600008633914">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1600008633914" />
+  </component>
+</project>

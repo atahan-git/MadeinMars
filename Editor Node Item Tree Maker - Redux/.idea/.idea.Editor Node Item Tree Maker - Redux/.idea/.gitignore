@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Editor Node Item Tree Maker - Redux.iml
+/modules.xml
+# Datasource local storage ignored files
+/../../../../../../../../:\_Unity\2020\_Dactory Idle 2020\Editor Node Item Tree Maker - Redux\.idea\.idea.Editor Node Item Tree Maker - Redux\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

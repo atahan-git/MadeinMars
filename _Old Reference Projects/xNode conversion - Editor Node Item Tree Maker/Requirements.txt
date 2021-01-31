@@ -1,0 +1,21 @@
+Work in runtime
+
+BOTH:
+color coded based on item/different crafters
+icons
+unique name
+pick from dropdown
+
+
+EDIT MODE:
+Be able to update recipe lists in runtime
+create a new node
+create a new connection
+up the number
+down the number
+change type of the crafting
+the color of the block changes accordingly
+
+
+VIEW MODE:
+Click on a crafter/item to show all the things craftable by it. Focus on the specific on the tree, show the others on top and scrolling down
