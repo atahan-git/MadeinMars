@@ -134,7 +134,7 @@ public class Player_BuildingController : MonoBehaviour {
 				Debug.Log("Selling " + myTile.name);
 
 				if (myTile.areThereWorldObject) {
-					myTile.worldObject.GetComponent<IBuildable>().DestroyYourself();
+					myTile.worldObject.GetComponent<IBuildable>().MarkForDeconstruction();
 				}
 			}
 		}

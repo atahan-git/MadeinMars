@@ -28,69 +28,28 @@ public class BuildingInfoDisplay : MonoBehaviour {
     
     static float infoDisplayTimeoutTime = 5f;
 
-    public bool isSetup = false;
     private void Start() {
-        isSetup = false;
-        canvas.SetActive(isSetup);
         var worldObject = GetComponent<BuildingWorldObject>();
         if (worldObject.isBuilt) {
             SetUp();
         } else {
-            worldObject.buildingBuiltCallback += SetUp;
-            worldObject.buildingUnBuiltCallback += TearDown;
+            worldObject.buildingInventorySetUpCallback += SetUp;
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-        if (isSetup) {
-            if (isExtraInfoVisible) {
-                if (craftingProcesses.Count > 0) {
-                    UpdateValues();
-                }
-            }
 
-            canvas.SetActive(isExtraInfoVisible);
-        } //progressBar.value = (float)crafter.curCraftingProgress / (float)crafter.craftingProgressTickReq;
+    // Update is called once per frame
+    void Update() {
+        if (isExtraInfoVisible) {
+            if (craftingProcesses.Count > 0) {
+                UpdateValues();
+            }
+        }
+
+        canvas.SetActive(isExtraInfoVisible);
     }
 
     public void SetUp () {
-        isSetup = true;
-        var worldObject = GetComponent<BuildingWorldObject>();
-        crafter = worldObject.myCrafter;
-        inventory = worldObject.myInventory;
-        craftingProcesses = new List<GameObject>();
-        timeoutCounters = new List<float>();
-        for (int i = 0; i < crafter.myCraftingProcesses.Length; i++) {
-            CraftingProcess curProcess = crafter.myCraftingProcesses[i] as CraftingProcess;
-            if (curProcess != null) {
-                GameObject pDisp = Instantiate(ProcessDisplayPrefab, Parent);
-                craftingProcesses.Add(pDisp);
-                timeoutCounters.Add(infoDisplayTimeoutTime-1f);
-                for (int input = 0; input < curProcess.inputItemIds.Length; input++) {
-                    GameObject pIn = Instantiate(ProcessinoutPrefab, pDisp.GetComponent<MiniGUI_CraftingProcess>().InputsParent);
-                    pIn.GetComponent<MiniGUI_InOutDisplay>().itemImage.sprite = DataHolder.s.GetItem(curProcess.inputItemIds[input]).GetSprite();
-                    pIn.GetComponent<MiniGUI_InOutDisplay>().totalText.text = curProcess.inputItemAmounts[input].ToString();
-                }
-
-                for (int output = 0; output < curProcess.outputItemIds.Length; output++) {
-                    GameObject pOut = Instantiate(ProcessinoutPrefab, pDisp.GetComponent<MiniGUI_CraftingProcess>().OutputsParent);
-                    pOut.GetComponent<MiniGUI_InOutDisplay>().itemImage.sprite = DataHolder.s.GetItem(curProcess.outputItemIds[output]).GetSprite();
-                    pOut.GetComponent<MiniGUI_InOutDisplay>().totalText.text = curProcess.outputItemAmounts[output].ToString();
-                }
-
-                //craftingProcesses[craftingProcesses.Count-1].SetActive(false);
-            } 
-        }
-
-
-        foreach (InventoryItemSlot it in inventory.inventory) {
-            Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, inventory,true);
-        }
-    }
-
-    public void TearDown() {
-        isSetup = false;
         int childs = InventoryParent.childCount;
         for (int i = childs - 1; i > 0; i--) {
             Destroy(InventoryParent.GetChild(i).gameObject);
@@ -99,6 +58,45 @@ public class BuildingInfoDisplay : MonoBehaviour {
         childs = Parent.childCount;
         for (int i = childs - 1; i > 0; i--) {
             Destroy(Parent.GetChild(i).gameObject);
+        }
+        
+        var worldObject = GetComponent<BuildingWorldObject>();
+        crafter = worldObject.myCrafter;
+        
+        if (inventory == null) {
+            inventory = worldObject.myInventory;
+            inventory.drawInventoryEvent += SetUp;
+        }
+
+        craftingProcesses = new List<GameObject>();
+        timeoutCounters = new List<float>();
+        if (crafter != null) {
+            for (int i = 0; i < crafter.myCraftingProcesses.Length; i++) {
+                CraftingProcess curProcess = crafter.myCraftingProcesses[i] as CraftingProcess;
+                if (curProcess != null) {
+                    GameObject pDisp = Instantiate(ProcessDisplayPrefab, Parent);
+                    craftingProcesses.Add(pDisp);
+                    timeoutCounters.Add(infoDisplayTimeoutTime - 1f);
+                    for (int input = 0; input < curProcess.inputItemIds.Length; input++) {
+                        GameObject pIn = Instantiate(ProcessinoutPrefab, pDisp.GetComponent<MiniGUI_CraftingProcess>().InputsParent);
+                        pIn.GetComponent<MiniGUI_InOutDisplay>().itemImage.sprite = DataHolder.s.GetItem(curProcess.inputItemIds[input]).GetSprite();
+                        pIn.GetComponent<MiniGUI_InOutDisplay>().totalText.text = curProcess.inputItemAmounts[input].ToString();
+                    }
+
+                    for (int output = 0; output < curProcess.outputItemIds.Length; output++) {
+                        GameObject pOut = Instantiate(ProcessinoutPrefab, pDisp.GetComponent<MiniGUI_CraftingProcess>().OutputsParent);
+                        pOut.GetComponent<MiniGUI_InOutDisplay>().itemImage.sprite = DataHolder.s.GetItem(curProcess.outputItemIds[output]).GetSprite();
+                        pOut.GetComponent<MiniGUI_InOutDisplay>().totalText.text = curProcess.outputItemAmounts[output].ToString();
+                    }
+
+                    //craftingProcesses[craftingProcesses.Count-1].SetActive(false);
+                }
+            }
+        }
+
+
+        foreach (InventoryItemSlot it in inventory.inventory) {
+            Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, inventory,true);
         }
     }
 

@@ -82,12 +82,12 @@ public class BuildingInventoryController : IInventoryController {
                 for (int i = 0; i < myCrafter.myCraftingProcesses.Length; i++) {
                     var inputs = myCrafter.myCraftingProcesses[i].GetInputItems();
                     for (int m = 0; m < inputs.Length; m++) {
-                        AddSlot(inputs[m].Item1, inputs[m].Item2 * 2, InventoryItemSlot.SlotType.input);
+                        AddSlot(inputs[m].Item1, inputs[m].Item2 * 2, InventoryItemSlot.SlotType.input, false);
                     }
 
                     var outputs = myCrafter.myCraftingProcesses[i].GetOutputItems();
                     for (int m = 0; m < outputs.Length; m++) {
-                        AddSlot(outputs[m].Item1, outputs[m].Item2 * 2, InventoryItemSlot.SlotType.output);
+                        AddSlot(outputs[m].Item1, outputs[m].Item2 * 2, InventoryItemSlot.SlotType.output, false);
                     }
                 }
 
@@ -98,8 +98,8 @@ public class BuildingInventoryController : IInventoryController {
                 var ores = DataHolder.s.GetAllOres();
 
                 for (int i = 0; i < ores.Length; i++) {
-                    AddSlot(DataHolder.s.GetItem(ores[i].oreUniqueName), -1, InventoryItemSlot.SlotType.input);
-                    AddSlot(DataHolder.s.GetItem(ores[i].oreUniqueName), -1, InventoryItemSlot.SlotType.output);
+                    AddSlot(DataHolder.s.GetItem(ores[i].oreUniqueName), -1, InventoryItemSlot.SlotType.input, false);
+                    AddSlot(DataHolder.s.GetItem(ores[i].oreUniqueName), -1, InventoryItemSlot.SlotType.output, false);
                 }
 
                 break;
@@ -108,7 +108,7 @@ public class BuildingInventoryController : IInventoryController {
 
                 // only fill in as much as we need. some slots may be leftover from construction.
                 for (int i = inventory.Count; i < myData.buildingGrade; i++) {
-                    AddSlot(Item.GetEmpty(), 99, InventoryItemSlot.SlotType.storage);
+                    AddSlot(Item.GetEmpty(), 99, InventoryItemSlot.SlotType.storage, false);
                 }
                 
                 DroneSystem.s.RegisterStorageBuilding(this);
@@ -127,7 +127,10 @@ public class BuildingInventoryController : IInventoryController {
 
 
     public void SetInventory(List<InventoryItemSlot> _inventory) {
-        inventory = _inventory;
+        if (_inventory == null)
+            inventory = new List<InventoryItemSlot>();
+        else
+            inventory = _inventory;
 
         drawInventoryEvent?.Invoke();
         InventoryContentsChanged();
@@ -140,7 +143,7 @@ public class BuildingInventoryController : IInventoryController {
     /// </summary>
     /// <param name="itemReference"></param>
     /// <param name="maxCount"></param>
-    public void AddSlot (Item item, int maxCount, InventoryItemSlot.SlotType slotType) {
+    public void AddSlot (Item item, int maxCount, InventoryItemSlot.SlotType slotType, bool reDrawInventory = true) {
         if (slotType != InventoryItemSlot.SlotType.storage) {
             for (int i = 0; i < inventory.Count; i++) {
                 if (inventory[i].myItem == item && inventory[i].mySlotType == slotType) {
@@ -151,6 +154,10 @@ public class BuildingInventoryController : IInventoryController {
         }
 
         inventory.Add(new InventoryItemSlot(item,0,maxCount, slotType));
+        if (reDrawInventory) {
+            drawInventoryEvent?.Invoke();
+            InventoryContentsChanged();
+        }
     }
 
     
@@ -417,6 +424,7 @@ public class BuildingInventoryController : IInventoryController {
     
     
     public int GetAmountOfItems(Item item) {
+
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].myItem == item) {
                 return inventory[i].count;

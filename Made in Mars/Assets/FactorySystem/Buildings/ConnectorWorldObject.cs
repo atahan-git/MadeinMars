@@ -116,7 +116,8 @@ public class ConnectorWorldObject : MonoBehaviour, IBuildable
 	public void UnmarkDestruction() {
 		if (isMarkedForDestruction) {
 			isMarkedForDestruction = false;
-			CompleteBuilding();
+			DroneSystem.s.RemoveDroneTask(myPos);
+			DroneSystem.s.AddDroneBuildTask(myPos, FactoryBuilder.s.connectorBuildingData);
 		}
 	}
 	

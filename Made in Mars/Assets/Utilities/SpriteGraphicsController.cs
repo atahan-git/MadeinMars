@@ -33,7 +33,7 @@ public class SpriteGraphicsController : MonoBehaviour {
 
     // 00C8FF
     private Color buildingPreviewColor = new Color(0 , 200, 255, 150);
-    private Color buildingMarkedForDestructionColor = new Color(0 , 200, 255, 150);
+    private Color buildingMarkedForDestructionColor = new Color(255 , 6, 0, 150);
 
     public enum  BuildState {
         construction, built, destruction

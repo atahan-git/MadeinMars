@@ -19,6 +19,7 @@ public class DroneSystem : MonoBehaviour {
 	}
 
 
+	[SerializeField]
 	List<DroneTask> droneTasks = new List<DroneTask>();
 
 	public List<BuildingInventoryController> storageBuildings = new List<BuildingInventoryController>();
@@ -40,14 +41,20 @@ public class DroneSystem : MonoBehaviour {
 			for (int i = 0; i < drones.Count; i++) {
 				if (!drones[i].isBusy) {
 					if (droneTasks.Count > 0) {
-						drones[i].currentTask = droneTasks[0];
+						var curTask = droneTasks[0];
 						droneTasks.RemoveAt(0);
+						drones[i].currentTask = curTask;
 						drones[i].isBusy = true;
-						drones[i].myState = DroneController.DroneState.SearchingItem;
+						if (curTask.myType == DroneTaskType.build) {
+							drones[i].myState = DroneController.DroneState.BeginBuildingTask;
+						}else if (curTask.myType == DroneTaskType.destroy) {
+							drones[i].myState = DroneController.DroneState.BeingDestructionTask;
+						}
 					}
-				} else {
-					drones[i].DroneWorkUpdate();
-				}
+				
+				} 
+				
+				drones[i].DroneWorkUpdate();
 			}
 			
 			
@@ -108,6 +115,9 @@ public class DroneSystem : MonoBehaviour {
 public interface IBuildable {
 
 	BuildingInventoryController GetConstructionInventory();
+
+	void MarkForDeconstruction();
+	void UnmarkDestruction();
 	void CompleteBuilding();
 	void DestroyYourself();
 }

@@ -96,7 +96,7 @@ public class BeltWorldObject : MonoBehaviour, IBuildable {
 			if (isBuilt) {
 				isMarkedForDestruction = true;
 				isBuilt = false;
-				DroneSystem.s.AddDroneDestroyTask(myPos, FactoryBuilder.s.connectorBuildingData);
+				DroneSystem.s.AddDroneDestroyTask(myPos, FactoryBuilder.s.beltBuildingData);
 				myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
 				
 				myTile.objectUpdatedCallback -= TileUpdated;
@@ -105,6 +105,14 @@ public class BeltWorldObject : MonoBehaviour, IBuildable {
 			} else {
 				DestroyYourself();
 			}
+		}
+	}
+	
+	public void UnmarkDestruction() {
+		if (isMarkedForDestruction) {
+			isMarkedForDestruction = false;
+			DroneSystem.s.RemoveDroneTask(myPos);
+			DroneSystem.s.AddDroneBuildTask(myPos, FactoryBuilder.s.beltBuildingData);
 		}
 	}
 

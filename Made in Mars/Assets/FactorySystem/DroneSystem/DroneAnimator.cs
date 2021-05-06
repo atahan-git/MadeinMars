@@ -151,7 +151,7 @@ public class DroneAnimator : MonoBehaviour {
 		totalDistance = Vector3.Distance(transform.position, droneTargetLocation);
 
 		//droneTargetMarker.GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
-
+		isInTargetLocation = false;
 	}
 
 	private void UpdateLocation() {

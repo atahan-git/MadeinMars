@@ -22,8 +22,7 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 
 	public bool isBuilt = false;
 
-	public GenericCallback buildingBuiltCallback;
-	public GenericCallback buildingUnBuiltCallback;
+	public GenericCallback buildingInventorySetUpCallback;
 	
 
 	public float width;
@@ -79,6 +78,8 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 		
 		if (isBuilt)
 			CompleteBuilding();
+		
+		buildingInventorySetUpCallback?.Invoke();
 	}
 	
 	public BuildingInventoryController GetConstructionInventory() {
@@ -115,7 +116,7 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 		
 		
 		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
-		buildingBuiltCallback?.Invoke();
+		buildingInventorySetUpCallback?.Invoke();
 	}
 
 	void SaveYourself () {
@@ -155,7 +156,6 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 					}
 				}
 				
-				buildingUnBuiltCallback?.Invoke();
 				FactorySystem.s.RemoveBuilding(myBuilding);
 			} else {
 				DestroyYourself();

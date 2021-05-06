@@ -83,10 +83,6 @@ public class DroneInfoDisplay : MonoBehaviour
         
 
         if (myDrone.currentTask != null) {
-            foreach (var itemRequirement in myDrone.currentTask.materials) {
-                Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(itemRequirement, myDrone.myInventory, true);
-            }
-            
             foreach (var itemRequirement in myDrone.myInventory.inventory) {
                 Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(itemRequirement, myDrone.myInventory, true);
             }

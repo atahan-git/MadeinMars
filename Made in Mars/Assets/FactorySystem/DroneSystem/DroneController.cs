@@ -100,7 +100,6 @@ public class DroneController : MonoBehaviour {
 				if (finishedGathering) {
 					myState = DroneState.TravellingToBuild;
 					myAnim.FlyToLocation(currentTask.location);
-					myAnim.isInTargetLocation = false;
 				}
 				
 				// Make the drone look for storage buildings
@@ -111,7 +110,6 @@ public class DroneController : MonoBehaviour {
 								myState = DroneState.TravellingToItem;
 								targetStorage = DroneSystem.s.storageBuildings[i];
 								myAnim.FlyToLocation(targetStorage.myLocation);
-								myAnim.isInTargetLocation = false;
 							}
 						}
 					}
@@ -196,7 +194,6 @@ public class DroneController : MonoBehaviour {
 				
 				myState = DroneState.TravellingToDestroy;
 				myAnim.FlyToLocation(currentTask.location);
-				myAnim.isInTargetLocation = false;
 
 				break;
 			
@@ -245,7 +242,6 @@ public class DroneController : MonoBehaviour {
 							myState = DroneState.TravellingToEmptyInventory;
 							targetStorage = DroneSystem.s.storageBuildings[i];
 							myAnim.FlyToLocation(targetStorage.myLocation);
-							myAnim.isInTargetLocation = false;
 						}
 					}
 				}
