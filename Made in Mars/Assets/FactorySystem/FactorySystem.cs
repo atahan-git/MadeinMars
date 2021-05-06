@@ -182,17 +182,8 @@ public class FactorySystem : MonoBehaviour {
     
     //-------------------------------------------------------------------------------------------Creation/deletion
     
-    public Building CreateBuilding(BuildingData buildingData, List<Position> myPositions, bool isInventory, List<InventoryItemSlot> inventory) {
-        var building = CreateBuilding(buildingData, myPositions);
-        
-        if (isInventory) {
-            building.invController.SetInventory(inventory);
-        }
-        
-        return building;
-    }
-    public Building CreateBuilding(BuildingData buildingData, List<Position> myPositions) {
-        var building = new Building(myPositions[0], buildingData);
+    public Building CreateBuilding(BuildingData buildingData, List<Position> myPositions, BuildingInventoryController inventory) {
+        var building = new Building(myPositions[0], buildingData, inventory);
         building.myPositions = myPositions;
         
         foreach (Position position in building.myPositions) {
@@ -1071,10 +1062,11 @@ public class Building {
 
     public List<Position> myPositions = new List<Position>(); 
 
-    public BuildingInventoryController invController = new BuildingInventoryController();
+    public BuildingInventoryController invController;
     public BuildingCraftingController craftController = new BuildingCraftingController();
 
-    public Building(Position position, BuildingData _buildingData) {
+    public Building(Position position, BuildingData _buildingData, BuildingInventoryController _inventory) {
+        invController = _inventory;
         if (_buildingData == null) {
             Debug.Log("Trying to create a building with null data!");
         } else {

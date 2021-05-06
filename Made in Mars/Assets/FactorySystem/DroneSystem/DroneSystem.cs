@@ -10,25 +10,12 @@ public class DroneSystem : MonoBehaviour {
 	public enum DroneTaskType {
 		build, destroy
 	}
-	
+
 	[Serializable]
 	public class DroneTask {
 		public DroneTaskType myType;
 		public Position location;
-		public InventoryItemSlot[] requirements;
-	}
-	
-	[Serializable]
-	public class ItemRequirement {
-		public string itemName;
-		public int curCount;
-		public int reqAmount;
-
-		public ItemRequirement(string _itemName, int _reqAmount) {
-			itemName = _itemName;
-			curCount = 0;
-			reqAmount = _reqAmount;
-		}
+		public InventoryItemSlot[] materials;
 	}
 
 
@@ -57,7 +44,6 @@ public class DroneSystem : MonoBehaviour {
 						droneTasks.RemoveAt(0);
 						drones[i].isBusy = true;
 						drones[i].myState = DroneController.DroneState.SearchingItem;
-						drones[i].DrawInventory();
 					}
 				} else {
 					drones[i].DroneWorkUpdate();
@@ -68,13 +54,13 @@ public class DroneSystem : MonoBehaviour {
 			yield return new WaitForSeconds(1f / DroneUpdatePerSecond);
 		}
 	}
-	
-	/*public void AddDroneDestroyTask(Position location, BuildingData myData) {
-		droneTasks.Add(new DroneTask(){myType = DroneTaskType.destroy, location = location, requirements = GetRequirements(myData, false)});
-	}*/
+
+	public void AddDroneDestroyTask(Position location, BuildingData myData) {
+		droneTasks.Add(new DroneTask() {myType = DroneTaskType.destroy, location = location, materials = GetRequirements(myData, false)});
+	}
 
 	public void AddDroneBuildTask(Position location, BuildingData myData) {
-		droneTasks.Add(new DroneTask(){myType = DroneTaskType.build, location = location, requirements = GetRequirements(myData, true)});
+		droneTasks.Add(new DroneTask(){myType = DroneTaskType.build, location = location, materials = GetRequirements(myData, true)});
 	}
 
 	public void RemoveDroneTask(Position location) {
@@ -120,6 +106,8 @@ public class DroneSystem : MonoBehaviour {
 
 
 public interface IBuildable {
+
+	BuildingInventoryController GetConstructionInventory();
 	void CompleteBuilding();
 	void DestroyYourself();
 }

@@ -112,11 +112,18 @@ public class DataSaver : MonoBehaviour {
 		public string myUniqueName;
 		public Position myPos;
 		public bool isBuilt;
+		public InventoryData[] myInv;
 
-		public BuildingSaveData (string _myUniqueName, Position location, bool _isBuilt) {
+		public BuildingSaveData (string _myUniqueName, Position location, bool _isBuilt, List<InventoryItemSlot> slots) {
 			myUniqueName = _myUniqueName;
 			myPos = location;
 			isBuilt = _isBuilt;
+			myInv = InventoryData.ConvertToSaveData(slots);
+		}
+		
+		
+		public List<InventoryItemSlot> myInvConverted() {
+			return InventoryData.ConvertToRegularData(myInv);
 		}
 	}
 
@@ -125,11 +132,17 @@ public class DataSaver : MonoBehaviour {
 		public Position myPos;
 		public int cardinalDirection;
 		public bool isBuilt;
+		public InventoryData[] myInv;
 		
-		public BeltData (Position location, int myDirection, bool _isBuilt) {
+		public BeltData (Position location, int myDirection, bool _isBuilt, List<InventoryItemSlot> slots) {
 			myPos = location;
 			cardinalDirection = myDirection;
 			isBuilt = _isBuilt;
+			myInv = InventoryData.ConvertToSaveData(slots);
+		}
+
+		public List<InventoryItemSlot> myInvConverted() {
+			return InventoryData.ConvertToRegularData(myInv);
 		}
 	}
 	
@@ -138,10 +151,16 @@ public class DataSaver : MonoBehaviour {
 		public Position myPos;
 		public int myDir;
 		public bool isBuilt;
-		public ConnectorData (Position location, int direction, bool _isBuilt) {
+		public InventoryData[] myInv;
+		public ConnectorData (Position location, int direction, bool _isBuilt, List<InventoryItemSlot> slots) {
 			myPos = location;
 			myDir = direction;
 			isBuilt = _isBuilt;
+			myInv = InventoryData.ConvertToSaveData(slots);
+		}
+		
+		public List<InventoryItemSlot> myInvConverted() {
+			return InventoryData.ConvertToRegularData(myInv);
 		}
 	}
 
@@ -165,10 +184,65 @@ public class DataSaver : MonoBehaviour {
 	public class InventoryData {
 		public string uniqueName = "";
 		public int count = 0;
+		public int maxCount = 0;
+		public int type = 0;
 
-		public InventoryData (string _uniqueName, int _count) {
-			uniqueName = _uniqueName;
-			count = _count;
+		public InventoryData (InventoryItemSlot slot) {
+			if (!slot.myItem.isEmpty())
+				uniqueName = slot.myItem.uniqueName;
+			else
+				uniqueName = "";
+			count = slot.count;
+			maxCount = slot.maxCount;
+			switch (slot.mySlotType) {
+				case InventoryItemSlot.SlotType.input:
+					type = 0;
+					break;
+				case InventoryItemSlot.SlotType.output:
+					type = 1;
+					break;
+				case InventoryItemSlot.SlotType.storage:
+					type = 2;
+					break;
+			}
 		}
+		
+		public static InventoryData[] ConvertToSaveData (List<InventoryItemSlot> slots) {
+			var invdata = new InventoryData[slots.Count];
+			for (int i = 0; i < slots.Count; i++) {
+				invdata[i] = new InventoryData(slots[i]);
+			}
+
+			return invdata;
+		}
+
+		public InventoryItemSlot ConvertToInvSlot() {
+			var slot = InventoryItemSlot.SlotType.storage;
+			switch (type) {
+				case 0:
+					slot = InventoryItemSlot.SlotType.input;
+					break;
+				case 1:
+					slot = InventoryItemSlot.SlotType.output;
+					break;
+				case 2:
+					slot = InventoryItemSlot.SlotType.storage;
+					break;
+			}
+
+			return new InventoryItemSlot(DataHolder.s.GetItem(uniqueName), count, maxCount, slot);
+		}
+		
+		public  static List<InventoryItemSlot> ConvertToRegularData (InventoryData[] slots) {
+			var invdata = new List<InventoryItemSlot>();
+			if (slots != null) {
+				for (int i = 0; i < slots.Length; i++) {
+					invdata.Add(slots[i].ConvertToInvSlot());
+				}
+			}
+
+			return invdata;
+		}
+		
 	}
 }

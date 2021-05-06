@@ -37,6 +37,7 @@ public class BuildingInfoDisplay : MonoBehaviour {
             SetUp();
         } else {
             worldObject.buildingBuiltCallback += SetUp;
+            worldObject.buildingUnBuiltCallback += TearDown;
         }
     }
 
@@ -85,6 +86,19 @@ public class BuildingInfoDisplay : MonoBehaviour {
 
         foreach (InventoryItemSlot it in inventory.inventory) {
             Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, inventory,true);
+        }
+    }
+
+    public void TearDown() {
+        isSetup = false;
+        int childs = InventoryParent.childCount;
+        for (int i = childs - 1; i > 0; i--) {
+            Destroy(InventoryParent.GetChild(i).gameObject);
+        }
+        
+        childs = Parent.childCount;
+        for (int i = childs - 1; i > 0; i--) {
+            Destroy(Parent.GetChild(i).gameObject);
         }
     }
 

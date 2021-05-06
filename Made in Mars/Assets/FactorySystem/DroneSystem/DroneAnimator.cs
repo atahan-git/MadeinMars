@@ -74,16 +74,32 @@ public class DroneAnimator : MonoBehaviour {
         }
     }
 
+    public void ShowMinusOne() {
+	    var texts = plusOne.GetComponentsInChildren<TextMesh>();
+	    foreach (var text in texts) {
+		    text.text = "-1";
+	    }
+	    ShowText();
+    }
+    
     public void ShowPlusOne() {
+	    var texts = plusOne.GetComponentsInChildren<TextMesh>();
+	    foreach (var text in texts) {
+		    text.text = "+1";
+	    }
+	    ShowText();
+    }
+
+    void ShowText() {
 	    plusOne.transform.localPosition = Vector3.zero;
-        plusOne.SetActive(true);
+	    plusOne.SetActive(true);
         
-        StopAllCoroutines();
-        StartCoroutine(PlusOneLoop());
+	    StopAllCoroutines();
+	    StartCoroutine(TextLoop());
     }
 
     public float plusOneTimer = 0.5f;
-    IEnumerator PlusOneLoop() {
+    IEnumerator TextLoop() {
 	    var time = 0f;
 
 	    while (time < plusOneTimer) {

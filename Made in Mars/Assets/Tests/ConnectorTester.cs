@@ -38,22 +38,22 @@ public class ConnectorTester
 	}
 
 	Building GetFullBuilding() {
-		var building = new Building(new Position(0,0), null);
-		building.invController.inventory = new List<InventoryItemSlot>();
-		building.invController.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.output);
-		building.invController.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.input);
-		building.invController.inventory[0].count = 1;
-		building.invController.inventory[1].count = 1;
+		var inventory = new BuildingInventoryController();
+		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.output);
+		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.input);
+		inventory.inventory[0].count = 1;
+		inventory.inventory[1].count = 1;
+		var building = new Building(new Position(0,0), null, inventory);
 		return building;
 	}
 	
 	Building GetEmptyBuilding() {
-		var building = new Building(new Position(0,0), null);
-		building.invController.inventory = new List<InventoryItemSlot>();
-		building.invController.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.output);
-		building.invController.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.input);
-		building.invController.inventory[0].count = 0;
-		building.invController.inventory[1].count = 0;
+		var inventory = new BuildingInventoryController();
+		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.output);
+		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.input);
+		inventory.inventory[0].count = 0;
+		inventory.inventory[1].count = 0;
+		var building = new Building(new Position(0,0), null, inventory);
 		return building;
 	}
 

@@ -22,7 +22,7 @@ public class DroneInfoDisplay : MonoBehaviour
         isSetup = false;
         canvas.SetActive(isSetup);
         myDrone = GetComponent<DroneController>();
-        myDrone.drawInventoryEvent += SetUp;
+        myDrone.myInventory.drawInventoryEvent += SetUp;
         SetUp();
     }
 
@@ -37,10 +37,10 @@ public class DroneInfoDisplay : MonoBehaviour
             int missingMaterialCount = 0;
 
             if (myDrone.myState == DroneController.DroneState.SearchingItem || myDrone.myState == DroneController.DroneState.TravellingToItem ) {
-                for (int i = 0; i < myDrone.currentTask.requirements.Length; i++) {
-                    var difference = myDrone.currentTask.requirements[i].maxCount - myDrone.currentTask.requirements[i].count;
+                for (int i = 0; i < myDrone.currentTask.materials.Length; i++) {
+                    var difference = myDrone.currentTask.materials[i].maxCount - myDrone.currentTask.materials[i].count;
                     if (difference > 0) {
-                        missingMaterialName = myDrone.currentTask.requirements[i].myItem.uniqueName;
+                        missingMaterialName = myDrone.currentTask.materials[i].myItem.uniqueName;
                         missingMaterialCount = difference;
                         break;
                     }
@@ -83,8 +83,12 @@ public class DroneInfoDisplay : MonoBehaviour
         
 
         if (myDrone.currentTask != null) {
-            foreach (var itemRequirement in myDrone.currentTask.requirements) {
-                Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(itemRequirement, myDrone, true);
+            foreach (var itemRequirement in myDrone.currentTask.materials) {
+                Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(itemRequirement, myDrone.myInventory, true);
+            }
+            
+            foreach (var itemRequirement in myDrone.myInventory.inventory) {
+                Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(itemRequirement, myDrone.myInventory, true);
             }
         } 
     }

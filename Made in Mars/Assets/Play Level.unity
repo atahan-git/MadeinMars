@@ -406,11 +406,13 @@ MonoBehaviour:
   - {fileID: 9028061207655881615, guid: 4160bc153051eb64aa1ee5454728ac0e, type: 3}
   - {fileID: -8519440143304377354, guid: 4160bc153051eb64aa1ee5454728ac0e, type: 3}
   connectorSprites:
-  - {fileID: 2608942509723315082, guid: fc3546dc132549942b27f4b666370d17, type: 3}
   - {fileID: 4373899012234226721, guid: fc3546dc132549942b27f4b666370d17, type: 3}
+  - {fileID: -2519581132361634677, guid: fc3546dc132549942b27f4b666370d17, type: 3}
+  - {fileID: -4718020187768516046, guid: fc3546dc132549942b27f4b666370d17, type: 3}
+  connectorSpritesBases:
+  - {fileID: -513517975741916437, guid: fc3546dc132549942b27f4b666370d17, type: 3}
   - {fileID: 615524341829792612, guid: fc3546dc132549942b27f4b666370d17, type: 3}
-  connectorBase: {fileID: -513517975741916437, guid: fc3546dc132549942b27f4b666370d17,
-    type: 3}
+  - {fileID: 2608942509723315082, guid: fc3546dc132549942b27f4b666370d17, type: 3}
   connectorPullerSprites:
   - {fileID: -4975988460671671915, guid: ef5be55c1a6aa764f93f1929c9745a59, type: 3}
   - {fileID: -2194556898581091506, guid: fc3546dc132549942b27f4b666370d17, type: 3}
@@ -782,7 +784,6 @@ MonoBehaviour:
   ItemPlacementHelperPrefab: {fileID: 118738, guid: e550cad1a961ea741825e01938364653,
     type: 3}
   isSpaceLanding: 0
-  isInventory: 0
   instantBuildCheat: 0
   curState: 0
   isBeltSafeMode: 1

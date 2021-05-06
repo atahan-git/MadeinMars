@@ -147,7 +147,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
     public void StartBuildingFromSlot (BuildingData dat, bool isSpaceLanding, bool isInventory, List<InventoryItemSlot> inv, GenericCallback buildCompleteCallback) {
         beltBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
-        Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat, isSpaceLanding,  isInventory, inv, buildCompleteCallback);
+        Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat, isSpaceLanding,  inv, buildCompleteCallback);
         
         scont.BringBuildingBarToFocus();
     }

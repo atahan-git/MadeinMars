@@ -16,33 +16,34 @@ public class ConnectorWorldObject : MonoBehaviour, IBuildable
 	public TileData myTile;
 
 	SpriteGraphicsController myRend;
+	
+	
+	BuildingInventoryController myInventory;
 
 	public bool isBuilt = false;
 	
-	public void PlaceInWorld (int _direction, Position _location, TileData _myTile, bool isSpaceLanding, bool _isBuilt) {
-		_PlaceInWorld(_direction, _location, _myTile, isSpaceLanding, _isBuilt);
-	}
 
 	public float width;
 	public float height;
 
-	void _PlaceInWorld(int _direction, Position _location, TileData _myTile, bool isSpaceLanding, bool _isBuilt) {
+	public void PlaceInWorld(int _direction, Position _location, TileData _myTile, bool isSpaceLanding, bool _isBuilt, List<InventoryItemSlot> inventory) {
 		myPos = _location;
 		myDir = _direction;
 		myTile = _myTile;
 		isBuilt = _isBuilt;
 		
-		myTile.worldObject = this.gameObject;
+		CreateConstructionInventory(inventory);
 		
-		myTile.objectUpdatedCallback += TileUpdated;
+		myTile.worldObject = this.gameObject;
 
 		myRend = GetComponentInChildren<SpriteGraphicsController>();
+
 		
 		DataSaver.saveEvent += SaveYourself;
 		transform.position = _location.Vector3(Position.Type.belt) + Vector3.up/2f + Vector3.right/2f;
 
 		myRend.SetGraphics(FactoryVisuals.s.connectorSprites[myDir]);
-		myRend.SetBuildState(false);
+		myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
 		
 		if (isSpaceLanding)
 			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
@@ -50,6 +51,91 @@ public class ConnectorWorldObject : MonoBehaviour, IBuildable
 		if (isBuilt)
 			CompleteBuilding();
 	}
+	
+	public BuildingInventoryController GetConstructionInventory() {
+		return myInventory;
+	}
+	public BuildingInventoryController CreateConstructionInventory(List<InventoryItemSlot> inventory) {
+		myInventory = new BuildingInventoryController();
+		myInventory.SetUpConstruction(myPos);
+		myInventory.SetInventory(inventory);
+
+		return myInventory;
+	}
+	
+	public void CompleteBuilding() {
+		myConnector = FactorySystem.s.CreateConnector(myPos, myDir);
+
+		isBuilt = true;
+
+		myTile.objectUpdatedCallback += TileUpdated;
+		
+		
+		UpdateConnectorGraphics();
+		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
+	}
+	
+	void TileUpdated() {
+		if (myTile.areThereConnector) {
+			myConnector = myTile.myConnector;
+			myDir = myConnector.direction;
+			myConnector.ConnectorInputsUpdatedCallback += UpdateConnectorGraphics;
+			UpdateConnectorGraphics();
+		} else {
+			MarkForDeconstruction();
+		}
+	}
+
+	void SaveYourself () {
+		DataSaver.ConnectorsToBeSaved.Add(new DataSaver.ConnectorData(myPos, myDir, isBuilt, myInventory.inventory));
+	}
+
+	void OnDestroy () {
+		DataSaver.saveEvent -= SaveYourself;
+	}
+
+
+	public bool isMarkedForDestruction = false;
+	public void MarkForDeconstruction() {
+		if (!isMarkedForDestruction) {
+			if (isBuilt) {
+				isMarkedForDestruction = true;
+				isBuilt = false;
+				DroneSystem.s.AddDroneDestroyTask(myPos, FactoryBuilder.s.connectorBuildingData);
+				myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
+				
+				myTile.objectUpdatedCallback -= TileUpdated;
+				FactorySystem.s.RemoveConnector(myPos);
+				
+			} else {
+				DestroyYourself();
+			}
+		}
+	}
+
+	public void UnmarkDestruction() {
+		if (isMarkedForDestruction) {
+			isMarkedForDestruction = false;
+			CompleteBuilding();
+		}
+	}
+	
+
+	public void DestroyYourself () {
+		if (myTile != null)
+			myTile.worldObject = null;
+
+		if (isBuilt) {
+			myTile.objectUpdatedCallback -= TileUpdated;
+			FactorySystem.s.RemoveConnector(myPos);
+		}
+
+		DroneSystem.s.RemoveDroneTask(myPos);
+		
+		Destroy(gameObject);
+	}
+	
+	
 
 	private GameObject floor;
 	private GameObject[] pullers = new GameObject[0];
@@ -61,7 +147,7 @@ public class ConnectorWorldObject : MonoBehaviour, IBuildable
 				floor = new GameObject();
 				floor.transform.position = new Vector3(transform.position.x, transform.position.y, DataHolder.connectorBaseLayer);
 				floor.transform.SetParent(transform);
-				floor.AddComponent<SpriteRenderer>().sprite = FactoryVisuals.s.connectorBase;
+				floor.AddComponent<SpriteRenderer>().sprite = FactoryVisuals.s.connectorSpritesBases[myConnector.direction];
 			}
 
 			for (int i = 0; i < pullers.Length; i++) {
@@ -97,45 +183,5 @@ public class ConnectorWorldObject : MonoBehaviour, IBuildable
 		} catch (System.Exception e) {
 			Debug.LogError("Connector graphic creation failed!" + e + " - " + e.StackTrace);
 		}
-	}
-	
-	public void CompleteBuilding() {
-		myConnector = FactorySystem.s.CreateConnector(myPos, myDir);
-
-		isBuilt = true;
-		
-		// This is called by TileUpdated Instead
-		//myRend.SetGraphics(FactoryVisuals.s.beltSprites[myBelt.direction]);
-		myRend.SetBuildState(true);
-	}
-	
-	void TileUpdated() {
-		if (myTile.areThereConnector) {
-			myConnector = myTile.myConnector;
-			myDir = myConnector.direction;
-			myConnector.ConnectorInputsUpdatedCallback += UpdateConnectorGraphics;
-			UpdateConnectorGraphics();
-		} else {
-			DestroyYourself();
-		}
-	}
-
-	void SaveYourself () {
-		DataSaver.ConnectorsToBeSaved.Add(new DataSaver.ConnectorData(myPos, myDir, isBuilt));
-	}
-
-	void OnDestroy () {
-		DataSaver.saveEvent -= SaveYourself;
-	}
-
-	public void DestroyYourself () {
-		if (myTile != null)
-			myTile.worldObject = null;
-		
-		myTile.objectUpdatedCallback -= TileUpdated;
-		FactorySystem.s.RemoveConnector(myPos);
-		DroneSystem.s.RemoveDroneTask(myPos);
-		
-		Destroy(gameObject);
 	}
 }

@@ -100,6 +100,9 @@ public class DataHolder : MonoBehaviour {
     /// The "UniqueName"s will never change! but the specific objects may change
     /// </summary>
     public Item GetItem (string uniqueName) {
+        if (uniqueName.Length == 0)
+            return Item.GetEmpty();
+        
         //int idCounter = 0;
         for (int m = 0; m < myItemSets.Length; m++) {
             for (int i = 0; i < myItemSets[m].items.Length; i++) {

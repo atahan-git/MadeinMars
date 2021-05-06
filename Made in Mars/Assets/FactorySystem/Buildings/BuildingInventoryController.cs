@@ -14,10 +14,10 @@ public class BuildingInventoryController : IInventoryController {
     public Position myLocation;
     
     public enum InventoryType {
-        NormalBuilding, Miner, Base, Storage
+        NormalBuilding, Miner, Base, Storage, Construction
     }
 
-    public InventoryType myType = InventoryType.NormalBuilding;
+    public InventoryType myType = InventoryType.Construction;
     public List<InventoryItemSlot> inventory;
     
 
@@ -26,13 +26,28 @@ public class BuildingInventoryController : IInventoryController {
 
     public bool isCheatInventory = false;
 
+
+    /// <summary>
+    /// Sets up the inventory for construction
+    /// </summary>
+    /// <param name="location"></param>
+    public void SetUpConstruction(Position location) {
+        inventory = new List<InventoryItemSlot>();
+        myLocation = location;
+        
+        myType = InventoryType.Construction;
+        drawInventoryEvent?.Invoke();
+        InventoryContentsChanged();
+    }
+
     /// <summary>
     /// Sets up the building inventory with slots made for the possible inputs&outputs craftable by the building.
     /// Must be called after the crafting controller is set up
     /// </summary>
     /// <param name="mydat"></param>
     public void SetUp(Position location, BuildingCraftingController myCrafter, BuildingData myData) {
-        inventory = new List<InventoryItemSlot>();
+        if(myType != InventoryType.Construction)
+            Debug.LogError("trying to setup the inventory after being setup once. This is not allowed!");
         myLocation = location;
         
         switch (myData.myType) {
@@ -50,6 +65,15 @@ public class BuildingInventoryController : IInventoryController {
             default:
                 myType = InventoryType.NormalBuilding;
                 break;
+        }
+
+        // If this is not a storage type, we need to remove the extra slots leftover from construction
+        if (myType != InventoryType.Storage) {
+            for (int i = inventory.Count-1; i >=0 ; i--) {
+                if (inventory[i].mySlotType == InventoryItemSlot.SlotType.storage) {
+                    inventory.RemoveAt(i);
+                }
+            }
         }
 
         switch (myType) {
@@ -82,8 +106,9 @@ public class BuildingInventoryController : IInventoryController {
 
             case InventoryType.Storage:
 
-                for (int i = 0; i < myData.buildingGrade; i++) {
-                    AddSlot(Item.GetEmpty(), 64, InventoryItemSlot.SlotType.storage);
+                // only fill in as much as we need. some slots may be leftover from construction.
+                for (int i = inventory.Count; i < myData.buildingGrade; i++) {
+                    AddSlot(Item.GetEmpty(), 99, InventoryItemSlot.SlotType.storage);
                 }
                 
                 DroneSystem.s.RegisterStorageBuilding(this);
@@ -102,8 +127,6 @@ public class BuildingInventoryController : IInventoryController {
 
 
     public void SetInventory(List<InventoryItemSlot> _inventory) {
-        myType = InventoryType.NormalBuilding;
-
         inventory = _inventory;
 
         drawInventoryEvent?.Invoke();
@@ -137,6 +160,15 @@ public class BuildingInventoryController : IInventoryController {
     /// <param name="itemReference"></param>
     /// <returns>Returns true or false depending on if there is available space for the particular item</returns>
     public bool TryAddItem(Item item, int amount, bool isOutput) {
+        return ForceAddItem(item, amount, isOutput, false);
+    }
+    
+    /// <summary>
+    /// Try to add an item to one of the slots. 
+    /// </summary>
+    /// <param name="itemReference"></param>
+    /// <returns>Returns true or false depending on if there is available space for the particular item</returns>
+    public bool ForceAddItem(Item item, int amount, bool isOutput, bool isForced) {
         var slotType = isOutput ? InventoryItemSlot.SlotType.output : InventoryItemSlot.SlotType.input;
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].mySlotType == slotType) {
@@ -165,7 +197,12 @@ public class BuildingInventoryController : IInventoryController {
             }
         }
 
-        return false;
+        if (!isForced) {
+            return false;
+        } else {
+            AddSlot(item,99, InventoryItemSlot.SlotType.storage);
+            return ForceAddItem(item, amount, isOutput, isForced);
+        }
     }
 
 
@@ -276,6 +313,26 @@ public class BuildingInventoryController : IInventoryController {
 
 
     /// <summary>
+    /// isOutput agnostic version of try take next item
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public bool TryTakeNextItem(out Item item) {
+        bool trial = TryTakeNextItem(out item, true);
+        if (trial) {
+            return trial;
+        } else {
+            trial = TryTakeNextItem(out item, false);
+        }
+        
+        if(trial){
+            return trial;
+        } else {
+            return false;
+        }
+    }
+    
+    /// <summary>
     /// Will try to take the next available item from any of the output slots
     /// </summary>
     /// <returns></returns>
@@ -309,6 +366,26 @@ public class BuildingInventoryController : IInventoryController {
 
         item = null;
         return false;
+    }
+    
+    /// <summary>
+    /// isOutput agnostic version of check take next item
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public bool CheckTakeNextItem(out Item item) {
+        bool trial = CheckTakeNextItem(out item, true);
+        if (trial) {
+            return trial;
+        } else {
+            trial = CheckTakeNextItem(out item, false);
+        }
+        
+        if(trial){
+            return trial;
+        } else {
+            return false;
+        }
     }
     
     /// <summary>
@@ -356,6 +433,15 @@ public class BuildingInventoryController : IInventoryController {
             if (inventory[i].mySlotType == slotType || inventory[i].mySlotType == InventoryItemSlot.SlotType.storage) {
                 counter += inventory[i].count;
             }
+        }
+
+        return counter;
+    }
+    
+    public int GetTotalAmountOfItems() {
+        int counter = 0;
+        for (int i = 0; i < inventory.Count; i++) {
+            counter += inventory[i].count;
         }
 
         return counter;

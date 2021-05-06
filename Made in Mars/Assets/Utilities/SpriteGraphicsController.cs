@@ -33,12 +33,22 @@ public class SpriteGraphicsController : MonoBehaviour {
 
     // 00C8FF
     private Color buildingPreviewColor = new Color(0 , 200, 255, 150);
+    private Color buildingMarkedForDestructionColor = new Color(0 , 200, 255, 150);
 
-    public void SetBuildState(bool isBuild) {
-        if (isBuild) {
-            rend.color = Color.white;
-        } else {
-            rend.color = buildingPreviewColor;
+    public enum  BuildState {
+        construction, built, destruction
+    }
+    public void SetBuildState(BuildState state) {
+        switch (state) {
+            case BuildState.construction:
+                rend.color = buildingPreviewColor;
+                break;
+            case BuildState.built:
+                rend.color = Color.white;
+                break;
+            case BuildState.destruction:
+                rend.color = buildingMarkedForDestructionColor;
+                break;
         }
     }
 

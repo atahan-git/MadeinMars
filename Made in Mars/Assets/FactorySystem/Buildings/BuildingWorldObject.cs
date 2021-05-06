@@ -23,24 +23,23 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 	public bool isBuilt = false;
 
 	public GenericCallback buildingBuiltCallback;
+	public GenericCallback buildingUnBuiltCallback;
 	
-	public void PlaceInWorld (BuildingData _myData, Position _location, List<Position> _myPositions, bool isSpaceLanding,
-		bool isInventory, List<InventoryItemSlot> inventory, bool _isBuild) {
-		_PlaceInWorld(_myData, _location, _myPositions, isSpaceLanding, isInventory, inventory, _isBuild);
-	}
 
 	public float width;
 	public float height;
 
-	void _PlaceInWorld(BuildingData _myData, Position _location, List<Position> _myPositions, bool isSpaceLanding, 
-		bool isInventory, List<InventoryItemSlot> inventory, bool _isBuild) {
+	public void PlaceInWorld(BuildingData _myData, Position _location, List<Position> _myPositions, bool isSpaceLanding, 
+		List<InventoryItemSlot> inventory, bool _isBuild) {
 
 		myData = _myData;
 		myPos = _location;
 		myPositions = _myPositions;
 		myTiles = new List<TileData>();
 		isBuilt = _isBuild;
-		
+
+		CreateConstructionInventory(inventory);
+
 		foreach (Position myPosition in myPositions) {
 			if (myPosition != null) {
 				var myTile = Grid.s.GetTile(myPosition);
@@ -68,7 +67,7 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 				myRend.SetGraphics(myData.gfxPrefab);
 				break;
 		}
-		myRend.SetBuildState(false);
+		myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
 		StopAnimationsForced(true);
 
 		DataSaver.saveEvent += SaveYourself;
@@ -81,14 +80,22 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 		if (isBuilt)
 			CompleteBuilding();
 	}
+	
+	public BuildingInventoryController GetConstructionInventory() {
+		return myInventory;
+	}
+	public BuildingInventoryController CreateConstructionInventory(List<InventoryItemSlot> inventory) {
+		myInventory = new BuildingInventoryController();
+		myInventory.SetUpConstruction(myPos);
+		myInventory.SetInventory(inventory);
 
+		return myInventory;
+	}
 	
 	public void CompleteBuilding() {
-		myBuilding = FactorySystem.s.CreateBuilding(myData,myPositions);
-
+		myBuilding = FactorySystem.s.CreateBuilding(myData,myPositions, myInventory);
 
 		myCrafter = myBuilding.craftController;
-		myInventory = myBuilding.invController;
 
 		if (myCrafter != null) {
 			myCrafter.continueAnimationsEvent += ContinueAnimations;
@@ -106,14 +113,13 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 			}
 		}
 		
-		// This is called by TileUpdated Instead
-		//myRend.SetGraphics(FactoryVisuals.s.beltSprites[myBelt.direction]);
-		myRend.SetBuildState(true);
+		
+		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
 		buildingBuiltCallback?.Invoke();
 	}
 
 	void SaveYourself () {
-		DataSaver.ItemsToBeSaved.Add(new DataSaver.BuildingSaveData(myData.uniqueName, myPos, isBuilt));
+		DataSaver.ItemsToBeSaved.Add(new DataSaver.BuildingSaveData(myData.uniqueName, myPos, isBuilt, myInventory.inventory));
 	}
 
 	void TileUpdated() {
@@ -123,7 +129,7 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 				if (myTile.areThereBuilding) {
 					myBuilding = myTile.myBuilding;
 				} else {
-					DestroyYourself();
+					MarkForDeconstruction();
 				}
 			}
 		}
@@ -131,6 +137,39 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 	
 	void OnDestroy () {
 		DataSaver.saveEvent -= SaveYourself;
+	}
+	
+	public bool isMarkedForDestruction = false;
+	public void MarkForDeconstruction() {
+		if (!isMarkedForDestruction) {
+			if (isBuilt) {
+				isMarkedForDestruction = true;
+				isBuilt = false;
+				DroneSystem.s.AddDroneDestroyTask(myPos, myData);
+				myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
+				
+				foreach (Position myPosition in myPositions) {
+					if (myPosition != null) {
+						var myTile = Grid.s.GetTile(myPosition);
+						myTile.objectUpdatedCallback -= TileUpdated;
+					}
+				}
+				
+				buildingUnBuiltCallback?.Invoke();
+				FactorySystem.s.RemoveBuilding(myBuilding);
+			} else {
+				DestroyYourself();
+			}
+		}
+	}
+
+	public void UnmarkDestruction() {
+		if (isMarkedForDestruction) {
+			isMarkedForDestruction = false;
+			DroneSystem.s.RemoveDroneTask(myPos);
+			
+			DroneSystem.s.AddDroneBuildTask(myPos, myData);
+		}
 	}
 
 	public void DestroyYourself () {
@@ -140,15 +179,18 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 				myTile.worldObject = null;
 			}
 		}
-		
-		foreach (Position myPosition in myPositions) {
-			if (myPosition != null) {
-				var myTile = Grid.s.GetTile(myPosition);
-				myTile.objectUpdatedCallback -= TileUpdated;
+
+		if (isBuilt) {
+			foreach (Position myPosition in myPositions) {
+				if (myPosition != null) {
+					var myTile = Grid.s.GetTile(myPosition);
+					myTile.objectUpdatedCallback -= TileUpdated;
+				}
 			}
+
+			FactorySystem.s.RemoveBuilding(myBuilding);
 		}
-		
-		FactorySystem.s.RemoveBuilding(myBuilding);
+
 		DroneSystem.s.RemoveDroneTask(myPositions[0]);
 		
 		Destroy(gameObject);

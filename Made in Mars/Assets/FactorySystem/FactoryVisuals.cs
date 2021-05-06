@@ -9,7 +9,7 @@ public class FactoryVisuals : MonoBehaviour {
     
     public Sprite[] beltSprites;
     public Sprite[] connectorSprites;
-    public Sprite connectorBase;
+    public Sprite[] connectorSpritesBases;
     public Sprite[] connectorPullerSprites;
 
     public List<VisualBuilding> allBuildings = new List<VisualBuilding>();

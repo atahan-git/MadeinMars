@@ -13,7 +13,6 @@ public class Player_BuildingController : MonoBehaviour {
 	ItemPlacementHelper curItemPlacementScript;
 
 	public bool isSpaceLanding = false;
-	public bool isInventory = false;
 	private List<InventoryItemSlot> inventory = null;
 	public GenericCallback buildCompleteCallback;
 
@@ -67,7 +66,7 @@ public class Player_BuildingController : MonoBehaviour {
 			if (curItemPlacementScript != null) {
 				if (SmartInput.inputPos.y > 200 && FactoryBuilder.s.CheckPlaceable(buildingItem, lastTile.position)) {
 					curItemPlacementScript.PlaceSelf();
-					FactoryBuilder.s.BuildObject(buildingItem, lastTile.position,false, isSpaceLanding, isInventory, inventory, instantBuildCheat);
+					FactoryBuilder.s.BuildObject(buildingItem, lastTile.position,false, isSpaceLanding, inventory, instantBuildCheat);
 					buildCompleteCallback?.Invoke();
 				} else {
 					Debug.Log("Item placement failed due:" + SmartInput.inputPos.y +" < 200" + " or checkplaceable = " + FactoryBuilder.s.CheckPlaceable(buildingItem, lastTile.position));
@@ -89,14 +88,13 @@ public class Player_BuildingController : MonoBehaviour {
 	/// <param name="_isSpaceLanding"></param>
 	/// <param name="_isInventory"></param>
 	/// <param name="_inventory"></param>
-	public void TryToPlaceItem (BuildingData myData, bool _isSpaceLanding, bool _isInventory, List<InventoryItemSlot> _inventory, GenericCallback _buildCompleteCallback) {
+	public void TryToPlaceItem (BuildingData myData, bool _isSpaceLanding, List<InventoryItemSlot> _inventory, GenericCallback _buildCompleteCallback) {
 		Deselect();
 		print("Placing Item");
 		buildCompleteCallback = _buildCompleteCallback;
-		if (_isInventory) {
-			isInventory = _isInventory;
-			inventory = _inventory;
-		}
+		
+		inventory = _inventory;
+		
 		isSpaceLanding = _isSpaceLanding;
 		curState = PlacementState.item;
 		Player_MasterControlCheck.s.ToggleMovement(true);
@@ -178,7 +176,7 @@ public class Player_BuildingController : MonoBehaviour {
 					return;
 				} else if(b_lastTile != null){
 					int direction = Position.CardinalDirection(b_lastTile.position, myTile.position);
-					FactoryBuilder.s.BuildBelt(myTile, direction, instantBuildCheat);
+					FactoryBuilder.s.BuildBelt(myTile, direction, instantBuildCheat, new List<InventoryItemSlot>());
 				}
 				b_lastTile = myTile;
 			}
@@ -199,10 +197,10 @@ public class Player_BuildingController : MonoBehaviour {
 					return;
 				} else if(b_lastTile != null){
 					int direction = Position.ParallelDirection(b_lastTile.position, myTile.position);
-					FactoryBuilder.s.BuildConnector(myTile, direction, instantBuildCheat);
+					FactoryBuilder.s.BuildConnector(myTile, direction, instantBuildCheat, new List<InventoryItemSlot>());
 				} else {
 					int direction = Position.ParallelDirection(myTile.position, myTile.position);
-					FactoryBuilder.s.BuildConnector(myTile, direction, instantBuildCheat);
+					FactoryBuilder.s.BuildConnector(myTile, direction, instantBuildCheat, new List<InventoryItemSlot>());
 				}
 				b_lastTile = myTile;
 			}
