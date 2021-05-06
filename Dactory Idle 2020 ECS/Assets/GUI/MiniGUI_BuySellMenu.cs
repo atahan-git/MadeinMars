@@ -56,7 +56,7 @@ public class MiniGUI_BuySellMenu : MonoBehaviour {
                 curCost += itemSelectors[i].amount * itemSelectors[i].myItem.buyCost;
             } else {
                 curCost += itemSelectors[i].amount * itemSelectors[i].myItem.sellCost;
-                if (Player_InventoryController.s.GetItemCount(itemSelectors[i].myItem) < itemSelectors[i].amount) {
+                if (false) {
                     itemSelectors[i].SetAvailabilityInInventory(false);
                     canSendShip = false;
                 } else {
@@ -94,7 +94,7 @@ public class MiniGUI_BuySellMenu : MonoBehaviour {
 
             for (int i = 0; i < itemSelectors.Length; i++) {
                 if (itemSelectors[i].amount > 0) {
-                    myItems.Add(new InventoryItemSlot(itemSelectors[i].myItem, itemSelectors[i].amount, itemSelectors[i].amount, true));
+                    myItems.Add(new InventoryItemSlot(itemSelectors[i].myItem, itemSelectors[i].amount, itemSelectors[i].amount, InventoryItemSlot.SlotType.output));
                     itemSelectors[i].ResetAmount();
                 }
             }

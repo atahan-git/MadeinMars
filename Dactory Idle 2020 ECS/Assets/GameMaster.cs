@@ -24,8 +24,8 @@ public class GameMaster : MonoBehaviour {
 	void Start () {
 		GetComponent<GameLoader>().LoadGame();
 		loadingDone = true;
-		BeltMaster.s.StartBeltSystem();
-		BuildingMaster.s.StartBuildingSystem();
+		FactoryMaster.s.StartBuildingSystem();
+		DroneSystem.s.StartDroneSystem();
 
 		/*if (GameLoader.isGameLoadingSuccessfull == false) {
 			

@@ -11,7 +11,6 @@ public class Player_MasterControlCheck : MonoBehaviour
 	public bool isPlacingItem = false;
 	public static Player_MasterControlCheck s;
 	public Player_BuildingController buildingController;
-	public Player_InventoryController inventoryController;
 
 	private void Awake () {
 		if (s != null) {
@@ -19,7 +18,6 @@ public class Player_MasterControlCheck : MonoBehaviour
 		}
 		s = this;
 		buildingController = GetComponent<Player_BuildingController>();
-		inventoryController = GetComponent<Player_InventoryController>();
 	}
 
 	public void ToggleMovement (bool state) {

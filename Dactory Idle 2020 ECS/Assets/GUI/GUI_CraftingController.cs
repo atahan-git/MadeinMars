@@ -52,7 +52,8 @@ public class GUI_CraftingController : MonoBehaviour {
 
     public void CraftItem(int craftingProcessIndex) {
 
-        if (Player_InventoryController.s.CanCraftItem(allCraftingProcesses[craftingProcessIndex])) {
+        //if (Player_InventoryController.s.CanCraftItem(allCraftingProcesses[craftingProcessIndex])) {
+        if (true) {
             print("Crafting item " + craftingProcessIndex.ToString());
             var newCraftingProcess = Instantiate(CraftingQueuePrefab, CraftingQueueParent).GetComponent<MiniGUI_CraftingQueueDisplay>();
             newCraftingProcess.transform.SetAsFirstSibling();
@@ -84,12 +85,12 @@ public class GUI_CraftingController : MonoBehaviour {
             curActiveProcess.progress += (1f / curActiveProcess.timeReq) * Time.deltaTime;
             curActiveProcess.UpdateDisplay();
             if (curActiveProcess.progress >= 1) {
-                if (Player_InventoryController.s.CanCraftItem(curActiveProcess.myCraftingNode)) {
+                /*if (Player_InventoryController.s.CanCraftItem(curActiveProcess.myCraftingNode)) {
                     if (Player_InventoryController.s.TryAddItem(curActiveProcess.myItem)) {
                         Player_InventoryController.s.UseCraftingResources(curActiveProcess.myCraftingNode, 1);
                         print("Item Craftin success: " + curActiveProcess.myItem.uniqueName);
                     }
-                }
+                }*/
                 print("Item Crafting failed: " + curActiveProcess.myItem.uniqueName);
 
                 curActiveProcess.DestroySelf();

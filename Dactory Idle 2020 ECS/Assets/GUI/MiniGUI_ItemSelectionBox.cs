@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -10,7 +11,7 @@ using UnityEngine.UI;
 /// A helper class for the individual item selectors in the comms item buy/sell menu
 /// </summary>
 public class MiniGUI_ItemSelectionBox : MonoBehaviour {
-    public Item myItem;
+    [FormerlySerializedAs("myItemReference")] public Item myItem;
     public bool isBuy;
     
     public Image icon;

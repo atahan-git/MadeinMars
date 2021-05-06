@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -12,7 +13,7 @@ public class MiniGUI_CraftingQueueDisplay : MonoBehaviour
     public float progress = 0;
     public float timeReq = -1f;
     public int index = -1;
-    public Item myItem;
+    [FormerlySerializedAs("myItemReference")] public Item myItem;
     public CraftingNode myCraftingNode;
 
     public Image myImg;

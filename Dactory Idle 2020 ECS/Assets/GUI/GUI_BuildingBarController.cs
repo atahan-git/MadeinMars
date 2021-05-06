@@ -16,12 +16,12 @@ public class GUI_BuildingBarController : MonoBehaviour {
     GUI_SwitchController scont;
 
     public GameObject beltBuildingOverlay;
+    public GameObject connectorBuildingOverlay;
     public GameObject sellModeOverlay;
     public GameObject buildingDragFromInventoryOverlay;
 
-    // public int buildingSlotCount = 3; >> possibly auto generate building bar slots?
-
-    public MiniGUI_BuildingBarSlot[] myBuildingBarSlots;
+    public Transform BuildingBarSlotsParent;
+    MiniGUI_BuildingBarSlot[] myBuildingBarSlots;
 
     public Image PlaceBeltsButton;
     public bool CanPlaceBelts = true;
@@ -33,13 +33,16 @@ public class GUI_BuildingBarController : MonoBehaviour {
             Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
         }
         s = this;
+
+        myBuildingBarSlots = BuildingBarSlotsParent.GetComponentsInChildren<MiniGUI_BuildingBarSlot>();
+        
         GameLoader.CallWhenLoaded(LoadBuildingSlots);
     }
 
     private void Start () {
         DataSaver.saveEvent += SaveBuildingSlots;
 
-        Player_InventoryController.s.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;
+        //Player_InventoryController.s.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;
 
         scont = GetComponent<GUI_SwitchController>();
     }
@@ -59,20 +62,32 @@ public class GUI_BuildingBarController : MonoBehaviour {
         }
     }
 
-    private void Update () {
+    private void Update() {
         if (inventoryDragBegun)
-            if (Input.GetMouseButtonUp(0) || (Input.touchCount == 0 && Input.touchSupported))
-                StopDragInventoryBuilding();
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonUp(0))
+            StopDragInventoryBuilding();
+#else
+        if (Input.GetMouseButtonUp(0) || (Input.touchCount == 0 && Input.touchSupported))
+            StopDragInventoryBuilding();
+#endif
     }
 
+    
+    // IMPORTANT CHANGE
+    //
+    // Previously we needed items from the player inventory to build things, not anymore!
+    // Now drones collect resources and build the things.
     public Color defColor = Color.white;
     public void UpdateSlotsBuildableStates () {
         for (int i = 0; i < myBuildingBarSlots.Length; i++) {
             if(myBuildingBarSlots[i].myDat != null)
-            myBuildingBarSlots[i].UpdateBuildableState(Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(myBuildingBarSlots[i].myDat));
+                //myBuildingBarSlots[i].UpdateBuildableState(Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(myBuildingBarSlots[i].myDat));
+                myBuildingBarSlots[i].UpdateBuildableState(true);
         }
 
-        CanPlaceBelts = Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(ObjectBuilderMaster.beltBuildingData);
+        //CanPlaceBelts = Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(FactoryBuilder.s.beltBuildingData);
+        CanPlaceBelts = true;
         if (CanPlaceBelts) {
             PlaceBeltsButton.color = defColor;
         } else {
@@ -86,12 +101,14 @@ public class GUI_BuildingBarController : MonoBehaviour {
     public bool inventoryDragBegun = false;
     public BuildingData dragBuildDat = null;
     public void BeginDragInventoryBuilding (BuildingData building) {
+        Debug.Log("Begin Drag Inventory Building");
         buildingDragFromInventoryOverlay.SetActive(true);
         dragBuildDat = building;
         inventoryDragBegun = true;
     }
 
     public void StopDragInventoryBuilding () {
+        Debug.Log("End Drag Inventory Building");
         buildingDragFromInventoryOverlay.SetActive(false);
         inventoryDragBegun = false;
         UpdateSlotsBuildableStates();
@@ -138,20 +155,29 @@ public class GUI_BuildingBarController : MonoBehaviour {
     
 
     public void SellMode () {
-        beltBuildingOverlay.SetActive(false);
+        Deselect();
         sellModeOverlay.SetActive(true);
         Player_MasterControlCheck.s.buildingController.ActivateSellMode();
         scont.BringBuildingBarToFocus();
     }
 
     public void BeltMode () {
+        Deselect();
         if (!CanPlaceBelts) {
-            Deselect();
             return;
         }
         beltBuildingOverlay.SetActive(true);
-        sellModeOverlay.SetActive(false);
         Player_MasterControlCheck.s.buildingController.ActivateBeltMode();
+        scont.BringBuildingBarToFocus();
+    }
+    
+    public void ConnectorMode () {
+        Deselect();
+        if (!CanPlaceBelts) {
+            return;
+        }
+        connectorBuildingOverlay.SetActive(true);
+        Player_MasterControlCheck.s.buildingController.ActivateConnectorMode();
         scont.BringBuildingBarToFocus();
     }
 
@@ -161,6 +187,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
     public void Deselect () {
         beltBuildingOverlay.SetActive(false);
+        connectorBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
         Player_MasterControlCheck.s.buildingController.Deselect();
     }
@@ -177,7 +204,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
 	public void OnDestroy () {
         GameLoader.RemoveFromCall(LoadBuildingSlots);
         DataSaver.saveEvent -= SaveBuildingSlots;
-        Player_InventoryController.s.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
+        //Player_InventoryController.s.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
     }
 
 

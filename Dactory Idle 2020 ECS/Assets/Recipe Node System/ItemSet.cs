@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Serialization;
 
 
 /// <summary>
@@ -39,24 +40,25 @@ public class ItemSet : ScriptableObject {
 }
 
 
-[System.Serializable]
+[Serializable]
 public class InventoryItemSlot{
     public Item myItem;
     public int count = 0; // If 0, means the slot is empty.
     public int maxCount = -1; // -1 means no limit
 
-    public bool isOutputSlot;
+    public enum SlotType {
+        input, output, storage
+    }
 
-    public InventoryItemSlot () { }
-    public InventoryItemSlot (Item item, int _count) { myItem = item; count = _count; }
-    public InventoryItemSlot (Item item, int _count, int _maxcount) { myItem = item; count = _count; maxCount = _maxcount; }
-    public InventoryItemSlot (Item item, int _count, int _maxcount, bool _isOutputSlot) { myItem = item; count = _count; maxCount = _maxcount; isOutputSlot = _isOutputSlot; }
+    public SlotType mySlotType;
+
+    public InventoryItemSlot (Item item, int _count, int _maxcount, SlotType slotType) { myItem = item; count = _count; maxCount = _maxcount; mySlotType = slotType; }
 }
 
 
 
 [System.Serializable]
-public class Item {
+public class Item : IEquatable<Item> {
     public string uniqueName = "";
     public string name = "New Item";
     [TextArea] public string description = "This is a new Item";
@@ -77,6 +79,7 @@ public class Item {
     
     
     public float weight = 1;
+    public int inventoryStackCount = 99;
 
     [Header("Buy/Sell")]
 
@@ -126,5 +129,19 @@ public class Item {
             return true;
         
         return a.uniqueName != b.uniqueName;
+    }
+    
+    
+    public static Item GetEmpty() {
+        return null;
+    }
+
+    public Item MakeDummyItem(int itemType) {
+        uniqueName = itemType.ToString();
+        return this;
+    }
+
+    public bool Equals(Item other) {
+        return this == other;
     }
 }

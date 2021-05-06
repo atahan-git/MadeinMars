@@ -105,6 +105,12 @@ public class CountedItemNode {
         itemUniqueName = node.itemUniqueName;
         count = _count;
     }
+    
+    public CountedItemNode(string _itemUniqueName, int _count) {
+        nodeId = -1;
+        itemUniqueName = _itemUniqueName;
+        count = _count;
+    }
 }
 
 

@@ -31,9 +31,10 @@ public class MiniGUI_BuildingListing : MonoBehaviour {
     }
 
 
-    public void BeginDrag () {
-    if(myDat!=null)
-        myCont.BeginDragInventoryBuilding(myDat);
+    public void BeginDrag() {
+        Debug.Log("Begin Building Listing Drag" + myDat);
+        if (myDat != null)
+            myCont.BeginDragInventoryBuilding(myDat);
     }
 }
     

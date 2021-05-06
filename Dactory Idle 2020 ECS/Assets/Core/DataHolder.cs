@@ -27,9 +27,12 @@ public class DataHolder : MonoBehaviour {
     // Layers - the z coordinates for various objects
     public static int worldLayer = 1;
     public static int beltLayer = 0;
+    public static int connectorBaseLayer = 0;
     public static int itemLayer = -1;
-    public static int buildingLayer = -2;
-    public static int droneLayer = -3;
+    public static int connectorOverlayLayer = -2;
+    public static int connectorPullerLayer = -3;
+    public static int buildingLayer = -4;
+    public static int droneLayer = -6;
 
     private void Awake () {
         if (s != null) {
@@ -241,4 +244,12 @@ public class DataHolder : MonoBehaviour {
     public CraftingNode[][] GetAllCraftingProcessNodesDivided() {
         return myCraftingProcessesDivided;
     }
+}
+
+public delegate void GenericCallback ();
+
+public interface IInventoryController {
+    event GenericCallback drawInventoryEvent; // This is for the initial drawing of the inventory. Only needs to be called when slot counts change
+    
+    event GenericCallback inventoryContentsChangedEvent; // Sign up to this if you want to be updated whenever the inventory contents are changed
 }

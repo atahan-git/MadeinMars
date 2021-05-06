@@ -28,24 +28,36 @@ public class BuildingInfoDisplay : MonoBehaviour {
     
     static float infoDisplayTimeoutTime = 5f;
 
+    public bool isSetup = false;
     private void Start() {
-        Invoke("SetUp",1f);
+        isSetup = false;
+        canvas.SetActive(isSetup);
+        var worldObject = GetComponent<BuildingWorldObject>();
+        if (worldObject.isBuilt) {
+            SetUp();
+        } else {
+            worldObject.buildingBuiltCallback += SetUp;
+        }
     }
 
     // Update is called once per frame
     void Update () {
-        if (isExtraInfoVisible) {
-            if (craftingProcesses.Count > 0) {
-                UpdateValues();
+        if (isSetup) {
+            if (isExtraInfoVisible) {
+                if (craftingProcesses.Count > 0) {
+                    UpdateValues();
+                }
             }
-        }
-        canvas.SetActive(isExtraInfoVisible);
-        //progressBar.value = (float)crafter.curCraftingProgress / (float)crafter.craftingProgressTickReq;
+
+            canvas.SetActive(isExtraInfoVisible);
+        } //progressBar.value = (float)crafter.curCraftingProgress / (float)crafter.craftingProgressTickReq;
     }
 
     public void SetUp () {
-        crafter = GetComponent<BuildingCraftingController>();
-        inventory = GetComponent<BuildingInventoryController>();
+        isSetup = true;
+        var worldObject = GetComponent<BuildingWorldObject>();
+        crafter = worldObject.myCrafter;
+        inventory = worldObject.myInventory;
         craftingProcesses = new List<GameObject>();
         timeoutCounters = new List<float>();
         for (int i = 0; i < crafter.myCraftingProcesses.Length; i++) {
@@ -69,8 +81,8 @@ public class BuildingInfoDisplay : MonoBehaviour {
                 //craftingProcesses[craftingProcesses.Count-1].SetActive(false);
             } 
         }
-        
-        
+
+
         foreach (InventoryItemSlot it in inventory.inventory) {
             Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, inventory,true);
         }

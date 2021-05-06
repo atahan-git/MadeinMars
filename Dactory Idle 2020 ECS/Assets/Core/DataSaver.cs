@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
@@ -16,10 +17,9 @@ public class DataSaver : MonoBehaviour {
 	public static SaveFile mySave;
 	public const string saveName = "mySave";
 
-	public static BuildingSaveData[] ItemsToBeSaved = new BuildingSaveData[99];
-	public static int n = 0;
-	public static BeltData[] BeltsToBeSaved = new BeltData[999];
-	public static int b = 0;
+	public static List<BuildingSaveData> ItemsToBeSaved = new List<BuildingSaveData>();
+	public static List<BeltData> BeltsToBeSaved = new List<BeltData>();
+	public static List<ConnectorData> ConnectorsToBeSaved = new List<ConnectorData>();
 	public static string[] BuildingBarDataToBeSaved;
 	public static TileData[,] TileDataToBeSaved;
 	public static InventoryData[] InventoryDataToBeSaved;
@@ -50,7 +50,7 @@ public class DataSaver : MonoBehaviour {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName + ".banana");
 
-		SaveFile data = new SaveFile(ItemsToBeSaved, BeltsToBeSaved, BuildingBarDataToBeSaved, TileDataToBeSaved, InventoryDataToBeSaved);
+		SaveFile data = new SaveFile(ItemsToBeSaved.ToArray(), BeltsToBeSaved.ToArray(),ConnectorsToBeSaved.ToArray(), BuildingBarDataToBeSaved, TileDataToBeSaved, InventoryDataToBeSaved);
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -91,13 +91,15 @@ public class DataSaver : MonoBehaviour {
 	public class SaveFile {
 		public BuildingSaveData[] buildingData = new BuildingSaveData[0];
 		public BeltData[] beltData = new BeltData[0];
+		public ConnectorData[] connectorData = new ConnectorData[0];
 		public string[] buildingBarData = new string[0];
 		public TileData[,] tileData = new TileData[0,0];
 		public InventoryData[] inventoryData = new InventoryData[0];
 
-		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, string[] mybuilbar, TileData[,] myTiledata, InventoryData[] myInventoryData) {
+		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, ConnectorData[] mycon, string[] mybuilbar, TileData[,] myTiledata, InventoryData[] myInventoryData) {
 			buildingData = myit;
 			beltData = mybel;
+			connectorData = mycon;
 			buildingBarData = mybuilbar;
 			tileData = myTiledata;
 			inventoryData = myInventoryData;
@@ -109,25 +111,37 @@ public class DataSaver : MonoBehaviour {
 	public class BuildingSaveData {
 		public string myUniqueName;
 		public Position myPos;
+		public bool isBuilt;
 
-		public BuildingSaveData (string _myUniqueName, Position location) {
+		public BuildingSaveData (string _myUniqueName, Position location, bool _isBuilt) {
 			myUniqueName = _myUniqueName;
 			myPos = location;
+			isBuilt = _isBuilt;
 		}
 	}
 
 	[System.Serializable]
 	public class BeltData {
-		public bool[] inLocations = new bool[4];
-		public bool[] outLocations = new bool[4];
 		public Position myPos;
-		public bool isBuildingBelt = false;
-
-		public BeltData (bool[] myins, bool[] myouts, Position location, bool amIBuildingBelt) {
-			inLocations = myins;
-			outLocations = myouts;
+		public int cardinalDirection;
+		public bool isBuilt;
+		
+		public BeltData (Position location, int myDirection, bool _isBuilt) {
 			myPos = location;
-			isBuildingBelt = amIBuildingBelt;
+			cardinalDirection = myDirection;
+			isBuilt = _isBuilt;
+		}
+	}
+	
+	[System.Serializable]
+	public class ConnectorData {
+		public Position myPos;
+		public int myDir;
+		public bool isBuilt;
+		public ConnectorData (Position location, int direction, bool _isBuilt) {
+			myPos = location;
+			myDir = direction;
+			isBuilt = _isBuilt;
 		}
 	}
 

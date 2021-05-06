@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,10 @@ public struct Position {
 	public static bool operator !=(Position a, Position b) {
 		return !((a.x == b.x) && (a.y == b.y));
 	}
+	
+	public static Position operator * (Position a, int b) {
+		return new Position(a.x*b , a.y*b);
+	}
 
 	public Vector3 Vector3 (Type type){
 		float zPos = defaultPositionVector3Z;
@@ -63,8 +68,70 @@ public struct Position {
 		}
 		return new Vector3(x, y, zPos);
 	}
+	
+	public Vector3 Vector3 (float zPos){
+		return new Vector3(x, y, zPos);
+	}
 
 	public override string ToString () {
 		return string.Format("pos({0}, {1})", x, y);
+	}
+	
+	
+	public static int Distance(Position a, Position b) {
+		return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+	}
+
+	public static Position MoveTowards(Position start, Position end, int amount) {
+		return new Position(start.x + Mathf.Clamp(end.x - start.x, -amount, amount), start.y + Mathf.Clamp(end.y - start.y, -amount, amount));
+	}
+
+	public static int ParallelDirection(Position start, Position end) {
+		if (end.y  > start.y) {
+			return 1;
+		} else if(end.y < start.y) {
+			return 1;
+		}else if (end.x > start.x) {
+			return 2;
+		}else if (end.x < start.x) {
+			return 2;
+		} else {
+			return 0;
+		}
+	}
+
+	public static int CardinalDirection(Position start, Position end) {
+		if (end.y  > start.y) {
+			return 1;
+		} else if(end.y < start.y) {
+			return 3;
+		}else if (end.x > start.x) {
+			return 2;
+		}else if (end.x < start.x) {
+			return 4;
+		} else {
+			return 0;
+		}
+	}
+	public static Position GetCardinalDirection(int direction) {
+		switch (direction) {
+			case 0:
+				return new Position(0,0);
+			case 1:
+				return new Position(0,1);
+			case 2:
+				return new Position(1,0);
+			case 3:
+				return new Position(0,-1);
+			case 4:
+				return new Position(-1,0);
+			default:
+				return new Position(0,0);
+
+		}
+	}
+	
+	public static Position MoveCardinalDirection(Position start, int direction, int amount) {
+		return start + GetCardinalDirection(direction)*amount;
 	}
 }

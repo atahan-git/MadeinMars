@@ -17,6 +17,7 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
 
     public Color inputColor = Color.green;
     public Color outputColor = Color.red;
+    public Color storageColor = Color.white;
 
     public Image bg;
     private bool updateColor;
@@ -30,16 +31,25 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
         myCont.inventoryContentsChangedEvent += UpdateAmount;
 
         if (updateColor) {
-            if (myDat.isOutputSlot) {
-                bg.color = outputColor;
-            } else {
-                bg.color = inputColor;
+            switch (myDat.mySlotType) {
+                case InventoryItemSlot.SlotType.output:
+                    bg.color = outputColor;
+                    
+                    break;
+                case InventoryItemSlot.SlotType.input:
+                    bg.color = inputColor;
+                    
+                    break;
+                case InventoryItemSlot.SlotType.storage:
+                    bg.color = storageColor;
+                    
+                    break;
             }
         }
     }
 
     public void UpdateAmount () {
-        if (myDat.count > 0 || (updateColor && myDat.myItem != null)) {
+        if (myDat.count > 0 || (updateColor && !myDat.myItem.isEmpty())) {
             nameText.text = myDat.myItem.name;
             numberText.text = "x" + myDat.count.ToString();
             img.sprite = myDat.myItem.GetSprite();

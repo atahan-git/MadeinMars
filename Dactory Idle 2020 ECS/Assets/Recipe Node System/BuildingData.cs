@@ -13,7 +13,7 @@ public class BuildingData : ScriptableObject {
 	public ArrayLayout shape;
 	public static Vector2 center = new Vector2(3, 3);
 
-	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal }
+	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal, Storage }
 
 	public ItemType myType;
 

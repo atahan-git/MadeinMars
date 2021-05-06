@@ -53,7 +53,6 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
             img.color = new Color(0,0,0,0);
         }
 
-        isInventory = _isInventory;
         isSpaceLanding = _isSpaceLanding;
         isOneUse = _isOneUse;
         myInv = inv;
@@ -87,8 +86,9 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
     }
 
     public void PointerDown () {
-        if (state)
+        if (state) {
             myCont.StartBuildingFromSlot(myDat, isSpaceLanding, isInventory, myInv, BuildingBuildCompleteCallback);
+        }
     }
 
     public void BuildingBuildCompleteCallback() {
