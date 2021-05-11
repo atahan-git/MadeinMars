@@ -7,137 +7,99 @@ using UnityEngine;
 /// <summary>
 /// The main building object. Should work to store data for the other components, and deal with placing/removing the building.
 /// </summary>
-public class ConnectorWorldObject : MonoBehaviour, IBuildable
+public class ConnectorWorldObject : MonoBehaviour
 {
 
-	public Connector myConnector;
-	public Position myPos;
-	public int myDir;
-	public TileData myTile;
+	[SerializeField] bool isConstruction;
+	[SerializeField] Connector myConnector;
+	[SerializeField] Construction myConstruction;
+	[SerializeField] TileData myTile;
+	[SerializeField] Position location;
+	[SerializeField] int direction;
 
 	SpriteGraphicsController myRend;
-	
-	
-	BuildingInventoryController myInventory;
 
-	public bool isBuilt = false;
-	
+	[SerializeField] float width;
+	[SerializeField] float height;
 
-	public float width;
-	public float height;
-
-	public void PlaceInWorld(int _direction, Position _location, TileData _myTile, bool isSpaceLanding, bool _isBuilt, List<InventoryItemSlot> inventory) {
-		myPos = _location;
-		myDir = _direction;
-		myTile = _myTile;
-		isBuilt = _isBuilt;
+	public void UpdateSelf(Position _location, Connector _connector) {
+		myConnector = _connector;
+		direction = myConnector.direction;
+		isConstruction = false;
 		
-		CreateConstructionInventory(inventory);
-		
-		myTile.worldObject = this.gameObject;
+		/*if (isSpaceLanding)
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);*/
 
 		myRend = GetComponentInChildren<SpriteGraphicsController>();
+		GenericUpdateSelf(_location);
+		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
 
-		
-		DataSaver.saveEvent += SaveYourself;
-		transform.position = _location.Vector3(Position.Type.belt) + Vector3.up/2f + Vector3.right/2f;
-
-		myRend.SetGraphics(FactoryVisuals.s.connectorSprites[myDir]);
-		myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
-		
-		if (isSpaceLanding)
-			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
-		
-		if (isBuilt)
-			CompleteBuilding();
+		myConnector.ConnectorInputsUpdatedCallback -= UpdateConnectorGraphics;
+		myConnector.ConnectorInputsUpdatedCallback += UpdateConnectorGraphics;
+		UpdateConnectorGraphics();
 	}
 	
-	public BuildingInventoryController GetConstructionInventory() {
-		return myInventory;
-	}
-	public BuildingInventoryController CreateConstructionInventory(List<InventoryItemSlot> inventory) {
-		myInventory = new BuildingInventoryController();
-		myInventory.SetUpConstruction(myPos);
-		myInventory.SetInventory(inventory);
+	public void UpdateSelf(Position _location, Construction _construction) {
+		myConstruction = _construction;
+		direction = myConstruction.direction;
+		isConstruction = true;
 
-		return myInventory;
+		/*if (isSpaceLanding)
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);*/
+		
+		myRend = GetComponentInChildren<SpriteGraphicsController>();
+		GenericUpdateSelf(_location);
+		if (myConstruction.isConstruction) {
+			myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
+		} else {
+			myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
+		}
+
 	}
 	
-	public void CompleteBuilding() {
-		myConnector = FactorySystem.s.CreateConnector(myPos, myDir);
-
-		isBuilt = true;
-
+	void GenericUpdateSelf(Position _location) {
+		myTile = Grid.s.GetTile(_location);
+		location = _location;
+		
+		myTile.worldObject = this.gameObject;
+		myTile.objectUpdatedCallback -= TileUpdated; // we want to make sure we get the update callback only once
 		myTile.objectUpdatedCallback += TileUpdated;
 		
-		
-		UpdateConnectorGraphics();
-		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
+		transform.position = _location.Vector3(Position.Type.belt) + Vector3.up / 2f + Vector3.right / 2f;
+		myRend.SetGraphics(FactoryVisuals.s.connectorSprites[direction]);
 	}
 	
 	void TileUpdated() {
-		if (myTile.areThereConnector) {
-			myConnector = myTile.myConnector;
-			myDir = myConnector.direction;
-			myConnector.ConnectorInputsUpdatedCallback += UpdateConnectorGraphics;
-			UpdateConnectorGraphics();
+		if (isConstruction) {
+			if (myTile.areThereConstruction) {
+				myConstruction = myTile.myConstruction;
+				direction = myConstruction.direction;
+					
+				myRend.SetGraphics(FactoryVisuals.s.connectorSprites[myConstruction.direction]);
+			} else {
+				DestroyYourself();
+			}
 		} else {
-			MarkForDeconstruction();
-		}
-	}
-
-	void SaveYourself () {
-		DataSaver.ConnectorsToBeSaved.Add(new DataSaver.ConnectorData(myPos, myDir, isBuilt, myInventory.inventory));
-	}
-
-	void OnDestroy () {
-		DataSaver.saveEvent -= SaveYourself;
-	}
-
-
-	public bool isMarkedForDestruction = false;
-	public void MarkForDeconstruction() {
-		if (!isMarkedForDestruction) {
-			if (isBuilt) {
-				isMarkedForDestruction = true;
-				isBuilt = false;
-				DroneSystem.s.AddDroneDestroyTask(myPos, FactoryBuilder.s.connectorBuildingData);
-				myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
-				
-				myTile.objectUpdatedCallback -= TileUpdated;
-				FactorySystem.s.RemoveConnector(myPos);
-				
+			if (myTile.areThereConnector) {
+				myConnector = myTile.myConnector;
+				direction = myConnector.direction;
+			
+				myConnector.ConnectorInputsUpdatedCallback -= UpdateConnectorGraphics;
+				myConnector.ConnectorInputsUpdatedCallback += UpdateConnectorGraphics;
+				UpdateConnectorGraphics();
 			} else {
 				DestroyYourself();
 			}
 		}
 	}
 
-	public void UnmarkDestruction() {
-		if (isMarkedForDestruction) {
-			isMarkedForDestruction = false;
-			DroneSystem.s.RemoveDroneTask(myPos);
-			DroneSystem.s.AddDroneBuildTask(myPos, FactoryBuilder.s.connectorBuildingData);
-		}
-	}
-	
-
-	public void DestroyYourself () {
-		if (myTile != null)
-			myTile.worldObject = null;
-
-		if (isBuilt) {
-			myTile.objectUpdatedCallback -= TileUpdated;
-			FactorySystem.s.RemoveConnector(myPos);
-		}
-
-		DroneSystem.s.RemoveDroneTask(myPos);
-		
-		Destroy(gameObject);
+	public void DestroyYourself() {
+		myTile.worldObject = null;
+		myTile.objectUpdatedCallback -= TileUpdated;
+		GetComponent<PooledGameObject>().DestroyPooledObject();
 	}
 	
 	
-
 	private GameObject floor;
 	private GameObject[] pullers = new GameObject[0];
 	public void UpdateConnectorGraphics() {
@@ -158,12 +120,12 @@ public class ConnectorWorldObject : MonoBehaviour, IBuildable
 			List<Connector.Connection> myConnections = new List<Connector.Connection>();
 
 			for (int i = 0; i < myConnector.inputs.Count; i++) {
-				if (myConnector.inputs[i].position == myPos) {
+				if (myConnector.inputs[i].position == location) {
 					myConnections.Add(myConnector.inputs[i]);
 				}
 			}
 			for (int i = 0; i < myConnector.outputs.Count; i++) {
-				if (myConnector.outputs[i].position == myPos) {
+				if (myConnector.outputs[i].position == location) {
 					myConnections.Add(myConnector.outputs[i]);
 				}
 			}

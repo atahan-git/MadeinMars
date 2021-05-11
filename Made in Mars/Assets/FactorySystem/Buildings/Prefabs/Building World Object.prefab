@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 491296}
   - component: {fileID: 3873503240087946759}
   - component: {fileID: 8298747911481777782}
+  - component: {fileID: 5501276105878227160}
   m_Layer: 0
   m_Name: Building World Object
   m_TagString: Untagged
@@ -46,13 +47,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55670c955002faf458c709b78f5804f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isConstruction: 0
+  myBuilding:
+    buildingData: {fileID: 0}
+    myPositions: []
+    center:
+      x: 0
+      y: 0
+    invController:
+      myLocation:
+        x: 0
+        y: 0
+      myType: 4
+      inventory: []
+      isCheatInventory: 0
+    craftController:
+      isActive: 0
+      myCraftingProcesses: []
+      lastCheckId: 0
+  myConstruction:
+    locations: []
+    center:
+      x: 0
+      y: 0
+    direction: 0
+    myData: {fileID: 0}
+    constructionInventory:
+      myLocation:
+        x: 0
+        y: 0
+      myType: 4
+      inventory: []
+      isCheatInventory: 0
+    isConstruction: 0
+    isAssignedToDrone: 0
+    afterConstructionInventory: []
   myData: {fileID: 0}
-  myPos:
-    x: 0
-    y: 0
+  myLocations: []
   myTiles: []
+  myCrafter:
+    isActive: 0
+    myCraftingProcesses: []
+    lastCheckId: 0
+  myInventory:
+    myLocation:
+      x: 0
+      y: 0
+    myType: 4
+    inventory: []
+    isCheatInventory: 0
   width: 0
   height: 0
+  isInventorySetup: 0
   animationState: 1
   anims: []
   isAnimated: 1
@@ -81,6 +127,21 @@ MonoBehaviour:
   InventoryListingPrefab: {fileID: 1296852248181587887, guid: 06aaf227b6667644380406db3f46eb69,
     type: 3}
   InventoryParent: {fileID: 8392487704142196216}
+--- !u!114 &5501276105878227160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3616ba23524064bc25833db7d279d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myId: -1
+  myPool: {fileID: 0}
+  isActive: 0
 --- !u!1 &2697660199166972104
 GameObject:
   m_ObjectHideFlags: 0

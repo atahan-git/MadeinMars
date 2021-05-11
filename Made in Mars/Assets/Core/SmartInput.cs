@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// A smart input helper that gives the mouse location, or the touch input location based on your device.
+/// A smart input helper that gives the mouse center, or the touch input center based on your device.
 /// </summary>
 public static class SmartInput
 {

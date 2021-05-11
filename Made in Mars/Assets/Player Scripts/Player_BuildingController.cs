@@ -16,6 +16,8 @@ public class Player_BuildingController : MonoBehaviour {
 	private List<InventoryItemSlot> inventory = null;
 	public GenericCallback buildCompleteCallback;
 
+	public RectTransform buildingBarArea;
+
 
 	public bool instantBuildCheat = false;
 	public enum  PlacementState {
@@ -64,12 +66,12 @@ public class Player_BuildingController : MonoBehaviour {
 			curState = PlacementState.nothing;
 			Player_MasterControlCheck.s.TogglePlacingItem(false);
 			if (curItemPlacementScript != null) {
-				if (SmartInput.inputPos.y > 200 && FactoryBuilder.s.CheckPlaceable(buildingItem, lastTile.position)) {
+				if (IsPointerOutsideBuildingBar() && FactoryPlayerConnector.s.CheckPlaceable(buildingItem, lastTile.location)) {
 					curItemPlacementScript.PlaceSelf();
-					FactoryBuilder.s.BuildObject(buildingItem, lastTile.position,false, isSpaceLanding, inventory, instantBuildCheat);
+					FactoryPlayerConnector.s.BuildObject(buildingItem, lastTile.location,false, isSpaceLanding, instantBuildCheat, inventory);
 					buildCompleteCallback?.Invoke();
 				} else {
-					Debug.Log("Item placement failed due:" + SmartInput.inputPos.y +" < 200" + " or checkplaceable = " + FactoryBuilder.s.CheckPlaceable(buildingItem, lastTile.position));
+					Debug.Log("Item placement failed due: pointer place =" + IsPointerOutsideBuildingBar() + " or checkplaceable = " + FactoryPlayerConnector.s.CheckPlaceable(buildingItem, lastTile.location));
 					curItemPlacementScript.FailedPlacingSelf();
 				}
 			}
@@ -125,16 +127,15 @@ public class Player_BuildingController : MonoBehaviour {
 
 	void SellCheck () {
 		if (Input.GetMouseButton(0)) {
-			if (SmartInput.inputPos.y < 200)
-				return;
+			if (IsPointerOutsideBuildingBar()) {
+				TileData myTile = Grid.s.GetTileUnderPointer();
+				if (myTile != null) {
 
-			TileData myTile = Grid.s.GetTileUnderPointer();
-			if (myTile != null) {
+					Debug.Log("Selling " + myTile.name);
 
-				Debug.Log("Selling " + myTile.name);
-
-				if (myTile.areThereWorldObject) {
-					myTile.worldObject.GetComponent<IBuildable>().MarkForDeconstruction();
+					if (myTile.areThereWorldObject) {
+						FactoryBuilder.StartDeconstruction(myTile.location);
+					}
 				}
 			}
 		}
@@ -175,8 +176,8 @@ public class Player_BuildingController : MonoBehaviour {
 					//print ("do nothing");
 					return;
 				} else if(b_lastTile != null){
-					int direction = Position.CardinalDirection(b_lastTile.position, myTile.position);
-					FactoryBuilder.s.BuildBelt(myTile, direction, instantBuildCheat, new List<InventoryItemSlot>());
+					int direction = Position.CardinalDirection(b_lastTile.location, myTile.location);
+					FactoryPlayerConnector.s.BuildBelt(myTile.location, direction, instantBuildCheat);
 				}
 				b_lastTile = myTile;
 			}
@@ -196,16 +197,20 @@ public class Player_BuildingController : MonoBehaviour {
 					//print ("do nothing");
 					return;
 				} else if(b_lastTile != null){
-					int direction = Position.ParallelDirection(b_lastTile.position, myTile.position);
-					FactoryBuilder.s.BuildConnector(myTile, direction, instantBuildCheat, new List<InventoryItemSlot>());
+					int direction = Position.ParallelDirection(b_lastTile.location, myTile.location);
+					FactoryPlayerConnector.s.BuildConnector(myTile.location, direction, instantBuildCheat);
 				} else {
-					int direction = Position.ParallelDirection(myTile.position, myTile.position);
-					FactoryBuilder.s.BuildConnector(myTile, direction, instantBuildCheat, new List<InventoryItemSlot>());
+					int direction = Position.ParallelDirection(myTile.location, myTile.location);
+					FactoryPlayerConnector.s.BuildConnector(myTile.location, direction, instantBuildCheat);
 				}
 				b_lastTile = myTile;
 			}
 		}else {
 			b_lastTile = null;
 		}
+	}
+
+	bool IsPointerOutsideBuildingBar() {
+		return !RectTransformUtility.RectangleContainsScreenPoint(buildingBarArea, SmartInput.inputPos);
 	}
 }

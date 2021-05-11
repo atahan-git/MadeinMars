@@ -11,7 +11,7 @@ public class GameLoader : MonoBehaviour {
     public static bool isGameLoadingDone = false;
     public static bool isGameLoadingSuccessfull = false;
 
-    public delegate void LoadYourself();
+    public delegate void LoadYourself(bool isLoadSuccess);
 
     static event LoadYourself loadCompleteEventEarly;
     static event LoadYourself loadCompleteEvent;
@@ -23,8 +23,8 @@ public class GameLoader : MonoBehaviour {
             isGameLoadingSuccessfull = false;
         }
 
-        loadCompleteEventEarly?.Invoke();
-        loadCompleteEvent?.Invoke();
+        loadCompleteEventEarly?.Invoke(isGameLoadingSuccessfull);
+        loadCompleteEvent?.Invoke(isGameLoadingSuccessfull);
             
         isGameLoadingDone = true;
     }

@@ -15,14 +15,15 @@ public class DataSaver : MonoBehaviour {
 	public static DataSaver s;
 
 	public static SaveFile mySave;
-	public const string saveName = "mySave";
+	public const string saveName = "mySave.data";
 
-	public static List<BuildingSaveData> ItemsToBeSaved = new List<BuildingSaveData>();
-	public static List<BeltData> BeltsToBeSaved = new List<BeltData>();
-	public static List<ConnectorData> ConnectorsToBeSaved = new List<ConnectorData>();
+	public static List<BuildingSaveData> BuildingsToBeSaved = new List<BuildingSaveData>();
+	public static List<BeltSaveData> BeltsToBeSaved = new List<BeltSaveData>();
+	public static List<ConnectorSaveData> ConnectorsToBeSaved = new List<ConnectorSaveData>();
+	public static List<ConstructionSaveData> ConstructionsToBeSaved = new List<ConstructionSaveData>();
+	public static List<DroneSaveData> DronesToBeSaved = new List<DroneSaveData>();
 	public static string[] BuildingBarDataToBeSaved;
 	public static TileData[,] TileDataToBeSaved;
-	public static InventoryData[] InventoryDataToBeSaved;
 
 	public delegate void SaveYourself ();
 	public static event SaveYourself saveEvent;
@@ -48,9 +49,15 @@ public class DataSaver : MonoBehaviour {
 
 	void Save () {
 		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName + ".banana");
+		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName);
 
-		SaveFile data = new SaveFile(ItemsToBeSaved.ToArray(), BeltsToBeSaved.ToArray(),ConnectorsToBeSaved.ToArray(), BuildingBarDataToBeSaved, TileDataToBeSaved, InventoryDataToBeSaved);
+		SaveFile data = new SaveFile(
+			BuildingsToBeSaved.ToArray(),
+			BeltsToBeSaved.ToArray(),
+			ConnectorsToBeSaved.ToArray(),
+			ConstructionsToBeSaved.ToArray(),
+			DronesToBeSaved.ToArray(),
+			BuildingBarDataToBeSaved, TileDataToBeSaved);
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -59,21 +66,26 @@ public class DataSaver : MonoBehaviour {
 
 	public bool Load () {
 		try {
-			if (File.Exists(Application.persistentDataPath + "/" + saveName + ".banana")) {
+			if (File.Exists(Application.persistentDataPath + "/" + saveName)) {
 				BinaryFormatter bf = new BinaryFormatter();
-				FileStream file = File.Open(Application.persistentDataPath + "/" + saveName + ".banana", FileMode.Open);
-				SaveFile data = (SaveFile)bf.Deserialize(file);
-				file.Close();
+				FileStream file = File.Open(Application.persistentDataPath + "/" + saveName, FileMode.Open);
+				try {
+					SaveFile data = (SaveFile)bf.Deserialize(file); 
+					file.Close();
 
-				mySave = data;
-				print("Data Loaded");
+					mySave = data;
+					print("Data Loaded");
+				} catch (Exception e) {
+					file.Close();
+					throw;
+				}
 				return true;
 			} else {
 				print("No Data Found");
 				return false;
 			}
 		} catch {
-			File.Delete(Application.persistentDataPath + "/" + saveName + ".banana");
+			File.Delete(Application.persistentDataPath + "/" + saveName );
 			print("Corrupt Data Deleted");
 			return false;
 		}
@@ -84,41 +96,52 @@ public class DataSaver : MonoBehaviour {
 	}
 
 	public static void DeleteSave(string filename) {
-		File.Delete(Application.persistentDataPath + "/" + saveName + ".banana");
+		File.Delete(Application.persistentDataPath + "/" + saveName);
 	}
 
 	[System.Serializable]
 	public class SaveFile {
 		public BuildingSaveData[] buildingData = new BuildingSaveData[0];
-		public BeltData[] beltData = new BeltData[0];
-		public ConnectorData[] connectorData = new ConnectorData[0];
+		public BeltSaveData[] beltData = new BeltSaveData[0];
+		public ConnectorSaveData[] connectorData = new ConnectorSaveData[0];
+		public ConstructionSaveData[] constructionData = new ConstructionSaveData[0];
+		public DroneSaveData[] droneData = new DroneSaveData[0];
 		public string[] buildingBarData = new string[0];
 		public TileData[,] tileData = new TileData[0,0];
-		public InventoryData[] inventoryData = new InventoryData[0];
 
-		public SaveFile (BuildingSaveData[] myit, BeltData[] mybel, ConnectorData[] mycon, string[] mybuilbar, TileData[,] myTiledata, InventoryData[] myInventoryData) {
+		public SaveFile (BuildingSaveData[] myit, BeltSaveData[] mybel, ConnectorSaveData[] mycon, ConstructionSaveData[] mycons, DroneSaveData[] mydron,  string[] mybuilbar, TileData[,] myTiledata) {
 			buildingData = myit;
 			beltData = mybel;
 			connectorData = mycon;
+			constructionData = mycons;
+			droneData = mydron;
 			buildingBarData = mybuilbar;
 			tileData = myTiledata;
-			inventoryData = myInventoryData;
 		}
 
 	}
-
+	
+	
 	[System.Serializable]
-	public class BuildingSaveData {
+	public class ConstructionSaveData {
 		public string myUniqueName;
-		public Position myPos;
-		public bool isBuilt;
+		public Position center;
+		public int direction;
+		public bool isConstruction;
+		public bool isAssignedDrone;
 		public InventoryData[] myInv;
+		public InventoryData[] afterConstructionInventory;
 
-		public BuildingSaveData (string _myUniqueName, Position location, bool _isBuilt, List<InventoryItemSlot> slots) {
+		public ConstructionSaveData (string _myUniqueName, Position location, int _direction,
+			bool _isConstruction, bool _isAssignedDrone,
+			List<InventoryItemSlot> _myInv, List<InventoryItemSlot> _afterConstructionInventory) {
 			myUniqueName = _myUniqueName;
-			myPos = location;
-			isBuilt = _isBuilt;
-			myInv = InventoryData.ConvertToSaveData(slots);
+			center = location;
+			direction = _direction;
+			isConstruction = _isConstruction;
+			isAssignedDrone = _isAssignedDrone;
+			myInv = InventoryData.ConvertToSaveData(_myInv);
+			afterConstructionInventory = InventoryData.ConvertToSaveData(_afterConstructionInventory);
 		}
 		
 		
@@ -128,16 +151,43 @@ public class DataSaver : MonoBehaviour {
 	}
 
 	[System.Serializable]
-	public class BeltData {
-		public Position myPos;
-		public int cardinalDirection;
-		public bool isBuilt;
+	public class BuildingSaveData {
+		public string myUniqueName;
+		public Position center;
 		public InventoryData[] myInv;
 		
-		public BeltData (Position location, int myDirection, bool _isBuilt, List<InventoryItemSlot> slots) {
-			myPos = location;
-			cardinalDirection = myDirection;
-			isBuilt = _isBuilt;
+		//crafting info
+		public int lastCheckid = 0;
+		public float[] curCraftingProgress;
+
+		public BuildingSaveData (string _myUniqueName, Position _center, List<InventoryItemSlot> slots,
+			int _lastCheckid, float[] _curCraftingProgress) {
+			
+			myUniqueName = _myUniqueName;
+			center = _center;
+			myInv = InventoryData.ConvertToSaveData(slots);
+
+			lastCheckid = _lastCheckid;
+			curCraftingProgress = _curCraftingProgress;
+		}
+		
+		
+		public List<InventoryItemSlot> myInvConverted() {
+			return InventoryData.ConvertToRegularData(myInv);
+		}
+	}
+
+	[System.Serializable]
+	public class BeltSaveData {
+		public Position start;
+		public Position end;
+		public int direction;
+		public InventoryData[] myInv;
+		
+		public BeltSaveData (Position _start, Position _end, int _direction, List<InventoryItemSlot> slots) {
+			start = _start;
+			end = _end;
+			direction = _direction;
 			myInv = InventoryData.ConvertToSaveData(slots);
 		}
 
@@ -147,22 +197,70 @@ public class DataSaver : MonoBehaviour {
 	}
 	
 	[System.Serializable]
-	public class ConnectorData {
-		public Position myPos;
-		public int myDir;
-		public bool isBuilt;
-		public InventoryData[] myInv;
-		public ConnectorData (Position location, int direction, bool _isBuilt, List<InventoryItemSlot> slots) {
-			myPos = location;
-			myDir = direction;
-			isBuilt = _isBuilt;
-			myInv = InventoryData.ConvertToSaveData(slots);
+	public class ConnectorSaveData {
+		public Position start;
+		public Position end;
+		public int direction;
+		//public InventoryData[] myInv;
+		public ConnectorSaveData (Position _start, Position _end, int _direction /*List<InventoryItemSlot> slots*/) {
+			start = _start;
+			end = _end;
+			direction = _direction;
+			//myInv = InventoryData.ConvertToSaveData(slots);
 		}
 		
-		public List<InventoryItemSlot> myInvConverted() {
+		/*public List<InventoryItemSlot> myInvConverted() {
 			return InventoryData.ConvertToRegularData(myInv);
+		}*/
+	}
+	
+	[System.Serializable]
+	public class DroneSaveData {
+		public Position curPosition;
+		public Position targetPosition;
+		
+		public bool isTravelling;
+		public bool isBusy;
+		public bool isLaser;
+		
+		public Position currentTaskPosition;
+		public InventoryData[] currentTaskMaterials;
+		
+		public InventoryData[] myInv;
+
+		public int droneState;
+
+		public Position targetStorage;
+		public Position constructionInventory;
+		
+		public DroneSaveData (Position _curPosition, Position _targePosition, 
+			bool _isTravelling, bool _isBusy, bool _isLaser,
+			Position _currentTaskPosition, List<InventoryItemSlot> _currentTaskMaterials,
+			List<InventoryItemSlot> _myInv,
+			int _droneState,
+			Position _targetStorage,
+			Position _constructionInventory) {
+
+			curPosition = _curPosition;
+			targetPosition = _targePosition;
+
+			isTravelling = _isTravelling;
+			isBusy = _isBusy;
+			isLaser = _isLaser;
+
+			currentTaskPosition = _currentTaskPosition;
+			currentTaskMaterials = InventoryData.ConvertToSaveData(_currentTaskMaterials);
+			
+			myInv = InventoryData.ConvertToSaveData(_myInv);
+
+			droneState = _droneState;
+
+			targetStorage = _targetStorage;
+			constructionInventory = _constructionInventory;
 		}
 	}
+	
+	
 
 
 	[System.Serializable]
@@ -208,12 +306,16 @@ public class DataSaver : MonoBehaviour {
 		}
 		
 		public static InventoryData[] ConvertToSaveData (List<InventoryItemSlot> slots) {
-			var invdata = new InventoryData[slots.Count];
-			for (int i = 0; i < slots.Count; i++) {
-				invdata[i] = new InventoryData(slots[i]);
-			}
+			if (slots != null) {
+				var invdata = new InventoryData[slots.Count];
+				for (int i = 0; i < slots.Count; i++) {
+					invdata[i] = new InventoryData(slots[i]);
+				}
 
-			return invdata;
+				return invdata;
+			} else {
+				return new InventoryData[0];
+			}
 		}
 
 		public InventoryItemSlot ConvertToInvSlot() {

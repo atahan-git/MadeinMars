@@ -45,8 +45,8 @@ public class Grid
 		return myTiles[pos.x, pos.y];
 	}
 
-	void GameLoadingComplete () {
-		if (GameLoader.isGameLoadingSuccessfull) {
+	void GameLoadingComplete (bool isSucces) {
+		if (isSucces) {
 			LoadTiles();
 		} else {
 			GenerateTiles();
@@ -166,15 +166,15 @@ public class Grid
 
 [System.Serializable]
 public class TileData {
-	public string name { get { return position.ToString() + " tile"; } }
+	public string name { get { return location.ToString() + " tile"; } }
 
 	public int x = -1;
 	public int y = -1;
-	public Position position { get { return new Position(x, y); } }
+	public Position location { get { return new Position(x, y); } }
 
 
 	//Building stuff
-	public bool isEmpty { get { return !areThereBelt && !areThereBuilding && !areThereConnector && !areThereWorldObject;  } }
+	public bool isEmpty { get { return !areThereBelt && !areThereBuilding && !areThereConnector && !areThereWorldObject && !areThereConstruction;  } }
 
 	public bool areThereWorldObject {get{ return worldObject != null; } }
 	public GameObject worldObject;
@@ -195,6 +195,13 @@ public class TileData {
 	public Connector myConnector{
 		get { return _myConnector; }
 		set { _myConnector = value; objectUpdatedCallback?.Invoke(); }
+	}
+	
+	public bool areThereConstruction { get { return myConstruction != null; } }
+	private Construction _myConstruction;
+	public Construction myConstruction{
+		get { return _myConstruction; }
+		set { _myConstruction = value; objectUpdatedCallback?.Invoke(); }
 	}
 
 	const int maxHeight = 1;

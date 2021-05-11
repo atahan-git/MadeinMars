@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DroneSystem : MonoBehaviour {
-	public static DroneSystem s;
+	/*public static DroneSystem s;
 	public const float DroneUpdatePerSecond = 1;
 	
 	public enum DroneTaskType {
@@ -14,7 +14,7 @@ public class DroneSystem : MonoBehaviour {
 	[Serializable]
 	public class DroneTask {
 		public DroneTaskType myType;
-		public Position location;
+		public Position center;
 		public InventoryItemSlot[] materials;
 	}
 
@@ -62,17 +62,17 @@ public class DroneSystem : MonoBehaviour {
 		}
 	}
 
-	public void AddDroneDestroyTask(Position location, BuildingData myData) {
-		droneTasks.Add(new DroneTask() {myType = DroneTaskType.destroy, location = location, materials = GetRequirements(myData, false)});
+	public void AddDroneDestroyTask(Position center, BuildingData myData) {
+		droneTasks.Add(new DroneTask() {myType = DroneTaskType.destroy, center = center, materials = GetRequirements(myData, false)});
 	}
 
-	public void AddDroneBuildTask(Position location, BuildingData myData) {
-		droneTasks.Add(new DroneTask(){myType = DroneTaskType.build, location = location, materials = GetRequirements(myData, true)});
+	public void AddDroneBuildTask(Position center, BuildingData myData) {
+		droneTasks.Add(new DroneTask(){myType = DroneTaskType.build, center = center, materials = GetRequirements(myData, true)});
 	}
 
-	public void RemoveDroneTask(Position location) {
+	public void RemoveDroneTask(Position center) {
 		for (int i = 0; i < droneTasks.Count; i++) {
-			if (droneTasks[i].location == location) {
+			if (droneTasks[i].center == center) {
 				droneTasks.RemoveAt(i);
 				break;
 			}
@@ -108,10 +108,12 @@ public class DroneSystem : MonoBehaviour {
 	public void RemoveStorageBuilding(BuildingInventoryController controller) {
 		storageBuildings.Remove(controller);
 	}
+	*/
 	
 }
 
 
+/*
 public interface IBuildable {
 
 	BuildingInventoryController GetConstructionInventory();
@@ -120,4 +122,4 @@ public interface IBuildable {
 	void UnmarkDestruction();
 	void CompleteBuilding();
 	void DestroyYourself();
-}
+}*/

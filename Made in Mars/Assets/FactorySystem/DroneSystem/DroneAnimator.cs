@@ -13,7 +13,8 @@ public class DroneAnimator : MonoBehaviour {
     public GameObject animTarget;
 
     private bool isLookingRight = false;
-    
+
+    public float updownOffset = 0;
     public AnimationCurve updowncurve;
 
     public float speed = 0.2f;
@@ -33,16 +34,17 @@ public class DroneAnimator : MonoBehaviour {
     private void Start() {
         DisablePlusOne();
         SetMiningLaser(false);
-        transform.position = droneTargetLocation;
         for (int i = 0; i < 10; i++) {
             animCurvys[i].time = Mathf.Lerp (0, 1, i/10f);
         }
         droneTargetMarker.transform.SetParent(null);
+
+        updownOffset = Random.Range(0, 10f);
     }
 
     void Update() {
         animTarget.transform.localPosition =
-            new Vector3(0, magnitude * updowncurve.Evaluate((Time.time * speed) % 1), 0) + gfxOffset;
+            new Vector3(0, magnitude * updowncurve.Evaluate(((Time.time+updownOffset) * speed) % 1), 0) + gfxOffset;
 
         if (isLaser) {
 	        UpdateMiningLaser();
@@ -119,8 +121,8 @@ public class DroneAnimator : MonoBehaviour {
 	public Vector3 droneTargetLocation = new Vector3(100, 100, DataHolder.droneLayer);
 	public Vector3 droneTargetSmoothingLocation = new Vector3(100, 100, DataHolder.droneLayer);
 
-	public float droneSpeed = 6f;
-	public float droneAcceleration = 1f;
+	float droneSpeed = FactoryDrones.DroneWorldSpeed;
+	float droneAcceleration = Mathf.Min(FactoryDrones.DroneWorldSpeed*0.6f, 0.8f);
 	float droneCurSpeed = 0f;
 
 	public bool isInTargetLocation = false;
@@ -165,7 +167,7 @@ public class DroneAnimator : MonoBehaviour {
 		Vector3 direction = droneTargetLocation - transform.position;
 		direction = Vector3.Cross(direction, Vector3.back).normalized;
 		droneTargetSmoothingLocation =
-			Vector3.MoveTowards(droneTargetSmoothingLocation, droneTargetLocation + direction * (Vector3.Distance(droneTargetSmoothingLocation, droneTargetLocation) / 2f), 12f * Time.deltaTime);
+			Vector3.MoveTowards(droneTargetSmoothingLocation, droneTargetLocation + direction * (Vector3.Distance(droneTargetSmoothingLocation, droneTargetLocation) / 2f), droneSpeed*2 * Time.deltaTime);
 		Debug.DrawLine(droneTargetSmoothingLocation, droneTargetSmoothingLocation + Vector3.up);
 
 		if (totalDistance > 4) {

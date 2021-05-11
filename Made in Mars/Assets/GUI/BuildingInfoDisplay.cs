@@ -30,10 +30,10 @@ public class BuildingInfoDisplay : MonoBehaviour {
 
     private void Start() {
         var worldObject = GetComponent<BuildingWorldObject>();
-        if (worldObject.isBuilt) {
+        if (worldObject.isInventorySetup) {
             SetUp();
         } else {
-            worldObject.buildingInventorySetUpCallback += SetUp;
+            worldObject.buildingInventoryUpdatedCallback += SetUp;
         }
     }
 
@@ -51,7 +51,7 @@ public class BuildingInfoDisplay : MonoBehaviour {
 
     public void SetUp () {
         int childs = InventoryParent.childCount;
-        for (int i = childs - 1; i > 0; i--) {
+        for (int i = childs - 1; i >= 0; i--) {
             Destroy(InventoryParent.GetChild(i).gameObject);
         }
         
@@ -63,10 +63,8 @@ public class BuildingInfoDisplay : MonoBehaviour {
         var worldObject = GetComponent<BuildingWorldObject>();
         crafter = worldObject.myCrafter;
         
-        if (inventory == null) {
-            inventory = worldObject.myInventory;
-            inventory.drawInventoryEvent += SetUp;
-        }
+        inventory = worldObject.myInventory;
+        inventory.drawInventoryEvent += SetUp;
 
         craftingProcesses = new List<GameObject>();
         timeoutCounters = new List<float>();

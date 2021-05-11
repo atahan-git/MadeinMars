@@ -8,7 +8,7 @@ public class DroneInfoDisplay : MonoBehaviour
     //public static bool isExtraInfoVisible = false; //Controlled by gui inventory controller
     // Uses building info display's static bool instead of its own
 
-    DroneController myDrone;
+    Drone myDrone;
 
     public GameObject canvas;
 
@@ -18,26 +18,38 @@ public class DroneInfoDisplay : MonoBehaviour
     public bool isSetup = false;
 
     public Text droneInfoDisplay;
+    
+    
     private void Start() {
+        var worldObject = GetComponent<DroneWorldObject>();
+        if (worldObject.isInventorySetup) {
+            SetUp();
+        } else {
+            worldObject.buildingInventoryUpdatedCallback += SetUp;
+        }
+    }
+    
+    
+    public void SetUp() {
         isSetup = false;
         canvas.SetActive(isSetup);
-        myDrone = GetComponent<DroneController>();
-        myDrone.myInventory.drawInventoryEvent += SetUp;
-        SetUp();
+        myDrone = GetComponent<DroneWorldObject>().myDrone;
+        myDrone.myInventory.drawInventoryEvent += DrawInventory;
+        DrawInventory();
     }
 
     // Update is called once per frame
     void Update () {
         if (isSetup) {
             canvas.SetActive(BuildingInfoDisplay.isExtraInfoVisible);
-        } //progressBar.value = (float)crafter.curCraftingProgress / (float)crafter.craftingProgressTickReq;
 
         if (myDrone.isBusy) {
             var missingMaterialName = "done!";
             int missingMaterialCount = 0;
 
-            if (myDrone.myState == DroneController.DroneState.SearchingItem || myDrone.myState == DroneController.DroneState.TravellingToItem ) {
-                for (int i = 0; i < myDrone.currentTask.materials.Length; i++) {
+            if (myDrone.myState == Drone.DroneState.SearchingItem || myDrone.myState == Drone.DroneState.TravellingToItem ||
+                myDrone.myState == Drone.DroneState.TakingItem || myDrone.myState == Drone.DroneState.UnableToFindConstructionItem) {
+                for (int i = 0; i < myDrone.currentTask.materials.Count; i++) {
                     var difference = myDrone.currentTask.materials[i].maxCount - myDrone.currentTask.materials[i].count;
                     if (difference > 0) {
                         missingMaterialName = myDrone.currentTask.materials[i].myItem.uniqueName;
@@ -49,35 +61,76 @@ public class DroneInfoDisplay : MonoBehaviour
             }
 
             switch (myDrone.myState) {
-                case DroneController.DroneState.SearchingItem:
+                case Drone.DroneState.idle:
+                    droneInfoDisplay.text = "Idle";
+                    break;
+                
+                case Drone.DroneState.BeginBuildingTask:
+                    droneInfoDisplay.text = "Starting building";
+                    break;
                     
+                case Drone.DroneState.SearchingItem:
                     droneInfoDisplay.text = "Searching for building material: " + missingMaterialName + " x" + missingMaterialCount;
                     break;
-                case DroneController.DroneState.TravellingToItem:
-                    
+                
+                case Drone.DroneState.TravellingToItem:
                     droneInfoDisplay.text = "Travelling to collect: " + missingMaterialName + " x" + missingMaterialCount;
-                    
                     break;
-                case DroneController.DroneState.TravellingToBuild:
-                    
-                    
-                    droneInfoDisplay.text = "Travelling to target Building";
-                    
+                
+                case Drone.DroneState.TakingItem:
+                    droneInfoDisplay.text = "Collecting: " + missingMaterialName + " x" + missingMaterialCount;
                     break;
-                case DroneController.DroneState.Building:
-                    
-                    droneInfoDisplay.text = "Building";
+                
+                case Drone.DroneState.TravellingToBuild:
+                    droneInfoDisplay.text = "Travelling to Build : " + myDrone.currentTask.construction.myData.uniqueName;
+                    break;
+                
+                case Drone.DroneState.Building:
+                    droneInfoDisplay.text = "Building : " + myDrone.currentTask.construction.myData.uniqueName;
+                    break;
+                
+                case Drone.DroneState.SearchingToEmptyInventory:
+                    droneInfoDisplay.text = "Search to Empty Inventory";
+                    break;
+                
+                case Drone.DroneState.TravellingToEmptyInventory:
+                    droneInfoDisplay.text = "Travelling to Empty Inventory";
+                    break;
+                
+                case Drone.DroneState.EmptyingInventory:
+                    droneInfoDisplay.text = "Emptying Inventory";
+                    break;
+                
+                case Drone.DroneState.BeingDestructionTask:
+                    droneInfoDisplay.text = "Beginning Destruction Task";
+                    break;
+                
+                case Drone.DroneState.TravellingToDestroy:
+                    droneInfoDisplay.text = "Travelling to Destroy : " + myDrone.currentTask.construction.myData.uniqueName;
+                    break;
+                
+                case Drone.DroneState.Destroying:
+                    droneInfoDisplay.text = "Destroying : " + myDrone.currentTask.construction.myData.uniqueName;
+                    break;
+                
+                case Drone.DroneState.UnableToFindConstructionItem :
+                    droneInfoDisplay.text = "Cannot find building material in storage buildings: " + missingMaterialName + " x" + missingMaterialCount;
+                    break;
+                
+                case Drone.DroneState.UnableToFindEmptyStorage :
+                    droneInfoDisplay.text = "Cannot find empty space in storage buildings";
                     break;
             }
         } else {
             droneInfoDisplay.text = "Idle";
         }
+        } //progressBar.value = (float)crafter.curCraftingProgress / (float)crafter.craftingProgressTickReq;
     }
 
-    public void SetUp () {
+    public void DrawInventory () {
         isSetup = true;
         int childs = InventoryParent.childCount;
-        for (int i = childs - 1; i > 0; i--) {
+        for (int i = childs - 1; i >= 0; i--) {
             Destroy(InventoryParent.GetChild(i).gameObject);
         }
         

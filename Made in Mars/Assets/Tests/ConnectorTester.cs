@@ -38,22 +38,20 @@ public class ConnectorTester
 	}
 
 	Building GetFullBuilding() {
-		var inventory = new BuildingInventoryController();
-		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.output);
-		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.input);
-		inventory.inventory[0].count = 1;
-		inventory.inventory[1].count = 1;
+		var inventory = new List<InventoryItemSlot>();
+		inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1),1,1, InventoryItemSlot.SlotType.output));
+		inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1),1,1, InventoryItemSlot.SlotType.input));
 		var building = new Building(new Position(0,0), null, inventory);
+		building.invController.inventory = inventory;
 		return building;
 	}
 	
 	Building GetEmptyBuilding() {
-		var inventory = new BuildingInventoryController();
-		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.output);
-		inventory.AddSlot(new Item().MakeDummyItem(1),1, InventoryItemSlot.SlotType.input);
-		inventory.inventory[0].count = 0;
-		inventory.inventory[1].count = 0;
-		var building = new Building(new Position(0,0), null, inventory);
+		var inventory = new List<InventoryItemSlot>();
+		inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1),0,1, InventoryItemSlot.SlotType.output));
+		inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1),0,1, InventoryItemSlot.SlotType.input));
+		var building = new Building(new Position(0,0),  null, inventory);
+		building.invController.inventory = inventory;
 		return building;
 	}
 
@@ -116,7 +114,7 @@ public class ConnectorTester
 		
 		// Act
 		for (int i = 0; i < numberOfCases; i++) {
-			FactorySystem.UpdateConnector(connectors[i]);
+			FactorySimulator.UpdateConnector(connectors[i]);
 		}
 
 
@@ -137,19 +135,19 @@ public class ConnectorTester
 		
 		
 		// Connectors take a few updates to transport items
-		FactorySystem.UpdateConnector(connectors[2]);
+		FactorySimulator.UpdateConnector(connectors[2]);
 
 		Assert.IsTrue(CheckBeltEmptyness( connectors[2].inputs[0]));
 		Assert.IsTrue(CheckBeltEmptyness( connectors[2].outputs[0]));
 		
 		
-		FactorySystem.UpdateConnector(connectors[2]);
+		FactorySimulator.UpdateConnector(connectors[2]);
 		
 		Assert.IsTrue(CheckBeltEmptyness( connectors[2].inputs[0]));
 		Assert.IsTrue(CheckBeltEmptyness( connectors[2].outputs[0]));
 		
 		
-		FactorySystem.UpdateConnector(connectors[2]);
+		FactorySimulator.UpdateConnector(connectors[2]);
 		
 		Assert.IsTrue(CheckBeltEmptyness( connectors[2].inputs[0]));
 		Assert.IsFalse(CheckBeltEmptyness( connectors[2].outputs[0]));
@@ -198,7 +196,7 @@ public class ConnectorTester
 		
 		// Act
 		for (int i = 0; i < numberOfCases; i++) {
-			FactorySystem.UpdateConnector(connectors[i]);
+			FactorySimulator.UpdateConnector(connectors[i]);
 		}
 
 
@@ -229,7 +227,7 @@ public class ConnectorTester
 		
 		
 		// Movement takes 3 more ticks
-		FactorySystem.UpdateConnector(connectors[2]);
+		FactorySimulator.UpdateConnector(connectors[2]);
 		
 		
 		Assert.AreEqual(GetBuildingInputCount( connectors[2].inputs[0]), 1);
@@ -238,8 +236,8 @@ public class ConnectorTester
 		Assert.AreEqual(GetBuildingOutputCount( connectors[2].outputs[0]), 0);
 		
 		
-		FactorySystem.UpdateConnector(connectors[2]);
-		FactorySystem.UpdateConnector(connectors[2]);
+		FactorySimulator.UpdateConnector(connectors[2]);
+		FactorySimulator.UpdateConnector(connectors[2]);
 		
 		Assert.AreEqual(GetBuildingInputCount( connectors[2].inputs[0]), 1);
 		Assert.AreEqual(GetBuildingOutputCount( connectors[2].inputs[0]), 0);
@@ -273,7 +271,7 @@ public class ConnectorTester
 		// Act, do 4 ticks to complete movement
 		for (int ticks = 0; ticks < 4; ticks++) {
 			for (int i = 0; i < numberOfCases; i++) {
-				FactorySystem.UpdateConnector(connectors[i]);
+				FactorySimulator.UpdateConnector(connectors[i]);
 			}
 		}
 
@@ -318,7 +316,7 @@ public class ConnectorTester
 		
 		// Act, do 5 tick to take item
 		for (int i = 0; i < numberOfCases; i++) {
-			FactorySystem.UpdateConnector(connectors[i]);
+			FactorySimulator.UpdateConnector(connectors[i]);
 		}
 		
 		
@@ -332,7 +330,7 @@ public class ConnectorTester
 		// Act, do 6 ticks to complete movement for first one
 		for (int ticks = 0; ticks < 6; ticks++) {
 			for (int i = 0; i < numberOfCases; i++) {
-				FactorySystem.UpdateConnector(connectors[i]);
+				FactorySimulator.UpdateConnector(connectors[i]);
 			}
 		}
 		
@@ -347,7 +345,7 @@ public class ConnectorTester
 		// Act, do 5 more ticks to complete movement for the second one as well
 		for (int ticks = 0; ticks < 6; ticks++) {
 			for (int i = 0; i < numberOfCases; i++) {
-				FactorySystem.UpdateConnector(connectors[i]);
+				FactorySimulator.UpdateConnector(connectors[i]);
 			}
 		}
 		

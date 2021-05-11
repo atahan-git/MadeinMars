@@ -12,7 +12,7 @@ public class FactorySystemBuildingTester {
 	public void Setup() {
 		Grid.s = new Grid();
 		Grid.s.DummySetup(25);
-		FactorySystem.s = new FactorySystem();
+		FactoryMaster.s = new FactoryMaster();
 	}
 	
 	
@@ -20,7 +20,7 @@ public class FactorySystemBuildingTester {
 	[TearDown]
 	public void Teardown() {
 		Grid.s = null;
-		FactorySystem.s = null;
+		FactoryMaster.s = null;
 	}
 
 
@@ -42,18 +42,18 @@ public class FactorySystemBuildingTester {
 		
 		// Act
 		for (int i = 0; i < positions.Length; i++) {
-			FactorySystem.s.CreateBelt(positions[i], directions[i]);
+			FactoryBuilder.CreateBelt(positions[i], directions[i]);
 		}
 		
 		
 		// Assert
-		Assert.AreEqual(FactorySystem.s.belts.Count, 5);
+		Assert.AreEqual(FactoryMaster.s.GetBelts().Count, 5);
 		
 		for (int i = 0; i < positions.Length; i++) {
-			Assert.AreEqual(FactorySystem.s.belts[i].startPos, positions[i]);
-			Assert.AreEqual(FactorySystem.s.belts[i].endPos, positions[i]);
-			Assert.AreEqual(FactorySystem.s.belts[i].direction, directions[i]);
-			Assert.AreEqual(FactorySystem.SlotPerSegment, FactorySystem.s.belts[i].items[0].count);
+			Assert.AreEqual(FactoryMaster.s.GetBelts()[i].startPos, positions[i]);
+			Assert.AreEqual(FactoryMaster.s.GetBelts()[i].endPos, positions[i]);
+			Assert.AreEqual(FactoryMaster.s.GetBelts()[i].direction, directions[i]);
+			Assert.AreEqual(FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[i].items[0].count);
 		}
 	}
 
@@ -64,40 +64,40 @@ public class FactorySystemBuildingTester {
 		
 		// Act
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateBelt(new Position(0, 0), 1);
-		FactorySystem.s.CreateBelt(new Position(0, 1), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 0), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 1), 1);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
-		Assert.AreEqual(2*FactorySystem.SlotPerSegment, FactorySystem.s.belts[0].items[0].count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
+		Assert.AreEqual(2*FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[0].items[0].count);
 
 		
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateBelt(new Position(5, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(7, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(7, 0), 2);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
-		Assert.AreEqual(3*FactorySystem.SlotPerSegment, FactorySystem.s.belts[1].items[0].count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
+		Assert.AreEqual(3*FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[1].items[0].count);
 		
 		
 		// 1 continuous belt of length 1
 		// 1 separate belt
-		FactorySystem.s.CreateBelt(new Position(5, 5), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 5), 2);
-		FactorySystem.s.CreateBelt(new Position(5, 6), 1);
+		FactoryBuilder.CreateBelt(new Position(5, 5), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 5), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 6), 1);
 		count += 1 + 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 		
 		// 3 separate belt
-		FactorySystem.s.CreateBelt(new Position(10, 10), 1);
-		FactorySystem.s.CreateBelt(new Position(12, 10), 1);
-		FactorySystem.s.CreateBelt(new Position(11, 10), 1);
+		FactoryBuilder.CreateBelt(new Position(10, 10), 1);
+		FactoryBuilder.CreateBelt(new Position(12, 10), 1);
+		FactoryBuilder.CreateBelt(new Position(11, 10), 1);
 		count += 3;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 
 
 		// Assert
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 	}
 
 	[Test]
@@ -108,40 +108,40 @@ public class FactorySystemBuildingTester {
 		
 		// Act
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateBelt(new Position(0, 1), 1);
-		FactorySystem.s.CreateBelt(new Position(0, 0), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 1), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 0), 1);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
-		Assert.AreEqual(2*FactorySystem.SlotPerSegment, FactorySystem.s.belts[0].items[0].count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
+		Assert.AreEqual(2*FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[0].items[0].count);
 
 		
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateBelt(new Position(7, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(5, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(7, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 0), 2);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
-		Assert.AreEqual(3*FactorySystem.SlotPerSegment, FactorySystem.s.belts[1].items[0].count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
+		Assert.AreEqual(3*FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[1].items[0].count);
 		
 		
 		// 1 continuous belt of length 1
 		// 1 separate belt
-		FactorySystem.s.CreateBelt(new Position(6, 5), 2);
-		FactorySystem.s.CreateBelt(new Position(5, 5), 2);
-		FactorySystem.s.CreateBelt(new Position(5, 6), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 5), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 5), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 6), 2);
 		count += 1 + 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 		
 		// 3 separate belt
-		FactorySystem.s.CreateBelt(new Position(10, 10), 2);
-		FactorySystem.s.CreateBelt(new Position(11, 10), 1);
-		FactorySystem.s.CreateBelt(new Position(12, 10), 2);
+		FactoryBuilder.CreateBelt(new Position(10, 10), 2);
+		FactoryBuilder.CreateBelt(new Position(11, 10), 1);
+		FactoryBuilder.CreateBelt(new Position(12, 10), 2);
 		count += 3;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 
 
 		// Assert
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 	}
 
 	[Test]
@@ -152,33 +152,33 @@ public class FactorySystemBuildingTester {
 		
 		// Act
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateBelt(new Position(5, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(7, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(7, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 0), 2);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
-		Assert.AreEqual(3*FactorySystem.SlotPerSegment, FactorySystem.s.belts[0].items[0].count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
+		Assert.AreEqual(3*FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[0].items[0].count);
 		
 		
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateBelt(new Position(0, 5), 3);
-		FactorySystem.s.CreateBelt(new Position(0, 7), 3);
-		FactorySystem.s.CreateBelt(new Position(0, 6), 3);
+		FactoryBuilder.CreateBelt(new Position(0, 5), 3);
+		FactoryBuilder.CreateBelt(new Position(0, 7), 3);
+		FactoryBuilder.CreateBelt(new Position(0, 6), 3);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
-		Assert.AreEqual(3*FactorySystem.SlotPerSegment, FactorySystem.s.belts[1].items[0].count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
+		Assert.AreEqual(3*FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[1].items[0].count);
 		
 		// 3 separate belts
-		FactorySystem.s.CreateBelt(new Position(0, 10), 1);
-		FactorySystem.s.CreateBelt(new Position(0, 12), 1);
-		FactorySystem.s.CreateBelt(new Position(0, 11), 3);
+		FactoryBuilder.CreateBelt(new Position(0, 10), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 12), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 11), 3);
 		count += 3;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
-		Assert.AreEqual(FactorySystem.SlotPerSegment, FactorySystem.s.belts[2].items[0].count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
+		Assert.AreEqual(FactoryMaster.SlotPerSegment, FactoryMaster.s.GetBelts()[2].items[0].count);
 
 
 		// Assert
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 	}
 
 	
@@ -208,17 +208,17 @@ public class FactorySystemBuildingTester {
 
 
 		for (int i = 0; i < positions.Length; i++) {
-			FactorySystem.s.CreateConnector(positions[i], directions[i]);
+			FactoryBuilder.CreateConnector(positions[i], directions[i]);
 		}
 		
 		
 		// Assert
-		Assert.AreEqual(FactorySystem.s.connectors.Count, 5);
+		Assert.AreEqual(FactoryMaster.s.GetConnectors().Count, 5);
 		
 		for (int i = 0; i < positions.Length; i++) {
-			Assert.AreEqual(FactorySystem.s.connectors[i].startPos, positions[i]);
-			Assert.AreEqual(FactorySystem.s.connectors[i].endPos, positions[i]);
-			Assert.AreEqual(FactorySystem.s.connectors[i].direction, directions[i]);
+			Assert.AreEqual(FactoryMaster.s.GetConnectors()[i].startPos, positions[i]);
+			Assert.AreEqual(FactoryMaster.s.GetConnectors()[i].endPos, positions[i]);
+			Assert.AreEqual(FactoryMaster.s.GetConnectors()[i].direction, directions[i]);
 		}
 	}
 
@@ -229,66 +229,66 @@ public class FactorySystemBuildingTester {
 		
 		// Act
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateConnector(new Position(0, 0), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 1), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 0), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 1), 1);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateConnector(new Position(10, 0), 1);
-		FactorySystem.s.CreateConnector(new Position(10, 1), 0);
+		FactoryBuilder.CreateConnector(new Position(10, 0), 1);
+		FactoryBuilder.CreateConnector(new Position(10, 1), 0);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateConnector(new Position(15, 0), 0);
-		FactorySystem.s.CreateConnector(new Position(15, 1), 0);
+		FactoryBuilder.CreateConnector(new Position(15, 0), 0);
+		FactoryBuilder.CreateConnector(new Position(15, 1), 0);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 
 		
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateConnector(new Position(5, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(7, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(7, 0), 2);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
-		FactorySystem.s.CreateConnector(new Position(5, 10), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 10), 2);
-		FactorySystem.s.CreateConnector(new Position(7, 10), 0);
+		FactoryBuilder.CreateConnector(new Position(5, 10), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 10), 2);
+		FactoryBuilder.CreateConnector(new Position(7, 10), 0);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
-		FactorySystem.s.CreateConnector(new Position(5, 15), 0);
-		FactorySystem.s.CreateConnector(new Position(6, 15), 0);
-		FactorySystem.s.CreateConnector(new Position(7, 15), 0);
+		FactoryBuilder.CreateConnector(new Position(5, 15), 0);
+		FactoryBuilder.CreateConnector(new Position(6, 15), 0);
+		FactoryBuilder.CreateConnector(new Position(7, 15), 0);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
 		// 1 continuous belt of length 1
 		// 1 separate belt
-		FactorySystem.s.CreateConnector(new Position(5, 5), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 5), 2);
-		FactorySystem.s.CreateConnector(new Position(5, 6), 1);
+		FactoryBuilder.CreateConnector(new Position(5, 5), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 5), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 6), 1);
 		count += 1 + 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		// 3 separate belt
-		FactorySystem.s.CreateConnector(new Position(10, 10), 1);
-		FactorySystem.s.CreateConnector(new Position(12, 10), 1);
-		FactorySystem.s.CreateConnector(new Position(11, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(10, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(12, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(11, 10), 1);
 		count += 3;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 
 
 		// Assert
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 	}
 
 	[Test]
@@ -296,42 +296,42 @@ public class FactorySystemBuildingTester {
 		
 		// Act
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateConnector(new Position(0, 1), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 0), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 1), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 0), 1);
 
 		
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateConnector(new Position(10, 1), 1);
-		FactorySystem.s.CreateConnector(new Position(10, 0), 0);
+		FactoryBuilder.CreateConnector(new Position(10, 1), 1);
+		FactoryBuilder.CreateConnector(new Position(10, 0), 0);
 		
 		
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateConnector(new Position(7, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(5, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(7, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 0), 2);
 		
 		
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateConnector(new Position(7, 10), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 10), 2);
-		FactorySystem.s.CreateConnector(new Position(5, 10), 0);
+		FactoryBuilder.CreateConnector(new Position(7, 10), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 10), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 10), 0);
 		
 		
 		// 1 continuous belt of length 1
 		// 1 separate belt
-		FactorySystem.s.CreateConnector(new Position(6, 5), 1);
-		FactorySystem.s.CreateConnector(new Position(5, 5), 0);
-		FactorySystem.s.CreateConnector(new Position(5, 6), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 5), 1);
+		FactoryBuilder.CreateConnector(new Position(5, 5), 0);
+		FactoryBuilder.CreateConnector(new Position(5, 6), 2);
 		
 		// 3 separate belt
-		FactorySystem.s.CreateConnector(new Position(10, 10), 2);
-		FactorySystem.s.CreateConnector(new Position(12, 10), 1);
-		FactorySystem.s.CreateConnector(new Position(11, 10), 2);
+		FactoryBuilder.CreateConnector(new Position(10, 10), 2);
+		FactoryBuilder.CreateConnector(new Position(12, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(11, 10), 2);
 		
 
 
 		// Assert
-		Assert.AreEqual(FactorySystem.s.connectors.Count, 1+1+1+ 1 + 1+1 + 3);
+		Assert.AreEqual(FactoryMaster.s.GetConnectors().Count, 1+1+1+ 1 + 1+1 + 3);
 	}
 
 	[Test]
@@ -342,30 +342,30 @@ public class FactorySystemBuildingTester {
 		
 		// Act
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateConnector(new Position(5, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(7, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(7, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 0), 2);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
 		// 1 continuous belt of length 3
-		FactorySystem.s.CreateConnector(new Position(0, 5), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 7), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 6), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 5), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 7), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 6), 1);
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		// 3 separate belts
-		FactorySystem.s.CreateConnector(new Position(0, 10), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 12), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 11), 2);
+		FactoryBuilder.CreateConnector(new Position(0, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 12), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 11), 2);
 		count += 3;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 
 
 		// Assert
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 	}
 	
 	

@@ -47,8 +47,8 @@ public class GUI_BuildingBarController : MonoBehaviour {
         scont = GetComponent<GUI_SwitchController>();
     }
 
-    void LoadBuildingSlots () {
-        if (DataSaver.mySave != null) {
+    void LoadBuildingSlots (bool isSuccess) {
+        if (isSuccess) {
             if (DataSaver.mySave.buildingBarData != null) {
                 for (int i = 0; i < DataSaver.mySave.buildingBarData.Length; i++) {
                     if (DataSaver.mySave.buildingBarData[i] != null)
@@ -101,14 +101,14 @@ public class GUI_BuildingBarController : MonoBehaviour {
     public bool inventoryDragBegun = false;
     public BuildingData dragBuildDat = null;
     public void BeginDragInventoryBuilding (BuildingData building) {
-        Debug.Log("Begin Drag Inventory Building");
+        Debug.Log("Begin Drag inventory Building");
         buildingDragFromInventoryOverlay.SetActive(true);
         dragBuildDat = building;
         inventoryDragBegun = true;
     }
 
     public void StopDragInventoryBuilding () {
-        Debug.Log("End Drag Inventory Building");
+        Debug.Log("End Drag inventory Building");
         buildingDragFromInventoryOverlay.SetActive(false);
         inventoryDragBegun = false;
         UpdateSlotsBuildableStates();

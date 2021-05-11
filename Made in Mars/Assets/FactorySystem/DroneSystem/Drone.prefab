@@ -5221,8 +5221,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1783309411649019106}
   - component: {fileID: 1783309411649019107}
-  - component: {fileID: 1783309411649019104}
   - component: {fileID: 9114059611633421109}
+  - component: {fileID: 3820341030842352253}
+  - component: {fileID: 5843756978747590751}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -5263,6 +5264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animTarget: {fileID: 1783309411276144170}
+  updownOffset: 0
   updowncurve:
     serializedVersion: 2
     m_Curve:
@@ -5404,46 +5406,14 @@ MonoBehaviour:
   plusOneTimer: 0.5
   droneTargetLocation: {x: 100, y: 100, z: -5}
   droneTargetSmoothingLocation: {x: 100, y: 100, z: -5}
-  droneSpeed: 6
-  droneAcceleration: 1
+  droneSpeed: 1
+  droneAcceleration: 0.8
   isInTargetLocation: 0
   droneTargetMarker: {fileID: 1783309412196368306}
   miningTimer: 0
   laserActiveTime: 0.5
   laserBreakTime: 0.2
   totalDistance: 0
---- !u!114 &1783309411649019104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783309411649019133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f776e489f41506440940f7b191c66541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curPosition:
-    x: 0
-    y: 0
-  isBusy: 0
-  currentTask:
-    myType: 0
-    location:
-      x: 0
-      y: 0
-    requirements: []
-  myAnim: {fileID: 0}
-  myState: 0
-  buildingState: 0
-  targetStorage:
-    myLocation:
-      x: 0
-      y: 0
-    myType: 0
-    inventory: []
-    isCheatInventory: 0
 --- !u!114 &9114059611633421109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5462,6 +5432,84 @@ MonoBehaviour:
   InventoryParent: {fileID: 9130045565472274232}
   isSetup: 0
   droneInfoDisplay: {fileID: 759729999888521324}
+--- !u!114 &3820341030842352253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783309411649019133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e42c783f142b194dbd3031b9f3bac13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDrone:
+    isTravelling: 0
+    isBusy: 0
+    currentTask:
+      myType: 0
+      location:
+        x: 0
+        y: 0
+      materials: []
+      construction:
+        locations: []
+        center:
+          x: 0
+          y: 0
+        direction: 0
+        myData: {fileID: 0}
+        constructionInventory:
+          myLocation:
+            x: 0
+            y: 0
+          myType: 4
+          inventory: []
+          isCheatInventory: 0
+        isConstruction: 0
+        isAssignedToDrone: 0
+        afterConstructionInventory: []
+    myInventory:
+      myLocation:
+        x: 0
+        y: 0
+      myType: 4
+      inventory: []
+      isCheatInventory: 0
+    myState: 0
+    targetStorage:
+      myLocation:
+        x: 0
+        y: 0
+      myType: 4
+      inventory: []
+      isCheatInventory: 0
+    constructionInv:
+      myLocation:
+        x: 0
+        y: 0
+      myType: 4
+      inventory: []
+      isCheatInventory: 0
+    idleCounter: 0
+  myAnim: {fileID: 0}
+  isInventorySetup: 0
+--- !u!114 &5843756978747590751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783309411649019133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3616ba23524064bc25833db7d279d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myId: -1
+  myPool: {fileID: 0}
+  isActive: 0
 --- !u!1 &1783309411774145610
 GameObject:
   m_ObjectHideFlags: 0

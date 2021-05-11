@@ -12,14 +12,14 @@ public class FactorySystemRemovingTester {
 	public void Setup() {
 		Grid.s = new Grid();
 		Grid.s.DummySetup(25);
-		FactorySystem.s = new FactorySystem();
+		FactoryMaster.s = new FactoryMaster();
 	}
 	
 
 	[TearDown]
 	public void Teardown() {
 		Grid.s = null;
-		FactorySystem.s = null;
+		FactoryMaster.s = null;
 	}
 
 
@@ -41,16 +41,16 @@ public class FactorySystemRemovingTester {
 		
 		// Act
 		for (int i = 0; i < positions.Length; i++) {
-			FactorySystem.s.CreateBelt(positions[i], directions[i]);
+			FactoryBuilder.CreateBelt(positions[i], directions[i]);
 		}
 		
 		for (int i = 0; i < positions.Length; i++) {
-			FactorySystem.s.RemoveBelt(positions[i]);
+			FactoryBuilder.RemoveBelt(positions[i]);
 		}
 		
 		
 		// Assert
-		Assert.AreEqual(FactorySystem.s.belts.Count, 0);
+		Assert.AreEqual(0,FactoryMaster.s.GetBelts().Count);
 		
 		for (int i = 0; i < positions.Length; i++) {
 			Assert.IsFalse(Grid.s.GetTile(positions[i]).areThereBelt);
@@ -63,33 +63,37 @@ public class FactorySystemRemovingTester {
 		int count = 0;
 		
 		// Act
-		// no belt remaining
-		FactorySystem.s.CreateBelt(new Position(0, 0), 1);
-		FactorySystem.s.CreateBelt(new Position(0, 1), 1);
+		// 1 belt remaining
+		FactoryBuilder.CreateBelt(new Position(0, 0), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 1), 1);
 		
-		FactorySystem.s.RemoveBelt(new Position(0,1));
-
+		FactoryBuilder.RemoveBelt(new Position(0,1));
+		count += 1;
 		
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateBelt(new Position(5, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(7, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(7, 0), 2);
 		
-		FactorySystem.s.RemoveBelt(new Position(7,0));
+		FactoryBuilder.RemoveBelt(new Position(7,0));
 		
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 		
 		
-		// 2 belts of lenght 1
-		FactorySystem.s.CreateBelt(new Position(10, 10), 1);
-		FactorySystem.s.CreateBelt(new Position(12, 10), 1);
-		FactorySystem.s.CreateBelt(new Position(11, 10), 1);
+		// 3 belt of lenght 1
+		FactoryBuilder.CreateBelt(new Position(10, 10), 1);
+		FactoryBuilder.CreateBelt(new Position(12, 10), 1);
+		FactoryBuilder.CreateBelt(new Position(11, 10), 1);
+		count += 3;
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 		
-		FactorySystem.s.RemoveBelt(new Position(12, 10));
 		
-		count += 2;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		// 2 belts of length 1
+		FactoryBuilder.RemoveBelt(new Position(12, 10));
+		count -= 1;
+		
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 	}
 
 	[Test]
@@ -98,22 +102,23 @@ public class FactorySystemRemovingTester {
 		int count = 0;
 		
 		// Act
-		// no belt remaining
-		FactorySystem.s.CreateBelt(new Position(0, 0), 1);
-		FactorySystem.s.CreateBelt(new Position(0, 1), 1);
+		// 1 belt remaining
+		FactoryBuilder.CreateBelt(new Position(0, 0), 1);
+		FactoryBuilder.CreateBelt(new Position(0, 1), 1);
 		
-		FactorySystem.s.RemoveBelt(new Position(0,0));
+		FactoryBuilder.RemoveBelt(new Position(0,0));
+		count += 1;
 
 		
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateBelt(new Position(5, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(7, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(5, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(7, 0), 2);
 		
-		FactorySystem.s.RemoveBelt(new Position(5,0));
+		FactoryBuilder.RemoveBelt(new Position(5,0));
 		
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 	}
 
 	[Test]
@@ -122,32 +127,33 @@ public class FactorySystemRemovingTester {
 		int count = 0;
 		
 		// Act
-		// no belts remaining
-		FactorySystem.s.CreateBelt(new Position(5, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(7, 0), 2);
+		// 2 belts of length 1
+		FactoryBuilder.CreateBelt(new Position(5, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(7, 0), 2);
 		
-		FactorySystem.s.RemoveBelt(new Position(6,0));
+		FactoryBuilder.RemoveBelt(new Position(6,0));
 		
-		count += 0;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		count += 2;
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 		
 		
-		// two belts of length 2
-		FactorySystem.s.CreateBelt(new Position(5, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(6, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(7, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(8, 0), 2);
-		FactorySystem.s.CreateBelt(new Position(9, 0), 2);
+		// 1 belts of length 5
+		FactoryBuilder.CreateBelt(new Position(5, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(6, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(7, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(8, 0), 2);
+		FactoryBuilder.CreateBelt(new Position(9, 0), 2);
 		
 		
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 		
-		FactorySystem.s.RemoveBelt(new Position(7,0));
+		FactoryBuilder.RemoveBelt(new Position(7,0));
+		// 2 belts of length 2 (only one additional belt)
 		count += 1;
 		
-		Assert.AreEqual(count, FactorySystem.s.belts.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetBelts().Count);
 	}
 
 	
@@ -175,16 +181,16 @@ public class FactorySystemRemovingTester {
 		
 		// Act
 		for (int i = 0; i < positions.Length; i++) {
-			FactorySystem.s.CreateConnector(positions[i], directions[i]);
+			FactoryBuilder.CreateConnector(positions[i], directions[i]);
 		}
 		
 		for (int i = 0; i < positions.Length; i++) {
-			FactorySystem.s.RemoveConnector(positions[i]);
+			FactoryBuilder.RemoveConnector(positions[i]);
 		}
 		
 		
 		// Assert
-		Assert.AreEqual(FactorySystem.s.belts.Count, 0);
+		Assert.AreEqual(FactoryMaster.s.GetBelts().Count, 0);
 		
 		for (int i = 0; i < positions.Length; i++) {
 			Assert.IsFalse(Grid.s.GetTile(positions[i]).areThereBelt);
@@ -198,36 +204,36 @@ public class FactorySystemRemovingTester {
 		
 		// Act
 		// 1 connector remains
-		FactorySystem.s.CreateConnector(new Position(0, 0), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 1), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 0), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 1), 1);
 		
-		FactorySystem.s.RemoveConnector(new Position(0,1));
+		FactoryBuilder.RemoveConnector(new Position(0,1));
 		
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 
 		
 		// 1 continuous connector of length 2
-		FactorySystem.s.CreateConnector(new Position(5, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(7, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(7, 0), 2);
 		
-		FactorySystem.s.RemoveConnector( new Position(7,0));
+		FactoryBuilder.RemoveConnector( new Position(7,0));
 		
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
 		// 2 separate belt
-		FactorySystem.s.CreateConnector(new Position(10, 10), 1);
-		FactorySystem.s.CreateConnector(new Position(12, 10), 1);
-		FactorySystem.s.CreateConnector(new Position(11, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(10, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(12, 10), 1);
+		FactoryBuilder.CreateConnector(new Position(11, 10), 1);
 		
-		FactorySystem.s.RemoveConnector(new Position(12, 10));
+		FactoryBuilder.RemoveConnector(new Position(12, 10));
 		
 		
 		count += 2;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 	}
 
 	[Test]
@@ -237,24 +243,24 @@ public class FactorySystemRemovingTester {
 		
 		// Act
 		// 1 connector
-		FactorySystem.s.CreateConnector(new Position(0, 0), 1);
-		FactorySystem.s.CreateConnector(new Position(0, 1), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 0), 1);
+		FactoryBuilder.CreateConnector(new Position(0, 1), 1);
 		
-		FactorySystem.s.RemoveConnector(new Position(0,0));
+		FactoryBuilder.RemoveConnector(new Position(0,0));
 		
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 
 		
 		// 1 continuous belt of length 2
-		FactorySystem.s.CreateConnector(new Position(5, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(7, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(7, 0), 2);
 		
-		FactorySystem.s.RemoveConnector(new Position(5,0));
+		FactoryBuilder.RemoveConnector(new Position(5,0));
 		
 		count += 1;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 	}
 
 	[Test]
@@ -264,27 +270,27 @@ public class FactorySystemRemovingTester {
 		
 		// Act
 		// 2 connectors
-		FactorySystem.s.CreateConnector(new Position(0, 5), 2);
-		FactorySystem.s.CreateConnector(new Position(0, 6), 2);
-		FactorySystem.s.CreateConnector(new Position(0, 7), 2);
+		FactoryBuilder.CreateConnector(new Position(0, 5), 2);
+		FactoryBuilder.CreateConnector(new Position(0, 6), 2);
+		FactoryBuilder.CreateConnector(new Position(0, 7), 2);
 		
-		FactorySystem.s.RemoveConnector(new Position(0,6));
+		FactoryBuilder.RemoveConnector(new Position(0,6));
 		
 		count += 2;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 		
 		
 		// two connectors of length 2
-		FactorySystem.s.CreateConnector(new Position(5, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(6, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(7, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(8, 0), 2);
-		FactorySystem.s.CreateConnector(new Position(9, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(5, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(6, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(7, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(8, 0), 2);
+		FactoryBuilder.CreateConnector(new Position(9, 0), 2);
 		
-		FactorySystem.s.RemoveConnector(new Position(7,0));
+		FactoryBuilder.RemoveConnector(new Position(7,0));
 		
 		count += 2;
-		Assert.AreEqual(count, FactorySystem.s.connectors.Count);
+		Assert.AreEqual(count, FactoryMaster.s.GetConnectors().Count);
 	}
 	
 	

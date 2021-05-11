@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemOnBeltObject : MonoBehaviour {
 
 	public int myId = -1;
-	public ObjectPool myPool;
+	public ItemOnBeltObjectPool myPool;
 
 	public bool isActive = false;
 

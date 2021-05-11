@@ -7,51 +7,93 @@ using UnityEngine;
 /// <summary>
 /// The main building object. Should work to store data for the other components, and deal with placing/removing the building.
 /// </summary>
-public class BuildingWorldObject : MonoBehaviour, IBuildable
+public class BuildingWorldObject : MonoBehaviour
 {
-
-	public Building myBuilding;
-	public BuildingData myData;
-	public Position myPos;
-	public List<Position> myPositions;
-	public List<TileData> myTiles;
+	
+	[SerializeField] bool isConstruction;
+	[SerializeField] Building myBuilding;
+	[SerializeField] Construction myConstruction;
+	[SerializeField] BuildingData myData;
+	[SerializeField] List<Position> myLocations;
+	[SerializeField] List<TileData> myTiles;
 	public BuildingCraftingController myCrafter;
 	public BuildingInventoryController myInventory;
-
 	SpriteGraphicsController myRend;
 
-	public bool isBuilt = false;
+	[SerializeField] float width;
+	[SerializeField] float height;
 
-	public GenericCallback buildingInventorySetUpCallback;
+	public bool isInventorySetup = false;
+	public GenericCallback buildingInventoryUpdatedCallback;
+
+	public void UpdateSelf(Building _building) {
+		// Only update if the building has changed
+		if(myBuilding !=null && !myBuilding.center.isValid() && myBuilding.myPositions != null && myBuilding.myPositions.Count > 0 && myBuilding.myPositions[0] == _building.myPositions[0])
+			return;
+
+		myBuilding = _building;
+		myData = _building.buildingData;
+		isConstruction = false;
+
+
+		/*if (isSpaceLanding)
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);*/
+		
+		myRend = GetComponentInChildren<SpriteGraphicsController>();
+		GenericUpdateSelf(myBuilding.myPositions, _building.center);
+		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
+
+
+		myCrafter = myBuilding.craftController;
+		myCrafter.continueAnimationsEvent -= ContinueAnimations;
+		myCrafter.continueAnimationsEvent += ContinueAnimations;
+		myCrafter.stopAnimationsEvent -= StopAnimations;
+		myCrafter.stopAnimationsEvent += StopAnimations;
+
+		myInventory = myBuilding.invController;
+		isInventorySetup = true;
+		buildingInventoryUpdatedCallback?.Invoke();
+		StopAnimations();
+	}
 	
+	public void UpdateSelf(Construction _construction) {
+		myConstruction = _construction;
+		myData = myConstruction.myData;
+		isConstruction = true;
+		
+		/*if (isSpaceLanding)
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);*/
+		
+		myRend = GetComponentInChildren<SpriteGraphicsController>();
+		GenericUpdateSelf(myConstruction.locations, _construction.center);
+		if (myConstruction.isConstruction) {
+			myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
+		} else {
+			myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
+		}
 
-	public float width;
-	public float height;
 
-	public void PlaceInWorld(BuildingData _myData, Position _location, List<Position> _myPositions, bool isSpaceLanding, 
-		List<InventoryItemSlot> inventory, bool _isBuild) {
-
-		myData = _myData;
-		myPos = _location;
-		myPositions = _myPositions;
+		myInventory = myConstruction.constructionInventory;
+		isInventorySetup = true;
+		buildingInventoryUpdatedCallback?.Invoke();
+		StopAnimations();
+	}
+	
+	void GenericUpdateSelf(List<Position> _locations, Position _location) {
+		myLocations = _locations;
 		myTiles = new List<TileData>();
-		isBuilt = _isBuild;
-
-		CreateConstructionInventory(inventory);
-
-		foreach (Position myPosition in myPositions) {
-			if (myPosition != null) {
-				var myTile = Grid.s.GetTile(myPosition);
-				myTile.worldObject = gameObject;
-				myTiles.Add(myTile);
-			}
+		foreach (var loc in myLocations) {
+			var tile = Grid.s.GetTile(loc);
+			myTiles.Add(tile);
+			tile.worldObject = this.gameObject;
+			tile.objectUpdatedCallback -= TileUpdated;
+			tile.objectUpdatedCallback += TileUpdated;
 		}
 
 		width = myData.shape.width;
 		height = myData.shape.height;
 		Vector3 centerOffset = new Vector3(0.5f, myData.shape.maxHeightFromCenter - 1, 0);
 
-		myRend = GetComponentInChildren<SpriteGraphicsController>();
 		myRend.transform.localPosition = myData.spriteOffset.vector3() - centerOffset;
 
 		switch (myData.gfxType) {
@@ -66,135 +108,48 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
 				myRend.SetGraphics(myData.gfxPrefab);
 				break;
 		}
-		myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
 		StopAnimationsForced(true);
 
-		DataSaver.saveEvent += SaveYourself;
 		transform.position = _location.Vector3(Position.Type.building) + centerOffset;
-
-
-		if (isSpaceLanding)
-			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
-		
-		if (isBuilt)
-			CompleteBuilding();
-		
-		buildingInventorySetUpCallback?.Invoke();
 	}
 	
-	public BuildingInventoryController GetConstructionInventory() {
-		return myInventory;
-	}
-	public BuildingInventoryController CreateConstructionInventory(List<InventoryItemSlot> inventory) {
-		myInventory = new BuildingInventoryController();
-		myInventory.SetUpConstruction(myPos);
-		myInventory.SetInventory(inventory);
-
-		return myInventory;
-	}
-	
-	public void CompleteBuilding() {
-		myBuilding = FactorySystem.s.CreateBuilding(myData,myPositions, myInventory);
-
-		myCrafter = myBuilding.craftController;
-
-		if (myCrafter != null) {
-			myCrafter.continueAnimationsEvent += ContinueAnimations;
-			myCrafter.stopAnimationsEvent += StopAnimations;
-		}
-		
-
-		isBuilt = true;
-		
-		foreach (Position myPosition in myPositions) {
-			if (myPosition != null) {
-				var myTile = Grid.s.GetTile(myPosition);
-				myTile.worldObject = gameObject;
-				myTile.objectUpdatedCallback += TileUpdated;
-			}
-		}
-		
-		
-		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
-		buildingInventorySetUpCallback?.Invoke();
-	}
-
-	void SaveYourself () {
-		DataSaver.ItemsToBeSaved.Add(new DataSaver.BuildingSaveData(myData.uniqueName, myPos, isBuilt, myInventory.inventory));
-	}
-
 	void TileUpdated() {
-		foreach (Position myPosition in myPositions) {
-			if (myPosition != null) {
-				var myTile = Grid.s.GetTile(myPosition);
-				if (myTile.areThereBuilding) {
-					myBuilding = myTile.myBuilding;
-				} else {
-					MarkForDeconstruction();
-				}
-			}
-		}
-	}
-	
-	void OnDestroy () {
-		DataSaver.saveEvent -= SaveYourself;
-	}
-	
-	public bool isMarkedForDestruction = false;
-	public void MarkForDeconstruction() {
-		if (!isMarkedForDestruction) {
-			if (isBuilt) {
-				isMarkedForDestruction = true;
-				isBuilt = false;
-				DroneSystem.s.AddDroneDestroyTask(myPos, myData);
-				myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
-				
-				foreach (Position myPosition in myPositions) {
-					if (myPosition != null) {
-						var myTile = Grid.s.GetTile(myPosition);
-						myTile.objectUpdatedCallback -= TileUpdated;
+		if (isConstruction) {
+			foreach (Position myPosition in myLocations) {
+				if (myPosition != null) {
+					var myTile = Grid.s.GetTile(myPosition);
+					if (myTile.areThereConstruction) {
+						myConstruction = myTile.myConstruction;
+					} else {
+						DestroyYourself();
 					}
 				}
-				
-				FactorySystem.s.RemoveBuilding(myBuilding);
-			} else {
-				DestroyYourself();
+			}
+		} else {
+			foreach (Position myPosition in myLocations) {
+				if (myPosition != null) {
+					var myTile = Grid.s.GetTile(myPosition);
+					if (myTile.areThereBuilding) {
+						myBuilding = myTile.myBuilding;
+					} else {
+						DestroyYourself();
+					}
+				}
 			}
 		}
 	}
 
-	public void UnmarkDestruction() {
-		if (isMarkedForDestruction) {
-			isMarkedForDestruction = false;
-			DroneSystem.s.RemoveDroneTask(myPos);
-			
-			DroneSystem.s.AddDroneBuildTask(myPos, myData);
-		}
-	}
-
-	public void DestroyYourself () {
-		foreach (Position myPosition in myPositions) {
+	public void DestroyYourself() {
+		foreach (Position myPosition in myLocations) {
 			if (myPosition != null) {
 				var myTile = Grid.s.GetTile(myPosition);
 				myTile.worldObject = null;
+				myTile.objectUpdatedCallback -= TileUpdated;
 			}
 		}
-
-		if (isBuilt) {
-			foreach (Position myPosition in myPositions) {
-				if (myPosition != null) {
-					var myTile = Grid.s.GetTile(myPosition);
-					myTile.objectUpdatedCallback -= TileUpdated;
-				}
-			}
-
-			FactorySystem.s.RemoveBuilding(myBuilding);
-		}
-
-		DroneSystem.s.RemoveDroneTask(myPositions[0]);
-		
-		Destroy(gameObject);
+		GetComponent<PooledGameObject>().DestroyPooledObject();
 	}
+	
 
 	public bool animationState = true;
     public AnimatedSpriteController[] anims = new AnimatedSpriteController[0];
@@ -202,10 +157,9 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
     public ParticleSystem[] particles = new ParticleSystem[0];
     public bool isParticled = true;
     
-    bool GetAnims() {
-        if (anims.Length <= 0) {
-            anims = GetComponentsInChildren<AnimatedSpriteController>();
-        }
+    bool GetAnims() { 
+	    anims = GetComponentsInChildren<AnimatedSpriteController>();
+        
 
         if (anims.Length <= 0) {
             isAnimated = false;
@@ -215,9 +169,8 @@ public class BuildingWorldObject : MonoBehaviour, IBuildable
     }
     
     bool GetParticles() {
-        if (particles.Length <= 0) {
-            particles = GetComponentsInChildren<ParticleSystem>();
-        }
+			particles = GetComponentsInChildren<ParticleSystem>();
+        
 
         if (particles.Length <= 0) {
             isParticled = false;

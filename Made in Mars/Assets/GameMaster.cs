@@ -24,8 +24,7 @@ public class GameMaster : MonoBehaviour {
 	void Start () {
 		GetComponent<GameLoader>().LoadGame();
 		loadingDone = true;
-		FactoryMaster.s.StartBuildingSystem();
-		DroneSystem.s.StartDroneSystem();
+		FactoryMaster.s.StartFactorySystem();
 
 		/*if (GameLoader.isGameLoadingSuccessfull == false) {
 			

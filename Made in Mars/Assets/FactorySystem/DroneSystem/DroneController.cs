@@ -5,8 +5,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class DroneController : MonoBehaviour {
-
-
+	
+	/*
 	public Position curPosition;
 
 	public bool isBusy = false;
@@ -47,7 +47,7 @@ public class DroneController : MonoBehaviour {
 	public void DroneWorkUpdate() {
 		// If at any point our building disappears (due to player destroying it), then we will try to empty our inventory to get idle
 		if (isBusy && myState != DroneState.TravellingToEmptyInventory && myState != DroneState.EmptyingInventory && myState != DroneState.SearchingToEmptyInventory) {
-			if (!Grid.s.GetTile(currentTask.location).areThereWorldObject) {
+			if (!Grid.s.GetTile(currentTask.center).areThereWorldObject) {
 				myState = DroneState.SearchingToEmptyInventory;
 				myAnim.SetMiningLaser(false);
 			}
@@ -74,7 +74,7 @@ public class DroneController : MonoBehaviour {
 			case DroneState.BeginBuildingTask:
 				
 				// Tally both our inventory and the building's construction inventory for the available items
-				constructionInv = Grid.s.GetTile(currentTask.location).worldObject.GetComponent<IBuildable>().GetConstructionInventory();
+				constructionInv = Grid.s.GetTile(currentTask.center).worldObject.GetComponent<IBuildable>().GetConstructionInventory();
 				for (int k = 0; k < currentTask.materials.Length; k++) {
 					currentTask.materials[k].count = constructionInv.GetAmountOfItems(currentTask.materials[k].myItem);
 					constructionInv.AddSlot(currentTask.materials[k].myItem, currentTask.materials[k].maxCount, InventoryItemSlot.SlotType.storage);
@@ -99,7 +99,7 @@ public class DroneController : MonoBehaviour {
 
 				if (finishedGathering) {
 					myState = DroneState.TravellingToBuild;
-					myAnim.FlyToLocation(currentTask.location);
+					myAnim.FlyToLocation(currentTask.center);
 				}
 				
 				// Make the drone look for storage buildings
@@ -166,7 +166,7 @@ public class DroneController : MonoBehaviour {
 					}
 				}
 
-				Grid.s.GetTile(currentTask.location).worldObject.GetComponent<IBuildable>().CompleteBuilding();
+				Grid.s.GetTile(currentTask.center).worldObject.GetComponent<IBuildable>().CompleteBuilding();
 				myAnim.SetMiningLaser(false);
 				isBusy = false;
 				myState = DroneState.idle;
@@ -181,7 +181,7 @@ public class DroneController : MonoBehaviour {
 			case DroneState.BeingDestructionTask:
 				
 				// Add building materials to the destruction inventory
-				constructionInv = Grid.s.GetTile(currentTask.location).worldObject.GetComponent<IBuildable>().GetConstructionInventory();
+				constructionInv = Grid.s.GetTile(currentTask.center).worldObject.GetComponent<IBuildable>().GetConstructionInventory();
 				for (int k = 0; k < currentTask.materials.Length; k++) {
 					constructionInv.ForceAddItem(currentTask.materials[k].myItem, currentTask.materials[k].maxCount, true, true);
 				}
@@ -193,7 +193,7 @@ public class DroneController : MonoBehaviour {
 			case DroneState.SearchingToDestroy:
 				
 				myState = DroneState.TravellingToDestroy;
-				myAnim.FlyToLocation(currentTask.location);
+				myAnim.FlyToLocation(currentTask.center);
 
 				break;
 			
@@ -219,7 +219,7 @@ public class DroneController : MonoBehaviour {
 					return;
 				}
 			}
-				Grid.s.GetTile(currentTask.location).worldObject.GetComponent<IBuildable>().DestroyYourself();
+				Grid.s.GetTile(currentTask.center).worldObject.GetComponent<IBuildable>().DestroyYourself();
 				myAnim.SetMiningLaser(false);
 				myState = DroneState.SearchingToEmptyInventory;
 
@@ -280,12 +280,12 @@ public class DroneController : MonoBehaviour {
 		// length of current segment
 		int segmentLength = 1;
 
-		// current position (i, j) and how much of current segment we passed
+		// current center (i, j) and how much of current segment we passed
 		int i = 0;
 		int j = 0;
 		int segmentPassed = 0;
 		for (int k = 0; k < count; ++k) {
-			// make a step, add 'direction' vector (di, dj) to current position (i, j)
+			// make a step, add 'direction' vector (di, dj) to current center (i, j)
 			i += di;
 			j += dj;
 			++segmentPassed;
@@ -307,5 +307,5 @@ public class DroneController : MonoBehaviour {
 		}
 
 		return new Position(i, j);
-	}
+	}*/
 }

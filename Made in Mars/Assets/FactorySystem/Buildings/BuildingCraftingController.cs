@@ -21,11 +21,31 @@ public class BuildingCraftingController
 
     public bool isActive = false;
 
+    public int lastCheckId = 0;
     public CraftingProcess[] myCraftingProcesses = new CraftingProcess[0];
-    
-    
+
     public event GenericCallback continueAnimationsEvent;
     public event GenericCallback stopAnimationsEvent;
+    
+    /// <summary>
+    /// Do the setup, and continue leftover crafting processes (used when loading from save
+    /// </summary>
+    /// <param name="mydat"></param>
+    public void SetUp(BuildingData mydat, BuildingInventoryController _inv, int _lastCheckId, float[] CraftingProcessProgress) {
+        SetUp(mydat, _inv);
+
+        lastCheckId = _lastCheckId;
+        for (int i = 0; i < myCraftingProcesses.Length; i++) {
+            if (i < CraftingProcessProgress.Length) {
+                if (CraftingProcessProgress[i] > 0) {
+                    myCraftingProcesses[i].isCrafting = true;
+                    myCraftingProcesses[i].curCraftingProgress = CraftingProcessProgress[i];
+                }
+            }
+        }
+        if(myCraftingProcesses.Length > 0)
+            lastCheckId = lastCheckId % myCraftingProcesses.Length;
+    }
 
     /// <summary>
     /// Do the setup tasks, which means figuring out which crafting processes this building can do based on the BuildingData and the RecipeSet
@@ -75,7 +95,6 @@ public class BuildingCraftingController
         }
     }
 
-    public int lastCheckId = 0;
     /// <summary>
     /// Update the crafting processes. When we are done with one of them, try to continue crafting a different one
     /// </summary>
@@ -99,6 +118,19 @@ public class BuildingCraftingController
         return 0;
     }
 
+
+    public float[] GetCraftingProcessProgress() {
+        var progress = new float[myCraftingProcesses.Length];
+        for (int i = 0; i < myCraftingProcesses.Length; i++) {
+            if (myCraftingProcesses[i].isCrafting) {
+                progress[i] = myCraftingProcesses[i].curCraftingProgress;
+            } else {
+                progress[i] = -1;
+            }
+        }
+
+        return progress;
+    }
 
     // ------------------------------------------------------
     // The following are things to run the animations properly

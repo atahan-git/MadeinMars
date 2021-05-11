@@ -8,11 +8,11 @@ public class ItemDrawSystem : MonoBehaviour {
 
     public static ItemDrawSystem s;
 
-    private ObjectPool myPool;
+    private ItemOnBeltObjectPool myPool;
     
     private void Awake() {
         s = this;
-        myPool = GetComponent<ObjectPool>();
+        myPool = GetComponentInChildren<ItemOnBeltObjectPool>();
     }
 
     //public float randomScale = 0.1f;
@@ -20,13 +20,13 @@ public class ItemDrawSystem : MonoBehaviour {
         //var randomness = new Vector3(Random.Range(-randomScale, randomScale), Random.Range(-randomScale, randomScale), Random.Range(-randomScale, randomScale));
         Vector3 pos;
         if (direction == 1) {
-            pos = position + new Vector3( 0.5f, -0.5f / FactorySystem.SlotPerSegment, 0);
+            pos = position + new Vector3( 0.5f, -0.5f / FactoryMaster.SlotPerSegment, 0);
         }else if (direction == 2 ) {
-            pos = position + new Vector3(-0.5f / FactorySystem.SlotPerSegment, 0.5f, 0);
+            pos = position + new Vector3(-0.5f / FactoryMaster.SlotPerSegment, 0.5f, 0);
         }else if (direction == 3) {
-            pos = position+ new Vector3(0.5f, 1f + 0.5f / FactorySystem.SlotPerSegment, 0);
+            pos = position+ new Vector3(0.5f, 1f + 0.5f / FactoryMaster.SlotPerSegment, 0);
         } else if (direction == 4) {
-            pos = position+ new Vector3(1+0.5f / FactorySystem.SlotPerSegment, 0.5f, 0);
+            pos = position+ new Vector3(1+0.5f / FactoryMaster.SlotPerSegment, 0.5f, 0);
         } else{
             pos = position;
         }
@@ -64,7 +64,7 @@ public class ItemDrawSystem : MonoBehaviour {
                     if (obj.isBeltObject) {
                         obj.transform.position += Position.GetCardinalDirection(obj.direction).Vector3(0f) 
                             * (FactoryMaster.BeltLengthToMovePerSecond * Time.deltaTime) 
-                            / FactorySystem.SlotPerSegment;
+                            / FactoryMaster.SlotPerSegment;
                     } else {
                         obj.transform.position += Position.GetCardinalDirection(obj.direction).Vector3(0f) 
                                                   * (FactoryMaster.BeltLengthToMovePerSecond * Time.deltaTime);

@@ -7,7 +7,7 @@ using UnityEngine.TestTools;
 
 public class BeltTester
 {
-    
+
     public bool BeltSegmentEqualityChecker(List<Belt.BeltSegment> first, List<Belt.BeltSegment> second) {
 
         if (first.Count == second.Count) {
@@ -63,7 +63,7 @@ public class BeltTester
         
         // Assert
         var correct = new List<Belt.BeltSegment>() {
-            new Belt.BeltSegment() {count = 3*FactorySystem.SlotPerSegment, item = Item.GetEmpty()}
+            new Belt.BeltSegment() {count = 3*FactoryMaster.SlotPerSegment, item = Item.GetEmpty()}
         };
         
         Assert.IsTrue(BeltSegmentEqualityChecker(belt1.items, correct));
@@ -323,7 +323,7 @@ public class BeltTester
 
         // Act
         for (int i = 0; i < numberOfCases; i++) {
-            FactorySystem.UpdateBelt(belts[i]);
+            FactorySimulator.UpdateBelt(belts[i]);
         }
 
 
@@ -395,7 +395,7 @@ public class BeltTester
 
         // Act
         for (int i = 0; i < numberOfCases; i++) {
-            FactorySystem.UpdateBelt(belts[i]);
+            FactorySimulator.UpdateBelt(belts[i]);
         }
 
 
@@ -468,7 +468,7 @@ public class BeltTester
 
         // Act
         for (int i = 0; i < numberOfCases; i++) {
-            FactorySystem.UpdateBelt(belts[i]);
+            FactorySimulator.UpdateBelt(belts[i]);
         }
 
 

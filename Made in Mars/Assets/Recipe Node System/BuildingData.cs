@@ -13,7 +13,7 @@ public class BuildingData : ScriptableObject {
 	public ArrayLayout shape;
 	public static Vector2 center = new Vector2(3, 3);
 
-	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal, Storage }
+	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal, Storage, Connector }
 
 	public ItemType myType;
 
@@ -37,5 +37,5 @@ public class BuildingData : ScriptableObject {
 	public GameObject gfxPrefab;
 	public Vector2 spriteOffset = new Vector2(0.5f, 0.5f);
 
-	public bool playerBuildable = true;
+	public bool playerBuildBarApplicable = true;
 }

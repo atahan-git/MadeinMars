@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //It is common to create a class to contain all of your
 //extension methods. This class must be static.
@@ -21,5 +22,34 @@ public static class ExtensionMethods {
 
     public static bool isEmpty(this Item o) {
         return o == null || o.uniqueName.Length == 0;
+    }
+    
+    public static List<Position> CoveredPositions(this ArrayLayout layout, Position location) {
+        var coveredPositions = new List<Position>();
+        for (int y = 0; y < layout.column.Length; y++) {
+            for (int x = 0; x < layout.column[y].row.Length; x++) {
+                if (layout.column[y].row[x]) {
+                    var pos = new Position(x, y) + location - BuildingData.center;
+                    //print(new Position(x, y) + center - BuildingData.center);
+                    //myTile.itemPlaceable = false;
+                    coveredPositions.Add(pos);
+                }
+            }
+        }
+
+        return coveredPositions;
+    }
+
+    public static int GetTotalAmountOfItems(this List<InventoryItemSlot> slots) {
+        if (slots == null) {
+            return 0;
+        } else {
+            var count = 0;
+            foreach (var slot in slots) {
+                count += slot.count;
+            }
+
+            return count;
+        }
     }
 }

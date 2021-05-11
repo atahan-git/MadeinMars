@@ -86,6 +86,23 @@ public struct Position {
 		return new Position(start.x + Mathf.Clamp(end.x - start.x, -amount, amount), start.y + Mathf.Clamp(end.y - start.y, -amount, amount));
 	}
 
+	public static Position MoveTowardsDiagonalAware(Position start, Position end, int amount) {
+		var pos = start;
+		for (int i = 0; i < amount; i++) {
+			pos = MoveTowardsDiagonalAware(pos, end);
+		}
+
+		return pos;
+	}
+	
+	static Position MoveTowardsDiagonalAware(Position start, Position end) {
+		if (Mathf.Abs(start.x - end.x) > Mathf.Abs(start.y - end.y)) {
+			return new Position(start.x + Mathf.Clamp(end.x - start.x, -1, 1), start.y);
+		} else {
+			return new Position(start.x, start.y + Mathf.Clamp(end.y - start.y, -1, 1));
+		}
+	}
+
 	public static int ParallelDirection(Position start, Position end) {
 		if (end.y  > start.y) {
 			return 1;
@@ -133,5 +150,13 @@ public struct Position {
 	
 	public static Position MoveCardinalDirection(Position start, int direction, int amount) {
 		return start + GetCardinalDirection(direction)*amount;
+	}
+
+	public bool isValid() {
+		return x > 0 && y > 0;
+	}
+
+	public static Position InvalidPosition() {
+		return new Position(-1, -1);
 	}
 }

@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: -2366348049982539213}
   - component: {fileID: 1172893428270975827}
   - component: {fileID: 828199510647682927}
+  - component: {fileID: -7654071250517338999}
   m_Layer: 0
-  m_Name: BeltObject
+  m_Name: Belt World Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,10 +46,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a8f317dcb2d4749a838caeeb920af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPos:
+  isConstruction: 0
+  myBelt:
+    startPos:
+      x: 0
+      y: 0
+    endPos:
+      x: 0
+      y: 0
+    direction: 0
+    items: []
+  myConstruction:
+    locations: []
+    center:
+      x: 0
+      y: 0
+    direction: 0
+    myData: {fileID: 0}
+    constructionInventory:
+      myLocation:
+        x: 0
+        y: 0
+      myType: 4
+      inventory: []
+      isCheatInventory: 0
+    isConstruction: 0
+    isAssignedToDrone: 0
+    afterConstructionInventory: []
+  myTile:
     x: 0
     y: 0
-  myTiles: []
+    worldObject: {fileID: 0}
+    height: 0
+    material: 0
+    oreType: 0
+    oreAmount: 0
+  location:
+    x: 0
+    y: 0
+  direction: 0
   width: 0
   height: 0
 --- !u!212 &1172893428270975827
@@ -117,3 +153,18 @@ MonoBehaviour:
     type: 3}
   height: 0.1
   spaceLandingPrefab: {fileID: 0}
+--- !u!114 &-7654071250517338999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859827216176125549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3616ba23524064bc25833db7d279d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myId: -1
+  myPool: {fileID: 0}
+  isActive: 0

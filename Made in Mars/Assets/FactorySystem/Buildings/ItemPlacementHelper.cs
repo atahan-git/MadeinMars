@@ -33,7 +33,7 @@ public class ItemPlacementHelper : MonoBehaviour
 				if (myData.shape.column[y].row[x]) {
 					//print (x + " - " + y);
 					Position myPos = (new Position(x, y) - BuildingData.center);
-					//print(myPos);
+					//print(center);
 
 					mySprites[x,y] = Instantiate(ItemSpritePrefab, myPos.Vector3(Position.Type.building) - Vector3.forward, Quaternion.identity);
 					mySprites[x,y].transform.parent = transform;
@@ -49,7 +49,7 @@ public class ItemPlacementHelper : MonoBehaviour
 		currentOccupiedTile = toMove;
 		x = currentOccupiedTile.x;
 		y = currentOccupiedTile.y;
-		transform.position = currentOccupiedTile.position.Vector3(Position.Type.building) + new Vector3(0.5f, 0.5f, 0);
+		transform.position = currentOccupiedTile.location.Vector3(Position.Type.building) + new Vector3(0.5f, 0.5f, 0);
 	}
 
 
@@ -72,7 +72,7 @@ public class ItemPlacementHelper : MonoBehaviour
 
 				bool myVal = false;
 				
-				myVal = FactoryBuilder.s.CheckPlaceable(new Position(checkX, checkY));
+				myVal = FactoryPlayerConnector.s.CheckPlaceable(new Position(checkX, checkY));
 
 				if (myVal) {
 					mySprite.Placeable();

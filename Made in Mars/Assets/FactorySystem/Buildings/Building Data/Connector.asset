@@ -33,4 +33,4 @@ MonoBehaviour:
   gfxSpriteAnimation: {fileID: 0}
   gfxPrefab: {fileID: 0}
   spriteOffset: {x: 0, y: 0}
-  playerBuildable: 1
+  playerBuildBarApplicable: 0

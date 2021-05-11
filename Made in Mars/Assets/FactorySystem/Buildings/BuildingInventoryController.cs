@@ -11,10 +11,10 @@ using UnityEngine;
 [Serializable]
 public class BuildingInventoryController : IInventoryController {
 
-    public Position myLocation;
+    public Position myLocation = Position.InvalidPosition();
     
     public enum InventoryType {
-        NormalBuilding, Miner, Base, Storage, Construction
+        NormalBuilding, Miner, Base, Storage, Construction, Drone
     }
 
     public InventoryType myType = InventoryType.Construction;
@@ -31,9 +31,23 @@ public class BuildingInventoryController : IInventoryController {
     /// Sets up the inventory for construction
     /// </summary>
     /// <param name="location"></param>
-    public void SetUpConstruction(Position location) {
+    public void SetUpDrone() {
         inventory = new List<InventoryItemSlot>();
+        
+        myType = InventoryType.Drone;
+        drawInventoryEvent?.Invoke();
+        InventoryContentsChanged();
+    }
+    
+
+    /// <summary>
+    /// Sets up the inventory for construction
+    /// </summary>
+    /// <param name="location"></param>
+    public void SetUpConstruction(Position location, List<InventoryItemSlot> materials) {
         myLocation = location;
+        inventory = new List<InventoryItemSlot>();
+        SetInventory(materials);
         
         myType = InventoryType.Construction;
         drawInventoryEvent?.Invoke();
@@ -45,9 +59,7 @@ public class BuildingInventoryController : IInventoryController {
     /// Must be called after the crafting controller is set up
     /// </summary>
     /// <param name="mydat"></param>
-    public void SetUp(Position location, BuildingCraftingController myCrafter, BuildingData myData) {
-        if(myType != InventoryType.Construction)
-            Debug.LogError("trying to setup the inventory after being setup once. This is not allowed!");
+    public void SetUp(Position location, BuildingCraftingController myCrafter, BuildingData myData, List<InventoryItemSlot> starterInventory) {
         myLocation = location;
         
         switch (myData.myType) {
@@ -66,15 +78,8 @@ public class BuildingInventoryController : IInventoryController {
                 myType = InventoryType.NormalBuilding;
                 break;
         }
-
-        // If this is not a storage type, we need to remove the extra slots leftover from construction
-        if (myType != InventoryType.Storage) {
-            for (int i = inventory.Count-1; i >=0 ; i--) {
-                if (inventory[i].mySlotType == InventoryItemSlot.SlotType.storage) {
-                    inventory.RemoveAt(i);
-                }
-            }
-        }
+        
+        inventory = new List<InventoryItemSlot>();
 
         switch (myType) {
             case InventoryType.NormalBuilding:
@@ -111,9 +116,15 @@ public class BuildingInventoryController : IInventoryController {
                     AddSlot(Item.GetEmpty(), 99, InventoryItemSlot.SlotType.storage, false);
                 }
                 
-                DroneSystem.s.RegisterStorageBuilding(this);
+                FactoryDrones.RegisterStorageBuilding(this);
                 
                 break;
+        }
+
+        if (starterInventory != null) {
+            foreach (var slot in starterInventory) {
+                RestoreSlot(slot, false);
+            }
         }
 
 
@@ -122,7 +133,7 @@ public class BuildingInventoryController : IInventoryController {
     }
 
     void OnDestroy () {
-        DroneSystem.s.RemoveStorageBuilding(this);
+        FactoryDrones.RemoveStorageBuilding(this);
     }
 
 
@@ -135,8 +146,37 @@ public class BuildingInventoryController : IInventoryController {
         drawInventoryEvent?.Invoke();
         InventoryContentsChanged();
     }
-    
-    
+
+    /// <summary>
+    /// Use this to restore a slot from save
+    /// </summary>
+    /// <param name="itemReference"></param>
+    /// <param name="maxCount"></param>
+    public void RestoreSlot(InventoryItemSlot slot, bool reDrawInventory = true) {
+        for (int i = 0; i < inventory.Count; i++) {
+            if (inventory[i].count == 0) {
+                if (slot.mySlotType != InventoryItemSlot.SlotType.storage) {
+                    if (inventory[i].myItem == slot.myItem && inventory[i].mySlotType == slot.mySlotType) {
+                        inventory[i].count = slot.count;
+                        break;
+                    }
+                } else {
+                    if (inventory[i].mySlotType == InventoryItemSlot.SlotType.storage) {
+                        inventory[i].myItem = slot.myItem;
+                        inventory[i].count = slot.count;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (reDrawInventory) {
+            drawInventoryEvent?.Invoke();
+            InventoryContentsChanged();
+        }
+    }
+
+
     /// <summary>
     /// Adds a slot to the building inventory. The building will not take items from the belts if it doesnt have inventory slot for it.
     /// Also it will stop production if it cannot put more output items into its slots
@@ -148,7 +188,6 @@ public class BuildingInventoryController : IInventoryController {
             for (int i = 0; i < inventory.Count; i++) {
                 if (inventory[i].myItem == item && inventory[i].mySlotType == slotType) {
                     inventory[i].maxCount = Mathf.Max(inventory[i].maxCount, maxCount);
-                    return;
                 }
             }
         }
