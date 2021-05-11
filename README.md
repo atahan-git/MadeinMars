@@ -9,3 +9,5 @@ If you are new to game development, you can also check the core part of the fact
 If you are feeling adventurous, you can also try to help me make the game. Feel free to reach out to me from Github or from my [Twitter](https://twitter.com/atahan_game_dev).
 
 The current timeline is to finish/release the game by end of summer 2021, and the codebase will be open source even after release!
+
+Check current development on the [Trello Board](https://trello.com/b/PPdrHBWp/made-in-mars-roadmap).
