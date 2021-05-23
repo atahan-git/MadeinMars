@@ -22,7 +22,7 @@ MonoBehaviour:
     - row: 00000000000000
     - row: 00000000000000
     - row: 00000000000000
-  myType: 0
+  myType: 13
   buildingGrade: 0
   energyUse: 0
   gfxType: 0

@@ -35,7 +35,7 @@ public class ItemPlacementHelper : MonoBehaviour
 					Position myPos = (new Position(x, y) - BuildingData.center);
 					//print(center);
 
-					mySprites[x,y] = Instantiate(ItemSpritePrefab, myPos.Vector3(Position.Type.building) - Vector3.forward, Quaternion.identity);
+					mySprites[x,y] = Instantiate(ItemSpritePrefab, myPos.Vector3(Position.Type.itemPlacementHelper) - Vector3.forward, Quaternion.identity);
 					mySprites[x,y].transform.parent = transform;
 					ItemPlacementSpriteHelper mySprite = mySprites[x,y].GetComponent<ItemPlacementSpriteHelper>();
 					mySprite.x = myPos.x;
@@ -49,7 +49,7 @@ public class ItemPlacementHelper : MonoBehaviour
 		currentOccupiedTile = toMove;
 		x = currentOccupiedTile.x;
 		y = currentOccupiedTile.y;
-		transform.position = currentOccupiedTile.location.Vector3(Position.Type.building) + new Vector3(0.5f, 0.5f, 0);
+		transform.position = currentOccupiedTile.location.Vector3(Position.Type.itemPlacementHelper) + new Vector3(0.5f, 0.5f, 0);
 	}
 
 

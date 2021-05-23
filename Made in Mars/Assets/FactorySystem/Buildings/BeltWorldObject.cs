@@ -22,6 +22,7 @@ public class BeltWorldObject : MonoBehaviour {
 	[SerializeField] float height;
 
 	public void UpdateSelf(Position _location, Belt _belt) {
+		RemoveSelfFromTile();
 		myBelt = _belt;
 		direction = myBelt.direction;
 		isConstruction = false;
@@ -37,6 +38,7 @@ public class BeltWorldObject : MonoBehaviour {
 	}
 	
 	public void UpdateSelf(Position _location, Construction _construction) {
+		RemoveSelfFromTile();
 		myConstruction = _construction;
 		direction = myConstruction.direction;
 		isConstruction = true;
@@ -87,9 +89,13 @@ public class BeltWorldObject : MonoBehaviour {
 		}
 	}
 
-	public void DestroyYourself() {
+	public void RemoveSelfFromTile() {
 		myTile.worldObject = null;
 		myTile.objectUpdatedCallback -= TileUpdated;
+	}
+
+	public void DestroyYourself() {
+		RemoveSelfFromTile();
 		GetComponent<PooledGameObject>().DestroyPooledObject();
 	}
 }

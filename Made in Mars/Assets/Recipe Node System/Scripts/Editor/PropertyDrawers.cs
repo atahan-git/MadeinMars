@@ -2,6 +2,7 @@
 using UnityEngine;
 
 
+/*
 // IngredientDrawerUIE
 [CustomPropertyDrawer(typeof(CountedItemNode))]
 public class ShopItemUIE : PropertyDrawer {
@@ -35,4 +36,4 @@ public class ShopItemUIE : PropertyDrawer {
 
 		EditorGUI.EndProperty();
 	}
-}
+}*/

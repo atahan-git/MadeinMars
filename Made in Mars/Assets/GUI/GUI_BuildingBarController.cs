@@ -40,7 +40,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
     private void Start () {
-        DataSaver.saveEvent += SaveBuildingSlots;
+        DataSaver.s.saveEvent += SaveBuildingSlots;
 
         //Player_InventoryController.s.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;
 
@@ -49,13 +49,13 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
     void LoadBuildingSlots (bool isSuccess) {
         if (isSuccess) {
-            if (DataSaver.mySave.buildingBarData != null) {
-                for (int i = 0; i < DataSaver.mySave.buildingBarData.Length; i++) {
-                    if (DataSaver.mySave.buildingBarData[i] != null)
-                        if (DataSaver.mySave.buildingBarData[i].Length > 0)
+            if (DataSaver.s.mySave.buildingBarData != null) {
+                for (int i = 0; i < DataSaver.s.mySave.buildingBarData.Length; i++) {
+                    if (DataSaver.s.mySave.buildingBarData[i] != null)
+                        if (DataSaver.s.mySave.buildingBarData[i].Length > 0)
                             myBuildingBarSlots[i].ChangeBuilding(
-                                DataHolder.s.GetBuilding(DataSaver.mySave.buildingBarData[i]),
-                                false,false,false,null, false ,0);
+                                DataHolder.s.GetBuilding(DataSaver.s.mySave.buildingBarData[i]),
+                                false,null, false ,0);
 
                 }
             }
@@ -127,7 +127,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
         if (inventoryDragBegun) {
             if (slot != -1) {
                 barSlotOldBuilding = myBuildingBarSlots[slot].myDat;
-                myBuildingBarSlots[slot].ChangeBuilding(dragBuildDat, false,false, false, null, false , 0);
+                myBuildingBarSlots[slot].ChangeBuilding(dragBuildDat, false, null, false , 0);
             }
         }
     }
@@ -137,17 +137,17 @@ public class GUI_BuildingBarController : MonoBehaviour {
             RectTransform myRect = myBuildingBarSlots[slot].GetComponent<RectTransform>();
             Vector2 localMousePosition = myRect.InverseTransformPoint(SmartInput.inputPos);
             if (!myRect.rect.Contains(localMousePosition)) {
-                myBuildingBarSlots[slot].ChangeBuilding(barSlotOldBuilding, false,false,false,null, false, 0);
+                myBuildingBarSlots[slot].ChangeBuilding(barSlotOldBuilding, false,null, false, 0);
                 barSlotOldBuilding = null;
             }
         }
     }
 
 
-    public void StartBuildingFromSlot (BuildingData dat, bool isSpaceLanding, bool isInventory, List<InventoryItemSlot> inv, GenericCallback buildCompleteCallback) {
+    public void StartBuildingFromSlot (BuildingData dat, bool isRocket, List<InventoryItemSlot> inv, GenericCallback buildCompleteCallback) {
         beltBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
-        Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat, isSpaceLanding,  inv, buildCompleteCallback);
+        Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat, isRocket,  inv, buildCompleteCallback);
         
         scont.BringBuildingBarToFocus();
     }
@@ -193,17 +193,17 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
     void SaveBuildingSlots () {
-        DataSaver.BuildingBarDataToBeSaved = new string[myBuildingBarSlots.Length];
+        DataSaver.s.BuildingBarDataToBeSaved = new string[myBuildingBarSlots.Length];
         for (int i = 0; i < myBuildingBarSlots.Length; i++) {
             if (myBuildingBarSlots[i].myDat != null) {
-                DataSaver.BuildingBarDataToBeSaved[i] = myBuildingBarSlots[i].myDat.uniqueName;
+                DataSaver.s.BuildingBarDataToBeSaved[i] = myBuildingBarSlots[i].myDat.uniqueName;
             }
         }
     }
 
 	public void OnDestroy () {
         GameLoader.RemoveFromCall(LoadBuildingSlots);
-        DataSaver.saveEvent -= SaveBuildingSlots;
+        DataSaver.s.saveEvent -= SaveBuildingSlots;
         //Player_InventoryController.s.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
     }
 

@@ -18,7 +18,7 @@ public class BuildingInventoryController : IInventoryController {
     }
 
     public InventoryType myType = InventoryType.Construction;
-    public List<InventoryItemSlot> inventory;
+    public List<InventoryItemSlot> inventory = new List<InventoryItemSlot>();
     
 
     public event GenericCallback drawInventoryEvent;
@@ -27,12 +27,38 @@ public class BuildingInventoryController : IInventoryController {
     public bool isCheatInventory = false;
 
 
+    private int _workerCount;
+    public int workerCount {
+        get { return _workerCount; }
+        set{
+            if (value != _workerCount) {
+                _workerCount = value;
+                UpdateWorkers();  
+            }
+        }
+    }
+    public List<InventoryItemSlot> workerSlots = new List<InventoryItemSlot>();
+    public int maxWorkers;
+
+    private int _dwellerCount;
+    public int dwellerCount {
+        get { return _dwellerCount; }
+        set{
+            if (value != _dwellerCount) {
+                _dwellerCount = value;
+                UpdateDwellers();  
+            }
+        }
+    }
+    public List<InventoryItemSlot> dwellerSlots = new List<InventoryItemSlot>();
+    public int maxDwellers;
+
     /// <summary>
     /// Sets up the inventory for construction
     /// </summary>
     /// <param name="location"></param>
     public void SetUpDrone() {
-        inventory = new List<InventoryItemSlot>();
+        inventory.Clear();
         
         myType = InventoryType.Drone;
         drawInventoryEvent?.Invoke();
@@ -46,7 +72,7 @@ public class BuildingInventoryController : IInventoryController {
     /// <param name="location"></param>
     public void SetUpConstruction(Position location, List<InventoryItemSlot> materials) {
         myLocation = location;
-        inventory = new List<InventoryItemSlot>();
+        inventory.Clear();
         SetInventory(materials);
         
         myType = InventoryType.Construction;
@@ -79,7 +105,7 @@ public class BuildingInventoryController : IInventoryController {
                 break;
         }
         
-        inventory = new List<InventoryItemSlot>();
+        inventory.Clear();
 
         switch (myType) {
             case InventoryType.NormalBuilding:
@@ -123,9 +149,23 @@ public class BuildingInventoryController : IInventoryController {
 
         if (starterInventory != null) {
             foreach (var slot in starterInventory) {
-                RestoreSlot(slot, false);
+                RestoreSlot(slot, false, myData.myType == BuildingData.ItemType.Rocket);
             }
         }
+
+        dwellerSlots.Clear();
+        for (int i = 0; i < myData.housingSlots; i++) {
+            dwellerSlots.Add(AddSlot(Item.GetEmpty(),1,InventoryItemSlot.SlotType.house,false));
+        }
+
+        maxDwellers = myData.housingSlots;
+        
+        workerSlots.Clear();
+        for (int i = 0; i < myData.workerRequirement; i++) {
+            workerSlots.Add(AddSlot(Item.GetEmpty(),1,InventoryItemSlot.SlotType.worker,false)) ;
+        }
+        
+        maxWorkers = myData.workerRequirement;
 
 
         drawInventoryEvent?.Invoke();
@@ -139,7 +179,7 @@ public class BuildingInventoryController : IInventoryController {
 
     public void SetInventory(List<InventoryItemSlot> _inventory) {
         if (_inventory == null)
-            inventory = new List<InventoryItemSlot>();
+            inventory.Clear();
         else
             inventory = _inventory;
 
@@ -152,21 +192,30 @@ public class BuildingInventoryController : IInventoryController {
     /// </summary>
     /// <param name="itemReference"></param>
     /// <param name="maxCount"></param>
-    public void RestoreSlot(InventoryItemSlot slot, bool reDrawInventory = true) {
+    public void RestoreSlot(InventoryItemSlot slot, bool reDrawInventory = true, bool addSlot = false) {
+        bool addedSlot = false;
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].count == 0) {
                 if (slot.mySlotType != InventoryItemSlot.SlotType.storage) {
-                    if (inventory[i].myItem == slot.myItem && inventory[i].mySlotType == slot.mySlotType) {
+                    if (inventory[i].mySlotType == slot.mySlotType && inventory[i].myItem == slot.myItem ) {
                         inventory[i].count = slot.count;
+                        addedSlot = true;
                         break;
                     }
                 } else {
                     if (inventory[i].mySlotType == InventoryItemSlot.SlotType.storage) {
                         inventory[i].myItem = slot.myItem;
                         inventory[i].count = slot.count;
+                        addedSlot = true;
                         break;
                     }
                 }
+            }
+        }
+
+        if (addSlot) {
+            if (!addedSlot) {
+                inventory.Add(slot);
             }
         }
 
@@ -183,20 +232,26 @@ public class BuildingInventoryController : IInventoryController {
     /// </summary>
     /// <param name="itemReference"></param>
     /// <param name="maxCount"></param>
-    public void AddSlot (Item item, int maxCount, InventoryItemSlot.SlotType slotType, bool reDrawInventory = true) {
+    public InventoryItemSlot AddSlot (Item item, int maxCount, InventoryItemSlot.SlotType slotType, bool reDrawInventory = true) {
+        var slotId = -1;
         if (slotType != InventoryItemSlot.SlotType.storage) {
             for (int i = 0; i < inventory.Count; i++) {
-                if (inventory[i].myItem == item && inventory[i].mySlotType == slotType) {
+                if (inventory[i].mySlotType == slotType && inventory[i].myItem == item) {
                     inventory[i].maxCount = Mathf.Max(inventory[i].maxCount, maxCount);
+                    slotId = i;
+                    break;
                 }
             }
         }
 
         inventory.Add(new InventoryItemSlot(item,0,maxCount, slotType));
+        slotId = inventory.Count - 1;
         if (reDrawInventory) {
             drawInventoryEvent?.Invoke();
             InventoryContentsChanged();
         }
+
+        return inventory[slotId];
     }
 
     
@@ -496,6 +551,46 @@ public class BuildingInventoryController : IInventoryController {
 
 
     public void InventoryContentsChanged() {
+        inventoryContentsChangedEvent?.Invoke();
+    }
+
+
+    public void UpdateDwellers() {
+        for (int i = 0; i < dwellerSlots.Count; i++) {
+            // If there are enough dwellers to fill the current slot
+            if (i < dwellerCount) {
+                // If the slot is already empty
+                if (dwellerSlots[i].myItem.isEmpty()) {
+                    dwellerSlots[i].myItem = DataHolder.s.GetPeople();
+                    dwellerSlots[i].count = 1;
+                }
+            } else {
+                dwellerSlots[i].count = 0;
+                dwellerSlots[i].myItem = Item.GetEmpty();
+            }
+        }
+        
+        
+        inventoryContentsChangedEvent?.Invoke();
+    }
+
+
+    public void UpdateWorkers() {
+        for (int i = 0; i < workerSlots.Count; i++) {
+            // If there are enough dwellers to fill the current slot
+            if (i < workerCount) {
+                // If the slot is already empty
+                if (workerSlots[i].myItem.isEmpty()) {
+                    workerSlots[i].myItem = DataHolder.s.GetPeople();
+                    workerSlots[i].count = 1;
+                }
+            } else {
+                workerSlots[i].count = 0;
+                workerSlots[i].myItem = Item.GetEmpty();
+            }
+        }
+        
+        
         inventoryContentsChangedEvent?.Invoke();
     }
 }

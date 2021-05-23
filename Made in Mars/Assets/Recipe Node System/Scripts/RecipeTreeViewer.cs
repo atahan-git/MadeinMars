@@ -1,16 +1,68 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 /// <summary>
-/// A recipe tree viewer without the editing functionality. Use this variant in game for seeing the relevant recipes.
+/// A recipe tree viewer. The editor should also use and extend this functionality
 /// This really needs an optimization pass though. Not this script, but the Unity UI implementation.
 /// </summary>
-public class RecipeTreeViewer : RecipeTreeMaster {
+public class RecipeTreeViewer : MonoBehaviour {
+    
+    public float xBorderMin = -1f;
+    public float xBorderMax = -1f;
+    public float yBorderMin = -1f;
+    public float yBorderMax = -1f;
+    
+    public Camera mainCam;
+    public Canvas myCanvas;
+    
+    public RecipeSet myRecipeSet;
+    
+    public RectTransform canvas;
+    
+    public RectTransform NodeParent;
+    public GameObjectObjectPool ItemNodePool;
+    public GameObjectObjectPool craftingNodePool;
+    public GameObjectObjectPool researchNodePool;
+    public GameObjectObjectPool leftPortPool;
+    public GameObjectObjectPool rightPortPool;
+    
+    
+    public RectTransform NodeAreaRect;
+    public RectTransform NodeAreaInnerRect;
 
-    private void Awake() {
+    public Color[] PortColors;
+    public Color[] lineColors;
+
+
+    public List<NodeGfx> allNodeGfxs = new List<NodeGfx>();
+    /*public NodeGfx GetNodeGfxFromNode(int nodeId) {
+        foreach (var nodeGfx in allNodeGfxs) {
+            if (nodeGfx.myNode.id == nodeId) {
+                return nodeGfx;
+            }
+        }
+
+        print("not node!");
+        return null;
+    }*/
+
+    public RectTransform ViewPort;
+
+    protected void Setup() {
+        //print(ViewPort.anchoredPosition);
+        //print(ViewPort.rect);
+        Rect rect = ViewPort.rect;
+        xBorderMin = ViewPort.anchoredPosition.x - rect.width / 2;
+        xBorderMax = ViewPort.anchoredPosition.x + rect.width / 2;
+        yBorderMin = ViewPort.anchoredPosition.y - rect.height / 2;
+        yBorderMax = ViewPort.anchoredPosition.y + rect.height / 2;
+    }
+
+    protected void Awake() {
         Setup();
         myCanvas = canvas.GetComponent<Canvas>();;
         mainCam = Camera.main;
@@ -18,84 +70,93 @@ public class RecipeTreeViewer : RecipeTreeMaster {
     }
 
     private void Start() {
+        ReDrawAllNodes();
+    }
+
+    protected void ReDrawAllNodes() {
+        int childCount = allNodeGfxs.Count;
+
+        for (int i = 0; i < childCount; i++) {
+            allNodeGfxs[i].GetComponent<PooledGameObject>().DestroyPooledObject();
+        }
+
+        allNodeGfxs.Clear();
 
         //Draw Nodes
-        foreach (var itemNode in myRecipeSet.myItemNodes) {
+        foreach (var itemNode in myRecipeSet.GetItemNodes()) {
             //Vector3 pos = itemNode.pos;
-            var node = Instantiate(ItemNodePrefab, NodeParent);
+            var node = ItemNodePool.Spawn().gameObject;
             allNodeGfxs.Add(node.GetComponent<NodeGfx>());
-            node.GetComponent<ItemNodeGfx>().SetUp(this, itemNode);
+            node.GetComponent<ItemNodeGfx>().ReDrawnNode(this, itemNode);
             (node.transform as RectTransform).anchoredPosition = itemNode.pos;
             //itemNode.pos = pos;
 
-            Destroy(node.GetComponent<DragPanel>());
             node.AddComponent<NodeFocusCatcher>().Setup(this);
         }
 
-        foreach (var craftingNode in myRecipeSet.myCraftingNodes) {
+        foreach (var craftingNode in myRecipeSet.GetCraftingNodes()) {
             //Vector3 pos = craftingNode.pos;
-            var node = Instantiate(CraftingNodePrefab, NodeParent);
+            var node = craftingNodePool.Spawn().gameObject;
             allNodeGfxs.Add(node.GetComponent<NodeGfx>());
-            node.GetComponent<CraftingNodeGfx>().SetUp(this, craftingNode);
+            node.GetComponent<CraftingNodeGfx>().ReDrawnNode(this, craftingNode);
             (node.transform as RectTransform).anchoredPosition = craftingNode.pos;
             //craftingNode.pos = pos;
 
-            Destroy(node.GetComponent<DragPanel>());
             node.AddComponent<NodeFocusCatcher>().Setup(this);
         }
-
-        foreach (var nodeGfx in allNodeGfxs) {
-            nodeGfx.SetupPorts();
-        }
-
-        foreach (var nodeGfx in allNodeGfxs) {
-            nodeGfx.SetupConnections();
-        }
         
-        foreach (var nodeGfx in allNodeGfxs) {
-            ValueRegion[] allVals = nodeGfx.GetComponentsInChildren<ValueRegion>();
-            foreach (var valRegion in allVals) {
-                valRegion.DisableModifier();
-            }
+        foreach (var researchNode in myRecipeSet.getResearchNodes()) {
+            //Vector3 pos = craftingNode.pos;
+            var node = researchNodePool.Spawn().gameObject;
+            allNodeGfxs.Add(node.GetComponent<NodeGfx>());
+            node.GetComponent<ResearchNodeGfx>().ReDrawnNode(this, researchNode);
+            (node.transform as RectTransform).anchoredPosition = researchNode.pos;
+            //craftingNode.pos = pos;
+
+            node.AddComponent<NodeFocusCatcher>().Setup(this);
         }
         
         RescaleNodeArea();
-        
-        foreach (var nodeGfx in allNodeGfxs) {
-            nodeGfx.OnDraggingNode();
-        }
 
-        Invoke("LateStart",0.5f);
+        foreach (var node in allNodeGfxs) {
+            node.ReDrawConnections();
+        }
+        
+        Invoke("LateRedraw",0.5f);
     }
 
-    void LateStart() {
-        foreach (var nodeGfx in allNodeGfxs) {
-            nodeGfx.OnDraggingNode();
+    void LateRedraw() {
+        foreach (var node in allNodeGfxs) {
+            foreach (var port in node.allPorts) {
+                port.OnPositionUpdated();
+            }
         }
+    }
+
+    public NodeGfx GetNodeWithId(int id) {
+        foreach (var node in allNodeGfxs) {
+            if (node.myNode.id == id) {
+                return node;
+            }
+        }
+
+        return null;
     }
     
-
-
-    public override void BeginClickConnect(NodeGfx node, NodePortGfx port) {
-        port.ClickConnectDone();
-    }
-
-    public override void DeleteNode(NodeGfx node) {
-        
-    }
 
     public void FocusOnNode(GameObject source) {
         StopAllCoroutines();
         StartCoroutine(FocusOnNodeSmoothTransition(source));
-        
     }
+
+    public float NodeFocusSpeed = 2f;
     
     IEnumerator FocusOnNodeSmoothTransition(GameObject target) {
         Vector3 targetOffset = -(target.transform.position- target.transform.parent.parent.parent.parent.position);
         Vector3 targetPos = NodeAreaRect.position + targetOffset;
         float timer = 0;
         while (Vector3.Distance(NodeAreaRect.position, targetPos) > 10f) {
-            NodeAreaRect.position = Vector3.Lerp(NodeAreaRect.position, targetPos, 10f * Time.deltaTime);
+            NodeAreaRect.position = Vector3.Lerp(NodeAreaRect.position, targetPos, NodeFocusSpeed * Time.deltaTime);
             timer += Time.deltaTime;
             
             if(timer > 1f)
@@ -108,7 +169,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
 
     const float changeIncrements = 500;
 
-    public override void RescaleNodeArea() {
+    public void RescaleNodeArea() {
         float xmin = float.MaxValue, xmax = float.MinValue, ymin = float.MaxValue, ymax = float.MinValue;
         foreach (var nodeGfx in allNodeGfxs) {
             xmin = Mathf.Min(nodeGfx.GetComponent<RectTransform>().anchoredPosition.x, xmin);
@@ -148,7 +209,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
             NodeAreaRect.anchoredPosition += new Vector2(-changeIncrements / 2, 0) * scale;
             totalShift += new Vector2(-changeIncrements / 2, 0) * scale;
             madeShift = true;
-            print("enlarging to the leftSide");
+            //print("enlarging to the leftSide");
 
         } else if (xmin > leftSide + changeIncrements) {
             if (NodeAreaRect.sizeDelta.x > 2500) {
@@ -157,7 +218,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
                 NodeAreaRect.anchoredPosition -= new Vector2(-changeIncrements / 2, 0) * scale;
                 totalShift -= new Vector2(-changeIncrements / 2, 0) * scale;
                 madeShift = true;
-                print("reducing to the leftSide");
+                //print("reducing to the leftSide");
             }
         }
 
@@ -167,7 +228,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
             NodeAreaRect.anchoredPosition += new Vector2(+changeIncrements / 2, 0) * scale;
             totalShift += new Vector2(+changeIncrements / 2, 0) * scale;
             madeShift = true;
-            print("enlarging to the rightSide");
+            //print("enlarging to the rightSide");
 
         } else if (xmax < rightSide - changeIncrements) {
             if (NodeAreaRect.sizeDelta.x > 2500) {
@@ -176,7 +237,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
                 NodeAreaRect.anchoredPosition -= new Vector2(+changeIncrements / 2, 0) * scale;
                 totalShift -= new Vector2(+changeIncrements / 2, 0) * scale;
                 madeShift = true;
-                print("reducing to the rightSide");
+                //print("reducing to the rightSide");
             }
         }
 
@@ -186,7 +247,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
             NodeAreaRect.anchoredPosition += new Vector2(0, -changeIncrements / 2) * scale;
             totalShift += new Vector2(0, -changeIncrements / 2) * scale;
             madeShift = true;
-            print("enlarging to the bottomSide");
+            //print("enlarging to the bottomSide");
 
         } else if (ymin > bottomSide + changeIncrements) {
             if (NodeAreaRect.sizeDelta.y > 2500) {
@@ -195,7 +256,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
                 NodeAreaRect.anchoredPosition -= new Vector2(0, -changeIncrements / 2) * scale;
                 totalShift -= new Vector2(0, -changeIncrements / 2) * scale;
                 madeShift = true;
-                print("reducing to the bottomSide");
+                //print("reducing to the bottomSide");
             }
         }
 
@@ -205,7 +266,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
             NodeAreaRect.anchoredPosition += new Vector2(0, +changeIncrements / 2) * scale;
             totalShift += new Vector2(0, +changeIncrements / 2) * scale;
             madeShift = true;
-            print("enlarging to the topSide");
+            //print("enlarging to the topSide");
 
         } else if (ymax < topSide - changeIncrements) {
             if (NodeAreaRect.sizeDelta.y > 2500) {
@@ -214,7 +275,7 @@ public class RecipeTreeViewer : RecipeTreeMaster {
                 NodeAreaRect.anchoredPosition -= new Vector2(0, +changeIncrements / 2) * scale;
                 totalShift -= new Vector2(0, +changeIncrements / 2) * scale;
                 madeShift = true;
-                print("reducing to the topSide");
+                //print("reducing to the topSide");
             }
         }
 

@@ -18,6 +18,8 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
     public Color inputColor = Color.green;
     public Color outputColor = Color.red;
     public Color storageColor = Color.white;
+    public Color houseColor = Color.blue;
+    public Color workerColor = Color.cyan;
 
     public Image bg;
     private bool updateColor;
@@ -42,6 +44,14 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
                     break;
                 case InventoryItemSlot.SlotType.storage:
                     bg.color = storageColor;
+                    
+                    break;
+                case InventoryItemSlot.SlotType.house:
+                    bg.color = houseColor;
+                    
+                    break;
+                case InventoryItemSlot.SlotType.worker:
+                    bg.color = workerColor;
                     
                     break;
             }

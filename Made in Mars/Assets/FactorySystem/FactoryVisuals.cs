@@ -25,8 +25,17 @@ public class FactoryVisuals : MonoBehaviour {
         FactoryBuilder.ObjectsUpdated += ObjectsCreationDeletionUpdate;
     }
 
+    private void OnDestroy() {
+        FactoryBuilder.ObjectsUpdated -= ObjectsCreationDeletionUpdate;
+        s = null;
+    }
+
 
     public void ObjectsCreationDeletionUpdate() {
+        if(!FactoryMaster.s.isSimStarted)
+            return;
+
+
         var belts = FactoryMaster.s.GetBelts();
         for (int i = 0; i < belts.Count; i++) {
             var belt = belts[i];
@@ -57,7 +66,11 @@ public class FactoryVisuals : MonoBehaviour {
                 if (tile.areThereWorldObject) {
                     // We assume that if there is a world object, then it must be a belt world object.
                     // This is because world object deletions are handled through tile.objectUpdatedCallback
-                    Assert.IsNotNull(tile.worldObject.GetComponent<ConnectorWorldObject>());
+                    try {
+                        Assert.IsNotNull(tile.worldObject.GetComponent<ConnectorWorldObject>());
+                    } catch {
+                        print(tile.location);
+                    }
                     
                     var connectorWorldObject = tile.worldObject.GetComponent<ConnectorWorldObject>();
                     connectorWorldObject.UpdateSelf(location, connector);
@@ -74,8 +87,12 @@ public class FactoryVisuals : MonoBehaviour {
             if (tile.areThereWorldObject) {
                 // We assume that if there is a world object, then it must be a belt world object.
                 // This is because world object deletions are handled through tile.objectUpdatedCallback
-                Assert.IsNotNull(tile.worldObject.GetComponent<BuildingWorldObject>());
-                
+                try {
+                    Assert.IsNotNull(tile.worldObject.GetComponent<BuildingWorldObject>());
+                } catch {
+                    print(tile.location);
+                }
+
                 var buildingWorldObject = tile.worldObject.GetComponent<BuildingWorldObject>();
                 buildingWorldObject.UpdateSelf(building);
             } else {
@@ -147,8 +164,13 @@ public class FactoryVisuals : MonoBehaviour {
         droneWorldObjectPool.Spawn().GetComponent<DroneWorldObject>().SetUp(drone);
     }
 
-    
+
+    public int lastBeltItemCount = 0;
     public void BeltVisualsUpdate () {
+        int skipCount = Mathf.CeilToInt((float)lastBeltItemCount/ItemDrawSystem.s.maxBeltItems);
+        skipCount = Mathf.Max(1, skipCount);
+        lastBeltItemCount = 0;
+        
         for (int i = 0; i < FactoryMaster.s.GetBelts().Count; i++) {
             var curBelt = FactoryMaster.s.GetBelts()[i];
             if (curBelt != null) {
@@ -156,7 +178,8 @@ public class FactoryVisuals : MonoBehaviour {
                 int n = 0;
                 bool canMove = false;
                 var dir = (new Position(0,0)-Position.GetCardinalDirection(curBelt.direction)).Vector3(Position.Type.item);
-                var start = (curBelt.endPos + Position.GetCardinalDirection(curBelt.direction)).Vector3(Position.Type.item);
+                //var start = (curBelt.endPos + Position.GetCardinalDirection(curBelt.direction)).Vector3(Position.Type.item);
+                var start = (curBelt.endPos).Vector3(Position.Type.item) - dir *0.5f;
                 
                 for (int m = curBelt.items.Count-1; m >= 0; m--) {
 
@@ -165,9 +188,13 @@ public class FactoryVisuals : MonoBehaviour {
                         canMove = true;
                     } else {
                         for (int k = 0; k < curBelt.items[m].count; k++) {
-                            var pos = start + (dir *(((float)n)/((float)FactoryMaster.SlotPerSegment)));
-                            pos = new Vector3(pos.x, pos.y, DataHolder.itemLayer);
-                            ItemDrawSystem.s.SpawnBeltItem(curBelt.items[m].item, pos,  curBelt.direction, canMove);
+                            //if (lastBeltItemCount % skipCount == 0) {
+                                var pos = start + (dir * (((float) n) / ((float) FactoryMaster.SlotPerSegment+1)));
+                                pos = new Vector3(pos.x, pos.y, DataHolder.itemLayer);
+                                ItemDrawSystem.s.SpawnBeltItem(curBelt.items[m].item, pos, curBelt.direction, canMove);
+                            //}
+
+                            lastBeltItemCount += 1;
                             //Debug.DrawLine(pos, pos+Vector3.up, Color.red, 1f/FactoryMaster.SimUpdatePerSecond);
                             n += 1;
                         }

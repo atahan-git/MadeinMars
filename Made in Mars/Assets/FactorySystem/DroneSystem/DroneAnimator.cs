@@ -121,8 +121,10 @@ public class DroneAnimator : MonoBehaviour {
 	public Vector3 droneTargetLocation = new Vector3(100, 100, DataHolder.droneLayer);
 	public Vector3 droneTargetSmoothingLocation = new Vector3(100, 100, DataHolder.droneLayer);
 
-	float droneSpeed = FactoryDrones.DroneWorldSpeed;
-	float droneAcceleration = Mathf.Min(FactoryDrones.DroneWorldSpeed*0.6f, 0.8f);
+	float droneSpeed { get { return FactoryDrones.DroneWorldSpeed; } }
+
+	float droneAcceleration { get { return Mathf.Min(FactoryDrones.DroneWorldSpeed * 0.6f, 0.8f); } }
+
 	float droneCurSpeed = 0f;
 
 	public bool isInTargetLocation = false;

@@ -20,6 +20,6 @@ public class GUI_MainMenuController : MonoBehaviour
     }
 
     public void ResetProgress() {
-        DataSaver.DeleteSave(DataSaver.saveName);
+        DataSaver.s.DeleteSave(DataSaver.saveName);
     }
 }

@@ -22,15 +22,19 @@ public class MiniGUI_BuySellMenu : MonoBehaviour {
     public MiniGUI_ItemSelectionBox[] itemSelectors;
 
     public bool isBuy;
-    public void SetUp(GUI_CommsController controller, Item[] items, bool _isBuy, int shipCount) {
+    public void SetUp(GUI_CommsController controller, Item[] items, Item person, bool _isBuy, int shipCount) {
         MyController = controller;
         isBuy = _isBuy;
-        itemSelectors = new MiniGUI_ItemSelectionBox[items.Length];
+        itemSelectors = new MiniGUI_ItemSelectionBox[items.Length+1];
         
         for (int i = 0; i < items.Length; i++) {
             itemSelectors[i] = Instantiate(ItemSelectionBoxPrefab, ItemSelectionParent).GetComponent<MiniGUI_ItemSelectionBox>();
             itemSelectors[i].SetUp(items[i], isBuy, this);
         }
+        
+        
+        itemSelectors[itemSelectors.Length-1] = Instantiate(ItemSelectionBoxPrefab, ItemSelectionParent).GetComponent<MiniGUI_ItemSelectionBox>();
+        itemSelectors[itemSelectors.Length-1].SetUp(person, isBuy, this);
 
         shipCountText.text = "Available Ships: " + shipCount.ToString();
         

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8256580324021395121}
   - component: {fileID: 5904764176986720119}
   - component: {fileID: 4313975973977200827}
+  - component: {fileID: -3476565866766392936}
   m_Layer: 5
   m_Name: CraftingNode
   m_TagString: Untagged
@@ -184,17 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593f2469833acee46b9960a09bd7ad3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myNode:
-    id: 0
-    pos: {x: 0, y: 0, z: 0}
-  inputPortPrefab: {fileID: 9077275617890929330, guid: 11498335a8011bf40af363953cdc755b,
-    type: 3}
-  inputParent: {fileID: 2678172831935314632}
-  outputPortPrefab: {fileID: 1988500351069282448, guid: dd2c1558a05dfc1498947f301755a139,
-    type: 3}
-  outputParent: {fileID: 1701230253632461176}
-  inputPorts: []
-  outputPorts: []
+  myViewer: {fileID: 0}
+  leftPortParent: {fileID: 2678172831935314632}
+  rightPortParent: {fileID: 1701230253632461176}
+  allPorts: []
   background: {fileID: 4611263411333736038}
   craftingName: {fileID: 6664794046639970072}
   craftingTypeColors:
@@ -207,6 +201,8 @@ MonoBehaviour:
   - {r: 0.6666667, g: 1, b: 0.7244673, a: 1}
   - {r: 1, g: 0.6666667, b: 0.9834673, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.482, b: 0.482, a: 1}
+  - {r: 0.54875004, g: 1, b: 0.525, a: 1}
   nonLegalBrightness: 0.5
   craftingTypeRegion: {fileID: 1349048927234775893}
   craftingTierRegion: {fileID: 7818090033167206463}
@@ -250,6 +246,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 1
+--- !u!114 &-3476565866766392936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611263411333736036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3616ba23524064bc25833db7d279d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myId: -1
+  myPool: {fileID: 0}
+  isActive: 0
 --- !u!1 &5005535060817862472
 GameObject:
   m_ObjectHideFlags: 0

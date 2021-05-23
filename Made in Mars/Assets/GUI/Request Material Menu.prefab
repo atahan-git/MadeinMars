@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90b8ee8b31585c4c8a576c030645c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyController: {fileID: 0}
   ItemSelectionBoxPrefab: {fileID: 2567713270272097198, guid: a846e6d02019c1744a5c85c01dac69db,
     type: 3}
   ItemSelectionParent: {fileID: 5890946707992250575}
@@ -1279,7 +1280,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 5890946708581423343}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}

@@ -12,7 +12,7 @@ public class Player_BuildingController : MonoBehaviour {
 	public GameObject ItemPlacementHelperPrefab;
 	ItemPlacementHelper curItemPlacementScript;
 
-	public bool isSpaceLanding = false;
+	public bool isRocket = false;
 	private List<InventoryItemSlot> inventory = null;
 	public GenericCallback buildCompleteCallback;
 
@@ -68,7 +68,7 @@ public class Player_BuildingController : MonoBehaviour {
 			if (curItemPlacementScript != null) {
 				if (IsPointerOutsideBuildingBar() && FactoryPlayerConnector.s.CheckPlaceable(buildingItem, lastTile.location)) {
 					curItemPlacementScript.PlaceSelf();
-					FactoryPlayerConnector.s.BuildObject(buildingItem, lastTile.location,false, isSpaceLanding, instantBuildCheat, inventory);
+					FactoryPlayerConnector.s.BuildObject(buildingItem, lastTile.location,false, isRocket, instantBuildCheat, inventory);
 					buildCompleteCallback?.Invoke();
 				} else {
 					Debug.Log("Item placement failed due: pointer place =" + IsPointerOutsideBuildingBar() + " or checkplaceable = " + FactoryPlayerConnector.s.CheckPlaceable(buildingItem, lastTile.location));
@@ -90,14 +90,14 @@ public class Player_BuildingController : MonoBehaviour {
 	/// <param name="_isSpaceLanding"></param>
 	/// <param name="_isInventory"></param>
 	/// <param name="_inventory"></param>
-	public void TryToPlaceItem (BuildingData myData, bool _isSpaceLanding, List<InventoryItemSlot> _inventory, GenericCallback _buildCompleteCallback) {
+	public void TryToPlaceItem (BuildingData myData, bool _isRocket, List<InventoryItemSlot> _inventory, GenericCallback _buildCompleteCallback) {
 		Deselect();
 		print("Placing Item");
 		buildCompleteCallback = _buildCompleteCallback;
 		
 		inventory = _inventory;
 		
-		isSpaceLanding = _isSpaceLanding;
+		isRocket = _isRocket;
 		curState = PlacementState.item;
 		Player_MasterControlCheck.s.ToggleMovement(true);
 		Player_MasterControlCheck.s.TogglePlacingItem(true);
@@ -125,19 +125,23 @@ public class Player_BuildingController : MonoBehaviour {
 		//UIBeltModeOverlay.SetActive (false);
 	}
 
-	void SellCheck () {
-		if (Input.GetMouseButton(0)) {
-			if (IsPointerOutsideBuildingBar()) {
-				TileData myTile = Grid.s.GetTileUnderPointer();
-				if (myTile != null) {
+	void SellCheck() {
+		if (Input.GetMouseButton(0) && IsPointerOutsideBuildingBar()) {
+			TileData myTile = Grid.s.GetTileUnderPointer();
+			if (myTile != null) {
 
-					Debug.Log("Selling " + myTile.name);
+				Debug.Log("Selling " + myTile.name);
 
-					if (myTile.areThereWorldObject) {
+				if (myTile.areThereWorldObject) {
+					if (!instantBuildCheat) {
 						FactoryBuilder.StartDeconstruction(myTile.location);
+					} else {
+						FactoryBuilder.StartDeconstruction(myTile.location);
+						FactoryBuilder.CompleteDeconstruction(myTile.location);
 					}
 				}
 			}
+
 		}
 	}
 
@@ -166,7 +170,7 @@ public class Player_BuildingController : MonoBehaviour {
 	int n = 0;
 
 	void PlaceBeltsCheck() {
-		if (Input.GetMouseButton(0)) {
+		if (Input.GetMouseButton(0) && IsPointerOutsideBuildingBar()) {
 			TileData myTile = Grid.s.GetTileUnderPointer();
 			if (myTile != null) {
 				//Get tile
@@ -175,19 +179,21 @@ public class Player_BuildingController : MonoBehaviour {
 					//is it still the same tile?
 					//print ("do nothing");
 					return;
-				} else if(b_lastTile != null){
+				} else if (b_lastTile != null) {
 					int direction = Position.CardinalDirection(b_lastTile.location, myTile.location);
 					FactoryPlayerConnector.s.BuildBelt(myTile.location, direction, instantBuildCheat);
 				}
+
 				b_lastTile = myTile;
 			}
+
 		} else {
 			b_lastTile = null;
 		}
 	}
 
 	void PlaceConnectorsCheck() {
-		if (Input.GetMouseButton(0)) {
+		if (Input.GetMouseButton(0) && IsPointerOutsideBuildingBar()) {
 			TileData myTile = Grid.s.GetTileUnderPointer();
 			if (myTile != null) {
 				//Get tile
@@ -196,16 +202,17 @@ public class Player_BuildingController : MonoBehaviour {
 					//is it still the same tile?
 					//print ("do nothing");
 					return;
-				} else if(b_lastTile != null){
+				} else if (b_lastTile != null) {
 					int direction = Position.ParallelDirection(b_lastTile.location, myTile.location);
 					FactoryPlayerConnector.s.BuildConnector(myTile.location, direction, instantBuildCheat);
 				} else {
 					int direction = Position.ParallelDirection(myTile.location, myTile.location);
 					FactoryPlayerConnector.s.BuildConnector(myTile.location, direction, instantBuildCheat);
 				}
+
 				b_lastTile = myTile;
 			}
-		}else {
+		} else {
 			b_lastTile = null;
 		}
 	}

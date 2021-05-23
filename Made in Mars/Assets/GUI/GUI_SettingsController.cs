@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class GUI_SettingsController : MonoBehaviour
 {
     public void ResetData () {
-        DataSaver.mySave = null;
+        DataSaver.s.mySave = null;
         DataSaver.s.dontSave = true;
         DataSaver.s.DeleteSave();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

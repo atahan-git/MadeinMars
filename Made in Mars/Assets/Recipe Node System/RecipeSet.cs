@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 
@@ -11,14 +12,28 @@ using UnityEngine;
 /// </summary>
 [CreateAssetMenu]
 public class RecipeSet : ScriptableObject {
+    public string recipeSetUniqueName = "";
+    
     public ItemSet[] myItemSets = new ItemSet[0];
     public BuildingData[] myBuildings = new BuildingData[0];
     [Header ("please note that the higher ups in the lists will override the others during generation")]
     public OreSpawnSettings[] myOres = new OreSpawnSettings[0];
 
     
-    public List<CraftingNode> myCraftingNodes = new List<CraftingNode>();
-    public List<ItemNode> myItemNodes = new List<ItemNode>();
+    [SerializeField] List<CraftingNode> myCraftingNodes = new List<CraftingNode>();
+    [SerializeField] List<ItemNode> myItemNodes = new List<ItemNode>();
+    [SerializeField] List<ResearchNode> myResearchNodes = new List<ResearchNode>();
+
+    public List<CraftingNode> GetCraftingNodes() {
+        return myCraftingNodes;
+    }
+    public List<ItemNode> GetItemNodes() {
+        return myItemNodes;
+    }
+    
+    public List<ResearchNode> getResearchNodes() {
+        return myResearchNodes;
+    }
 
     /// <summary>
     /// Returns Item in all item sets based on uniqueName
@@ -47,6 +62,159 @@ public class RecipeSet : ScriptableObject {
         }
         return null;
     }
+    
+    public CraftingNode AddCraftingNode(Vector3 pos) {
+        var craftNode = new CraftingNode(GetNextId(), recipeSetUniqueName);
+        myCraftingNodes.Add(craftNode);
+        return craftNode;
+    }
+
+    public ResearchNode AddResearchNode(Vector3 pos) {
+        var researchNode = new ResearchNode(GetNextId(), recipeSetUniqueName);
+        myResearchNodes.Add(researchNode);
+        return researchNode;
+    }
+
+    public ItemNode AddItemNode(Vector3 pos, Item item) {
+        var itemNode = new ItemNode(GetNextId(), recipeSetUniqueName, item);
+        myItemNodes.Add(itemNode);
+        return itemNode;
+    }
+
+    public void RemoveNode(Node node) {
+        if (node is CraftingNode) {
+            myCraftingNodes.Remove((CraftingNode)node);
+        } else if(node is ItemNode) {
+            myItemNodes.Remove((ItemNode)node);
+        } else {
+            myResearchNodes.Remove((ResearchNode)node);
+        }
+    }
+
+    /// <summary>
+    /// Returns whether two adapter groups can be connected
+    /// </summary>
+    /// <returns></returns>
+    public static bool CanConnectAdapters(AdapterGroup group1, AdapterGroup group2) {
+        return group1.isLeftAdapter != group2.isLeftAdapter && group1.type == group2.type;
+    }
+
+    public static bool ConnectAdapters(AdapterGroup group1, AdapterGroup group2) {
+        // Only connect left to right and only connect same types
+        if (CanConnectAdapters(group1,group2)) {
+            group1.connections.Add(
+                new AdapterGroup.AdapterConnection() {count = 1, nodeId = group2.parentNodeId, recipeSetName = group2.recipeSetName}
+            );
+            group2.connections.Add(
+                new AdapterGroup.AdapterConnection() {count = 1, nodeId = group1.parentNodeId, recipeSetName = group1.recipeSetName}
+            );
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void RemoveConnection(AdapterGroup sourceAdapterGroup, AdapterGroup.AdapterConnection sourceConnection) {
+        // TODO: Add functionality to disconnect nodes from different recipe sets
+        var sourceNode = GetNodeWithId(sourceAdapterGroup.parentNodeId);
+        var otherNode = GetNodeWithId(sourceConnection.nodeId);
+
+        AdapterGroup otherAdapterGroup = null; 
+        foreach (var adapterGroup in otherNode.myAdapters) {
+            if (CanConnectAdapters(sourceAdapterGroup, adapterGroup)) {
+                otherAdapterGroup = adapterGroup;
+                break;
+            }
+        }
+
+        AdapterGroup.AdapterConnection otherConnection = null;
+        foreach (var connection in otherAdapterGroup.connections) {
+            if (connection.nodeId == sourceNode.id) {
+                otherConnection = connection;
+                break;
+            }
+        }
+        
+        sourceAdapterGroup.connections.Remove(sourceConnection);
+        otherAdapterGroup.connections.Remove(otherConnection);
+    }
+
+    public Node GetNodeWithId(int id) {
+        foreach (var node in myCraftingNodes) {
+            if (node.id == id)
+                return node;
+        } 
+        foreach (var node in myItemNodes) {
+            if (node.id == id)
+                return node;
+        }
+
+        return null;
+    }
+
+    int idCounter = -1;
+    int GetNextId() {
+        if (idCounter == -1) {
+            foreach (var node in myCraftingNodes) {
+                idCounter = Mathf.Max(idCounter, node.id);
+            } 
+            foreach (var node in myItemNodes) {
+                idCounter = Mathf.Max(idCounter, node.id);
+            }
+            foreach (var node in myResearchNodes) {
+                idCounter = Mathf.Max(idCounter, node.id);
+            }
+        }
+
+        idCounter++;
+        return idCounter;
+    }
+
+    [ContextMenu("FixRecipes")]
+    public void FixRecipes() {
+        var count = 0;
+        foreach (var node in myCraftingNodes) {
+            if (node.myAdapters.Count != 2) {
+                node.SetupAdapters();
+                count += 1;
+            } 
+        }
+        
+        foreach (var node in myItemNodes) {
+            if (node.myAdapters.Count != 2) {
+                node.SetupAdapters();
+                count += 1;
+            }
+        }
+        
+        foreach (var node in myResearchNodes) {
+            if (node.myAdapters.Count != 4) {
+                node.SetupAdapters();
+                count += 1;
+            }
+        }
+        
+        
+        List<Node> nodeMegaList = new List<Node>();
+        nodeMegaList.AddRange(myCraftingNodes);
+        nodeMegaList.AddRange(myItemNodes);
+        nodeMegaList.AddRange(myResearchNodes);
+        var connectionCount = 0;
+
+        foreach (var node in nodeMegaList) {
+            node.recipeSetName = recipeSetUniqueName;
+            foreach (var adapterGroup in node.myAdapters) {
+                adapterGroup.recipeSetName = recipeSetUniqueName;
+                for(int i = adapterGroup.connections.Count-1; i >= 0; i--) {
+                    var connection = adapterGroup.connections[i];
+                    connection.recipeSetName = recipeSetUniqueName;
+                }
+            }
+        }
+        
+        
+        Debug.Log($"Fixed {count} nodes and removed {connectionCount} connections");
+    }
 }
 
 // -----------------------------------
@@ -57,14 +225,92 @@ public class RecipeSet : ScriptableObject {
 
 
 [Serializable]
-public class Node {
+public abstract class Node {
+    public string recipeSetName;
     public int id;
     public Vector3 pos;
 
-    public Node (int id) {
+    public List<AdapterGroup> myAdapters = new List<AdapterGroup>();
+    
+    public Node(int id, string recipeSetName) {
         this.id = id;
+        this.recipeSetName = recipeSetName;
+    }
+
+    public abstract void SetupAdapters();
+    
+    public static void AttachAdapters(AdapterGroup incomingAdapter, AdapterGroup targetAdapter) {
+        
+        // We want to only connect adapters on the opposite sides
+        if (incomingAdapter.isLeftAdapter == !targetAdapter.isLeftAdapter) {
+            if (incomingAdapter.type == targetAdapter.type) {
+                incomingAdapter.connections.Add(new AdapterGroup.AdapterConnection(){count = 1, nodeId = targetAdapter.parentNodeId});
+                targetAdapter.connections.Add(new AdapterGroup.AdapterConnection() {count = 1, nodeId = incomingAdapter.parentNodeId});
+            }
+        }
+    }
+
+    public static void DetachAdapters(AdapterGroup incomingAdapter, AdapterGroup targetAdapter) {
+        for (int i = 0; i < incomingAdapter.connections.Count; i++) {
+            if (incomingAdapter.connections[i].nodeId == targetAdapter.parentNodeId) {
+                incomingAdapter.connections.RemoveAt(i);
+                break;
+            }
+        }
+        
+        for (int i = 0; i < targetAdapter.connections.Count; i++) {
+            if (targetAdapter.connections[i].nodeId == incomingAdapter.parentNodeId) {
+                targetAdapter.connections.RemoveAt(i);
+                break;
+            }
+        }
+    }
+
+
+    public int GetAdapterConnectionCount(bool isLeft) {
+        int count = 0;
+        foreach (var adapterGroup in myAdapters) {
+            if (adapterGroup.isLeftAdapter == isLeft) {
+                count = adapterGroup.connections.Count;
+            }
+        }
+
+        return count;
     }
 }
+
+[Serializable]
+public class AdapterGroup {
+    public enum AdapterType {
+        single, counted
+    }
+
+    public bool isLeftAdapter;
+
+    public AdapterType myType;
+
+    public int type = -1; // and adapter only connects to other adapters of the same type
+
+    public List<AdapterConnection> connections = new List<AdapterConnection>();
+    public int parentNodeId;
+    public string recipeSetName;
+    
+    [Serializable]
+    public class AdapterConnection {
+        public int count;
+        public string recipeSetName;
+        public int nodeId;
+    }
+
+    public AdapterGroup(int _parentNodeId, bool _isLeftAdapter, AdapterType _myType, int _type, string _recipeSetName) {
+        parentNodeId = _parentNodeId;
+        isLeftAdapter = _isLeftAdapter;
+        myType = _myType;
+        type = _type;
+        recipeSetName = _recipeSetName;
+    }
+}
+
 
 [Serializable]
 public class CraftingNode : Node {
@@ -72,45 +318,35 @@ public class CraftingNode : Node {
     public int tier;
     public int timeCost = 5;
 
+    // Make sure to also go edit DataHolder's index converted when you add things here!
     public enum cTypes {
-        Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building
+        Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, House, Farm
     }
 
     public cTypes CraftingType;
-
-    public List<CountedItemNode> inputs = new List<CountedItemNode>();
-    public List<CountedItemNode> outputs = new List<CountedItemNode>();
-
-    public CraftingNode(int id) : base(id) {
+    
+    public CraftingNode(int id, string recipeSetName) : base(id, recipeSetName) {
         this.id = id;
+        this.recipeSetName = recipeSetName;
+        SetupAdapters();
     }
     
-    public CraftingNode(int id, int tier, int craftingTime, cTypes myCraftingType) : base(id) {
+    public CraftingNode(int id, int tier, int craftingTime, cTypes myCraftingType, string recipeSetName) : base(id, recipeSetName) {
         this.id = id;
+        this.recipeSetName = recipeSetName;
         this.tier = tier;
         this.timeCost = craftingTime;
         this.CraftingType = myCraftingType;
+        SetupAdapters();
     }
-}
 
-[Serializable]
-public class CountedItemNode {
-    //public ItemNode itemNode;
-    public int nodeId;
-    public string itemUniqueName;
-    public int count;
-
-    public CountedItemNode(ItemNode node, int _count) {
-        nodeId = node.id;
-        itemUniqueName = node.itemUniqueName;
-        count = _count;
+    public override void SetupAdapters() {
+        myAdapters.Clear();
+        myAdapters.Add(new AdapterGroup(id, true, AdapterGroup.AdapterType.counted, 0, recipeSetName));
+        myAdapters.Add(new AdapterGroup(id, false, AdapterGroup.AdapterType.counted, 1, recipeSetName));
     }
     
-    public CountedItemNode(string _itemUniqueName, int _count) {
-        nodeId = -1;
-        itemUniqueName = _itemUniqueName;
-        count = _count;
-    }
+    
 }
 
 
@@ -118,16 +354,15 @@ public class CountedItemNode {
 public class ItemNode : Node {
     public string itemUniqueName;
     
-    public List<int> inputIds = new List<int>();
-    public List<int> outputIds = new List<int>();
-    
-    public ItemNode(int id, Item item) : base(id) {
+    public ItemNode(int id, string recipeSetName, Item item) : base(id, recipeSetName) {
         this.id = id;
+        this.recipeSetName = recipeSetName;
         this.itemUniqueName = item.uniqueName;
+        SetupAdapters();
     }
 
     private Item _item;
-    public Item GetItem(RecipeTreeMaster master) {
+    public Item GetItem(RecipeTreeViewer master) {
         if (_item == null || _item.uniqueName == "") {
             _item = master.myRecipeSet.GetItem(itemUniqueName);
         }
@@ -140,6 +375,33 @@ public class ItemNode : Node {
         }
 
         return _item;
+    }
+    
+    public override void SetupAdapters() {
+        myAdapters.Clear();
+        myAdapters.Add(new AdapterGroup(id, true, AdapterGroup.AdapterType.single, 1, recipeSetName));
+        myAdapters.Add(new AdapterGroup(id, false, AdapterGroup.AdapterType.single, 0, recipeSetName));
+    }
+}
+
+[Serializable]
+public class ResearchNode : Node {
+
+    public string researchName = "unnamed Research";
+    public string researchDescription = "no description";
+    public ResearchNode(int id, string recipeSetName) : base(id, recipeSetName) {
+        this.id = id;
+        this.recipeSetName = recipeSetName;
+        SetupAdapters();
+    }
+    
+    
+    public override void SetupAdapters() {
+        myAdapters.Clear();
+        myAdapters.Add(new AdapterGroup(id, true, AdapterGroup.AdapterType.single, 2, recipeSetName));
+        myAdapters.Add(new AdapterGroup(id, false, AdapterGroup.AdapterType.single, 2, recipeSetName));
+        myAdapters.Add(new AdapterGroup(id, true, AdapterGroup.AdapterType.counted, 0, recipeSetName));
+        myAdapters.Add(new AdapterGroup(id, false, AdapterGroup.AdapterType.counted, 1, recipeSetName));
     }
 }
 //}

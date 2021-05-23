@@ -24,6 +24,7 @@ MonoBehaviour:
     mySprite: {fileID: -3990283934829925723, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 10
+    inventoryStackCount: 99
     butsellamount: 50
     buyCost: 5
     sellCost: 1
@@ -36,6 +37,7 @@ MonoBehaviour:
     mySprite: {fileID: 6820874378014736752, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -48,6 +50,7 @@ MonoBehaviour:
     mySprite: {fileID: 6369237734242687349, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -60,6 +63,7 @@ MonoBehaviour:
     mySprite: {fileID: -8968788387101785509, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 50
+    inventoryStackCount: 99
     butsellamount: 50
     buyCost: 10
     sellCost: 1
@@ -72,6 +76,7 @@ MonoBehaviour:
     mySprite: {fileID: -723844646728394261, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -84,6 +89,7 @@ MonoBehaviour:
     mySprite: {fileID: 1971808137605159014, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -96,6 +102,7 @@ MonoBehaviour:
     mySprite: {fileID: 2001885115729285442, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -108,6 +115,7 @@ MonoBehaviour:
     mySprite: {fileID: 8183714501002561115, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -120,6 +128,7 @@ MonoBehaviour:
     mySprite: {fileID: -1313288797570730073, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -132,6 +141,7 @@ MonoBehaviour:
     mySprite: {fileID: -6266312699336088600, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -144,6 +154,7 @@ MonoBehaviour:
     mySprite: {fileID: -669874145606127964, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -156,6 +167,7 @@ MonoBehaviour:
     mySprite: {fileID: 9011217702622440246, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 3
     buyCost: 50
     sellCost: 1
@@ -168,6 +180,7 @@ MonoBehaviour:
     mySprite: {fileID: -3656881673128225340, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 2
     buyCost: 10
     sellCost: 1
@@ -180,6 +193,7 @@ MonoBehaviour:
     mySprite: {fileID: 3337367010377925390, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 50
     sellCost: 1
@@ -192,6 +206,7 @@ MonoBehaviour:
     mySprite: {fileID: 2309438470800066299, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 10
     buyCost: 20
     sellCost: 1
@@ -204,6 +219,7 @@ MonoBehaviour:
     mySprite: {fileID: 9097735631333442121, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 1
+    inventoryStackCount: 99
     butsellamount: 5
     buyCost: 30
     sellCost: 1
@@ -216,6 +232,7 @@ MonoBehaviour:
     mySprite: {fileID: 4136111383171953538, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 10
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 10
     sellCost: 1
@@ -228,6 +245,7 @@ MonoBehaviour:
     mySprite: {fileID: -1955862808891544455, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 75
     sellCost: 1
@@ -240,6 +258,7 @@ MonoBehaviour:
     mySprite: {fileID: 1059719246363598755, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 20
     sellCost: 1
@@ -252,6 +271,7 @@ MonoBehaviour:
     mySprite: {fileID: -5174558471401020031, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 15
     sellCost: 1
@@ -264,6 +284,7 @@ MonoBehaviour:
     mySprite: {fileID: -2771961633130186902, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 15
     sellCost: 1
@@ -276,6 +297,7 @@ MonoBehaviour:
     mySprite: {fileID: 8075237605014610649, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 100
     sellCost: 1
@@ -288,6 +310,7 @@ MonoBehaviour:
     mySprite: {fileID: 7575746216006269157, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 200
     sellCost: 1
@@ -300,6 +323,7 @@ MonoBehaviour:
     mySprite: {fileID: -7798748683335524603, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 50
     sellCost: 1
@@ -312,6 +336,7 @@ MonoBehaviour:
     mySprite: {fileID: -7205496494148649469, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 50
     sellCost: 1
@@ -324,6 +349,7 @@ MonoBehaviour:
     mySprite: {fileID: 4157161978780210668, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 50
     sellCost: 1
@@ -336,6 +362,7 @@ MonoBehaviour:
     mySprite: {fileID: 6523061527111195370, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 200
     sellCost: 1
@@ -348,6 +375,20 @@ MonoBehaviour:
     mySprite: {fileID: 7849572968307523696, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
+    inventoryStackCount: 99
     butsellamount: 1
     buyCost: 125
+    sellCost: 1
+  - uniqueName: food
+    name: Food Pack
+    description: This is a new Item
+    myItemSet: {fileID: 11400000}
+    myId: 27
+    myTextureOffset: {x: 3, y: 4}
+    mySprite: {fileID: 5644338819192894799, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
+      type: 3}
+    weight: 5
+    inventoryStackCount: 99
+    butsellamount: 10
+    buyCost: 10
     sellCost: 1

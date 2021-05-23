@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class FactoryMaster : MonoBehaviour {
 	public static FactoryMaster s;
-	public const float SimUpdatePerSecond = 4;
+    public bool isSimStarted = false;
+	public static float SimUpdatePerSecond = 4;
 	public const float BeltLength = 1f;
-	public const float BeltLengthToMovePerSecond = BeltLength * SimUpdatePerSecond;
+	public static float BeltLengthToMovePerSecond = BeltLength * SimUpdatePerSecond;
 
 	public const int SlotPerSegment = 4;
 	public const int ConnectorTransporterCount = 6;
@@ -26,61 +27,78 @@ public class FactoryMaster : MonoBehaviour {
     [SerializeField]
     List<Building> buildings = new List<Building>();
 
-	private void Awake () {
+    public int population;
+    public int housed;
+    public int workers;
+    public int jobs;
+
+    private void Awake () {
 		if (s != null) {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
 		}
 		s = this;
         
+    }
+
+    private void Start() {
         GameLoader.CallWhenLoaded(LoadFromSave);
-        DataSaver.saveEvent += SaveFactory;
+        DataSaver.s.saveEvent += SaveFactory;
+    }
+
+    private void OnDestroy() {
+        GameLoader.RemoveFromCall(LoadFromSave);
+        DataSaver.s.saveEvent -= SaveFactory;
     }
 
     public void LoadFromSave(bool isSuccess) {
         if (isSuccess) {
-            foreach (var saveData in DataSaver.mySave.beltData) {
+            foreach (var saveData in DataSaver.s.mySave.beltData) {
                 FactoryBuilder.CreateBeltFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.mySave.buildingData) {
+            foreach (var saveData in DataSaver.s.mySave.buildingData) {
                 FactoryBuilder.CreateBuildingFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.mySave.connectorData) {
+            foreach (var saveData in DataSaver.s.mySave.connectorData) {
                 FactoryBuilder.CreateConnectorFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.mySave.constructionData) {
+            foreach (var saveData in DataSaver.s.mySave.constructionData) {
                 FactoryBuilder.CreateConstructionFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.mySave.droneData) {
+            foreach (var saveData in DataSaver.s.mySave.droneData) {
                 var drone = FactoryBuilder.CreateDroneFromSave(saveData);
                 FactoryVisuals.s.CreateDroneVisuals(drone);
             }
-        } else {
+        } /*else {
             // For now, lets create some drones manually
             for (int i = 0; i < 3; i++) {
-                var drone = new Drone(new Position(100,100));
-            
-                AddDrone(drone);
-                FactoryVisuals.s.CreateDroneVisuals(drone);
+                
             }
-        }
+        }*/
         
-        FactoryBuilder.ObjectsUpdated?.Invoke();
+        //FactoryBuilder.ObjectsUpdated?.Invoke();
+    }
+
+    public void CreateDrone(Position location) {
+        var drone = new Drone(location);
+            
+        AddDrone(drone);
+        FactoryVisuals.s.CreateDroneVisuals(drone);
     }
 
 
     public void SaveFactory() {
         foreach (var belt in belts) {
-            DataSaver.BeltsToBeSaved.Add(new DataSaver.BeltSaveData(
+            DataSaver.s.BeltsToBeSaved.Add(new DataSaver.BeltSaveData(
                 belt.startPos, belt.endPos, belt.direction, FactoryBuilder.DecompressBeltForSaving(belt)
                 ));
         }
         
         foreach (var building in buildings) {
-            DataSaver.BuildingsToBeSaved.Add(new DataSaver.BuildingSaveData(
+            DataSaver.s.BuildingsToBeSaved.Add(new DataSaver.BuildingSaveData(
                 building.buildingData.uniqueName, building.center, building.invController.inventory,
                 building.craftController.lastCheckId, building.craftController.GetCraftingProcessProgress()
             ));
@@ -88,13 +106,13 @@ public class FactoryMaster : MonoBehaviour {
         
         
         foreach (var connector in connectors) {
-            DataSaver.ConnectorsToBeSaved.Add(new DataSaver.ConnectorSaveData(
+            DataSaver.s.ConnectorsToBeSaved.Add(new DataSaver.ConnectorSaveData(
                 connector.startPos, connector.endPos, connector.direction
             ));
         }
         
         foreach (var construction in constructions) {
-            DataSaver.ConstructionsToBeSaved.Add(new DataSaver.ConstructionSaveData(
+            DataSaver.s.ConstructionsToBeSaved.Add(new DataSaver.ConstructionSaveData(
                 construction.myData.uniqueName, construction.center, construction.direction,
                 construction.isConstruction, construction.isAssignedToDrone,
                 construction.constructionInventory.inventory, construction.afterConstructionInventory
@@ -124,7 +142,7 @@ public class FactoryMaster : MonoBehaviour {
                     constructionInventoryLocation = drone.constructionInv.myLocation;
             }
             
-            DataSaver.DronesToBeSaved.Add(new DataSaver.DroneSaveData(
+            DataSaver.s.DronesToBeSaved.Add(new DataSaver.DroneSaveData(
                 drone.curPosition, drone.targetPosition,
                 drone.isTravelling, drone.isBusy, drone.isLaser,
                 curTaskPos, curTaskMaterials,
@@ -137,6 +155,8 @@ public class FactoryMaster : MonoBehaviour {
     }
 
 	public void StartFactorySystem () {
+        isSimStarted = true;
+        FactoryBuilder.ObjectsUpdated?.Invoke();
         FactorySimulator.s.StartSimulation();
     }
 
@@ -283,7 +303,7 @@ public class Drone {
 /// </summary>
 [Serializable]
 public class Construction {
-    public List<Position> locations;
+    public List<Position> locations = new List<Position>();
     public Position center;
     public int direction;
     public BuildingData myData;
@@ -304,7 +324,8 @@ public class Construction {
         if (myData.myType != BuildingData.ItemType.Belt && myData.myType != BuildingData.ItemType.Connector) {
             locations = myData.shape.CoveredPositions(center);
         } else {
-            locations = new List<Position>() {center};
+            locations.Clear();
+            locations.Add(center);
         }
         isConstruction = _isConstruction;
         constructionInventory = new BuildingInventoryController();
@@ -654,6 +675,7 @@ public class Connector {
 
 [Serializable]
 public class Building {
+    public bool isDestructable = true;
     public BuildingData buildingData;
 
     public List<Position> myPositions = new List<Position>();
@@ -731,7 +753,7 @@ public class Building {
     }
 
 
-    public float UpdateCraftingProcess(float efficiency) {
-        return craftController.UpdateCraftingProcess(efficiency);
+    public float UpdateCraftingProcess(float energySupply) {
+        return craftController.UpdateCraftingProcess(energySupply);
     }
 }

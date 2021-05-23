@@ -46,8 +46,9 @@ public class InventoryItemSlot{
     public int count = 0; // If 0, means the slot is empty.
     public int maxCount = -1; // -1 means no limit
 
+    // Make sure to also change datasaver accordingly
     public enum SlotType {
-        input, output, storage
+        input, output, storage, house, worker
     }
 
     public SlotType mySlotType;

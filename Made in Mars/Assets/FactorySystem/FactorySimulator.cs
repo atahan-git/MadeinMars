@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FactorySimulator : MonoBehaviour {
 
@@ -23,58 +24,185 @@ public class FactorySimulator : MonoBehaviour {
 
     float energyProduced = 100000;
     float energyUsed = 1;
-    float efficiency;
+    float energySupply;
 
     public int currentSimTick = 0;
+    
+    Queue<float> buildingtime = new Queue<float>();
+    Queue<float> connectorTime = new Queue<float>();
+    Queue<float> visualsTime = new Queue<float>();
+    Queue<float> beltsTime = new Queue<float>();
+    Queue<float> dronesTime = new Queue<float>();
+    public int avgCount = 10;
+    public DataLogger log;
+    public UnityEngine.UI.Text myText;
     IEnumerator UpdateLoop() {
         yield return new WaitForSeconds(0.5f);
         while (true) {
+            var time = 0f;
+            time = Time.realtimeSinceStartup;
+
+            BuildingsUpdate();
+
+            buildingtime.Enqueue(Time.realtimeSinceStartup - time);
+            time = Time.realtimeSinceStartup;
+
+            ConnectorsUpdate();
             
-            efficiency = energyProduced / energyUsed;
-            if (efficiency > 1)
-                efficiency = 1;
-            energyUsed = 1;
-            energyProduced = 100000;
-
-            for (int i = 0; i < FactoryMaster.s.GetBuildings().Count; i++) {
-                if (FactoryMaster.s.GetBuildings()[i] != null) {
-                    if (FactoryMaster.s.GetBuildings()[i].craftController.isActive) {
-                        energyUsed += UpdateBuilding(FactoryMaster.s.GetBuildings()[i], efficiency);
-                    }
-                }
-            }
-
-            for (int i = 0; i < FactoryMaster.s.GetConnectors().Count; i++) {
-                if (FactoryMaster.s.GetConnectors()[i] != null) {
-                    UpdateConnector(FactoryMaster.s.GetConnectors()[i]);
-                }
-            }
+            connectorTime.Enqueue(Time.realtimeSinceStartup - time);
+            time = Time.realtimeSinceStartup;
 
             FactoryVisuals.s.BeltVisualsUpdate();
             FactoryVisuals.s.ConnectorVisualUpdate();
 
-            for (int i = 0; i < FactoryMaster.s.GetBelts().Count; i++) {
-                if (FactoryMaster.s.GetBelts()[i] != null) {
-                    UpdateBelt(FactoryMaster.s.GetBelts()[i]);
-                }
+            visualsTime.Enqueue(Time.realtimeSinceStartup - time);
+            time = Time.realtimeSinceStartup;
+            
+            BeltsUpdate();
+
+            beltsTime.Enqueue(Time.realtimeSinceStartup - time);
+            time = Time.realtimeSinceStartup;
+            
+            DronesUpdate();
+
+            dronesTime.Enqueue(Time.realtimeSinceStartup - time);
+
+            var simTime = buildingtime.Average() + connectorTime.Average() + beltsTime.Average() + dronesTime.Average();
+            var visTime = visualsTime.Average() ;
+            
+            /*Debug.Log($"Sim Update times: buildings: {buildingtime.Average().ToString("f6")}, " +
+                      $"connectors: {connectorTime.Average().ToString("f6")}, visuals: {visualsTime.Average().ToString("f6")}, " +
+                      $"belts: {beltsTime.Average().ToString("f6")}, drones: {dronesTime.Average().ToString("f6")}, total: {totalTime.ToString("f6")}");*/
+
+
+            var text = $"Sim: {(simTime * 1000f).ToString("000.000")} ms, Vis: {(visTime * 1000f).ToString("000.000")} ms,";
+            //Debug.Log(text);
+            myText.text = text;
+
+            if (buildingtime.Count > avgCount) {
+                buildingtime.Dequeue();
+                connectorTime.Dequeue();
+                beltsTime.Dequeue();
+                dronesTime.Dequeue();
+                visualsTime.Dequeue();
             }
-
-
-            if (currentSimTick % FactoryDrones.DronesSlowFactor == 0) {
-                FactoryDrones.UpdateTasks();
-
-                for (int i = 0; i < FactoryMaster.s.GetDrones().Count; i++) {
-                    if (FactoryMaster.s.GetDrones()[i] != null) {
-                        FactoryDrones.UpdateDrone(FactoryMaster.s.GetDrones()[i]);
-                    }
-                }
-            }
-
+            
             currentSimTick++;
             yield return new WaitForSeconds(1f / FactoryMaster.SimUpdatePerSecond);
         }
     }
 
+    void BuildingsUpdate() {
+        // Calculate energy available
+        energySupply = energyProduced / energyUsed;
+        if (energySupply > 1)
+            energySupply = 1;
+        energyUsed = 1;
+        energyProduced = 100000;
+
+        var popLeft = FactoryMaster.s.population;
+        var popHoused = 0;
+        
+        // House pops
+        if (popLeft > 0) {
+            for (int i = 0; i < FactoryMaster.s.GetBuildings().Count; i++) {
+                var building = FactoryMaster.s.GetBuildings()[i];
+                if (building != null) {
+                    if (building.buildingData.myType == BuildingData.ItemType.House) {
+                        // Houses only have one type of crafting, when they can house people they craft
+                        if (building.craftController.isCrafting) {
+                            if (popLeft >= building.invController.maxDwellers) {
+                                popLeft -= building.invController.maxDwellers;
+                                popHoused += building.invController.maxDwellers;
+                                building.invController.dwellerCount = building.invController.maxDwellers;
+                            } else {
+                                popHoused += popLeft;
+                                building.invController.dwellerCount = popLeft;
+                                break;
+                            }
+                        } else {
+                            building.invController.dwellerCount = 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        FactoryMaster.s.housed = popHoused;
+        var totalWorkers = popHoused;
+        var availableWorkers = totalWorkers;
+        var totalJobs = 0;
+
+        // Put workers to work
+        for (int i = 0; i < FactoryMaster.s.GetBuildings().Count; i++) {
+            var building = FactoryMaster.s.GetBuildings()[i];
+            if (building != null) {
+                totalJobs += building.invController.maxWorkers;
+
+                if (availableWorkers > 0) {
+                    if (availableWorkers >= building.invController.maxWorkers) {
+                        availableWorkers -= building.invController.maxWorkers;
+                        building.invController.workerCount = building.invController.maxWorkers;
+                    } else {
+                        building.invController.workerCount = availableWorkers;
+                        availableWorkers = 0;
+                    }
+                }
+            }
+        }
+
+
+        // workers is total workers minus those who are not put to work
+        FactoryMaster.s.workers = totalWorkers - availableWorkers;
+        FactoryMaster.s.jobs = totalJobs;
+
+        // Advance crafting
+        for (int i = 0; i < FactoryMaster.s.GetBuildings().Count; i++) {
+            var building = FactoryMaster.s.GetBuildings()[i];
+            if (building != null) {
+                if (building.craftController.isActive) {
+                    energyUsed += UpdateBuilding(building, energySupply);
+                }
+            }
+        }
+    }
+
+    void BeltsUpdate() {
+        for (int i = 0; i < FactoryMaster.s.GetBelts().Count; i++) {
+            if (FactoryMaster.s.GetBelts()[i] != null) {
+                UpdateBelt(FactoryMaster.s.GetBelts()[i]);
+            }
+        }
+    }
+
+    void ConnectorsUpdate() {
+        for (int i = 0; i < FactoryMaster.s.GetConnectors().Count; i++) {
+            if (FactoryMaster.s.GetConnectors()[i] != null) {
+                UpdateConnector(FactoryMaster.s.GetConnectors()[i]);
+            }
+        }
+    }
+
+    void DronesUpdate() {
+        if (currentSimTick % FactoryDrones.DronesSlowFactor == 0) {
+            FactoryDrones.UpdateTasks();
+
+            for (int i = 0; i < FactoryMaster.s.GetDrones().Count; i++) {
+                if (FactoryMaster.s.GetDrones()[i] != null) {
+                    FactoryDrones.UpdateDrone(FactoryMaster.s.GetDrones()[i]);
+                }
+            }
+        }
+    }
+
+    private void OnDestroy() {
+        var simTime = buildingtime.Average() + connectorTime.Average() + beltsTime.Average() + dronesTime.Average();
+        var visTime = visualsTime.Average() ;
+        log.totalObjectCount.Add(FactoryMaster.s.GetBelts().Count + FactoryMaster.s.GetConnectors().Count + FactoryMaster.s.GetBuildings().Count + FactoryMaster.s.GetDrones().Count + FactoryMaster.s.GetConstructions().Count);
+        log.totalBeltItemsCount.Add(FactoryVisuals.s.lastBeltItemCount);
+        log.averageSimTime.Add(simTime);
+        log.averageVisTime.Add(visTime);
+    }
 
 
     /// <summary>
@@ -231,7 +359,7 @@ public class FactorySimulator : MonoBehaviour {
     /// Updates the building - handled by building crafting controller
     /// </summary>
     /// <param name="building"></param>
-    public static float UpdateBuilding(Building building, float efficiency) {
-        return building.UpdateCraftingProcess(efficiency);
+    public static float UpdateBuilding(Building building, float energySupply) {
+        return building.UpdateCraftingProcess(energySupply);
     }
 }

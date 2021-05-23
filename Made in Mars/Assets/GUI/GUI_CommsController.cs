@@ -36,10 +36,10 @@ public class GUI_CommsController : MonoBehaviour {
     private MiniGUI_BuySellMenu sellmenu;
     void SetUpPanels () {
         buymenu = Instantiate(BuyMenuPrefab, BuyMenuParent).GetComponent<MiniGUI_BuySellMenu>();
-        buymenu.SetUp(this, DataHolder.s.GetAllItems(),true, coms.availableShipCount);
+        buymenu.SetUp(this, DataHolder.s.GetAllItems(), DataHolder.s.GetPeople(),true, coms.availableShipCount);
         buymenu.ClosePanel();
         sellmenu = Instantiate(BuyMenuPrefab, BuyMenuParent).GetComponent<MiniGUI_BuySellMenu>();
-        sellmenu.SetUp(this, DataHolder.s.GetAllItems(),false, coms.availableShipCount);
+        sellmenu.SetUp(this, DataHolder.s.GetAllItems(),DataHolder.s.GetPeople(),false, coms.availableShipCount);
         sellmenu.ClosePanel();
     }
 
@@ -50,7 +50,14 @@ public class GUI_CommsController : MonoBehaviour {
     public BuildingData rocketData;
     public void BuyShipWithMaterial(List<InventoryItemSlot> items) {
         var myShip = Instantiate(RocketJourneyPrefab, RocketJourneyParent);
-        myShip.GetComponent<MiniGUI_BuildingBarSlot>().ChangeBuilding(rocketData, true,true, true, items,true,20);
+        for (int i = items.Count - 1; i >= 0; i--) {
+            if (items[i].myItem.uniqueName.Contains("pep")) {
+                FactoryMaster.s.population += items[i].count;
+                items.RemoveAt(i);
+            }
+        }
+        
+        myShip.GetComponent<MiniGUI_BuildingBarSlot>().ChangeBuilding(rocketData, true, items,true,3);
     }
     
     public void SellShipWithMaterial(List<InventoryItemSlot> items) {

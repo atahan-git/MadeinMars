@@ -27,19 +27,19 @@ public class FactoryPlayerConnector : MonoBehaviour
 	}
 
 	/*void LoadFromSave () {
-		if (DataSaver.mySave != null) {
-			foreach (DataSaver.BeltSaveData belt in DataSaver.mySave.beltData) {
+		if (DataSaver.s.mySave != null) {
+			foreach (DataSaver.s.BeltSaveData belt in DataSaver.s.mySave.beltData) {
 				if (belt != null)
 					BuildBeltFromSave(belt.center, belt.cardinalDirection, belt.isBuilt, belt.myInvConverted());
 			}
 
-			foreach (DataSaver.BuildingSaveData building in DataSaver.mySave.buildingData) {
+			foreach (DataSaver.s.BuildingSaveData building in DataSaver.s.mySave.buildingData) {
 				if (building != null)
 					BuildObjectFromSave(building.myUniqueName, building.center, building.isBuilt, building.myInvConverted());
 			}
 			
 			
-			foreach (DataSaver.ConnectorSaveData connector in DataSaver.mySave.connectorData) {
+			foreach (DataSaver.s.ConnectorSaveData connector in DataSaver.s.mySave.connectorData) {
 				if (connector != null)
 					BuildConnectorFromSave(connector.center, connector.myDir, connector.isBuilt, connector.myInvConverted());
 			}
@@ -125,12 +125,16 @@ public class FactoryPlayerConnector : MonoBehaviour
 		}
 	}
 
-	public bool BuildObject(BuildingData myData, Position location, bool forced, bool spaceLandingBuild, bool isBuilt, List<InventoryItemSlot> inventory = null) {
-		return _BuildObject(myData, location, forced, spaceLandingBuild, isBuilt, inventory);
+	public bool BuildObject(BuildingData myData, Position location, bool forced, bool rocketBuild, bool isBuilt, List<InventoryItemSlot> inventory = null) {
+		return _BuildObject(myData, location, forced, rocketBuild, isBuilt, inventory);
 	}
 
-	bool _BuildObject (BuildingData myData, Position location, bool forced, bool spaceLandingBuild, bool isBuilt, List<InventoryItemSlot> inventory) {
+	bool _BuildObject (BuildingData myData, Position location, bool forced, bool rocketBuild, bool isBuilt, List<InventoryItemSlot> inventory) {
 
+		if (rocketBuild) {
+			isBuilt = true;
+		}
+		
 		if (CheckPlaceable(myData, location) || forced) {
 			
 			if (!isBuilt) {

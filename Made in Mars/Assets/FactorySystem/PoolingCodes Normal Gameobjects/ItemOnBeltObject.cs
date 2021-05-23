@@ -21,18 +21,22 @@ public class ItemOnBeltObject : MonoBehaviour {
 		GetComponent<SpriteRenderer>().sprite = mySprite;
 		direction = myDirection;
 		lifetime = 0f;
-		gameObject.SetActive(true);
+		/*if (!isActive) {
+			gameObject.SetActive(true);
+		}*/
 		isActive = true;
 		myPool.ActiveObjects += 1;
 		isBeltObject = _isBeltObject;
 	}
 
-	
+
+	private readonly Vector3 dissappearLand = new Vector3(-100, -100, 0f);
 	/// <summary>
 	/// Should be called from the object pool
 	/// </summary>
 	public void DisableObject (){
-		gameObject.SetActive(false);
+		/*gameObject.SetActive(false);*/
+		transform.position = dissappearLand;
 		isActive = false;
 		myPool.ActiveObjects -= 1;
 	}

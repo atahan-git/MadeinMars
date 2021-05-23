@@ -16,6 +16,8 @@ public class GameLoader : MonoBehaviour {
     static event LoadYourself loadCompleteEventEarly;
     static event LoadYourself loadCompleteEvent;
 
+    static event GenericCallback newGameEvent;
+
     public void LoadGame() {
         if (DataSaver.s.Load()) {
             isGameLoadingSuccessfull = true;
@@ -25,6 +27,8 @@ public class GameLoader : MonoBehaviour {
 
         loadCompleteEventEarly?.Invoke(isGameLoadingSuccessfull);
         loadCompleteEvent?.Invoke(isGameLoadingSuccessfull);
+        if(!isGameLoadingSuccessfull)
+            newGameEvent?.Invoke();
             
         isGameLoadingDone = true;
     }
@@ -44,6 +48,14 @@ public class GameLoader : MonoBehaviour {
     public static void CallWhenLoaded(LoadYourself callback) {
         loadCompleteEvent += callback;
     }
+    
+    /// <summary>
+    /// This must be called from "Awake"
+    /// Remember to add the "OnDestroy" pair > RemoveFromCall
+    /// </summary>
+    public static void CallWhenNewGame(GenericCallback callback) {
+        newGameEvent += callback;
+    }
 
     /// <summary>
     /// This should always be called "OnDestroy" to make things work if you ever delete an object and/or reload a scene
@@ -53,4 +65,15 @@ public class GameLoader : MonoBehaviour {
         loadCompleteEventEarly -= callback;
         loadCompleteEvent -= callback;
     }
+    
+    /// <summary>
+    /// This should always be called "OnDestroy" to make things work if you ever delete an object and/or reload a scene
+    /// </summary>
+    /// <param name="callback"></param>
+    public static void RemoveFromCall(GenericCallback callback) {
+        newGameEvent -= callback;
+    }
+    
+    
+    
 }

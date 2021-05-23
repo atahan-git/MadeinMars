@@ -5,10 +5,10 @@ using DroneState = Drone.DroneState;
 using Random = UnityEngine.Random;
 
 public class FactoryDrones {
-    public const int DronesSlowFactor = 4;
-    public const float DroneUpdatePerSecond = FactoryMaster.SimUpdatePerSecond / DronesSlowFactor;
-    public const int DroneSpeedPerTick = 6;
-    public const float DroneWorldSpeed = DroneSpeedPerTick*DroneUpdatePerSecond;
+    public const int DronesSlowFactor = 2;
+    public static float DroneUpdatePerSecond = FactoryMaster.SimUpdatePerSecond / DronesSlowFactor;
+    public const int DroneSpeedPerTick = 3;
+    public static float DroneWorldSpeed = DroneSpeedPerTick*DroneUpdatePerSecond;
     
     public static List<BuildingInventoryController> storageBuildings = new List<BuildingInventoryController>();
     
@@ -265,6 +265,20 @@ public class FactoryDrones {
 					drone.myInventory.ForceAddItem(item, 1, true, true);
 					return;
 				}
+			} {
+				var afterConstructInv = drone.currentTask.construction.afterConstructionInventory;
+				if (afterConstructInv != null) {
+					if (afterConstructInv.Count > 0) {
+						for (int i = 0; i < afterConstructInv.Count; i++) {
+							var curSlot = afterConstructInv[i];
+							if (curSlot.count > 0) {
+								drone.myInventory.ForceAddItem(curSlot.myItem, 1, true, true);
+								curSlot.count -= 1;
+								return;
+							}
+						}
+					}
+				}
 			}
 				FactoryBuilder.CompleteDeconstruction(drone.currentTask.location);
 				drone.isLaser = false;
@@ -342,7 +356,7 @@ public class DroneTask {
 	
 	public DroneTaskType myType;
 	public Position location = Position.InvalidPosition();
-	public List<InventoryItemSlot> materials;
+	public List<InventoryItemSlot> materials = new List<InventoryItemSlot>();
 	public Construction construction;
 
 	public DroneTask(Construction cons) {
@@ -355,7 +369,7 @@ public class DroneTask {
 
 		location = construction.center;
 		var inv = cons.constructionInventory.inventory;
-		materials = new List<InventoryItemSlot>();
+		materials.Clear();
 		for (int i = 0; i < inv.Count; i++) {
 			materials.Add(new InventoryItemSlot(inv[i].myItem, 0, inv[i].maxCount, InventoryItemSlot.SlotType.storage));
 		}

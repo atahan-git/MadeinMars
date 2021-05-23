@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic; 
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -10,36 +11,29 @@ using UnityEngine.UI;
 /// Holds the basic functionality shared across both
 /// </summary>
 public abstract class NodeGfx : MonoBehaviour {
-    protected RecipeTreeMaster myMaster;
+    public RecipeTreeViewer myViewer;
     public Node myNode;
     
-    public GameObject inputPortPrefab;
-    public Transform inputParent;
-    public GameObject outputPortPrefab;
-    public Transform outputParent;
+    public Transform leftPortParent;
+    public Transform rightPortParent;
 
-    public List<NodePortGfx> inputPorts = new List<NodePortGfx>();
-    public List<NodePortGfx> outputPorts = new List<NodePortGfx>();
+    public List<NodePortGfx> allPorts = new List<NodePortGfx>();
 
-    private int lastInputGiven = -1;
-    private int lastOutputGiven = -1;
-    public NodePortGfx GetNextEmptyNode(bool isInput) {
-        if (isInput) {
-            lastInputGiven += 1;
-            return inputPorts[lastInputGiven];
-        } else {
-            lastOutputGiven += 1;
-            return outputPorts[lastOutputGiven];
-        }
-    }
     
-    protected void SetUp(RecipeTreeMaster master, Node node) {
-        myMaster = master;
+    
+    /// <summary>
+    /// Should be used to redraw specific node parts like the name or crafting type
+    /// </summary>
+    protected void ReDrawnNode(RecipeTreeViewer master, Node node) {
+        myViewer = master;
         myNode = node;
+        ReDrawPorts();
     }
 
     public void BeginClickConnect(NodePortGfx port) {
-        myMaster.BeginClickConnect(this, port);
+        if (NodeItemTreeMakerMaster.s != null) {
+            NodeItemTreeMakerMaster.s.BeginClickConnect(this, port);
+        }
     }
 
     public const float snapMult = 0.0515f/2f;
@@ -49,94 +43,81 @@ public abstract class NodeGfx : MonoBehaviour {
         /*myNode.x = ((int) (transform.position.x*snapMult))/snapMult;
         myNode.y = ((int) (transform.position.y*snapMult))/snapMult;
         transform.position = new Vector3(myNode.x,myNode.y,0);*/
-        myMaster.RescaleNodeArea();
-        myNode.pos = (transform as RectTransform).anchoredPosition;
+        myViewer.RescaleNodeArea();
+        //myNode.pos = (transform as RectTransform).anchoredPosition;
     }
 
 
     public void OnDraggingNode() {
-        foreach (var input in inputPorts) {
-            input.OnPositionUpdated();
-            if(input.myConnection)
-                input.myConnection.OnPositionUpdated();
+        foreach (var port in allPorts) {
+            port.OnPositionUpdated();
+            port.connectedPortGfx?.OnPositionUpdated();
         }
 
-        foreach (var output in outputPorts) {
-            output.OnPositionUpdated();
-            if(output.myConnection)
-                output.myConnection.OnPositionUpdated();
+        if (NodeItemTreeMakerMaster.s) {
+            NodeItemTreeMakerMaster.s.UpdateNodePosition(this, (transform as RectTransform).anchoredPosition);
         }
     }
 
     public void DeleteNode() {
-
-        int count;
-        count = inputPorts.Count;
-        for (int i = count-1; i >= 0; i --) {
-            var port = inputPorts[i];
-            port.RemoveConnections();
-            port.DeleteSelf();
+        if (NodeItemTreeMakerMaster.s != null) {
+            NodeItemTreeMakerMaster.s.DeleteNode(this);
         }
-
-        count = outputPorts.Count;
-        for (int i = count-1; i >= 0; i --) {
-            var port = outputPorts[i];
-            port.RemoveConnections();
-            port.DeleteSelf();
-        }
-
-        myMaster.DeleteNode(this);
-        Destroy(gameObject);
     }
 
-    public void DeletePort(NodePortGfx.PortType portType, int index) {
-        try {
-            switch (portType) {
-                case NodePortGfx.PortType.itemInput:
-                case NodePortGfx.PortType.craftInput:
-                    inputPorts.RemoveAt(index);
-                    break;
-                case NodePortGfx.PortType.itemOutput:
-                case NodePortGfx.PortType.craftOutput:
-                    outputPorts.RemoveAt(index);
-                    break;
-            }
-        }catch{}
 
-        if(this is CraftingNodeGfx)
-            (this as CraftingNodeGfx).UpdateVisuals();
+
+    void ReDrawPorts() {
+        int childCount = allPorts.Count;
+        for (int i = 0; i < childCount; i++) {
+            allPorts[i].GetComponent<PooledGameObject>().DestroyPooledObject();
+        }
+
+        allPorts.Clear();
+        
+        for (int i = 0; i < myNode.myAdapters.Count; i++) {
+            var myAdapter = myNode.myAdapters[i];
+            for (int n = 0; n < myAdapter.connections.Count; n++) {
+                var connection = myAdapter.connections[n];
+
+                var myPort = myAdapter.isLeftAdapter ? myViewer.leftPortPool.Spawn() : myViewer.rightPortPool.Spawn();
+                myPort.transform.SetParent(myAdapter.isLeftAdapter? leftPortParent : rightPortParent);
+                
+                allPorts.Add(myPort.GetComponent<NodePortGfx>().Setup(this, myAdapter, connection, connection.count));
+            }
+            
+            // add an extra port so that the user can generate extra connections
+            var myPortExtra = myAdapter.isLeftAdapter ? myViewer.leftPortPool.Spawn() : myViewer.rightPortPool.Spawn();
+            myPortExtra.transform.SetParent(myAdapter.isLeftAdapter? leftPortParent : rightPortParent);
+                
+            allPorts.Add(myPortExtra.GetComponent<NodePortGfx>().Setup(this, myAdapter, null, 0));
+        }
+        RebuildLayout();
+    }
+
+    public void ReDrawConnections() {
+        foreach (var port in allPorts) {
+            if (port.myConnection != null) {
+                var connectedNode = myViewer.GetNodeWithId(port.myConnection.nodeId);
+                foreach (var connectedNodePort in connectedNode.allPorts) {
+                    if (connectedNodePort.myConnection != null) {
+                        if (connectedNodePort.myConnection.nodeId == myNode.id) {
+                            port.SetConnection(connectedNodePort);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
     
-    public void RemoveConnectionAtPort(NodePortGfx.PortType portType, int index) {
-        try {
-            switch (portType) {
-                case NodePortGfx.PortType.craftInput:
-                    (myNode as CraftingNode).inputs.RemoveAt(index);
-                    //inputPorts.RemoveAt(index);
-                    break;
-                case NodePortGfx.PortType.craftOutput:
-                    (myNode as CraftingNode).outputs.RemoveAt(index);
-                    //outputPorts.RemoveAt(index);
-                    break;
-                case NodePortGfx.PortType.itemInput:
-                    (myNode as ItemNode).inputIds.RemoveAt(index);
-                    //inputPorts.RemoveAt(index);
-                    break;
-                case NodePortGfx.PortType.itemOutput:
-                    (myNode as ItemNode).outputIds.RemoveAt(index);
-                    //outputPorts.RemoveAt(index);
-                    break;
-            }
-        }catch{}
-
-        if(this is CraftingNodeGfx)
-            (this as CraftingNodeGfx).UpdateVisuals();
+    
+    public void AdapterConnectionValueUpdated(AdapterGroup.AdapterConnection connection, int value) {
+        if(connection != null)
+            connection.count = value;
     }
 
-    public abstract void SetupPorts();
-    public abstract void SetupConnections();
-
-    public void RebuildLayout() {
+    void RebuildLayout() {
         LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
     }
 

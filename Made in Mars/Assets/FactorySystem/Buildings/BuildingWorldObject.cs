@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,8 @@ public class BuildingWorldObject : MonoBehaviour
 	[SerializeField] Building myBuilding;
 	[SerializeField] Construction myConstruction;
 	[SerializeField] BuildingData myData;
-	[SerializeField] List<Position> myLocations;
-	[SerializeField] List<TileData> myTiles;
+	[SerializeField] List<Position> myLocations = new List<Position>();
+	[SerializeField] List<TileData> myTiles = new List<TileData>();
 	public BuildingCraftingController myCrafter;
 	public BuildingInventoryController myInventory;
 	SpriteGraphicsController myRend;
@@ -26,7 +27,13 @@ public class BuildingWorldObject : MonoBehaviour
 	public bool isInventorySetup = false;
 	public GenericCallback buildingInventoryUpdatedCallback;
 
+	private void OnEnable() {
+		isSpaceLandingTriggered = false;
+	}
+
+	public bool isSpaceLandingTriggered = false;
 	public void UpdateSelf(Building _building) {
+		RemoveSelfFromTile();
 		// Only update if the building has changed
 		if(myBuilding !=null && !myBuilding.center.isValid() && myBuilding.myPositions != null && myBuilding.myPositions.Count > 0 && myBuilding.myPositions[0] == _building.myPositions[0])
 			return;
@@ -54,9 +61,15 @@ public class BuildingWorldObject : MonoBehaviour
 		isInventorySetup = true;
 		buildingInventoryUpdatedCallback?.Invoke();
 		StopAnimations();
+
+		if (_building.buildingData.uniqueName == "bRocket" && !isSpaceLandingTriggered) {
+			isSpaceLandingTriggered = true;
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
+		}
 	}
 	
 	public void UpdateSelf(Construction _construction) {
+		RemoveSelfFromTile();
 		myConstruction = _construction;
 		myData = myConstruction.myData;
 		isConstruction = true;
@@ -81,7 +94,7 @@ public class BuildingWorldObject : MonoBehaviour
 	
 	void GenericUpdateSelf(List<Position> _locations, Position _location) {
 		myLocations = _locations;
-		myTiles = new List<TileData>();
+		myTiles.Clear();
 		foreach (var loc in myLocations) {
 			var tile = Grid.s.GetTile(loc);
 			myTiles.Add(tile);
@@ -138,8 +151,9 @@ public class BuildingWorldObject : MonoBehaviour
 			}
 		}
 	}
-
-	public void DestroyYourself() {
+	
+	
+	public void RemoveSelfFromTile() {
 		foreach (Position myPosition in myLocations) {
 			if (myPosition != null) {
 				var myTile = Grid.s.GetTile(myPosition);
@@ -147,6 +161,10 @@ public class BuildingWorldObject : MonoBehaviour
 				myTile.objectUpdatedCallback -= TileUpdated;
 			}
 		}
+	}
+
+	public void DestroyYourself() {
+		RemoveSelfFromTile();
 		GetComponent<PooledGameObject>().DestroyPooledObject();
 	}
 	

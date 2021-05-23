@@ -23,7 +23,7 @@ public class Grid
 	public void WorldSetup ( MapGenerator _mapGen) {
 		mapGen = _mapGen;
 
-		DataSaver.saveEvent += SaveTiles;
+		DataSaver.s.saveEvent += SaveTiles;
 		GameLoader.CallWhenLoaded(GameLoadingComplete, 0);
 	}
 
@@ -72,11 +72,11 @@ public class Grid
 
 	public void LoadTiles() {
 		mapGen.Clear();
-		bool loadDataExists = DataSaver.mySave.tileData != null;
+		bool loadDataExists = DataSaver.s.mySave.tileData != null;
 		if (loadDataExists) {
-			if (DataSaver.mySave.tileData != null && DataSaver.mySave.tileData.Length > 0) {
-				int xLength = DataSaver.mySave.tileData.GetLength(0);
-				int yLength = DataSaver.mySave.tileData.GetLength(0);
+			if (DataSaver.s.mySave.tileData != null && DataSaver.s.mySave.tileData.Length > 0) {
+				int xLength = DataSaver.s.mySave.tileData.GetLength(0);
+				int yLength = DataSaver.s.mySave.tileData.GetLength(0);
 				int[,] materials = new int [xLength, yLength];
 				int[,] height = new int[xLength, yLength];
 				int[][,] oreAmounts = new int[DataHolder.s.GetAllOres().Length][,];
@@ -85,9 +85,9 @@ public class Grid
 				}
 
 				myTiles = new TileData[xLength, yLength];
-				for (int x = 0; x < DataSaver.mySave.tileData.GetLength(0); x++) {
-					for (int y = 0; y < DataSaver.mySave.tileData.GetLength(1); y++) {
-						DataSaver.TileData dat = DataSaver.mySave.tileData[x, y];
+				for (int x = 0; x < DataSaver.s.mySave.tileData.GetLength(0); x++) {
+					for (int y = 0; y < DataSaver.s.mySave.tileData.GetLength(1); y++) {
+						DataSaver.TileData dat = DataSaver.s.mySave.tileData[x, y];
 						myTiles[x, y] = new TileData(dat, x, y);
 						materials[x, y] = dat.material;
 						height[x, y] = dat.height;
@@ -119,22 +119,22 @@ public class Grid
 
 		int[,] oreType = new int[mapSize,mapSize];
 		int[,] oreAmount = new int[mapSize, mapSize];
-		int[][,] oreAmountsPrepass = new int[DataHolder.s.GetAllOres().Length][,];
+		/*int[][,] oreAmountsPrepass = new int[DataHolder.s.GetAllOres().Length][,];
 		for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
 			oreAmountsPrepass[i] = mapGen.GenerateResources(DataHolder.s.GetAllOres()[i]);
-		}
+		}*/
 
 		myTiles = new TileData[mapSize, mapSize];
 
 		for (int x = 0; x < materials.GetLength(0); x++) {
 			for (int y = 0; y < materials.GetLength(1); y++) {
-				for (int i = 0; i < oreAmountsPrepass.Length; i++) {
+				/*for (int i = 0; i < oreAmountsPrepass.Length; i++) {
 					if (oreAmountsPrepass[i][x, y] > 0) {
 						oreType[x, y] = i+1;
 						oreAmount[x, y] = oreAmountsPrepass[i][x, y] * 10000;
 						break;
 					}
-				}
+				}*/
 
 
 				myTiles[x, y] = new TileData(x,y);
@@ -147,17 +147,18 @@ public class Grid
 	}
 
 	public void SaveTiles () {
-		DataSaver.TileDataToBeSaved = new DataSaver.TileData[myTiles.GetLength(0), myTiles.GetLength(1)];
+		DataSaver.s.TileDataToBeSaved = new DataSaver.TileData[myTiles.GetLength(0), myTiles.GetLength(1)];
 		for (int x = 0; x < myTiles.GetLength(0); x++) {
 			for (int y = 0; y < myTiles.GetLength(1); y++) {
 				TileData ct = myTiles[x, y];
-				DataSaver.TileDataToBeSaved[x, y] = new DataSaver.TileData(ct.height, ct.material, ct.oreType, ct.oreAmount);
+				DataSaver.s.TileDataToBeSaved[x, y] = new DataSaver.TileData(ct.height, ct.material, ct.oreType, ct.oreAmount);
 			}
 		}
 	}
 
-	private void OnDestroy () {
-		DataSaver.saveEvent -= SaveTiles;
+	public void OnDestroy () {
+		s = null;
+		DataSaver.s.saveEvent -= SaveTiles;
 		GameLoader.RemoveFromCall(GameLoadingComplete);
 	}
 }
@@ -204,9 +205,9 @@ public class TileData {
 		set { _myConstruction = value; objectUpdatedCallback?.Invoke(); }
 	}
 
-	const int maxHeight = 1;
-	public bool buildingPlaceable { get { return height < maxHeight; } }
-	public bool beltPlaceable { get { return height < maxHeight; } }
+	const int maxHeight = 2;
+	public bool buildingPlaceable { get { return height <= maxHeight; } }
+	public bool beltPlaceable { get { return height <= maxHeight; } }
 
 	// For map generation
 	public int height = 0;

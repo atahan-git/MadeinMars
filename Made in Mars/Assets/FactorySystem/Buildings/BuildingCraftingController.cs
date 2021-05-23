@@ -20,12 +20,22 @@ public class BuildingCraftingController
     BuildingData myData;
 
     public bool isActive = false;
+    public bool isCrafting = false;
 
     public int lastCheckId = 0;
     public CraftingProcess[] myCraftingProcesses = new CraftingProcess[0];
 
     public event GenericCallback continueAnimationsEvent;
     public event GenericCallback stopAnimationsEvent;
+
+
+    public void SetMinerType(string oreUniqueName) {
+        for (int i = 0; i < myCraftingProcesses.Length; i++) {
+            if (myCraftingProcesses[i].outputItems[0].uniqueName != oreUniqueName) {
+                myCraftingProcesses[i].isEnabled = false;
+            }
+        }
+    }
     
     /// <summary>
     /// Do the setup, and continue leftover crafting processes (used when loading from save
@@ -37,9 +47,11 @@ public class BuildingCraftingController
         lastCheckId = _lastCheckId;
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             if (i < CraftingProcessProgress.Length) {
-                if (CraftingProcessProgress[i] > 0) {
+                if (CraftingProcessProgress[i] >= 0) {
                     myCraftingProcesses[i].isCrafting = true;
                     myCraftingProcesses[i].curCraftingProgress = CraftingProcessProgress[i];
+                }else if (CraftingProcessProgress[i] <= -2) {
+                    myCraftingProcesses[i].isEnabled = false;
                 }
             }
         }
@@ -59,16 +71,15 @@ public class BuildingCraftingController
         if (ps != null) {
             if (mydat.myType == BuildingData.ItemType.Miner) {
                 //myCraftingProcesses = new CraftingProcess[ps.Length];
-                myCraftingProcesses = new CraftingProcess[1];
+                myCraftingProcesses = new CraftingProcess[ps.Length];
                 
                 for (int i = 0; i < ps.Length; i++) {
-                    if (DataHolder.s.UniqueNameToOreId(ps[i].outputs[0].itemUniqueName, out int oreId)) {
+                    if (DataHolder.s.UniqueNameToOreId(DataHolder.s.GetConnections(ps[i], false)[0].itemUniqueName, out int oreId)) {
                         myCraftingProcesses[i] = new CraftingProcess(
-                            new List<CountedItemNode>(),
-                            ps[i].outputs,
+                            new List<DataHolder.CountedItem>(),
+                            DataHolder.s.GetConnections(ps[i], false),
                             ps[i].timeCost
                         );
-                        break;
                     }
                 }
             } else {
@@ -76,8 +87,8 @@ public class BuildingCraftingController
 
                 for (int i = 0; i < ps.Length; i++) {
                     myCraftingProcesses[i] = new CraftingProcess(
-                        ps[i].inputs,
-                        ps[i].outputs,
+                        DataHolder.s.GetConnections(ps[i], true),
+                        DataHolder.s.GetConnections(ps[i], false),
                         ps[i].timeCost
                     );
                 }
@@ -92,20 +103,36 @@ public class BuildingCraftingController
 
         if (myCraftingProcesses.Length > 0) {
             isActive = true;
+        } else {
+            stopAnimationsEvent?.Invoke();
         }
     }
 
     /// <summary>
     /// Update the crafting processes. When we are done with one of them, try to continue crafting a different one
     /// </summary>
-    /// <param name="efficiency"></param>
+    /// <param name="energySupply"></param>
     /// <returns></returns>
-    public float UpdateCraftingProcess (float efficiency) {
+    public float UpdateCraftingProcess (float energySupply) {
+        var workerSupply = 1f;
+        // If there are workers, its either worker working, or dwellers eating food.
+        // They both affect the efficiency in the same way
+        if (inventory.maxWorkers > 0) {
+            workerSupply= (float)inventory.workerCount / inventory.maxWorkers;
+        }
+
+        if (inventory.maxDwellers > 0) {
+            workerSupply= (float)inventory.dwellerCount/ inventory.maxDwellers;
+        }
+
+        var productionCapacity = energySupply * workerSupply;
+        
         for (int i = 0; i < myCraftingProcesses.Length +1; i++) {
             // Always continue from the last crafting we've made, so that we continue the same process
-            if (myCraftingProcesses[lastCheckId].UpdateCraftingProcess(efficiency, inventory)) {
+            if (myCraftingProcesses[lastCheckId].UpdateCraftingProcess(productionCapacity, inventory)) {
                 continueAnimationsEvent?.Invoke();
-                return myData.energyUse; // Return the energy use back for efficiency calculations
+                isCrafting = true;
+                return myData.energyUse; // Return the energy use back for energySupply calculations
             } else {
                 // if we can't process this one, continue with the next one
                 lastCheckId++;
@@ -114,7 +141,8 @@ public class BuildingCraftingController
         }
 
         stopAnimationsEvent?.Invoke();
-
+        isCrafting = false;
+        
         return 0;
     }
 
@@ -122,10 +150,14 @@ public class BuildingCraftingController
     public float[] GetCraftingProcessProgress() {
         var progress = new float[myCraftingProcesses.Length];
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
-            if (myCraftingProcesses[i].isCrafting) {
-                progress[i] = myCraftingProcesses[i].curCraftingProgress;
+            if (myCraftingProcesses[i].isEnabled) {
+                if (myCraftingProcesses[i].isCrafting) {
+                    progress[i] = myCraftingProcesses[i].curCraftingProgress;
+                } else {
+                    progress[i] = -1;
+                }
             } else {
-                progress[i] = -1;
+                progress[i] = -2;
             }
         }
 
@@ -143,6 +175,7 @@ public class BuildingCraftingController
 /// </summary>
 [Serializable]
 public class CraftingProcess {
+    public bool isEnabled = true;
     
     public int[] inputItemIds = new int[] {1};
     public Item[] inputItems = new Item[0];
@@ -157,7 +190,7 @@ public class CraftingProcess {
     public int[] outputItemAmounts = new int[] {2};
 
 
-    public CraftingProcess(List<CountedItemNode> _inputs, List<CountedItemNode> _outputs, float timeReq) {
+    public CraftingProcess(List<DataHolder.CountedItem> _inputs, List<DataHolder.CountedItem> _outputs, float timeReq) {
 
         inputItemIds = new int[_inputs.Count];
         inputItems = new Item[_inputs.Count];
@@ -185,6 +218,9 @@ public class CraftingProcess {
     
 
     public bool UpdateCraftingProcess(float efficiency, BuildingInventoryController inventory) {
+        if (!isEnabled)
+            return false;
+        
         if (!isCrafting) {
             for (int i = 0; i < outputItems.Length; i++) {
                 if (!inventory.CheckAddItem(outputItems[i], outputItemAmounts[i], true)) {

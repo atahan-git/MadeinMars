@@ -344,9 +344,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  _minZoom: 0.1
-  _maxZoom: 10
-  _zoomLerpSpeed: 10
 --- !u!1 &6151306073683066675
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,17 +469,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7ffd42e16082149b8ef7bb8b63e4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewPort: {fileID: 6151306073252233186}
-  myRecipeSet: {fileID: 11400000, guid: 729f2ee39ad9ad548a30515fddb209f8, type: 2}
-  NodeParent: {fileID: 6151306073803260007}
-  ItemNodePrefab: {fileID: 867336008300511280, guid: e7783fbc936509744ad85803aa3f5f95,
-    type: 3}
-  CraftingNodePrefab: {fileID: 4611263411333736036, guid: b3c3a8a2a85b7bf42a867e0580b51e17,
-    type: 3}
-  allNodeGfxs: []
+  xBorderMin: -1
+  xBorderMax: -1
+  yBorderMin: -1
+  yBorderMax: -1
+  mainCam: {fileID: 0}
+  myCanvas: {fileID: 0}
+  myRecipeSet: {fileID: 0}
   canvas: {fileID: 0}
+  NodeParent: {fileID: 6151306073803260007}
+  ItemNodePool: {fileID: 8041112222691474398}
+  craftingNodePool: {fileID: 3370420950862040022}
+  researchNodePool: {fileID: 1029992398385267709}
+  leftPortPool: {fileID: 926971564570873292}
+  rightPortPool: {fileID: 5987728967830145776}
   NodeAreaRect: {fileID: 6151306073683066674}
   NodeAreaInnerRect: {fileID: 6151306073091986992}
+  PortColors:
+  - {r: 0.5411765, g: 0.6781419, b: 1, a: 1}
+  - {r: 1, g: 0.4575472, b: 0.4575472, a: 1}
+  - {r: 1, g: 0.95998895, b: 0.514151, a: 1}
+  lineColors:
+  - {r: 0, g: 0.29914522, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.9160186, b: 0, a: 1}
+  allNodeGfxs: []
+  ViewPort: {fileID: 6151306073252233186}
+  NodeFocusSpeed: 2
 --- !u!1 &6151306073803260004
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +505,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6151306073803260007}
+  - component: {fileID: 8041112222691474398}
+  - component: {fileID: 3370420950862040022}
+  - component: {fileID: 1029992398385267709}
+  - component: {fileID: 926971564570873292}
+  - component: {fileID: 5987728967830145776}
   m_Layer: 5
   m_Name: NodeParent
   m_TagString: Untagged
@@ -518,3 +536,102 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8041112222691474398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151306073803260004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2479f3057f425ea0f7636aa1339017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoExpand: 1
+  myObject: {fileID: 867336008300511280, guid: e7783fbc936509744ad85803aa3f5f95, type: 3}
+  poolSize: 50
+  maxPoolSize: 3000
+  ExistingObjects: 0
+  ActiveObjects: 0
+  objs: []
+--- !u!114 &3370420950862040022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151306073803260004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2479f3057f425ea0f7636aa1339017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoExpand: 1
+  myObject: {fileID: 4611263411333736036, guid: b3c3a8a2a85b7bf42a867e0580b51e17,
+    type: 3}
+  poolSize: 50
+  maxPoolSize: 3000
+  ExistingObjects: 0
+  ActiveObjects: 0
+  objs: []
+--- !u!114 &1029992398385267709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151306073803260004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2479f3057f425ea0f7636aa1339017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoExpand: 1
+  myObject: {fileID: 4611263411333736036, guid: 32e2c78db28fc6c4cae9f3a0087cff16,
+    type: 3}
+  poolSize: 50
+  maxPoolSize: 3000
+  ExistingObjects: 0
+  ActiveObjects: 0
+  objs: []
+--- !u!114 &926971564570873292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151306073803260004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2479f3057f425ea0f7636aa1339017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoExpand: 1
+  myObject: {fileID: 9077275617890929330, guid: 11498335a8011bf40af363953cdc755b,
+    type: 3}
+  poolSize: 50
+  maxPoolSize: 3000
+  ExistingObjects: 0
+  ActiveObjects: 0
+  objs: []
+--- !u!114 &5987728967830145776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151306073803260004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2479f3057f425ea0f7636aa1339017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoExpand: 1
+  myObject: {fileID: 1988500351069282448, guid: dd2c1558a05dfc1498947f301755a139,
+    type: 3}
+  poolSize: 50
+  maxPoolSize: 3000
+  ExistingObjects: 0
+  ActiveObjects: 0
+  objs: []

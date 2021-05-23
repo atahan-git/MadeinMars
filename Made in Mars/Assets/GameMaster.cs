@@ -25,10 +25,6 @@ public class GameMaster : MonoBehaviour {
 		GetComponent<GameLoader>().LoadGame();
 		loadingDone = true;
 		FactoryMaster.s.StartFactorySystem();
-
-		/*if (GameLoader.isGameLoadingSuccessfull == false) {
-			
-		}*/
 	}
 
 

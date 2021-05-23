@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 /// <summary>
@@ -23,16 +24,20 @@ public class DataHolder : MonoBehaviour {
     private RecipeSet[] myRecipeSets; 
     CraftingNode[] myCraftingProcesses;
     CraftingNode[][] myCraftingProcessesDivided;
+    
+    [SerializeField]
+    private ItemSet[] peopleItemSets;
 
     // Layers - the z coordinates for various objects
-    public static int worldLayer = 1;
-    public static int beltLayer = 0;
-    public static int connectorBaseLayer = 0;
-    public static int itemLayer = -1;
-    public static int connectorOverlayLayer = -2;
-    public static int connectorPullerLayer = -3;
-    public static int buildingLayer = -4;
-    public static int droneLayer = -6;
+    public static readonly int worldLayer = 1;
+    public static readonly int beltLayer = 0;
+    public static readonly int connectorBaseLayer = 0;
+    public static readonly int itemLayer = -1;
+    public static readonly int connectorOverlayLayer = -2;
+    public static readonly int connectorPullerLayer = -3;
+    public static readonly int buildingLayer = -4;
+    public static readonly int droneLayer = -6;
+    public static readonly int itemPlacementLayer = -5;
 
     private void Awake () {
         if (s != null) {
@@ -114,6 +119,17 @@ public class DataHolder : MonoBehaviour {
                 //idCounter++;
             }
         }
+        
+        for (int m = 0; m < peopleItemSets.Length; m++) {
+            for (int i = 0; i < peopleItemSets[m].items.Length; i++) {
+                if (peopleItemSets[m].items[i] != null) {
+                    if (peopleItemSets[m].items[i].uniqueName == uniqueName) {
+                        return peopleItemSets[m].items[i];
+                    }
+                }
+            }
+        }
+        
         throw new NullReferenceException("The item you are requesting " + uniqueName + " does not exist!");
     }
 
@@ -179,13 +195,71 @@ public class DataHolder : MonoBehaviour {
             }
         }
     }
+    
+    
+    public struct CountedItem {
+        public string itemUniqueName;
+        public int count;
+    }
+
+    
+    /// <summary>
+    /// Get Adapter connections as a list of counted items
+    /// use "isLeft == true" for inputs and vice versa for outputs
+    /// </summary>
+    /// <param name="craftingNode"></param>
+    /// <param name="isLeft"></param>
+    /// <returns></returns>
+    public List<CountedItem> GetConnections(CraftingNode craftingNode, bool isLeft) {
+        var countedItems = new List<CountedItem>();
+        for (int i = 0; i < craftingNode.myAdapters.Count; i++) {
+            var myAdapter = craftingNode.myAdapters[i];
+            if (myAdapter.isLeftAdapter == isLeft) {
+                for (int n = 0; n < myAdapter.connections.Count; n++) {
+                    var myConnection = myAdapter.connections[n];
+                    countedItems.Add(new CountedItem(){itemUniqueName = GetItemNode(myConnection.recipeSetName, myConnection.nodeId).itemUniqueName, count = myConnection.count});
+                }
+            }
+        }
+
+        return countedItems;
+    }
+    
+    
+    public ItemNode GetItemNode(string recipeSetUniqueName, int id) {
+        foreach (var set in myRecipeSets) {
+            if (set.recipeSetUniqueName == recipeSetUniqueName) {
+                foreach (var itemNode in set.GetItemNodes()) {
+                    if (itemNode.id == id) {
+                        return itemNode;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public CraftingNode GetCraftingNode(string recipeSetUniqueName, int id) {
+        foreach (var set in myRecipeSets) {
+            if (set.recipeSetUniqueName == recipeSetUniqueName) {
+                foreach (var craftingNode in set.GetCraftingNodes()) {
+                    if (craftingNode.id == id) {
+                        return craftingNode;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
 
     void GenerateCraftingProcessesArray () {
         List<CraftingNode> cp = new List<CraftingNode>();
 
         for (int i = 0; i < myRecipeSets.Length; i++) {
-            for (int m = 0; m < myRecipeSets[i].myCraftingNodes.Count; m++) {
-                cp.Add((CraftingNode)myRecipeSets[i].myCraftingNodes[m]);
+            for (int m = 0; m < myRecipeSets[i].GetCraftingNodes().Count; m++) {
+                cp.Add((CraftingNode)myRecipeSets[i].GetCraftingNodes()[m]);
             }
         }
 
@@ -197,19 +271,7 @@ public class DataHolder : MonoBehaviour {
     /// That is done here.
     /// </summary>
     void DivideCraftingProcessesArray () {
-        Dictionary<CraftingNode.cTypes, int> cTypetoIndexMatch = new Dictionary<CraftingNode.cTypes, int>();
-        cTypetoIndexMatch[CraftingNode.cTypes.Miner]             = 0;
-        cTypetoIndexMatch[CraftingNode.cTypes.Furnace]           = 1;
-        cTypetoIndexMatch[CraftingNode.cTypes.ProcessorSingle]   = 2;
-        cTypetoIndexMatch[CraftingNode.cTypes.ProcessorDouble]   = 3;
-        cTypetoIndexMatch[CraftingNode.cTypes.Press]             = 4;
-        cTypetoIndexMatch[CraftingNode.cTypes.Coiler]            = 5;
-        cTypetoIndexMatch[CraftingNode.cTypes.Cutter]            = 6;
-        cTypetoIndexMatch[CraftingNode.cTypes.Lab]               = 7;
-        cTypetoIndexMatch[CraftingNode.cTypes.Building]          = 8;
-        // Make sure this matches with the switch statement in GetCraftingProcessesOfType function!
-
-
+        CraftingNodeTypeToIndex(CraftingNode.cTypes.Miner); // Generate the dictionary
         List<List<CraftingNode>> cp = new List<List<CraftingNode>>();
 
         for (int i = 0; i < cTypetoIndexMatch.Count; i++) {
@@ -235,6 +297,8 @@ public class DataHolder : MonoBehaviour {
         case BuildingData.ItemType.Cutter:          index = 6; break;
         case BuildingData.ItemType.Lab:             index = 7; break;
         case BuildingData.ItemType.Building:        index = 8; break;
+        case BuildingData.ItemType.House:           index = 9; break;
+        case BuildingData.ItemType.Farm:            index = 10; break;
         }
         if (index == -1) {
             Debug.Log("Building does not support crafting! >> " + type.ToString());
@@ -246,6 +310,33 @@ public class DataHolder : MonoBehaviour {
 
     public CraftingNode[][] GetAllCraftingProcessNodesDivided() {
         return myCraftingProcessesDivided;
+    }
+
+
+    Dictionary<CraftingNode.cTypes, int> cTypetoIndexMatch;
+    public int CraftingNodeTypeToIndex(CraftingNode.cTypes type) {
+        if (cTypetoIndexMatch == null) {
+            cTypetoIndexMatch = new Dictionary<CraftingNode.cTypes, int>();
+            cTypetoIndexMatch[CraftingNode.cTypes.Miner] = 0;
+            cTypetoIndexMatch[CraftingNode.cTypes.Furnace] = 1;
+            cTypetoIndexMatch[CraftingNode.cTypes.ProcessorSingle] = 2;
+            cTypetoIndexMatch[CraftingNode.cTypes.ProcessorDouble] = 3;
+            cTypetoIndexMatch[CraftingNode.cTypes.Press] = 4;
+            cTypetoIndexMatch[CraftingNode.cTypes.Coiler] = 5;
+            cTypetoIndexMatch[CraftingNode.cTypes.Cutter] = 6;
+            cTypetoIndexMatch[CraftingNode.cTypes.Lab] = 7;
+            cTypetoIndexMatch[CraftingNode.cTypes.Building] = 8;
+            cTypetoIndexMatch[CraftingNode.cTypes.House] = 9;
+            cTypetoIndexMatch[CraftingNode.cTypes.Farm] = 10;
+        }
+
+        return cTypetoIndexMatch[type];
+        // Make sure this matches with the switch statement in GetCraftingProcessesOfType function!
+    }
+
+    public Item GetPeople() {
+        int randomSet = Random.Range(0, peopleItemSets.Length);
+        return peopleItemSets[randomSet].items[Random.Range(0, peopleItemSets[randomSet].items.Length)];
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Profiling;
 
 public class ItemOnBeltObjectPool : MonoBehaviour {
 
@@ -19,14 +19,14 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 
 		myObject.GetComponent<ItemOnBeltObject> ().myPool = this;
 
-		StartCoroutine(SetUp (poolSize));
+		SetUp (poolSize);
 	}
 
 	public ItemOnBeltObject[] objs;
 	Queue<int> activeIds = new Queue<int>();
 
 
-	IEnumerator SetUp (int poolsize){
+	void SetUp (int poolsize){
 		objs = new ItemOnBeltObject[poolsize];
 		for (int i = 0; i < poolsize; i++) {
 			var inst = Instantiate (myObject, transform).GetComponent<ItemOnBeltObject>();
@@ -35,12 +35,10 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 			inst.DisableObject ();
 			ActiveObjects += 1;
 			objs[i] = inst;
-			if(i%100 ==0)
-				yield return 0;
 		}
 	}
 
-	IEnumerator FillArrayWithObjects () {
+	void FillArrayWithObjects () {
 		for (int i = 0; i < objs.Length; i++) {
 			if (objs[i] == null) {
 				var inst = Instantiate(myObject, transform).GetComponent<ItemOnBeltObject>();
@@ -49,24 +47,14 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 				inst.DisableObject();
 				ActiveObjects += 1;
 				objs[i] = inst;
-				if (i % 100 == 0)
-					yield return 0;
 			}
 		}
 	}
 
 
 	public ItemOnBeltObject Spawn (Vector3 pos, Sprite sprite, int direction, bool isBeltObject){
+		
 		for (int i = 0; i < objs.Length; i++) {
-			if (objs[i] == null) {
-				var inst = Instantiate(myObject, transform).GetComponent<ItemOnBeltObject>();
-				ExistingObjects += 1;
-				inst.myId = i;
-				inst.DisableObject();
-				ActiveObjects += 1;
-				objs[i] = inst;
-			}
-			
 			if (!objs [i].isActive) {
 
 				objs [i].EnableObject (pos, sprite, direction, isBeltObject);
@@ -77,7 +65,7 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 				return objs [i];
 			}
 		}
-		print ("Not enough pooled objects detected");
+		//print ("Not enough pooled objects detected");
 
 		//there is no free object left
 		if (autoExpand) {
@@ -92,8 +80,7 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 			objs[temp.Length] =  inst;
 			inst.myId = temp.Length;
 
-			StopAllCoroutines();
-			StartCoroutine(FillArrayWithObjects());
+			FillArrayWithObjects();
 			poolSize = objs.Length;
 
 			if (poolSize == maxPoolSize) {
@@ -110,16 +97,27 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 			ActiveObjects -= 1;
 			return objs [toReuse];
 		}
+		
 	}
 	
 
-	/*public GameObject Spawn (){
-		return Spawn (myObject.transform.center, myObject.transform.rotation);
-	}*/
+	private List<int> objectDisableBuffer = new List<int>();
+	private void Update() {
+		if (objectDisableBuffer.Count > 0) {
+			for (int i = 0; i < objectDisableBuffer.Count; i++) {
+				if (!objs[objectDisableBuffer[i]].isActive) {
+					objs[objectDisableBuffer[i]].DisableObject();
+				}
+			}
 
+			objectDisableBuffer.Clear();
+		}
+	}
 
 
 	public void DestroyPooledObject (int id){
-		objs[id].DisableObject();
+		objectDisableBuffer.Add(id);
+		objs[id].isActive = false;
+		//objs[id].DisableObject();
 	}
 }

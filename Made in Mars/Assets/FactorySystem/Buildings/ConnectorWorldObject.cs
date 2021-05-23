@@ -23,6 +23,7 @@ public class ConnectorWorldObject : MonoBehaviour
 	[SerializeField] float height;
 
 	public void UpdateSelf(Position _location, Connector _connector) {
+		RemoveSelfFromTile();
 		myConnector = _connector;
 		direction = myConnector.direction;
 		isConstruction = false;
@@ -40,6 +41,7 @@ public class ConnectorWorldObject : MonoBehaviour
 	}
 	
 	public void UpdateSelf(Position _location, Construction _construction) {
+		RemoveSelfFromTile();
 		myConstruction = _construction;
 		direction = myConstruction.direction;
 		isConstruction = true;
@@ -92,10 +94,14 @@ public class ConnectorWorldObject : MonoBehaviour
 			}
 		}
 	}
-
-	public void DestroyYourself() {
+	
+	public void RemoveSelfFromTile() {
 		myTile.worldObject = null;
 		myTile.objectUpdatedCallback -= TileUpdated;
+	}
+
+	public void DestroyYourself() {
+		RemoveSelfFromTile();
 		GetComponent<PooledGameObject>().DestroyPooledObject();
 	}
 	

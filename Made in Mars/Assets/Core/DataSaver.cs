@@ -14,19 +14,19 @@ public class DataSaver : MonoBehaviour {
 
 	public static DataSaver s;
 
-	public static SaveFile mySave;
+	public SaveFile mySave;
 	public const string saveName = "mySave.data";
 
-	public static List<BuildingSaveData> BuildingsToBeSaved = new List<BuildingSaveData>();
-	public static List<BeltSaveData> BeltsToBeSaved = new List<BeltSaveData>();
-	public static List<ConnectorSaveData> ConnectorsToBeSaved = new List<ConnectorSaveData>();
-	public static List<ConstructionSaveData> ConstructionsToBeSaved = new List<ConstructionSaveData>();
-	public static List<DroneSaveData> DronesToBeSaved = new List<DroneSaveData>();
-	public static string[] BuildingBarDataToBeSaved;
-	public static TileData[,] TileDataToBeSaved;
+	public List<BuildingSaveData> BuildingsToBeSaved = new List<BuildingSaveData>();
+	public List<BeltSaveData> BeltsToBeSaved = new List<BeltSaveData>();
+	public List<ConnectorSaveData> ConnectorsToBeSaved = new List<ConnectorSaveData>();
+	public List<ConstructionSaveData> ConstructionsToBeSaved = new List<ConstructionSaveData>();
+	public List<DroneSaveData> DronesToBeSaved = new List<DroneSaveData>();
+	public string[] BuildingBarDataToBeSaved;
+	public TileData[,] TileDataToBeSaved;
 
 	public delegate void SaveYourself ();
-	public static event SaveYourself saveEvent;
+	public event SaveYourself saveEvent;
 
 	// Use this for initialization
 	void Awake () {
@@ -95,7 +95,7 @@ public class DataSaver : MonoBehaviour {
 		DeleteSave(saveName);
 	}
 
-	public static void DeleteSave(string filename) {
+	public void DeleteSave(string filename) {
 		File.Delete(Application.persistentDataPath + "/" + saveName);
 	}
 
@@ -108,6 +108,8 @@ public class DataSaver : MonoBehaviour {
 		public DroneSaveData[] droneData = new DroneSaveData[0];
 		public string[] buildingBarData = new string[0];
 		public TileData[,] tileData = new TileData[0,0];
+
+		public float[] newGameData = new float[0];
 
 		public SaveFile (BuildingSaveData[] myit, BeltSaveData[] mybel, ConnectorSaveData[] mycon, ConstructionSaveData[] mycons, DroneSaveData[] mydron,  string[] mybuilbar, TileData[,] myTiledata) {
 			buildingData = myit;
@@ -302,6 +304,16 @@ public class DataSaver : MonoBehaviour {
 				case InventoryItemSlot.SlotType.storage:
 					type = 2;
 					break;
+				case InventoryItemSlot.SlotType.house:
+					type = 3;
+					break;
+				case InventoryItemSlot.SlotType.worker:
+					type = 4;
+					break;
+				default:
+					Debug.LogError("Unknown item slot type detected!");
+					type = -1;
+					break;
 			}
 		}
 		
@@ -330,6 +342,16 @@ public class DataSaver : MonoBehaviour {
 				case 2:
 					slot = InventoryItemSlot.SlotType.storage;
 					break;
+				case 3:
+					slot = InventoryItemSlot.SlotType.house;
+					break;
+				case 4:
+					slot = InventoryItemSlot.SlotType.worker;
+					break;
+				default:
+					Debug.LogError("Unknown item slot type detected!");
+					return null;
+					break;
 			}
 
 			return new InventoryItemSlot(DataHolder.s.GetItem(uniqueName), count, maxCount, slot);
@@ -339,7 +361,9 @@ public class DataSaver : MonoBehaviour {
 			var invdata = new List<InventoryItemSlot>();
 			if (slots != null) {
 				for (int i = 0; i < slots.Length; i++) {
-					invdata.Add(slots[i].ConvertToInvSlot());
+					var slot = slots[i].ConvertToInvSlot();
+					if(slot != null)
+						invdata.Add(slot);
 				}
 			}
 

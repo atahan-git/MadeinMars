@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b40dce32b46ae1a46a9da44aeb6d7e51
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - myDialogMaster: {instanceID: 0}
+  - mySource: {instanceID: 0}
+  - dialogPrefab: {fileID: 1000013973698242, guid: 1002b51be55d0184093815d6dac9c574,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

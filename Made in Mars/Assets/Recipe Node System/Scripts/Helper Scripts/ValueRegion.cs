@@ -13,60 +13,51 @@ public class ValueRegion : MonoBehaviour {
     public GameObject upDown;
     public GameObject counterObject;
     public Text counterField;
-
-    private type myType;
     
+    private type myType;
+
     public enum type {
-        itemInput,
-        itemOutput,
-        craftInput,
-        craftOutput,
+        port,
         craftingType,
         craftingTier,
         timeCost
     }
-
+    
     private string[] myDropdownOptions;
 
     private NodePortGfx myPortMaster;
     private CraftingNodeGfx myNodeMaster;
-    public void SetUp(type _type, string[] dropdownOptions, NodePortGfx master, int _counter) {
+    public void SetUp(type _type, bool _isCounted, string _fieldName, string[] dropdownOptions, NodePortGfx master, int _counter) {
         myPortMaster = master;
         counter = _counter;
-        SetUp(_type, dropdownOptions);
+        isCounted = _isCounted;
+        myType = _type;
+        SetUp(isCounted, _fieldName, dropdownOptions);
     }
     
-    public void SetUp(type _type, string[] dropdownOptions, CraftingNodeGfx master, int _counter) {
+    public void SetUp(type _type, bool _isCounted, string _fieldName, string[] dropdownOptions, CraftingNodeGfx master, int _counter) {
         myNodeMaster = master;
         counter = _counter;
-        SetUp(_type, dropdownOptions);
+        isCounted = _isCounted;
+        myType = _type;
+        SetUp(isCounted, _fieldName, dropdownOptions);
     }
 
-    void SetUp(type _type, string[] dropdownOptions) {
-        myType = _type;
-        switch (myType) {
-            case type.itemInput:
-                DisableCounter();
-                fieldName.text = "Result"; 
-                break;
-            case type.itemOutput:
-                DisableCounter();
-                fieldName.text = "Ingredient"; 
-                break;
-            case type.craftInput:
-                fieldName.text = "Ingredient"; 
-                break;
-            case type.craftOutput:
-                fieldName.text = "Result"; 
-                break;
-            case type.craftingType:
-            case type.craftingTier:
-            case type.timeCost:
-                break;
+    void SetUp(bool _isCounted, string _fieldName, string[] dropdownOptions) {
+        fieldName.text = _fieldName;
+        if(dropdownOptions == null)
+            myDropdownOptions = new string[0];
+        else 
+            myDropdownOptions = dropdownOptions;
+
+        if (_isCounted)
+            ModifyCounter(0);
+        else
+            DisableCounter();
+
+        if (NodeItemTreeMakerMaster.s == null) {
+            DisableModifier();
         }
-        myDropdownOptions = dropdownOptions;
-        if(isCounted)
-        ModifyCounter(0);
     }
 
     private bool isCounted = true;
@@ -79,7 +70,7 @@ public class ValueRegion : MonoBehaviour {
     private int counter = 0;
     public void ModifyCounter(int amount) {
         counter += amount;
-        if (myType == type.craftingType && myDropdownOptions.Length > 0) {
+        if (myDropdownOptions.Length > 0) {
             if (counter < 0)
                 counter = myDropdownOptions.Length-1;
             if (counter >= myDropdownOptions.Length)
@@ -93,11 +84,11 @@ public class ValueRegion : MonoBehaviour {
         }
 
         if (myNodeMaster != null) {
-            myNodeMaster.ValueUpdated(myType, counter, 0);
+            myNodeMaster.ValueUpdated(myType, counter);
         }
 
         if (myPortMaster != null) {
-            myPortMaster.ValueUpdated(myType, counter);
+            myPortMaster.ValueUpdated(counter);
         }
     }
 

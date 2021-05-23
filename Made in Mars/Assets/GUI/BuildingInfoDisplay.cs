@@ -66,8 +66,8 @@ public class BuildingInfoDisplay : MonoBehaviour {
         inventory = worldObject.myInventory;
         inventory.drawInventoryEvent += SetUp;
 
-        craftingProcesses = new List<GameObject>();
-        timeoutCounters = new List<float>();
+        craftingProcesses.Clear();
+        timeoutCounters.Clear();
         if (crafter != null) {
             for (int i = 0; i < crafter.myCraftingProcesses.Length; i++) {
                 CraftingProcess curProcess = crafter.myCraftingProcesses[i] as CraftingProcess;

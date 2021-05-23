@@ -75,14 +75,18 @@ MonoBehaviour:
       myTextureOffset: {x: -1, y: -1}
       mySprite: {fileID: 0}
       weight: 1
+      inventoryStackCount: 99
       butsellamount: 1
       buyCost: 10
       sellCost: 1
     count: 0
     maxCount: -1
-    isOutputSlot: 0
+    mySlotType: 0
   inputColor: {r: 0.7411765, g: 1, b: 0.77906984, a: 1}
   outputColor: {r: 1, g: 0.7781801, b: 0.740566, a: 1}
+  storageColor: {r: 1, g: 1, b: 1, a: 1}
+  houseColor: {r: 0.5707547, g: 0.7532298, b: 1, a: 1}
+  workerColor: {r: 0.4669811, g: 0.95789987, b: 1, a: 1}
   bg: {fileID: 1296852248181587874}
 --- !u!114 &1296852248181587874
 MonoBehaviour:

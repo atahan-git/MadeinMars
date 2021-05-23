@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aaf9feccf8abdb4dbfdba831424188a, type: 3}
+  m_Name: People
+  m_EditorClassIdentifier: 
+  myMaterial: {fileID: 2100000, guid: e4166a80f52afcb4c910d673154c7971, type: 2}
+  myTexture: {fileID: 2800000, guid: eb81a87d36dcdad4d88f8e417d09cbbe, type: 3}
+  items:
+  - uniqueName: pep1
+    name: Person
+    description: This is a new Item
+    myItemSet: {fileID: 11400000}
+    myId: 0
+    myTextureOffset: {x: 0, y: 0}
+    mySprite: {fileID: 8603826774730601492, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
+      type: 3}
+    weight: 10
+    inventoryStackCount: 99
+    butsellamount: 1
+    buyCost: 200
+    sellCost: 50
+  - uniqueName: pep2
+    name: Person
+    description: This is a new Item
+    myItemSet: {fileID: 11400000}
+    myId: 0
+    myTextureOffset: {x: 0, y: 0}
+    mySprite: {fileID: 5811357488279875350, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
+      type: 3}
+    weight: 10
+    inventoryStackCount: 99
+    butsellamount: 1
+    buyCost: 200
+    sellCost: 50
+  - uniqueName: pep3
+    name: Person
+    description: This is a new Item
+    myItemSet: {fileID: 11400000}
+    myId: 0
+    myTextureOffset: {x: 0, y: 0}
+    mySprite: {fileID: 142636759324261, guid: e8224fe2f670dc849b5e1d4b504bcaf4, type: 3}
+    weight: 10
+    inventoryStackCount: 99
+    butsellamount: 1
+    buyCost: 200
+    sellCost: 50
+  - uniqueName: pep4
+    name: Person
+    description: This is a new Item
+    myItemSet: {fileID: 11400000}
+    myId: 0
+    myTextureOffset: {x: 0, y: 0}
+    mySprite: {fileID: 9082311775103900579, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
+      type: 3}
+    weight: 10
+    inventoryStackCount: 99
+    butsellamount: 1
+    buyCost: 200
+    sellCost: 50

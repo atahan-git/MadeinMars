@@ -24,10 +24,10 @@ public static class FactoryBuilder {
         var reqs = new List<InventoryItemSlot>();
         if (ps != null) {
             for (int i = 0; i < ps.Length; i++) {
-                if (ps[i].outputs[0].itemUniqueName == myDat.uniqueName) {
-                    for (int m = 0; m < ps[i].inputs.Count; m++) {
-                        var count = ps[i].inputs[m].count;
-                        reqs.Add(new InventoryItemSlot(DataHolder.s.GetItem(ps[i].inputs[m].itemUniqueName),
+                if (DataHolder.s.GetConnections(ps[i], false)[0].itemUniqueName == myDat.uniqueName) {
+                    for (int m = 0; m < DataHolder.s.GetConnections(ps[i], true).Count; m++) {
+                        var count = DataHolder.s.GetConnections(ps[i], true)[m].count;
+                        reqs.Add(new InventoryItemSlot(DataHolder.s.GetItem(DataHolder.s.GetConnections(ps[i], true)[m].itemUniqueName),
                             isFilled? count : 0, count, 
                             InventoryItemSlot.SlotType.storage)
                         );
@@ -82,24 +82,35 @@ public static class FactoryBuilder {
             int direction = 0;
             BuildingData buildingData = null;
             List<InventoryItemSlot> afterConstructionInventory = null;
+            bool canBeDestroyed = true;
             if (myTile.areThereBelt) {
                 buildingData = FactoryMaster.s.beltBuildingData;
                 direction = myTile.myBelt.direction;
                 afterConstructionInventory = RemoveBelt(location);
+                for (int i = afterConstructionInventory.Count-1; i >=0; i--) {
+                    if (afterConstructionInventory[i].myItem.isEmpty()) {
+                        afterConstructionInventory.RemoveAt(i);
+                    }
+                }
             } else if (myTile.areThereConnector) {
                 buildingData = FactoryMaster.s.connectorBuildingData;
                 direction = myTile.myConnector.direction;
+                RemoveConnector(location);
             } else if (myTile.areThereBuilding) {
                 buildingData = myTile.myBuilding.buildingData;
+                canBeDestroyed = myTile.myBuilding.isDestructable;
+                location = myTile.myBuilding.center;
                 afterConstructionInventory = RemoveBuilding(location);
             }
 
-            if (buildingData != null) {
-                var construction = new Construction(buildingData, direction, location, GetRequirements(buildingData, true), afterConstructionInventory, false);
-                FactoryMaster.s.AddConstruction(construction);
+            if (canBeDestroyed) {
+                if (buildingData != null) {
+                    var construction = new Construction(buildingData, direction, location, GetRequirements(buildingData, true), afterConstructionInventory, false);
+                    FactoryMaster.s.AddConstruction(construction);
 
-                foreach (var loc in construction.locations) {
-                    Grid.s.GetTile(loc).myConstruction = construction;
+                    foreach (var loc in construction.locations) {
+                        Grid.s.GetTile(loc).myConstruction = construction;
+                    }
                 }
             }
         }
@@ -249,9 +260,9 @@ public static class FactoryBuilder {
     }
 
     static void UpdateConnectorConnections(Connector connector) {
-        connector.inputs = new List<Connector.Connection>();
+        connector.inputs.Clear();
         connector.inputCounter = 0;
-        connector.outputs = new List<Connector.Connection>();
+        connector.outputs.Clear();
         connector.outputCounter = 0;
 
         for (int i = 0; i < connector.length; i++) {
@@ -530,7 +541,7 @@ public static class FactoryBuilder {
             var secondBelt = forwardTile.myBelt;
 
             var belt = new Belt(firstBelt.startPos, secondBelt.endPos, direction);
-            belt.items = new List<Belt.BeltSegment>();
+            belt.items.Clear();
 
             for (int i = 0; i < firstBelt.items.Count; i++) {
                 belt.items.Add(firstBelt.items[i]);
@@ -695,8 +706,8 @@ public static class FactoryBuilder {
         } else {
             var firstBelt = new Belt(belt.startPos, Position.MoveTowards(location, belt.startPos, 1));
             var secondBelt = new Belt(Position.MoveTowards(location, belt.endPos, 1), belt.endPos);
-            firstBelt.items = new List<Belt.BeltSegment>();
-            secondBelt.items = new List<Belt.BeltSegment>();
+            firstBelt.items.Clear();
+            secondBelt.items.Clear();
 
             // Decompress belt contents
             var decompressedItems = DecompressBelt(belt.items);
@@ -711,9 +722,9 @@ public static class FactoryBuilder {
                     Grid.s.GetTile(Position.MoveTowards(firstBelt.startPos, firstBelt.endPos, i)).myBelt = firstBelt;
                 }
                 
-                if (Grid.s.GetTile(Position.MoveCardinalDirection(firstBelt.startPos, firstBelt.direction, -1)).areThereConnector) {
-                    UpdateConnectorConnections(Grid.s.GetTile(Position.MoveCardinalDirection(firstBelt.endPos, firstBelt.direction, -1)).myConnector);
-                }
+                /*if (Grid.s.GetTile(Position.MoveCardinalDirection(firstBelt.startPos, firstBelt.direction, -1)).areThereConnector) {
+                    UpdateConnectorConnections(Grid.s.GetTile(Position.MoveCardinalDirection(firstBelt.startPos, firstBelt.direction, -1)).myConnector);
+                }*/
 
                 FactoryMaster.s.AddBelt(firstBelt);
             } else {
@@ -731,9 +742,9 @@ public static class FactoryBuilder {
                     Grid.s.GetTile(Position.MoveTowards(secondBelt.startPos, secondBelt.endPos, i)).myBelt = secondBelt;
                 }
 
-                if (Grid.s.GetTile(Position.MoveCardinalDirection(secondBelt.endPos, secondBelt.direction, 1)).areThereConnector) {
+                /*if (Grid.s.GetTile(Position.MoveCardinalDirection(secondBelt.endPos, secondBelt.direction, 1)).areThereConnector) {
                     UpdateConnectorConnections(Grid.s.GetTile(Position.MoveCardinalDirection(secondBelt.endPos, secondBelt.direction, 1)).myConnector);
-                }
+                }*/
 
                 FactoryMaster.s.AddBelt(secondBelt);
             } else {
@@ -746,6 +757,8 @@ public static class FactoryBuilder {
             FactoryMaster.s.RemoveBelt(belt);
             Grid.s.GetTile(location).myBelt = null;
             UpdateBeltNearConnectors(belt);
+            UpdateBeltNearConnectors(firstBelt);
+            UpdateBeltNearConnectors(secondBelt);
 
             ObjectsUpdated?.Invoke();
             return CompressItemsToInventorySlots(decompressedItems, firstBelt.length, firstBelt.length+1);

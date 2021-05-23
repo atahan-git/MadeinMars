@@ -24,9 +24,7 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
 
     public Color defColor = Color.white;
 
-    public bool isOneUse = false;
-    public bool isInventory = false;
-    public bool isSpaceLanding = false;
+    public bool isRocket = false;
     public List<InventoryItemSlot> myInv;
 
     private void Start() {
@@ -41,7 +39,7 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
     /// <param name="_isSpaceLanding"></param>
     /// <param name="_isInventory"></param>
     /// <param name="inv"></param>
-    public void ChangeBuilding (BuildingData _myDat, bool _isOneUse, bool _isSpaceLanding, bool _isInventory, List<InventoryItemSlot> inv, bool isTimed, float timer) {
+    public void ChangeBuilding (BuildingData _myDat, bool _isRocket, List<InventoryItemSlot> inv, bool isTimed, float timer) {
         myDat = _myDat;
         if (myDat != null) {
             nameText.text = myDat.name;
@@ -53,8 +51,7 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
             img.color = new Color(0,0,0,0);
         }
 
-        isSpaceLanding = _isSpaceLanding;
-        isOneUse = _isOneUse;
+        isRocket = _isRocket;
         myInv = inv;
 
         if (isTimed) {
@@ -87,12 +84,12 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
 
     public void PointerDown () {
         if (state) {
-            myCont.StartBuildingFromSlot(myDat, isSpaceLanding, isInventory, myInv, BuildingBuildCompleteCallback);
+            myCont.StartBuildingFromSlot(myDat, isRocket, myInv, BuildingBuildCompleteCallback);
         }
     }
 
     public void BuildingBuildCompleteCallback() {
-        if(isOneUse)
+        if(isRocket)
             Destroy(gameObject);
     }
 

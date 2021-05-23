@@ -22,9 +22,11 @@ MonoBehaviour:
     - row: 00000101000000
     - row: 00000101000000
     - row: 00000000000000
-  myType: 10
+  myType: 16
   buildingGrade: 0
   energyUse: 0
+  housingSlots: 0
+  workerRequirement: 0
   gfxType: 0
   gfxSprite: {fileID: 21300000, guid: 504cba6399f87ee42ba529d9e7dee7e0, type: 3}
   gfxShadowSprite: {fileID: 21300000, guid: 55370761c897ffa4a8c2cc78c8e39101, type: 3}
@@ -32,4 +34,4 @@ MonoBehaviour:
   gfxSpriteAnimation: {fileID: 0}
   gfxPrefab: {fileID: 0}
   spriteOffset: {x: 0, y: 2}
-  playerBuildable: 0
+  playerBuildBarApplicable: 1

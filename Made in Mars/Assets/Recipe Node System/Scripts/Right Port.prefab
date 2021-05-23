@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6425181605408237658}
   - component: {fileID: 9180833139185937337}
   - component: {fileID: 7040400652806357342}
+  - component: {fileID: 8843919560334669237}
   m_Layer: 5
-  m_Name: Output Port
+  m_Name: Right Port
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,13 +85,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRegion: {fileID: 4890896343415827157}
   myMaster: {fileID: 0}
-  myType: 0
+  myAdapterGroup:
+    isLeftAdapter: 0
+    myType: 0
+    type: 0
+    connections: []
+    parentNodeId: 0
+    recipeSetName: 
+  myConnection:
+    count: 0
+    recipeSetName: 
+    nodeId: 0
   ConnectionInProgressShowObject: {fileID: 7024463172030502781}
-  myConnection: {fileID: 0}
+  connectedPortGfx: {fileID: 0}
   lineConnectionPoint: {fileID: 8983324239676799340}
-  craftInColor: {r: 0.6556604, g: 0.6764464, b: 1, a: 1}
-  craftOutColor: {r: 1, g: 0.6084906, b: 0.6084906, a: 1}
   colorChangeImage: {fileID: 2338517965243264615}
+--- !u!114 &8843919560334669237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988500351069282448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3616ba23524064bc25833db7d279d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myId: -1
+  myPool: {fileID: 0}
+  isActive: 0
 --- !u!1 &2613285934313380726
 GameObject:
   m_ObjectHideFlags: 0

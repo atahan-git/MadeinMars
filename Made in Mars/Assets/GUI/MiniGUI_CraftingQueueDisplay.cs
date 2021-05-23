@@ -27,7 +27,7 @@ public class MiniGUI_CraftingQueueDisplay : MonoBehaviour
         myCraftingNode = _cp;
         progress = 0;
         timeReq = myCraftingNode.timeCost;
-        myItem =  DataHolder.s.GetItem(myCraftingNode.outputs[0].itemUniqueName);
+        myItem =  DataHolder.s.GetItem(DataHolder.s.GetConnections(myCraftingNode, false)[0].itemUniqueName);
         myImg.sprite = myItem.GetSprite();
         cont = c;
     }
