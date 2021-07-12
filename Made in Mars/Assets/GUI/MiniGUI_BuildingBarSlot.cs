@@ -31,15 +31,9 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
         myCont = GUI_BuildingBarController.s;
     }
 
-    /// <summary>
-    /// Use to change the building set in the building slot.
-    /// The player will later be able to build this.
-    /// </summary>
-    /// <param name="_myDat"></param>
-    /// <param name="_isSpaceLanding"></param>
-    /// <param name="_isInventory"></param>
-    /// <param name="inv"></param>
-    public void ChangeBuilding (BuildingData _myDat, bool _isRocket, List<InventoryItemSlot> inv, bool isTimed, float timer) {
+
+    private SuccessFailCallback _callback;
+    public void ChangeBuilding (BuildingData _myDat, bool _isRocket, List<InventoryItemSlot> inv, bool isTimed = false, float timer = 0, SuccessFailCallback callback = null) {
         myDat = _myDat;
         if (myDat != null) {
             nameText.text = myDat.name;
@@ -51,6 +45,7 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
             img.color = new Color(0,0,0,0);
         }
 
+        _callback = callback;
         isRocket = _isRocket;
         myInv = inv;
 
@@ -84,15 +79,10 @@ public class MiniGUI_BuildingBarSlot : MonoBehaviour
 
     public void PointerDown () {
         if (state) {
-            myCont.StartBuildingFromSlot(myDat, isRocket, myInv, BuildingBuildCompleteCallback);
+            myCont.StartBuildingFromSlot(myDat, isRocket, myInv, _callback);
         }
     }
-
-    public void BuildingBuildCompleteCallback() {
-        if(isRocket)
-            Destroy(gameObject);
-    }
-
+    
     public void PointerEnter () {
         myCont.PointerEnterBuildingBarSlot(myID);
     }

@@ -11,9 +11,6 @@ using UnityEngine.Serialization;
 /// </summary>
 [CreateAssetMenu]
 public class ItemSet : ScriptableObject {
-    public Material myMaterial;
-    public Texture myTexture;
-
     public Item[] items = new Item[10];
 
     /// <summary>
@@ -30,12 +27,6 @@ public class ItemSet : ScriptableObject {
         }
 
         return null;
-    }
-
-
-    public Vector2 GetTextureCoordinates(Item item) {
-        float multiplier = 64f / 1024f;
-        return new Vector2(item.myTextureOffset.x * multiplier, 1f - (item.myTextureOffset.y + 1) * multiplier);
     }
 }
 
@@ -72,46 +63,15 @@ public class Item : IEquatable<Item> {
     //Item ids are assigned by DataHolder
     //They are the equivalent of the items array position, counted additively if there are multiple item sets
     public int myId = -1;
-
-    public Vector2 myTextureOffset = new Vector2(-1, -1);
+    
     public Sprite mySprite;
-
-    private Material myMat = null;
     
-    
-    public float weight = 1;
     public int inventoryStackCount = 99;
-
-    [Header("Buy/Sell")]
-
-    public int butsellamount = 1;
-    [Tooltip("Note that 1 cost = $1 M.")]
-    public float buyCost = 10;
-    [Tooltip("Note that 1 cost = $1 M.")]
-    public float sellCost = 1;
-
+    
     public Sprite GetSprite() {
         return mySprite;
     }
 
-    public Material GetMaterial () {
-        if (myMat == null) {
-            myMat = new Material(myItemSet.myMaterial);
-            myMat.mainTextureOffset = GetTextureCoordinates();
-            myMat.name = uniqueName + " Material";
-        }
-        return myMat;
-    }
-
-    public Vector2 GetTextureCoordinates () {
-        return myItemSet.GetTextureCoordinates(this);
-    }
-
-    public Vector2 GetScale () {
-        float scale = 64f / 1024f;
-        return new Vector2(scale, scale);
-    }
-    
     public static bool operator == (Item a, Item b) {
         if (ReferenceEquals(a, null))
             return ReferenceEquals(b, null);
@@ -139,6 +99,17 @@ public class Item : IEquatable<Item> {
 
     public Item MakeDummyItem(int itemType) {
         uniqueName = itemType.ToString();
+        return this;
+    }
+    
+    public Item MakeDummyItem(string itemType) {
+        uniqueName = itemType;
+        return this;
+    }
+
+    public Item MakeBuildingDataDummyItem(string buildingUniqueName, Sprite sprite) {
+        uniqueName = buildingUniqueName;
+        mySprite =sprite;
         return this;
     }
 

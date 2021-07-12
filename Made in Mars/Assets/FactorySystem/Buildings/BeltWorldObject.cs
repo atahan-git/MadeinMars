@@ -59,7 +59,7 @@ public class BeltWorldObject : MonoBehaviour {
 		myTile = Grid.s.GetTile(_location);
 		location = _location;
 		
-		myTile.worldObject = this.gameObject;
+		myTile.visualObject = this.gameObject;
 		myTile.objectUpdatedCallback -= TileUpdated; // we want to make sure we get the update callback only once
 		myTile.objectUpdatedCallback += TileUpdated;
 		
@@ -69,8 +69,8 @@ public class BeltWorldObject : MonoBehaviour {
 	
 	void TileUpdated() {
 		if (isConstruction) {
-			if (myTile.areThereConstruction) {
-				myConstruction = myTile.myConstruction;
+			if (myTile.simObject is Construction construction) {
+				myConstruction = construction;
 				direction = myConstruction.direction;
 					
 				myRend.SetGraphics(FactoryVisuals.s.beltSprites[myConstruction.direction]);
@@ -78,8 +78,8 @@ public class BeltWorldObject : MonoBehaviour {
 				DestroyYourself();
 			}
 		} else {
-			if (myTile.areThereBelt) {
-				myBelt = myTile.myBelt;
+			if (myTile.simObject is Belt belt) {
+				myBelt = belt;
 				direction = myBelt.direction;
 			
 				myRend.SetGraphics(FactoryVisuals.s.beltSprites[myBelt.direction]);
@@ -90,7 +90,7 @@ public class BeltWorldObject : MonoBehaviour {
 	}
 
 	public void RemoveSelfFromTile() {
-		myTile.worldObject = null;
+		myTile.visualObject = null;
 		myTile.objectUpdatedCallback -= TileUpdated;
 	}
 

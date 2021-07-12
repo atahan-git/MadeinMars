@@ -42,6 +42,10 @@ public class DroneAnimator : MonoBehaviour {
         updownOffset = Random.Range(0, 10f);
     }
 
+    private void OnDestroy() {
+	    Destroy(droneTargetMarker);
+    }
+
     void Update() {
         animTarget.transform.localPosition =
             new Vector3(0, magnitude * updowncurve.Evaluate(((Time.time+updownOffset) * speed) % 1), 0) + gfxOffset;

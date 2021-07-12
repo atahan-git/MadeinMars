@@ -25,7 +25,7 @@ MonoBehaviour:
       type: 3}
     weight: 10
     inventoryStackCount: 99
-    butsellamount: 50
+    buysellamount: 50
     buyCost: 5
     sellCost: 1
   - uniqueName: ironIngot
@@ -38,7 +38,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: ironPlate
@@ -51,7 +51,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: copperOre
@@ -64,7 +64,7 @@ MonoBehaviour:
       type: 3}
     weight: 50
     inventoryStackCount: 99
-    butsellamount: 50
+    buysellamount: 50
     buyCost: 10
     sellCost: 1
   - uniqueName: copperIngot
@@ -77,7 +77,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: copperCoil
@@ -90,7 +90,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: concrete
@@ -103,7 +103,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: buildingMat
@@ -116,7 +116,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: ironGear
@@ -129,7 +129,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: ironDril
@@ -142,7 +142,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: ironPipe
@@ -155,7 +155,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: thermometer
@@ -168,7 +168,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 3
+    buysellamount: 3
     buyCost: 50
     sellCost: 1
   - uniqueName: motor
@@ -181,7 +181,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 2
+    buysellamount: 2
     buyCost: 10
     sellCost: 1
   - uniqueName: ironArm
@@ -194,7 +194,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 50
     sellCost: 1
   - uniqueName: solarCell
@@ -207,7 +207,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 10
+    buysellamount: 10
     buyCost: 20
     sellCost: 1
   - uniqueName: laser
@@ -220,7 +220,7 @@ MonoBehaviour:
       type: 3}
     weight: 1
     inventoryStackCount: 99
-    butsellamount: 5
+    buysellamount: 5
     buyCost: 30
     sellCost: 1
   - uniqueName: drillPrefab
@@ -233,7 +233,7 @@ MonoBehaviour:
       type: 3}
     weight: 10
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 10
     sellCost: 1
   - uniqueName: smelterPrefab
@@ -246,7 +246,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 75
     sellCost: 1
   - uniqueName: assembler1Prefab
@@ -259,7 +259,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 20
     sellCost: 1
   - uniqueName: pressPrefab
@@ -272,7 +272,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 15
     sellCost: 1
   - uniqueName: coilerPrefab
@@ -285,7 +285,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 15
     sellCost: 1
   - uniqueName: cutterPrefab
@@ -298,7 +298,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 100
     sellCost: 1
   - uniqueName: labPrefab
@@ -311,7 +311,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 200
     sellCost: 1
   - uniqueName: solarPrefab
@@ -324,7 +324,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 50
     sellCost: 1
   - uniqueName: batteryPrefab
@@ -337,7 +337,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 50
     sellCost: 1
   - uniqueName: transformerPrefab
@@ -350,7 +350,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 50
     sellCost: 1
   - uniqueName: storagePrefab
@@ -363,7 +363,7 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 200
     sellCost: 1
   - uniqueName: assembler2Prefab
@@ -376,19 +376,19 @@ MonoBehaviour:
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 1
+    buysellamount: 1
     buyCost: 125
     sellCost: 1
   - uniqueName: food
     name: Food Pack
     description: This is a new Item
     myItemSet: {fileID: 11400000}
-    myId: 27
+    myId: 28
     myTextureOffset: {x: 3, y: 4}
     mySprite: {fileID: 5644338819192894799, guid: e8224fe2f670dc849b5e1d4b504bcaf4,
       type: 3}
     weight: 5
     inventoryStackCount: 99
-    butsellamount: 10
+    buysellamount: 10
     buyCost: 10
     sellCost: 1

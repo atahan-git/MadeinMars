@@ -10,7 +10,6 @@ using UnityEngine.Serialization;
 public class GridMono : MonoBehaviour {
 	public Grid myGrid;
 	private void Awake () {
-		myGrid = new Grid();
 		if (Grid.s != null) {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
 		}
@@ -18,7 +17,7 @@ public class GridMono : MonoBehaviour {
 	}
 
 	private void Start() {
-		myGrid.WorldSetup(GetComponent<MapGenerator>());
+		myGrid.RegisterEvents(GetComponent<MapGenerator>());
 	}
 
 	private void OnDestroy() {

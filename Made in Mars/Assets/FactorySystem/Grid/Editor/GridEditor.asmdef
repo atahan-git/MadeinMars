@@ -1,7 +1,8 @@
 {
     "name": "GridEditor",
     "references": [
-        "GUID:e15cdd61141086b4fb7d9fc3b8cc7529"
+        "GUID:e15cdd61141086b4fb7d9fc3b8cc7529",
+        "GUID:09b3620e92863634684f039ee6c397c0"
     ],
     "includePlatforms": [
         "Editor"

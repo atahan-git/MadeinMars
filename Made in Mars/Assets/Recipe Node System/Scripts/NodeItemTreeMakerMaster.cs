@@ -42,13 +42,13 @@ public class NodeItemTreeMakerMaster : RecipeTreeViewer {
 
         // Draw menu for buildings
         foreach (BuildingData myBuildingData in myRecipeSet.myBuildings) {
-            GameObject itemListItem = Instantiate(ItemListItemPrefab, ItemsParent);
-            Item buildingTempItem = new Item();
-            buildingTempItem.uniqueName = myBuildingData.uniqueName;
-            buildingTempItem.mySprite = myBuildingData.gfxSprite;
-            itemListItem.GetComponent<DragMe>().myItem = buildingTempItem;
-            itemListItem.transform.GetChild(0).GetComponent<Image>().sprite = buildingTempItem.mySprite;
-            itemListItem.transform.GetChild(1).GetComponent<Text>().text = buildingTempItem.name;
+            if (myBuildingData != null) {
+                GameObject itemListItem = Instantiate(ItemListItemPrefab, ItemsParent);
+                Item buildingTempItem = new Item().MakeBuildingDataDummyItem(myBuildingData.uniqueName, myBuildingData.gfxSprite);
+                itemListItem.GetComponent<DragMe>().myItem = buildingTempItem;
+                itemListItem.transform.GetChild(0).GetComponent<Image>().sprite = buildingTempItem.mySprite;
+                itemListItem.transform.GetChild(1).GetComponent<Text>().text = buildingTempItem.name;
+            }
         }
 
         ReDrawAllNodes();

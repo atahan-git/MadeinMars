@@ -20,6 +20,10 @@ public class FactorySimulator : MonoBehaviour {
     public void StartSimulation() {
         StartCoroutine(UpdateLoop());
     }
+    
+    public void StopSimulation() {
+        StopAllCoroutines();
+    }
 
 
     float energyProduced = 100000;
@@ -52,8 +56,7 @@ public class FactorySimulator : MonoBehaviour {
             connectorTime.Enqueue(Time.realtimeSinceStartup - time);
             time = Time.realtimeSinceStartup;
 
-            FactoryVisuals.s.BeltVisualsUpdate();
-            FactoryVisuals.s.ConnectorVisualUpdate();
+            FactoryVisuals.s.UpdateVisualItems();
 
             visualsTime.Enqueue(Time.realtimeSinceStartup - time);
             time = Time.realtimeSinceStartup;
@@ -99,63 +102,7 @@ public class FactorySimulator : MonoBehaviour {
             energySupply = 1;
         energyUsed = 1;
         energyProduced = 100000;
-
-        var popLeft = FactoryMaster.s.population;
-        var popHoused = 0;
         
-        // House pops
-        if (popLeft > 0) {
-            for (int i = 0; i < FactoryMaster.s.GetBuildings().Count; i++) {
-                var building = FactoryMaster.s.GetBuildings()[i];
-                if (building != null) {
-                    if (building.buildingData.myType == BuildingData.ItemType.House) {
-                        // Houses only have one type of crafting, when they can house people they craft
-                        if (building.craftController.isCrafting) {
-                            if (popLeft >= building.invController.maxDwellers) {
-                                popLeft -= building.invController.maxDwellers;
-                                popHoused += building.invController.maxDwellers;
-                                building.invController.dwellerCount = building.invController.maxDwellers;
-                            } else {
-                                popHoused += popLeft;
-                                building.invController.dwellerCount = popLeft;
-                                break;
-                            }
-                        } else {
-                            building.invController.dwellerCount = 0;
-                        }
-                    }
-                }
-            }
-        }
-
-        FactoryMaster.s.housed = popHoused;
-        var totalWorkers = popHoused;
-        var availableWorkers = totalWorkers;
-        var totalJobs = 0;
-
-        // Put workers to work
-        for (int i = 0; i < FactoryMaster.s.GetBuildings().Count; i++) {
-            var building = FactoryMaster.s.GetBuildings()[i];
-            if (building != null) {
-                totalJobs += building.invController.maxWorkers;
-
-                if (availableWorkers > 0) {
-                    if (availableWorkers >= building.invController.maxWorkers) {
-                        availableWorkers -= building.invController.maxWorkers;
-                        building.invController.workerCount = building.invController.maxWorkers;
-                    } else {
-                        building.invController.workerCount = availableWorkers;
-                        availableWorkers = 0;
-                    }
-                }
-            }
-        }
-
-
-        // workers is total workers minus those who are not put to work
-        FactoryMaster.s.workers = totalWorkers - availableWorkers;
-        FactoryMaster.s.jobs = totalJobs;
-
         // Advance crafting
         for (int i = 0; i < FactoryMaster.s.GetBuildings().Count; i++) {
             var building = FactoryMaster.s.GetBuildings()[i];
@@ -195,13 +142,18 @@ public class FactorySimulator : MonoBehaviour {
         }
     }
 
-    private void OnDestroy() {
-        var simTime = buildingtime.Average() + connectorTime.Average() + beltsTime.Average() + dronesTime.Average();
-        var visTime = visualsTime.Average() ;
-        log.totalObjectCount.Add(FactoryMaster.s.GetBelts().Count + FactoryMaster.s.GetConnectors().Count + FactoryMaster.s.GetBuildings().Count + FactoryMaster.s.GetDrones().Count + FactoryMaster.s.GetConstructions().Count);
-        log.totalBeltItemsCount.Add(FactoryVisuals.s.lastBeltItemCount);
-        log.averageSimTime.Add(simTime);
-        log.averageVisTime.Add(visTime);
+    private void OnDisable() {
+        try {
+            var simTime = buildingtime.Average() + connectorTime.Average() + beltsTime.Average() + dronesTime.Average();
+            var visTime = visualsTime.Average();
+            log.totalObjectCount.Add(FactoryMaster.s.GetBelts().Count + FactoryMaster.s.GetConnectors().Count + FactoryMaster.s.GetBuildings().Count + FactoryMaster.s.GetDrones().Count +
+                                     FactoryMaster.s.GetConstructions().Count);
+            log.totalVisualItemsCount.Add(FactoryVisuals.s.lastSpawnedItemCount);
+            log.averageSimTime.Add(simTime);
+            log.averageVisTime.Add(visTime);
+        } catch {
+            
+        }
     }
 
 
@@ -360,6 +312,6 @@ public class FactorySimulator : MonoBehaviour {
     /// </summary>
     /// <param name="building"></param>
     public static float UpdateBuilding(Building building, float energySupply) {
-        return building.UpdateCraftingProcess(energySupply);
+        return building.UpdateCraftingProcess(energySupply, building.inv);
     }
 }

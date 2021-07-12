@@ -13,10 +13,7 @@ using UnityEngine.Tilemaps;
 /// The periodic updates to this should come from the BuildingMaster.cs script.
 /// </summary>
 [Serializable]
-public class BuildingCraftingController 
-{
-    
-    BuildingInventoryController inventory;
+public class BuildingCraftingController {
     BuildingData myData;
 
     public bool isActive = false;
@@ -29,50 +26,54 @@ public class BuildingCraftingController
     public event GenericCallback stopAnimationsEvent;
 
 
-    public void SetMinerType(string oreUniqueName) {
+    // Miner type is now set by changing available inventory for the miner
+    /*public void SetMinerType(string oreUniqueName) {
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
             if (myCraftingProcesses[i].outputItems[0].uniqueName != oreUniqueName) {
                 myCraftingProcesses[i].isEnabled = false;
             }
         }
-    }
-    
+    }*/
+
     /// <summary>
     /// Do the setup, and continue leftover crafting processes (used when loading from save
     /// </summary>
     /// <param name="mydat"></param>
-    public void SetUp(BuildingData mydat, BuildingInventoryController _inv, int _lastCheckId, float[] CraftingProcessProgress) {
-        SetUp(mydat, _inv);
+    public void SetUp(BuildingData mydat, int _lastCheckId, float[] craftingProcessProgress) {
+        SetUp(mydat);
 
-        lastCheckId = _lastCheckId;
-        for (int i = 0; i < myCraftingProcesses.Length; i++) {
-            if (i < CraftingProcessProgress.Length) {
-                if (CraftingProcessProgress[i] >= 0) {
-                    myCraftingProcesses[i].isCrafting = true;
-                    myCraftingProcesses[i].curCraftingProgress = CraftingProcessProgress[i];
-                }else if (CraftingProcessProgress[i] <= -2) {
-                    myCraftingProcesses[i].isEnabled = false;
+        if (craftingProcessProgress != null) {
+            lastCheckId = _lastCheckId;
+            for (int i = 0; i < myCraftingProcesses.Length; i++) {
+                if (i < craftingProcessProgress.Length) {
+                    if (craftingProcessProgress[i] >= 0) {
+                        myCraftingProcesses[i].isCrafting = true;
+                        myCraftingProcesses[i].curCraftingProgress = craftingProcessProgress[i];
+                    } else if (craftingProcessProgress[i] <= -2) {
+                        myCraftingProcesses[i].isEnabled = false;
+                    }
                 }
             }
+
+            if (myCraftingProcesses.Length > 0)
+                lastCheckId = lastCheckId % myCraftingProcesses.Length;
         }
-        if(myCraftingProcesses.Length > 0)
-            lastCheckId = lastCheckId % myCraftingProcesses.Length;
     }
 
     /// <summary>
     /// Do the setup tasks, which means figuring out which crafting processes this building can do based on the BuildingData and the RecipeSet
     /// </summary>
     /// <param name="mydat"></param>
-    public void SetUp(BuildingData mydat, BuildingInventoryController _inv) {
-        inventory = _inv;
+    public void SetUp(BuildingData mydat) {
         myData = mydat;
 
-        CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
-        if (ps != null) {
-            if (mydat.myType == BuildingData.ItemType.Miner) {
+
+        switch (mydat.myType) {
+            case BuildingData.ItemType.Miner: {
+                CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
                 //myCraftingProcesses = new CraftingProcess[ps.Length];
                 myCraftingProcesses = new CraftingProcess[ps.Length];
-                
+
                 for (int i = 0; i < ps.Length; i++) {
                     if (DataHolder.s.UniqueNameToOreId(DataHolder.s.GetConnections(ps[i], false)[0].itemUniqueName, out int oreId)) {
                         myCraftingProcesses[i] = new CraftingProcess(
@@ -82,24 +83,36 @@ public class BuildingCraftingController
                         );
                     }
                 }
-            } else {
-                myCraftingProcesses = new CraftingProcess[ps.Length];
+            }
+                break;
 
-                for (int i = 0; i < ps.Length; i++) {
-                    myCraftingProcesses[i] = new CraftingProcess(
-                        DataHolder.s.GetConnections(ps[i], true),
-                        DataHolder.s.GetConnections(ps[i], false),
-                        ps[i].timeCost
-                    );
+            case BuildingData.ItemType.Lab: {
+
+                myCraftingProcesses = new [] {
+                    new CraftingProcess(new List<DataHolder.CountedItem>(), new List<DataHolder.CountedItem>(), mydat.buildingGrade)
+                };
+
+                myCraftingProcesses[0].isResearchProcess = true;
+
+            }
+                break;
+
+            default: {
+                CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
+                if (ps != null) {
+                    myCraftingProcesses = new CraftingProcess[ps.Length];
+
+                    for (int i = 0; i < ps.Length; i++) {
+                        myCraftingProcesses[i] = new CraftingProcess(
+                            DataHolder.s.GetConnections(ps[i], true),
+                            DataHolder.s.GetConnections(ps[i], false),
+                            ps[i].timeCost
+                        );
+                    }
                 }
             }
-        } else if (mydat.myType == BuildingData.ItemType.Base) {
-            //myCraftingProcesses = new IProcess[1];
-            //myCraftingProcesses[0] = new InputProcess(myBelts);
-            
-            // This logic is now handled by the BuildingInventoryController and the BuildingInOutController
-            
-        } 
+                break;
+        }
 
         if (myCraftingProcesses.Length > 0) {
             isActive = true;
@@ -113,19 +126,8 @@ public class BuildingCraftingController
     /// </summary>
     /// <param name="energySupply"></param>
     /// <returns></returns>
-    public float UpdateCraftingProcess (float energySupply) {
-        var workerSupply = 1f;
-        // If there are workers, its either worker working, or dwellers eating food.
-        // They both affect the efficiency in the same way
-        if (inventory.maxWorkers > 0) {
-            workerSupply= (float)inventory.workerCount / inventory.maxWorkers;
-        }
-
-        if (inventory.maxDwellers > 0) {
-            workerSupply= (float)inventory.dwellerCount/ inventory.maxDwellers;
-        }
-
-        var productionCapacity = energySupply * workerSupply;
+    public float UpdateCraftingProcess (float energySupply, Inventory inventory) {
+        var productionCapacity = energySupply;
         
         for (int i = 0; i < myCraftingProcesses.Length +1; i++) {
             // Always continue from the last crafting we've made, so that we continue the same process
@@ -163,10 +165,6 @@ public class BuildingCraftingController
 
         return progress;
     }
-
-    // ------------------------------------------------------
-    // The following are things to run the animations properly
-    
 }
 
 
@@ -175,7 +173,13 @@ public class BuildingCraftingController
 /// </summary>
 [Serializable]
 public class CraftingProcess {
+
+    public static FactoryMaster.ItemCreated ItemCreatedCallback;
+    public static GenericCallback ResearchMadeCallback;
+    
+    
     public bool isEnabled = true;
+    public bool isResearchProcess = false;
     
     public int[] inputItemIds = new int[] {1};
     public Item[] inputItems = new Item[0];
@@ -217,25 +221,25 @@ public class CraftingProcess {
     }
     
 
-    public bool UpdateCraftingProcess(float efficiency, BuildingInventoryController inventory) {
+    public bool UpdateCraftingProcess(float efficiency, IInventorySimulation inventory) {
         if (!isEnabled)
             return false;
         
         if (!isCrafting) {
             for (int i = 0; i < outputItems.Length; i++) {
-                if (!inventory.CheckAddItem(outputItems[i], outputItemAmounts[i], true)) {
+                if (!inventory.CheckIfCanAddItem(outputItems[i], outputItemAmounts[i], true)) {
                     return false;
                 }
             }
 
             for (int i = 0; i < inputItems.Length; i++) {
-                if (!inventory.CheckTakeItem(inputItems[i],inputItemAmounts[i], false)) {
+                if (!inventory.CheckIfCanTakeItem(inputItems[i],inputItemAmounts[i], false)) {
                     return false;
                 }
             }
 
             for (int i = 0; i < inputItems.Length; i++) {
-                inventory.TryTakeItem(inputItems[i], inputItemAmounts[i], false);
+                inventory.TryAndTakeItem(inputItems[i], inputItemAmounts[i], false);
             }
 
             isCrafting = true;
@@ -246,11 +250,17 @@ public class CraftingProcess {
 
             if (curCraftingProgress >= craftingProgressTickReq) {
                 for (int i = 0; i < outputItems.Length; i++) {
-                    inventory.TryAddItem(outputItems[i], outputItemAmounts[i], true);
+                    ItemCreatedCallback?.Invoke(outputItems[i], outputItemAmounts[i]);
+                    inventory.TryAndAddItem(outputItems[i], outputItemAmounts[i], true);
                 }
+
+                if (isResearchProcess) {
+                    ResearchMadeCallback?.Invoke();
+                }
+                
                 isCrafting = false;
                 curCraftingProgress = 0;
-                return false;
+                return true;
             }
 
             return true;
@@ -260,23 +270,21 @@ public class CraftingProcess {
     }
 
 
-    public (Item, int)[] GetInputItems() {
-        (Item, int)[] inputs = new (Item, int)[inputItems.Length];
+    public DataHolder.CountedItem[] GetInputItems() {
+        DataHolder.CountedItem[] inputs = new DataHolder.CountedItem[inputItems.Length];
 
         for (int i = 0; i < inputs.Length; i++) {
-            inputs[i].Item1 = inputItems[i];
-            inputs[i].Item2 = inputItemAmounts[i];
+            inputs[i] = new DataHolder.CountedItem(inputItems[i], inputItemAmounts[i]);
         }
 
         return inputs;
     }
 
-    public (Item, int)[] GetOutputItems() {
-        (Item, int)[] outputs = new (Item, int)[outputItems.Length];
+    public DataHolder.CountedItem[] GetOutputItems() {
+        DataHolder.CountedItem[] outputs = new DataHolder.CountedItem[inputItems.Length];
 
         for (int i = 0; i < outputs.Length; i++) {
-            outputs[i].Item1 = outputItems[i];
-            outputs[i].Item2 = outputItemAmounts[i];
+            outputs[i] = new DataHolder.CountedItem(outputItems[i], outputItemAmounts[i]);
         }
 
         return outputs;

@@ -14,6 +14,14 @@ public class ItemDrawSystem : MonoBehaviour {
     public int maxBeltItems {
         get { return myPool.maxPoolSize; }
     }
+
+    public void ExpandPool() {
+        myPool.ExpandPool();
+    }
+
+    public void ResetPoolIndex() {
+        myPool.ResetIndex();
+    }
     
     private void Awake() {
         s = this;

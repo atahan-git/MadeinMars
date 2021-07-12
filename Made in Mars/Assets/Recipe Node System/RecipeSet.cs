@@ -320,7 +320,7 @@ public class CraftingNode : Node {
 
     // Make sure to also go edit DataHolder's index converted when you add things here!
     public enum cTypes {
-        Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, House, Farm
+        Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, 
     }
 
     public cTypes CraftingType;
@@ -386,9 +386,11 @@ public class ItemNode : Node {
 
 [Serializable]
 public class ResearchNode : Node {
-
-    public string researchName = "unnamed Research";
+    public string researchUniqueName = "rUnnamed";
     public string researchDescription = "no description";
+
+    [Header("Each basic lab unit produces 1 research per 20 seconds")]
+    public int researchReq;
     public ResearchNode(int id, string recipeSetName) : base(id, recipeSetName) {
         this.id = id;
         this.recipeSetName = recipeSetName;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -35,7 +36,11 @@ public class DialogTree : MonoBehaviour {
 		if (dialogs.Length > 0)
 			dialogs [dialogs.Length - 1].callWhenDone.AddListener (EndDialog);*/
 	}
-	
+
+	private void OnDestroy() {
+		s = null;
+	}
+
 	// Update is called once per frame
 	public void Update () {
 #if UNITY_EDITOR

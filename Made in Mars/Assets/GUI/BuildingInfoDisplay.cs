@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-/// <summary>
-/// Displays the "details" button building information
-/// </summary>
 public class BuildingInfoDisplay : MonoBehaviour {
-    public static bool isExtraInfoVisible = false; //Controlled by gui inventory controller
+    public static bool isExtraInfoVisible = false; //Controlled by gui inventoryItemSlots controller
 
     BuildingCraftingController crafter;
-    BuildingInventoryController inventory;
+    Inventory inventory;
 
     public GameObject canvas;
     public Transform Parent;
@@ -50,15 +46,10 @@ public class BuildingInfoDisplay : MonoBehaviour {
     }
 
     public void SetUp () {
-        int childs = InventoryParent.childCount;
-        for (int i = childs - 1; i >= 0; i--) {
-            Destroy(InventoryParent.GetChild(i).gameObject);
-        }
-        
-        childs = Parent.childCount;
-        for (int i = childs - 1; i > 0; i--) {
-            Destroy(Parent.GetChild(i).gameObject);
-        }
+        InventoryParent.DeleteAllChildren();
+        InventoryParent.SetParent(null);
+        Parent.DeleteAllChildren();
+        InventoryParent.SetParent(Parent);
         
         var worldObject = GetComponent<BuildingWorldObject>();
         crafter = worldObject.myCrafter;
@@ -93,7 +84,7 @@ public class BuildingInfoDisplay : MonoBehaviour {
         }
 
 
-        foreach (InventoryItemSlot it in inventory.inventory) {
+        foreach (InventoryItemSlot it in inventory.inventoryItemSlots) {
             Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(it, inventory,true);
         }
     }

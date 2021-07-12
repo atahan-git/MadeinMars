@@ -2059,7 +2059,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a8742bdeef186546b5d5f9cc1208f04, type: 2}
   - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
   - {fileID: 11400000, guid: 23a2e5f0ee7f46a4d98e77a03f014ab1, type: 2}
-  - {fileID: 11400000, guid: 5b86394760a5b5140a1b45f52a9180ba, type: 2}
+  - {fileID: 11400000, guid: ad2b7ca6eab6c0343bf01a2e89986d22, type: 2}
+  - {fileID: 11400000, guid: 4b348287299377648b8e1332c9d6be72, type: 2}
+  - {fileID: 11400000, guid: f827b53c0d3612a40b8ce455ba2fba9a, type: 2}
   myOres:
   - {fileID: 11400000, guid: e531984f8b4f3394384424387800c875, type: 2}
   - {fileID: 11400000, guid: eb647e993e4883b42a27e878e38fe18c, type: 2}
@@ -2888,50 +2890,6 @@ MonoBehaviour:
     tier: 0
     timeCost: 5
     CraftingType: 8
-  - recipeSetName: baseSet
-    id: 86
-    pos: {x: -310.67963, y: 660.19415, z: 0}
-    myAdapters:
-    - isLeftAdapter: 1
-      myType: 1
-      type: 0
-      connections: []
-      parentNodeId: 86
-      recipeSetName: baseSet
-    - isLeftAdapter: 0
-      myType: 1
-      type: 1
-      connections:
-      - count: 1
-        recipeSetName: baseSet
-        nodeId: 88
-      parentNodeId: 86
-      recipeSetName: baseSet
-    tier: 0
-    timeCost: 5
-    CraftingType: 10
-  - recipeSetName: baseSet
-    id: 87
-    pos: {x: 310.67963, y: 776.69904, z: 0}
-    myAdapters:
-    - isLeftAdapter: 1
-      myType: 1
-      type: 0
-      connections:
-      - count: 1
-        recipeSetName: baseSet
-        nodeId: 88
-      parentNodeId: 87
-      recipeSetName: baseSet
-    - isLeftAdapter: 0
-      myType: 1
-      type: 1
-      connections: []
-      parentNodeId: 87
-      recipeSetName: baseSet
-    tier: 0
-    timeCost: 20
-    CraftingType: 9
   myItemNodes:
   - recipeSetName: baseSet
     id: 3
@@ -3932,29 +3890,6 @@ MonoBehaviour:
       parentNodeId: 81
       recipeSetName: baseSet
     itemUniqueName: bLab
-  - recipeSetName: baseSet
-    id: 88
-    pos: {x: 0, y: 621.35925, z: 0}
-    myAdapters:
-    - isLeftAdapter: 1
-      myType: 0
-      type: 1
-      connections:
-      - count: 1
-        recipeSetName: baseSet
-        nodeId: 86
-      parentNodeId: 88
-      recipeSetName: baseSet
-    - isLeftAdapter: 0
-      myType: 0
-      type: 0
-      connections:
-      - count: 1
-        recipeSetName: baseSet
-        nodeId: 87
-      parentNodeId: 88
-      recipeSetName: baseSet
-    itemUniqueName: food
   myResearchNodes:
   - recipeSetName: baseSet
     id: 84
@@ -3987,8 +3922,9 @@ MonoBehaviour:
       connections: []
       parentNodeId: 84
       recipeSetName: baseSet
-    researchName: Fuel Synthesis
+    researchUniqueName: 
     researchDescription: Unlock the ability to synthesize fuel on the martian surface
+    researchReq: 0
   - recipeSetName: baseSet
     id: 85
     pos: {x: 582.5243, y: -660.19415, z: 0}
@@ -4020,8 +3956,9 @@ MonoBehaviour:
       connections: []
       parentNodeId: 85
       recipeSetName: baseSet
-    researchName: Oxygen Synthesis
+    researchUniqueName: 
     researchDescription: Generate Oxygen from martian air or from water
+    researchReq: 0
 --- !u!114 &896045736394307463
 MonoBehaviour:
   m_ObjectHideFlags: 0

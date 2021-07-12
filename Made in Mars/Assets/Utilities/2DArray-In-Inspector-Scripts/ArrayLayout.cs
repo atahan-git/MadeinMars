@@ -9,9 +9,17 @@ using UnityEngine.Serialization;
 [System.Serializable]
 public class ArrayLayout  {
 
+	public ArrayLayout() {
+		column = new rowData[7];
+		for (int i = 0; i < column.Length; i++) {
+			column[i] = new rowData();
+			column[i].row = new bool[7];
+		}
+	}
+
 	[System.Serializable]
-	public struct rowData {
-		public bool[] row;
+	public class rowData {
+		public bool[] row = new bool[7];
 	}
 
 	[FormerlySerializedAs("rows")]

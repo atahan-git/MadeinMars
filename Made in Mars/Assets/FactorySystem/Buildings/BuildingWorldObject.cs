@@ -18,7 +18,7 @@ public class BuildingWorldObject : MonoBehaviour
 	[SerializeField] List<Position> myLocations = new List<Position>();
 	[SerializeField] List<TileData> myTiles = new List<TileData>();
 	public BuildingCraftingController myCrafter;
-	public BuildingInventoryController myInventory;
+	public Inventory myInventory;
 	SpriteGraphicsController myRend;
 
 	[SerializeField] float width;
@@ -57,7 +57,7 @@ public class BuildingWorldObject : MonoBehaviour
 		myCrafter.stopAnimationsEvent -= StopAnimations;
 		myCrafter.stopAnimationsEvent += StopAnimations;
 
-		myInventory = myBuilding.invController;
+		myInventory = myBuilding.inv;
 		isInventorySetup = true;
 		buildingInventoryUpdatedCallback?.Invoke();
 		StopAnimations();
@@ -98,7 +98,7 @@ public class BuildingWorldObject : MonoBehaviour
 		foreach (var loc in myLocations) {
 			var tile = Grid.s.GetTile(loc);
 			myTiles.Add(tile);
-			tile.worldObject = this.gameObject;
+			tile.visualObject = this.gameObject;
 			tile.objectUpdatedCallback -= TileUpdated;
 			tile.objectUpdatedCallback += TileUpdated;
 		}
@@ -131,8 +131,8 @@ public class BuildingWorldObject : MonoBehaviour
 			foreach (Position myPosition in myLocations) {
 				if (myPosition != null) {
 					var myTile = Grid.s.GetTile(myPosition);
-					if (myTile.areThereConstruction) {
-						myConstruction = myTile.myConstruction;
+					if (myTile.simObject is Construction construction) {
+						myConstruction =construction;
 					} else {
 						DestroyYourself();
 					}
@@ -142,8 +142,8 @@ public class BuildingWorldObject : MonoBehaviour
 			foreach (Position myPosition in myLocations) {
 				if (myPosition != null) {
 					var myTile = Grid.s.GetTile(myPosition);
-					if (myTile.areThereBuilding) {
-						myBuilding = myTile.myBuilding;
+					if (myTile.simObject is Building building) {
+						myBuilding = building;
 					} else {
 						DestroyYourself();
 					}
@@ -157,7 +157,7 @@ public class BuildingWorldObject : MonoBehaviour
 		foreach (Position myPosition in myLocations) {
 			if (myPosition != null) {
 				var myTile = Grid.s.GetTile(myPosition);
-				myTile.worldObject = null;
+				myTile.visualObject = null;
 				myTile.objectUpdatedCallback -= TileUpdated;
 			}
 		}

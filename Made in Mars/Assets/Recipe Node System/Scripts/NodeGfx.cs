@@ -99,14 +99,16 @@ public abstract class NodeGfx : MonoBehaviour {
         foreach (var port in allPorts) {
             if (port.myConnection != null) {
                 var connectedNode = myViewer.GetNodeWithId(port.myConnection.nodeId);
-                foreach (var connectedNodePort in connectedNode.allPorts) {
-                    if (connectedNodePort.myConnection != null) {
-                        if (connectedNodePort.myConnection.nodeId == myNode.id) {
-                            port.SetConnection(connectedNodePort);
-                            break;
+                if (connectedNode != null) {
+                    foreach (var connectedNodePort in connectedNode.allPorts) {
+                        if (connectedNodePort.myConnection != null) {
+                            if (connectedNodePort.myConnection.nodeId == myNode.id) {
+                                port.SetConnection(connectedNodePort);
+                                break;
+                            }
                         }
                     }
-                }
+                } 
             }
         }
     }

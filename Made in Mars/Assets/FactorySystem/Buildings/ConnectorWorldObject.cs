@@ -63,7 +63,7 @@ public class ConnectorWorldObject : MonoBehaviour
 		myTile = Grid.s.GetTile(_location);
 		location = _location;
 		
-		myTile.worldObject = this.gameObject;
+		myTile.visualObject = this.gameObject;
 		myTile.objectUpdatedCallback -= TileUpdated; // we want to make sure we get the update callback only once
 		myTile.objectUpdatedCallback += TileUpdated;
 		
@@ -73,8 +73,8 @@ public class ConnectorWorldObject : MonoBehaviour
 	
 	void TileUpdated() {
 		if (isConstruction) {
-			if (myTile.areThereConstruction) {
-				myConstruction = myTile.myConstruction;
+			if (myTile.simObject is Construction construction) {
+				myConstruction =construction;
 				direction = myConstruction.direction;
 					
 				myRend.SetGraphics(FactoryVisuals.s.connectorSprites[myConstruction.direction]);
@@ -82,8 +82,8 @@ public class ConnectorWorldObject : MonoBehaviour
 				DestroyYourself();
 			}
 		} else {
-			if (myTile.areThereConnector) {
-				myConnector = myTile.myConnector;
+			if (myTile.simObject is Connector connector) {
+				myConnector = connector;
 				direction = myConnector.direction;
 			
 				myConnector.ConnectorInputsUpdatedCallback -= UpdateConnectorGraphics;
@@ -96,7 +96,7 @@ public class ConnectorWorldObject : MonoBehaviour
 	}
 	
 	public void RemoveSelfFromTile() {
-		myTile.worldObject = null;
+		myTile.visualObject = null;
 		myTile.objectUpdatedCallback -= TileUpdated;
 	}
 

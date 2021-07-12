@@ -23,7 +23,7 @@ public class FactoryPlayerConnector : MonoBehaviour
 		}
 		s = this;
 		
-		//GameLoader.CallWhenLoaded(LoadFromSave);
+		//GameLoader.CallWhenLoadedEarly(LoadFromSave);
 	}
 
 	/*void LoadFromSave () {
@@ -66,10 +66,10 @@ public class FactoryPlayerConnector : MonoBehaviour
 		}
 		return true;
 	}
-	/*bool BuildObjectFromSave (string myUniqueName, Position center, bool isBuilt, List<InventoryItemSlot> inventory) {
+	/*bool BuildObjectFromSave (string myUniqueName, Position center, bool isBuilt, List<InventoryItemSlot> inventoryItemSlots) {
 		BuildingData dat = DataHolder.s.GetBuilding(myUniqueName);
 		if (dat != null)
-			return BuildObject(DataHolder.s.GetBuilding(myUniqueName), center, false, false, inventory, isBuilt);
+			return BuildObject(DataHolder.s.GetBuilding(myUniqueName), center, false, false, inventoryItemSlots, isBuilt);
 		else
 			return false;
 	}*/
@@ -79,10 +79,10 @@ public class FactoryPlayerConnector : MonoBehaviour
 	}
 	
 	/*
-	bool BuildConnectorFromSave (Position center, int direction, bool isBuilt, List<InventoryItemSlot> inventory) {
+	bool BuildConnectorFromSave (Position center, int direction, bool isBuilt, List<InventoryItemSlot> inventoryItemSlots) {
 		if (direction > 2)
 			direction = 0;
-		return _BuildConnector(Grid.s.GetTile(center), direction, false, isBuilt, inventory);
+		return _BuildConnector(Grid.s.GetTile(center), direction, false, isBuilt, inventoryItemSlots);
 	}*/
 	
 	bool _BuildConnector (Position location, int direction, bool forced, bool isBuilt) {
@@ -104,8 +104,8 @@ public class FactoryPlayerConnector : MonoBehaviour
 		return _BuildBelt(location, direction, false, isBuilt, inventory);
 	}
 	
-	/*bool BuildBeltFromSave (Position center, int direction, bool isBuilt, List<InventoryItemSlot> inventory) {
-		return _BuildBelt(Grid.s.GetTile(center), direction, false, isBuilt, inventory);
+	/*bool BuildBeltFromSave (Position center, int direction, bool isBuilt, List<InventoryItemSlot> inventoryItemSlots) {
+		return _BuildBelt(Grid.s.GetTile(center), direction, false, isBuilt, inventoryItemSlots);
 	}*/
 	
 	

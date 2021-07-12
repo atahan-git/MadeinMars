@@ -18,13 +18,16 @@ public class Grid
 
 	public TileData[,] myTiles;
 
+	public PlanetSchematic scheme;
+
 	private TileData dummyTile = new TileData(-1,-1);
 	
-	public void WorldSetup ( MapGenerator _mapGen) {
+	public void RegisterEvents ( MapGenerator _mapGen) {
 		mapGen = _mapGen;
 
 		DataSaver.s.saveEvent += SaveTiles;
-		GameLoader.CallWhenLoaded(GameLoadingComplete, 0);
+		GameMaster.CallWhenLoadedEarly(GameLoadingComplete);
+		GameMaster.CallWhenNewPlanet(GenerateTiles);
 	}
 
 	public void DummySetup(int _mapSize) {
@@ -49,7 +52,8 @@ public class Grid
 		if (isSucces) {
 			LoadTiles();
 		} else {
-			GenerateTiles();
+			// We only generate new tiles when we see the "new planet" event so that we dont generate tiles twice when the loading fails
+			//GenerateTiles();
 		}
 	}
 
@@ -96,7 +100,7 @@ public class Grid
 					}
 				}
 
-				mapGen.LoadMap(materials, height);
+				mapGen.LoadMap(materials, height, scheme);
 				for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
 					mapGen.LoadResources(oreAmounts[i], DataHolder.s.GetAllOres()[i]);
 				}
@@ -108,33 +112,37 @@ public class Grid
 		}
 	}
 
+	public DataLogger _logger;
 	public void GenerateTiles () {
+		var time = 0f;
+		time = Time.realtimeSinceStartup;
+		
 		mapGen.Clear();
 		int[,] materials;
 		int[,] height;
-		mapGen.mapSize = new Vector2(mapSize, mapSize);
-		var map = mapGen.GenerateMap();
+		mapGen.mapSize = new Vector2Int(mapSize, mapSize);
+		var map = mapGen.GenerateMap(scheme);
 		materials = map.Item1;
 		height = map.Item2;
 
 		int[,] oreType = new int[mapSize,mapSize];
 		int[,] oreAmount = new int[mapSize, mapSize];
-		/*int[][,] oreAmountsPrepass = new int[DataHolder.s.GetAllOres().Length][,];
+		int[][,] oreAmountsPrepass = new int[DataHolder.s.GetAllOres().Length][,];
 		for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
 			oreAmountsPrepass[i] = mapGen.GenerateResources(DataHolder.s.GetAllOres()[i]);
-		}*/
+		}
 
 		myTiles = new TileData[mapSize, mapSize];
 
 		for (int x = 0; x < materials.GetLength(0); x++) {
 			for (int y = 0; y < materials.GetLength(1); y++) {
-				/*for (int i = 0; i < oreAmountsPrepass.Length; i++) {
+				for (int i = 0; i < oreAmountsPrepass.Length; i++) {
 					if (oreAmountsPrepass[i][x, y] > 0) {
 						oreType[x, y] = i+1;
 						oreAmount[x, y] = oreAmountsPrepass[i][x, y] * 10000;
 						break;
 					}
-				}*/
+				}
 
 
 				myTiles[x, y] = new TileData(x,y);
@@ -144,14 +152,16 @@ public class Grid
 				myTiles[x, y].oreAmount = oreAmount[x, y]; 
 			}
 		}
+		
+		_logger.mapGenerationTime.Add(Time.realtimeSinceStartup - time);
 	}
 
 	public void SaveTiles () {
-		DataSaver.s.TileDataToBeSaved = new DataSaver.TileData[myTiles.GetLength(0), myTiles.GetLength(1)];
+		DataSaver.s.mySave.tileData = new DataSaver.TileData[myTiles.GetLength(0), myTiles.GetLength(1)];
 		for (int x = 0; x < myTiles.GetLength(0); x++) {
 			for (int y = 0; y < myTiles.GetLength(1); y++) {
 				TileData ct = myTiles[x, y];
-				DataSaver.s.TileDataToBeSaved[x, y] = new DataSaver.TileData(ct.height, ct.material, ct.oreType, ct.oreAmount);
+				DataSaver.s.mySave.tileData[x, y] = new DataSaver.TileData(ct.height, ct.material, ct.oreType, ct.oreAmount);
 			}
 		}
 	}
@@ -159,7 +169,7 @@ public class Grid
 	public void OnDestroy () {
 		s = null;
 		DataSaver.s.saveEvent -= SaveTiles;
-		GameLoader.RemoveFromCall(GameLoadingComplete);
+		GameMaster.RemoveFromCall(GameLoadingComplete);
 	}
 }
 
@@ -175,34 +185,20 @@ public class TileData {
 
 
 	//Building stuff
-	public bool isEmpty { get { return !areThereBelt && !areThereBuilding && !areThereConnector && !areThereWorldObject && !areThereConstruction;  } }
+	public bool isEmpty { get { return !areThereVisualObject && !areThereSimObject;  } }
 
-	public bool areThereWorldObject {get{ return worldObject != null; } }
-	public GameObject worldObject;
-	public bool areThereBuilding { get { return myBuilding != null; } }
-	private Building _myBuilding;
-	public Building myBuilding {
-		get { return _myBuilding; }
-		set { _myBuilding = value; objectUpdatedCallback?.Invoke(); }
-	}
-	public bool areThereBelt { get { return myBelt != null; } }
-	private Belt _myBelt;
-	public Belt myBelt{
-		get { return _myBelt; }
-		set { _myBelt = value; objectUpdatedCallback?.Invoke(); }
-	}
-	public bool areThereConnector { get { return myConnector != null; } }
-	private Connector _myConnector;
-	public Connector myConnector{
-		get { return _myConnector; }
-		set { _myConnector = value; objectUpdatedCallback?.Invoke(); }
-	}
-	
-	public bool areThereConstruction { get { return myConstruction != null; } }
-	private Construction _myConstruction;
-	public Construction myConstruction{
-		get { return _myConstruction; }
-		set { _myConstruction = value; objectUpdatedCallback?.Invoke(); }
+	public bool areThereVisualObject {get{ return visualObject != null; } }
+	public GameObject visualObject;
+	public bool areThereSimObject {get{ return simObject != null; } }
+	private SimGridObject _simObject;
+
+	public SimGridObject simObject {
+		get {
+			return _simObject;
+		}
+		set {
+			_simObject = value; objectUpdatedCallback?.Invoke();
+		}
 	}
 
 	const int maxHeight = 2;
@@ -212,7 +208,7 @@ public class TileData {
 	// For map generation
 	public int height = 0;
 	public int material = 0;
-	public int oreType = 0;
+	public int oreType = 0; // Ore types start counting from 1, 0 means no ore
 	public int oreAmount = 0;
 
 	public TileData (int _x, int _y) {

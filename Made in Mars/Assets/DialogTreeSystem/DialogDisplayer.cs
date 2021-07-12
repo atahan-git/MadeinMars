@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,12 @@ public class DialogDisplayer : MonoBehaviour {
 		isShowing = false;
 
 		waitOverlay.SetActive (false);
+
+		SetDialogScreenState(false);
+	}
+
+	private void OnDestroy() {
+		s = null;
 	}
 
 	private void OnEnable () {

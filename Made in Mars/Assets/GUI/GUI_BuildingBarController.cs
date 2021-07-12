@@ -36,7 +36,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
         myBuildingBarSlots = BuildingBarSlotsParent.GetComponentsInChildren<MiniGUI_BuildingBarSlot>();
         
-        GameLoader.CallWhenLoaded(LoadBuildingSlots);
+        GameMaster.CallWhenLoaded(LoadBuildingSlots);
     }
 
     private void Start () {
@@ -76,7 +76,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
     
     // IMPORTANT CHANGE
     //
-    // Previously we needed items from the player inventory to build things, not anymore!
+    // Previously we needed items from the player inventoryItemSlots to build things, not anymore!
     // Now drones collect resources and build the things.
     public Color defColor = Color.white;
     public void UpdateSlotsBuildableStates () {
@@ -101,14 +101,14 @@ public class GUI_BuildingBarController : MonoBehaviour {
     public bool inventoryDragBegun = false;
     public BuildingData dragBuildDat = null;
     public void BeginDragInventoryBuilding (BuildingData building) {
-        Debug.Log("Begin Drag inventory Building");
+        Debug.Log("Begin Drag inventoryItemSlots Building");
         buildingDragFromInventoryOverlay.SetActive(true);
         dragBuildDat = building;
         inventoryDragBegun = true;
     }
 
     public void StopDragInventoryBuilding () {
-        Debug.Log("End Drag inventory Building");
+        Debug.Log("End Drag inventoryItemSlots Building");
         buildingDragFromInventoryOverlay.SetActive(false);
         inventoryDragBegun = false;
         UpdateSlotsBuildableStates();
@@ -144,7 +144,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
 
-    public void StartBuildingFromSlot (BuildingData dat, bool isRocket, List<InventoryItemSlot> inv, GenericCallback buildCompleteCallback) {
+    public void StartBuildingFromSlot (BuildingData dat, bool isRocket, List<InventoryItemSlot> inv, SuccessFailCallback buildCompleteCallback) {
         beltBuildingOverlay.SetActive(false);
         sellModeOverlay.SetActive(false);
         Player_MasterControlCheck.s.buildingController.TryToPlaceItem(dat, isRocket,  inv, buildCompleteCallback);
@@ -193,16 +193,16 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
     void SaveBuildingSlots () {
-        DataSaver.s.BuildingBarDataToBeSaved = new string[myBuildingBarSlots.Length];
+        DataSaver.s.mySave.buildingBarData = new string[myBuildingBarSlots.Length];
         for (int i = 0; i < myBuildingBarSlots.Length; i++) {
             if (myBuildingBarSlots[i].myDat != null) {
-                DataSaver.s.BuildingBarDataToBeSaved[i] = myBuildingBarSlots[i].myDat.uniqueName;
+                DataSaver.s.mySave.buildingBarData[i] = myBuildingBarSlots[i].myDat.uniqueName;
             }
         }
     }
 
 	public void OnDestroy () {
-        GameLoader.RemoveFromCall(LoadBuildingSlots);
+        GameMaster.RemoveFromCall(LoadBuildingSlots);
         DataSaver.s.saveEvent -= SaveBuildingSlots;
         //Player_InventoryController.s.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
     }

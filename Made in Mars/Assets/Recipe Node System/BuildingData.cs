@@ -14,7 +14,7 @@ public class BuildingData : ScriptableObject {
 	public static Vector2 center = new Vector2(3, 3);
 
 	// Make sure to also add new crafting type to RecipeSet/CraftingNode if you are adding new crafting type building!
-	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal, Storage, Connector, House, Farm, Rocket }
+	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal, Storage, Connector, Spaceship, ShipPart }
 
 	public ItemType myType;
 
@@ -22,9 +22,6 @@ public class BuildingData : ScriptableObject {
 	public int buildingGrade = 0;
 
 	public float energyUse = 0;
-
-	public int housingSlots;
-	public int workerRequirement;
 
 	public enum BuildingGfxType {
 		SpriteBased, AnimationBased, PrefabBased

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Linq;
 using UnityEngine.UI;
 
 /// <summary>
@@ -16,14 +17,6 @@ public class DataSaver : MonoBehaviour {
 
 	public SaveFile mySave;
 	public const string saveName = "mySave.data";
-
-	public List<BuildingSaveData> BuildingsToBeSaved = new List<BuildingSaveData>();
-	public List<BeltSaveData> BeltsToBeSaved = new List<BeltSaveData>();
-	public List<ConnectorSaveData> ConnectorsToBeSaved = new List<ConnectorSaveData>();
-	public List<ConstructionSaveData> ConstructionsToBeSaved = new List<ConstructionSaveData>();
-	public List<DroneSaveData> DronesToBeSaved = new List<DroneSaveData>();
-	public string[] BuildingBarDataToBeSaved;
-	public TileData[,] TileDataToBeSaved;
 
 	public delegate void SaveYourself ();
 	public event SaveYourself saveEvent;
@@ -51,13 +44,7 @@ public class DataSaver : MonoBehaviour {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName);
 
-		SaveFile data = new SaveFile(
-			BuildingsToBeSaved.ToArray(),
-			BeltsToBeSaved.ToArray(),
-			ConnectorsToBeSaved.ToArray(),
-			ConstructionsToBeSaved.ToArray(),
-			DronesToBeSaved.ToArray(),
-			BuildingBarDataToBeSaved, TileDataToBeSaved);
+		SaveFile data = mySave;
 
 		bf.Serialize(file, data);
 		file.Close();
@@ -101,26 +88,17 @@ public class DataSaver : MonoBehaviour {
 
 	[System.Serializable]
 	public class SaveFile {
-		public BuildingSaveData[] buildingData = new BuildingSaveData[0];
-		public BeltSaveData[] beltData = new BeltSaveData[0];
-		public ConnectorSaveData[] connectorData = new ConnectorSaveData[0];
-		public ConstructionSaveData[] constructionData = new ConstructionSaveData[0];
-		public DroneSaveData[] droneData = new DroneSaveData[0];
+		public List<BuildingSaveData> buildingData = new List<BuildingSaveData>();
+		public List<BeltSaveData> beltData = new List<BeltSaveData>();
+		public List<ConnectorSaveData> connectorData = new List<ConnectorSaveData>();
+		public List<ConstructionSaveData> constructionData = new List<ConstructionSaveData>();
+		public List<DroneSaveData> droneData = new List<DroneSaveData>();
 		public string[] buildingBarData = new string[0];
 		public TileData[,] tileData = new TileData[0,0];
 
-		public float[] newGameData = new float[0];
+		public List<DataHolder.CountedItem> itemsMadeData = new List<DataHolder.CountedItem>();
 
-		public SaveFile (BuildingSaveData[] myit, BeltSaveData[] mybel, ConnectorSaveData[] mycon, ConstructionSaveData[] mycons, DroneSaveData[] mydron,  string[] mybuilbar, TileData[,] myTiledata) {
-			buildingData = myit;
-			beltData = mybel;
-			connectorData = mycon;
-			constructionData = mycons;
-			droneData = mydron;
-			buildingBarData = mybuilbar;
-			tileData = myTiledata;
-		}
-
+		public bool isSpaceshipLanded = false;
 	}
 	
 	
@@ -231,17 +209,12 @@ public class DataSaver : MonoBehaviour {
 		public InventoryData[] myInv;
 
 		public int droneState;
-
-		public Position targetStorage;
-		public Position constructionInventory;
 		
 		public DroneSaveData (Position _curPosition, Position _targePosition, 
 			bool _isTravelling, bool _isBusy, bool _isLaser,
 			Position _currentTaskPosition, List<InventoryItemSlot> _currentTaskMaterials,
 			List<InventoryItemSlot> _myInv,
-			int _droneState,
-			Position _targetStorage,
-			Position _constructionInventory) {
+			int _droneState) {
 
 			curPosition = _curPosition;
 			targetPosition = _targePosition;
@@ -256,9 +229,6 @@ public class DataSaver : MonoBehaviour {
 			myInv = InventoryData.ConvertToSaveData(_myInv);
 
 			droneState = _droneState;
-
-			targetStorage = _targetStorage;
-			constructionInventory = _constructionInventory;
 		}
 	}
 	

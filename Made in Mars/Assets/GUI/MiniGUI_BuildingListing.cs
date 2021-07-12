@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 
 /// <summary>
-/// A helper class for the individual building listing in the inventory panel
+/// A helper class for the individual building listing in the inventoryItemSlots panel
 /// </summary>
 public class MiniGUI_BuildingListing : MonoBehaviour {
 

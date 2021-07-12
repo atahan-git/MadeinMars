@@ -97,7 +97,7 @@ public class GUI_CraftingController : MonoBehaviour {
             curActiveProcess.UpdateDisplay();
             if (curActiveProcess.progress >= 1) {
                 /*if (Player_InventoryController.s.CanCraftItem(curActiveProcess.myCraftingNode)) {
-                    if (Player_InventoryController.s.TryAddItem(curActiveProcess.myItem)) {
+                    if (Player_InventoryController.s.TryAndAddItem(curActiveProcess.myItem)) {
                         Player_InventoryController.s.UseCraftingResources(curActiveProcess.myCraftingNode, 1);
                         print("Item Craftin success: " + curActiveProcess.myItem.uniqueName);
                     }

@@ -6,8 +6,8 @@
         "FactorySystem",
         "Core",
         "RecipeNodeSystem",
-        "Buildings",
-        "Grid"
+        "Utilities",
+        "2DArrayInspector"
     ],
     "includePlatforms": [
         "Editor"

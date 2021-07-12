@@ -1,57 +1,70 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 
-/// <summary>
-/// Generates the fancy Martian surface, and deals with the graphics loading/saving
-/// </summary>
-public class MapGenerator : MonoBehaviour {
+public class MapGenerator : MonoBehaviour  {
 
-    public Tilemap ground;
-    public int zeroHeightInArray = 1;
-    public int minHeight = -1;
-    public int maxHeight = 2;
-    public TileBase[] dirt;
-    public TileBase[] black;
-
-
+    public Tilemap[] tilemaps;
     public Tilemap resources;
 
-    public Vector2 mapSize = new Vector2(200, 200);
+    public Vector2Int mapSize = new Vector2Int(200, 200);
+    
+    const int defaultHeight = 1;
+    const int minHeight = 0;
+    const int maxHeight = 3;
+    
+    
+    public PlanetSchematic editorMapSchematic;
 
-	public void Clear () {
-        ground.ClearAllTiles();
+    public void Clear () {
+        foreach (var tilemap in tilemaps) {
+            tilemap.ClearAllTiles();
+        }
         resources.ClearAllTiles();
 	}
 
-	public (int[,],int[,]) GenerateMap () {
-        float seed = Random.Range(0f, 1000f);
-        int[,] materials = new int[(int)mapSize.x, (int)mapSize.y];
-        int[,] height = new int[(int)mapSize.x, (int)mapSize.y];
+    public OreSpawnSettings debugOreSpawnSettings;
+    public int[,] debug_heights;
+    public Color[] heightColors = new Color[4];
+    public void ShowHeightDebug() {
+        foreach (var tilemap in tilemaps) {
+            for (int x = 0; x < debug_heights.GetLength(0); x++) {
+                for (int y = 0; y < debug_heights.GetLength(1); y++) {
+                    var pos = new Vector3Int(x, y, 0);
+                    var tile = tilemap.GetTile(pos);
+                    if (tile != null) {
+                        SetTileColor(tilemap, pos, heightColors[debug_heights[x, y]]);
+                    }
+                }
+            }
+        }
+    }
 
-        TileBase[][] PossibleTiles = new TileBase[2][];
-        PossibleTiles[0] = dirt;
-        PossibleTiles[1] = black;
+	public (int[,],int[,]) GenerateMap (PlanetSchematic scheme) {
+        
+        float seed = Random.Range(0f, 1000f);
+        int[,] materials = GenerateArray(mapSize.x, mapSize.y, 0);
+        int[,] height = GenerateArray(mapSize.x, mapSize.y, defaultHeight);
 
         // Create material distribution
-        BlackAreas(materials, seed);
-
+        BlackAreas(materials, seed, scheme);
         // Create heightmap
-        Meteors(height, seed);
-        Rivers(height, seed);
+        Meteors(height, seed, scheme);
+        Rivers(height, seed, scheme);
 
-        RenderMap(ground, materials, height, PossibleTiles);
-        print("Map successfully generated");
+        ConvertMaterialsAndHeightToMap(materials, height, scheme);
+        Debug.Log("Map successfully generated");
+
+        debug_heights = height;
         return (materials, height);
     }
 
-    public void LoadMap (int[,] materials, int[,] height) {
-        TileBase[][] PossibleTiles = new TileBase[2][];
-        PossibleTiles[0] = dirt;
-        PossibleTiles[1] = black;
-
-        RenderMap(ground, materials, height, PossibleTiles);
+    public void LoadMap (int[,] materials, int[,] height, PlanetSchematic scheme) {
+        ConvertMaterialsAndHeightToMap( materials, height, scheme);
     }
 
     public int[,] GenerateResources (OreSpawnSettings setting) {
@@ -83,40 +96,79 @@ public class MapGenerator : MonoBehaviour {
         print(debug);
     }
 
-    public int[,] GenerateArray (Vector2 mapSize, bool filled) {
-        int[,] map = new int[(int)mapSize.x, (int)mapSize.y];
-        for (int x = 0; x < map.GetLength(0); x++) {
-            for (int y = 0; y < map.GetLength(1); y++) {
-                if (filled) {
-                    map[x, y] = 1;
-                } else {
-                    map[x, y] = 0;
+    public int[,] GenerateArray (int xSize, int ySize, int value) {
+        int[,] arr = new int[xSize, ySize];
+        for (int x = 0; x < arr.GetLength(0); x++) {
+            for (int y = 0; y < arr.GetLength(1); y++) {
+                arr[x, y] = value;
+            }
+        }
+        return arr;
+    }
+    
+    public void ConvertMaterialsAndHeightToMap (int[,] materials, int[,] height, PlanetSchematic scheme) {
+        int layerCount = 4;
+        for (int layerHeight = 0; layerHeight < layerCount; layerHeight++) {
+            bool[,] filter = new bool[height.GetLength(0), height.GetLength(1)];
+            FilterForHeight(filter, layerHeight);
+
+            var swelled = SwellMap(filter);
+            
+            SetMap(swelled, tilemaps[layerHeight], layerHeight, true);
+            SetMap(filter, tilemaps[layerHeight], layerHeight, false);
+        }
+
+
+        void FilterForHeight(bool[,] _filter, int heightTarget) {
+            for (int x = 0; x < materials.GetLength(0); x++) {
+                for (int y = 0; y < materials.GetLength(1); y++) {
+                    _filter[x, y] = height[x, y] == heightTarget;
                 }
             }
         }
-        return map;
-    }
-    public void RenderMap (Tilemap tilemap, int[,] materials, int[,] height, TileBase[][] tiles) {
-        //Loop through the width of the map
-        for (int x = 0; x < materials.GetLength(0); x++) {
-            //Loop through the height of the map
-            for (int y = 0; y < materials.GetLength(1); y++) {
-                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[materials[x,y]][height[x,y]+zeroHeightInArray]);
+        
+        
+        
+        void SetMap(bool[,] filter,Tilemap tilemap, int layerHeight, bool isEdge) {
+            var positions = new List<Vector3Int>();
+            var tiles = new List<TileBase>();
+            for (int x = 0; x < materials.GetLength(0); x++) {
+                for (int y = 0; y < materials.GetLength(1); y++) {
+                    if (filter[x, y]) {
+                        var position = new Vector3Int(x, y, 0);
+                        positions.Add(position);
+                        tiles.Add(scheme.tileSettings.GetTile(layerHeight, materials[x,y], isEdge));
+                    }
+                }
+            }
+            
+            tilemap.SetTiles(positions.ToArray(), tiles.ToArray());
+            
+            for (int x = 0; x < materials.GetLength(0); x++) {
+                for (int y = 0; y < materials.GetLength(1); y++) {
+                    if (filter[x, y]) {
+                        var position = new Vector3Int(x, y, 0);
+                        //tilemap.SetTile(position, scheme.tileSettings.GetTile(layerHeight, materials[x,y], isEdge));
+                        SetTileColor(tilemap, position, scheme.colorSettings.GetColor(layerHeight, materials[x, y]));
+                    }
+                }
             }
         }
     }
 
-    public void UpdateMap (int[,] map, Tilemap tilemap, TileBase tile) {
-        UpdateMap(map, tilemap, new TileBase[] { tile });
+    void RenderMap(List<Vector3Int> positions, List<TileBase> tiles, List<Color> colors) {
+        
     }
 
-    public void UpdateMap (int[,] map, Tilemap tilemap, TileBase[] tile) //Takes in our map and tilemap, setting null tiles where needed
+    void SetTileColor(Tilemap tilemap, Vector3Int position, Color color) {
+        tilemap.SetTileFlags(position, TileFlags.None);
+        tilemap.SetColor(position, color);
+    }
+
+    public void UpdateMap (int[,] map, Tilemap tilemap, TileBase[] tile) 
     {
         for (int x = 0; x < map.GetLength(0); x++) {
             for (int y = 0; y < map.GetLength(1); y++) {
-                //We are only going to update the map, rather than rendering again
-                //This is because it uses less resources to update tiles to null
-                //As opposed to re-drawing every single tile (and collision data)
                 for (int i = 0; i < tile.Length; i++) {
                     if (map[x, y] == i + 1) {
                         tilemap.SetTile(new Vector3Int(x, y, 0), tile[i]);
@@ -126,14 +178,9 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-
-    [Header("Black Areas Settings")]
-    [Range(0.05f, 0.95f)]
-    public float blackCutoff = 0.5f;
-    [Range(0.001f, 0.2f)]
-    public float blackPerlinScale = 0.05f;
-
-    public void BlackAreas (int[,] map, float seed) {
+    public void BlackAreas (int[,] map, float seed, PlanetSchematic scheme) {
+        var blackCutoff = scheme.generationSettings.blackCutoff;
+        var blackPerlinScale = scheme.generationSettings.blackPerlinScale;
         PerlinNoise(map, seed, blackCutoff, blackPerlinScale);
     }
 
@@ -146,8 +193,14 @@ public class MapGenerator : MonoBehaviour {
         //Create the Perlin
         for (int x = 0; x < map.GetLength(0); x++) {
             for (int y = 0; y < map.GetLength(1); y++) {
-                float sample = Mathf.PerlinNoise(seed + x * perlinScale, seed + y * perlinScale);
-                //print(sample);
+                float sample = Mathf.PerlinNoise(seed + x * perlinScale, seed + y * perlinScale); // 0 - 1
+
+                /*if (sample < cutoff[0]) {
+                    map[x, y] = 0;
+                } else {
+                    map[x, y] = 1;
+                }*/
+                
                 for (int i = cutoff.Length-1; i >= 0; i--) {
                     if (sample > cutoff[i]) {
                         map[x, y] = i+1;
@@ -160,19 +213,22 @@ public class MapGenerator : MonoBehaviour {
         return map;
     }
 
-    [Header("Meteor Settings")]
-    [Tooltip("meteor count per 100x100 area")]
-    public int meteorDensity = 25;
-    public Vector2 meteorSizeRange = new Vector2(2, 20);
-    public float meteorBignessRarity = 2f;
-    public float bigMeteorBoundary = 10f;
-    public float MegaMeteorBoundary = 15f;
 
-
-    public void Meteors (int[,] map, float seed) {
+    public void Meteors (int[,] map, float seed, PlanetSchematic scheme) {
         Random.InitState((int)seed);
 
+        var genSet = scheme.generationSettings;
+        var meteorDensity = genSet.meteorDensity;
+        var meteorBignessRarity = genSet.meteorBignessRarity;
+        var meteorSizeRange = genSet.meteorSizeRange;
+        var bigMeteorBoundary = genSet.bigMeteorBoundary;
+        var megaMeteorBoundary = genSet.MegaMeteorBoundary;
+
         int meteorCount = ((map.GetLength(0) * map.GetLength(1)) / (100 * 100)) * meteorDensity;
+
+        var rimTopHeight = 3;
+        var rimAroundHeight = 2;
+        var generalHeightChange = 1;
 
         for (int i = 0; i < meteorCount; i++) {
             Vector2 meteorLocation = new Vector2(Random.Range(0, map.GetLength(0)), Random.Range(0, map.GetLength(1)));
@@ -180,33 +236,33 @@ public class MapGenerator : MonoBehaviour {
 
 
             if (r < bigMeteorBoundary) {
-                AddCircle(map, meteorLocation, r, 1);
+                AddCircle(map, meteorLocation, r, generalHeightChange);
             }
-            else if (r < MegaMeteorBoundary) {
+            else if (r < megaMeteorBoundary) {
                 for (int rin = 0; rin < r - 1; rin++) {
-                    AddCircle(map, meteorLocation, rin, -1);
+                    AddCircle(map, meteorLocation, rin, -generalHeightChange);
                 }
 
                 if(Random.value > 0.5f)
-                    AddCircle(map, meteorLocation, 1, 1);
+                    AddCircle(map, meteorLocation, 1, generalHeightChange);
 
-                SetCircle(map, meteorLocation, r-1, 1);
-                SetCircle(map, meteorLocation, r+1, 1);
-                SetCircle(map, meteorLocation, r, 2);
+                SetCircle(map, meteorLocation, r-1, rimAroundHeight);
+                SetCircle(map, meteorLocation, r+1, rimAroundHeight);
+                SetCircle(map, meteorLocation, r, rimTopHeight);
                 
             }
             else {
                 for (int rin = 0; rin < r - 2; rin++) {
-                    AddCircle(map, meteorLocation, rin, -1);
+                    AddCircle(map, meteorLocation, rin, -generalHeightChange);
                 }
 
-                AddCircle(map, meteorLocation, 2, 1);
+                AddCircle(map, meteorLocation, 2, generalHeightChange);
 
-                SetCircle(map, meteorLocation, r - 2, 1);
-                SetCircle(map, meteorLocation, r - 1, 1);
-                SetCircle(map, meteorLocation, r + 1, 1);
-                SetCircle(map, meteorLocation, r + 2, 1);
-                SetCircle(map, meteorLocation, r, 2);
+                SetCircle(map, meteorLocation, r - 2, rimAroundHeight);
+                SetCircle(map, meteorLocation, r - 1, rimAroundHeight);
+                SetCircle(map, meteorLocation, r + 1, rimAroundHeight);
+                SetCircle(map, meteorLocation, r + 2, rimAroundHeight);
+                SetCircle(map, meteorLocation, r, rimTopHeight);
             }
 
         }
@@ -221,17 +277,6 @@ public class MapGenerator : MonoBehaviour {
                 map[x, y] = num;
             }
         }
-
-        /*for (int x = (int)center.x - (int)r; x < (int)center.x + (int)r; x++) {
-            for (int y = (int)center.y - (int)r; y < (int)center.y + (int)r; y++) {
-                float distancetoCenter = Vector2.Distance(new Vector2(x, y), center);
-                if (distancetoCenter > r - width && distancetoCenter < r + width) {
-                    if (x < map.GetLength(0) && y < map.GetLength(1) && x >= 0 && y >= 0) {
-                        map[x, y] = num;
-                    }
-                }
-            }
-        }*/
     }
 
     public void AddCircle (int[,] map, Vector2 center, float r, int num) {
@@ -251,29 +296,30 @@ public class MapGenerator : MonoBehaviour {
             }
         }
     }
+    
 
-
-    [Header("River settings")]
-    [Tooltip("river count per 100x100 area")]
-    public int riverDensity = 5;
-    public Vector2 riverlengthRange = new Vector2(5, 20);
-    public float riverLongnessRarity = 2f;
-    public int maxRiverSet = 8;
-    public float riverSetRarityBignessDifficulty = 2;
-    public int maxRiverWidth = 5;
-    public float riverBignessRarity = 10;
-    public int bigRiverBoundary = 4;
-
-    public void Rivers (int[,] map, float seed) {
+    public void Rivers (int[,] map, float seed, PlanetSchematic scheme) {
         Random.InitState((int)seed);
+        
+        var genSet = scheme.generationSettings;
+        var riverDensity = genSet.riverDensity;
+        var riverLongnessRarity = genSet.riverLongnessRarity;
+        var riverLengthRange = genSet.riverLengthRange;
+        var riverBignessRarity = genSet.riverBignessRarity;
+        var maxRiverWidth = genSet.maxRiverWidth;
+        var riverSetRarityBignessDifficulty = genSet.riverSetRarityBignessDifficulty;
+        var maxRiverSet = genSet.maxRiverSet;
+        var bigRiverBoundary = genSet.bigRiverBoundary;
 
         int riverCount = ((map.GetLength(0) * map.GetLength(1)) / (100 * 100)) * riverDensity;
+
+        var riverBottomHeight = minHeight;
 
         for (int i = 0; i < riverCount; i++) {
             Vector2 riverStartLocation = new Vector2(Random.Range(0, map.GetLength(0)), Random.Range(0, map.GetLength(1)));
             Vector2 riverDirection = Random.insideUnitCircle;
 
-            float riverLength = mapValues(Mathf.Pow(Random.value, riverLongnessRarity), 0, 1, riverlengthRange.x, riverlengthRange.y);
+            float riverLength = mapValues(Mathf.Pow(Random.value, riverLongnessRarity), 0, 1, riverLengthRange.x, riverLengthRange.y);
             float riverWidth = mapValues(Mathf.Pow(Random.value, riverBignessRarity), 0, 1, 0, maxRiverWidth);
             if (riverWidth < 1)
                 riverWidth = 1;
@@ -283,7 +329,7 @@ public class MapGenerator : MonoBehaviour {
 
             for (int set = 0; set < riverSetCount; set++) {
                 if(riverWidth > bigRiverBoundary)
-                SetLine(map, riverStartLocation + (riverDirection*Random.value* riverLength / 5), riverDirection, riverLength * (1f + Random.value/10f), riverWidth, -1);
+                    SetLine(map, riverStartLocation + (riverDirection*Random.value* riverLength / 5), riverDirection, riverLength * (1f + Random.value/10f), riverWidth, riverBottomHeight);
                 else
                     AddLine(map, riverStartLocation + (riverDirection * Random.value * riverLength / 5), riverDirection, riverLength * (1f + Random.value / 10f), riverWidth, -1);
                 riverStartLocation += Vector2.Perpendicular(riverDirection) * (riverWidth+1)*(3+Random.value * 5);
@@ -345,5 +391,33 @@ public class MapGenerator : MonoBehaviour {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
+    public bool[,] SwellMap(bool[,] map) {
+        bool[,] temp = new bool[map.GetLength(0), map.GetLength(1)];
 
+        for (int x = 0; x < map.GetLength(0); x++) {
+            for (int y = 0; y < map.GetLength(1); y++) {
+                if (SampleIfAnyInTheZoneIsTrue(map, x, y)) {
+                    temp[x, y] = true;
+                }
+            }
+        }
+
+        return temp;
+
+        bool SampleIfAnyInTheZoneIsTrue(bool[,] source, int _x, int _y) {
+            var xMin = Mathf.Max(0, _x - 1);
+            var xMax = Mathf.Min(source.GetLength(0), _x + 2);
+            var yMin = Mathf.Max(0, _y - 1);
+            var yMax = Mathf.Min(source.GetLength(1), _y + 2);
+            for (int x = xMin; x < xMax; x++) {
+                for (int y = yMin; y < yMax; y++) {
+                    if (source[x, y]) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+    }
 }

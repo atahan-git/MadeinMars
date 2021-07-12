@@ -14,19 +14,14 @@ using Random = UnityEngine.Random;
 /// Mods and stuff will somehow add data here.
 /// eg if you add another RecipeSet, congrats! you've modded in extra crafting recipes to the game.
 /// </summary>
-public class DataHolder : MonoBehaviour {
+[Serializable]
+public class DataHolder  {
     public static DataHolder s;
-    [SerializeField]
-    private BuildingData[] myBuildings;
-    [SerializeField]
-    private ItemSet[] myItemSets;
-    [SerializeField]
-    private RecipeSet[] myRecipeSets; 
+    public BuildingData[] myBuildings;
+    public ItemSet[] myItemSets;
+    public RecipeSet[] myRecipeSets; 
     CraftingNode[] myCraftingProcesses;
     CraftingNode[][] myCraftingProcessesDivided;
-    
-    [SerializeField]
-    private ItemSet[] peopleItemSets;
 
     // Layers - the z coordinates for various objects
     public static readonly int worldLayer = 1;
@@ -39,11 +34,7 @@ public class DataHolder : MonoBehaviour {
     public static readonly int droneLayer = -6;
     public static readonly int itemPlacementLayer = -5;
 
-    private void Awake () {
-        if (s != null) {
-            Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
-        }
-        s = this;
+    public void Setup() {
         GenerateCraftingProcessesArray();
         DivideCraftingProcessesArray();
         AssignItemIds();
@@ -70,7 +61,21 @@ public class DataHolder : MonoBehaviour {
         return false;
     }
 
-    public bool OreIdtoUniqueName (int id, out string oreType) {
+    /// <summary>
+    /// Ore Ids start from 1
+    /// </summary>
+    public Item OreIdToItem(int id) {
+        if (OreIdToUniqueName(id, out string oreType)) {
+            return GetItem(oreType);
+        } else {
+            return Item.GetEmpty();
+        }
+    }
+    
+    /// <summary>
+    /// Ore Ids start from 1
+    /// </summary>
+    public bool OreIdToUniqueName (int id, out string oreType) {
         if (id > 0 && id <= GetAllOres().Length) {
             oreType = GetAllOres()[id - 1].oreUniqueName;
             return true;
@@ -120,15 +125,6 @@ public class DataHolder : MonoBehaviour {
             }
         }
         
-        for (int m = 0; m < peopleItemSets.Length; m++) {
-            for (int i = 0; i < peopleItemSets[m].items.Length; i++) {
-                if (peopleItemSets[m].items[i] != null) {
-                    if (peopleItemSets[m].items[i].uniqueName == uniqueName) {
-                        return peopleItemSets[m].items[i];
-                    }
-                }
-            }
-        }
         
         throw new NullReferenceException("The item you are requesting " + uniqueName + " does not exist!");
     }
@@ -140,7 +136,6 @@ public class DataHolder : MonoBehaviour {
     /// <returns>An array of items</returns>
     public Item[] GetAllItems() {
         if (allItems.Length == 0) {
-
             int length = 0;
 
             for (int m = 0; m < myItemSets.Length; m++) {
@@ -197,9 +192,20 @@ public class DataHolder : MonoBehaviour {
     }
     
     
-    public struct CountedItem {
+    [Serializable]
+    public class CountedItem {
         public string itemUniqueName;
         public int count;
+
+        public CountedItem(Item item, int count) {
+            itemUniqueName = item.uniqueName;
+            this.count = count;
+        }
+        
+        public CountedItem(string uniqueName, int count) {
+            itemUniqueName = uniqueName;
+            this.count = count;
+        }
     }
 
     
@@ -217,7 +223,7 @@ public class DataHolder : MonoBehaviour {
             if (myAdapter.isLeftAdapter == isLeft) {
                 for (int n = 0; n < myAdapter.connections.Count; n++) {
                     var myConnection = myAdapter.connections[n];
-                    countedItems.Add(new CountedItem(){itemUniqueName = GetItemNode(myConnection.recipeSetName, myConnection.nodeId).itemUniqueName, count = myConnection.count});
+                    countedItems.Add(new CountedItem(GetItemNode(myConnection.recipeSetName, myConnection.nodeId).itemUniqueName,  myConnection.count));
                 }
             }
         }
@@ -266,10 +272,6 @@ public class DataHolder : MonoBehaviour {
         myCraftingProcesses = cp.ToArray();
     }
 
-    /// <summary>
-    /// We kinda need to convert the rather ugly set of crafting nodes to easily useable categories for the BuildingCraftingController to use
-    /// That is done here.
-    /// </summary>
     void DivideCraftingProcessesArray () {
         CraftingNodeTypeToIndex(CraftingNode.cTypes.Miner); // Generate the dictionary
         List<List<CraftingNode>> cp = new List<List<CraftingNode>>();
@@ -279,7 +281,14 @@ public class DataHolder : MonoBehaviour {
         }
 
         for (int i = 0; i < myCraftingProcesses.Length; i++) {
-            cp[cTypetoIndexMatch[myCraftingProcesses[i].CraftingType]].Add(myCraftingProcesses[i]);
+            try {
+                cp[cTypetoIndexMatch[myCraftingProcesses[i].CraftingType]].Add(myCraftingProcesses[i]);
+            } catch {
+                Debug.LogError(i);
+                Debug.LogError(myCraftingProcesses[i].CraftingType);
+                Debug.LogError(cTypetoIndexMatch[myCraftingProcesses[i].CraftingType]);
+                throw new Exception();
+            }
         }
 
         myCraftingProcessesDivided = cp.Select(a => a.ToArray()).ToArray();
@@ -297,15 +306,18 @@ public class DataHolder : MonoBehaviour {
         case BuildingData.ItemType.Cutter:          index = 6; break;
         case BuildingData.ItemType.Lab:             index = 7; break;
         case BuildingData.ItemType.Building:        index = 8; break;
-        case BuildingData.ItemType.House:           index = 9; break;
-        case BuildingData.ItemType.Farm:            index = 10; break;
         }
         if (index == -1) {
             Debug.Log("Building does not support crafting! >> " + type.ToString());
             return null;
         }
 
-        return myCraftingProcessesDivided[index];
+        if (index < myCraftingProcessesDivided.Length) {
+            return myCraftingProcessesDivided[index];
+        } else {
+            Debug.LogError("Crafting Process of correct type not found!");
+            return null;
+        }
     }
 
     public CraftingNode[][] GetAllCraftingProcessNodesDivided() {
@@ -326,24 +338,13 @@ public class DataHolder : MonoBehaviour {
             cTypetoIndexMatch[CraftingNode.cTypes.Cutter] = 6;
             cTypetoIndexMatch[CraftingNode.cTypes.Lab] = 7;
             cTypetoIndexMatch[CraftingNode.cTypes.Building] = 8;
-            cTypetoIndexMatch[CraftingNode.cTypes.House] = 9;
-            cTypetoIndexMatch[CraftingNode.cTypes.Farm] = 10;
         }
 
         return cTypetoIndexMatch[type];
         // Make sure this matches with the switch statement in GetCraftingProcessesOfType function!
     }
-
-    public Item GetPeople() {
-        int randomSet = Random.Range(0, peopleItemSets.Length);
-        return peopleItemSets[randomSet].items[Random.Range(0, peopleItemSets[randomSet].items.Length)];
-    }
 }
 
 public delegate void GenericCallback ();
+public delegate void SuccessFailCallback (bool isSuccess);
 
-public interface IInventoryController {
-    event GenericCallback drawInventoryEvent; // This is for the initial drawing of the inventory. Only needs to be called when slot counts change
-    
-    event GenericCallback inventoryContentsChangedEvent; // Sign up to this if you want to be updated whenever the inventory contents are changed
-}

@@ -118,16 +118,6 @@ public class CraftingNodeGfx : NodeGfx {
                     isLegal = true;
                 background.color = craftingTypeColors[8];
                 break;
-            case CraftingNode.cTypes.House:
-                if (inputCount > 0 && outputCount == 0)
-                    isLegal = true;
-                background.color = craftingTypeColors[9];
-                break;
-            case CraftingNode.cTypes.Farm:
-                if (outputCount > 0)
-                    isLegal = true;
-                background.color = craftingTypeColors[10];
-                break;
         }
 
         if(!isLegal)

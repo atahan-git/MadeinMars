@@ -1,20 +1,16 @@
-﻿using Boo.Lang.Environments;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-/// <summary>
-/// Handles the player input processing for item placement.
-/// </summary>
+
 public class Player_BuildingController : MonoBehaviour {
 	public GameObject ItemPlacementHelperPrefab;
 	ItemPlacementHelper curItemPlacementScript;
 
 	public bool isRocket = false;
 	private List<InventoryItemSlot> inventory = null;
-	public GenericCallback buildCompleteCallback;
+	SuccessFailCallback buildCompleteCallback;
 
 	public RectTransform buildingBarArea;
 
@@ -69,10 +65,11 @@ public class Player_BuildingController : MonoBehaviour {
 				if (IsPointerOutsideBuildingBar() && FactoryPlayerConnector.s.CheckPlaceable(buildingItem, lastTile.location)) {
 					curItemPlacementScript.PlaceSelf();
 					FactoryPlayerConnector.s.BuildObject(buildingItem, lastTile.location,false, isRocket, instantBuildCheat, inventory);
-					buildCompleteCallback?.Invoke();
+					buildCompleteCallback?.Invoke(true);
 				} else {
 					Debug.Log("Item placement failed due: pointer place =" + IsPointerOutsideBuildingBar() + " or checkplaceable = " + FactoryPlayerConnector.s.CheckPlaceable(buildingItem, lastTile.location));
 					curItemPlacementScript.FailedPlacingSelf();
+					buildCompleteCallback?.Invoke(false);
 				}
 			}
 		}
@@ -90,7 +87,7 @@ public class Player_BuildingController : MonoBehaviour {
 	/// <param name="_isSpaceLanding"></param>
 	/// <param name="_isInventory"></param>
 	/// <param name="_inventory"></param>
-	public void TryToPlaceItem (BuildingData myData, bool _isRocket, List<InventoryItemSlot> _inventory, GenericCallback _buildCompleteCallback) {
+	public void TryToPlaceItem (BuildingData myData, bool _isRocket, List<InventoryItemSlot> _inventory, SuccessFailCallback _buildCompleteCallback) {
 		Deselect();
 		print("Placing Item");
 		buildCompleteCallback = _buildCompleteCallback;
@@ -132,7 +129,7 @@ public class Player_BuildingController : MonoBehaviour {
 
 				Debug.Log("Selling " + myTile.name);
 
-				if (myTile.areThereWorldObject) {
+				if (myTile.areThereSimObject) {
 					if (!instantBuildCheat) {
 						FactoryBuilder.StartDeconstruction(myTile.location);
 					} else {

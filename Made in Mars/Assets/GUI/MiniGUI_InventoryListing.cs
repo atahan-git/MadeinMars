@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 
 /// <summary>
-/// A helper class for the individual inventory slot listings in the inventory ui panel
+/// A helper class for the individual inventoryItemSlots slot listings in the inventoryItemSlots ui panel
 /// </summary>
 public class MiniGUI_InventoryListing : MonoBehaviour {
 
@@ -13,7 +13,7 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
     public Text numberText;
     public Image img;
     public InventoryItemSlot myDat;
-    private IInventoryController myCont;
+    private IInventoryDisplayable myCont;
 
     public Color inputColor = Color.green;
     public Color outputColor = Color.red;
@@ -23,7 +23,7 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
 
     public Image bg;
     private bool updateColor;
-    public void SetUp (InventoryItemSlot _myDat, IInventoryController _myCont, bool _updateColor) {
+    public void SetUp (InventoryItemSlot _myDat, IInventoryDisplayable _myCont, bool _updateColor) {
         myDat = _myDat;
         myCont = _myCont;
         updateColor = _updateColor;

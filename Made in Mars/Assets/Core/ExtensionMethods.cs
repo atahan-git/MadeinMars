@@ -23,6 +23,10 @@ public static class ExtensionMethods {
     public static bool isEmpty(this Item o) {
         return o == null || o.uniqueName.Length == 0;
     }
+
+    public static bool isEmpty(this ResearchNode o) {
+        return o == null || o.researchUniqueName.Length == 0|| o.researchUniqueName == "rUnnamed";
+}
     
     public static List<Position> CoveredPositions(this ArrayLayout layout, Position location) {
         var coveredPositions = new List<Position>();
@@ -50,6 +54,14 @@ public static class ExtensionMethods {
             }
 
             return count;
+        }
+    }
+
+
+    public static void DeleteAllChildren(this Transform transform) {
+        int childs = transform.childCount;
+        for (int i = childs - 1; i >= 0; i--) {
+            GameObject.Destroy(transform.GetChild(i).gameObject);
         }
     }
 }

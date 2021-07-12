@@ -28,9 +28,14 @@ public class NewGameWorldSetup : MonoBehaviour
 		s = this;
 	}
 
-	private void Start() {
-		GameLoader.CallWhenNewGame(SetUpNewGameWorld);
+	/*private void Start() {
+		GameLoader.CallWhenNewPlanet(SetUpNewGameWorld);
 	}
+	
+	private void OnDestroy() {
+		GameLoader.RemoveFromCall(SetUpNewGameWorld);
+	}*/
+	
 
 	void LayBelt(Position start, int direction, int amount) {
 		for (int i = 0; i < amount; i++) {
@@ -44,15 +49,27 @@ public class NewGameWorldSetup : MonoBehaviour
 		}
 	}
 	
-	public void SetUpNewGameWorld() {
+	public void SetUpNewPlanet() {
 		
-		Debug.Log("------------------- Starting new game -------------------");
+		Debug.Log("------------------- Starting new planet -------------------");
 
+		var shipPosition = FactoryMaster.s.GetBuildings()[0].center;
+		FactoryBuilder.CreateDrone(shipPosition + new Position(-2,-1));
+		FactoryBuilder.CreateDrone(shipPosition + new Position(-1,-1));
+		FactoryBuilder.CreateDrone(shipPosition + new Position(2,-1));
+
+		SetUpStarterFactory();
+	}
+
+
+	public void SetUpStarterFactory() {
 		//SetUpStressTest();
 		// Basic Iron System
 		var ironMinePosition = new Position(120, 120);
+		DataHolder.s.UniqueNameToOreId(ironOre.oreUniqueName, out int ironOreId);
+		Grid.s.GetTile(ironMinePosition).oreType = ironOreId;
+		Grid.s.GetTile(ironMinePosition).oreAmount = 10000;
 		var ironMiner = FactoryBuilder.CreateBuilding(mine, ironMinePosition, null);
-		ironMiner.craftController.SetMinerType(ironOre.oreUniqueName);
 		ironMiner.isDestructable = false;
 		FactoryBuilder.CreateConnector(ironMinePosition + new Position(0, -2), 0);
 		FactoryBuilder.CreateBelt(ironMinePosition + new Position(0, -3), 3);
@@ -70,22 +87,26 @@ public class NewGameWorldSetup : MonoBehaviour
 
 		// Copper Mine
 		var copperMinePosition = new Position(80, 100);
+		DataHolder.s.UniqueNameToOreId(copperOre.oreUniqueName, out int copperOreId);
+		Grid.s.GetTile(copperMinePosition).oreType = copperOreId;
+		Grid.s.GetTile(copperMinePosition).oreAmount = 10000;
 		var copperMine = FactoryBuilder.CreateBuilding(mine, copperMinePosition, null);
-		copperMine.craftController.SetMinerType(concreteOre.oreUniqueName);
 		copperMine.isDestructable = false;
 		
 		
 		// Concrete Mine
 		var concreteMinePosition = new Position(140, 140);
+		DataHolder.s.UniqueNameToOreId(concreteOre.oreUniqueName, out int concreteOreId);
+		Grid.s.GetTile(concreteMinePosition).oreType = concreteOreId;
+		Grid.s.GetTile(concreteMinePosition).oreAmount = 10000;
 		var concreteMine = FactoryBuilder.CreateBuilding(mine, concreteMinePosition, null);
-		concreteMine.craftController.SetMinerType(concreteOre.oreUniqueName);
 		concreteMine.isDestructable = false;
 		
 		
 		// Create starter drones
-		FactoryMaster.s.CreateDrone(new Position(90,90));
-		FactoryMaster.s.CreateDrone(new Position(92,90));
-		FactoryMaster.s.CreateDrone(new Position(94,90));
+		/*FactoryBuilder.CreateDrone(new Position(90,90));
+		FactoryBuilder.CreateDrone(new Position(92,90));
+		FactoryBuilder.CreateDrone(new Position(94,90));*/
 	}
 
 	void SetUpStressTest() {
@@ -93,8 +114,10 @@ public class NewGameWorldSetup : MonoBehaviour
 		for (int x = 12; x < 180; x += 12) {
 			for (int y = 12; y < 180; y += 12) {
 				var offset = new Position(x, y);
+				DataHolder.s.UniqueNameToOreId(ironOre.oreUniqueName, out int ironOreId);
+				Grid.s.GetTile(offset).oreType = ironOreId;
+				Grid.s.GetTile(offset).oreAmount = 10000;
 				var ironMiner = FactoryBuilder.CreateBuilding(mine, offset, null);
-				ironMiner.craftController.SetMinerType(ironOre.oreUniqueName);
 				ironMiner.isDestructable = false;
 				FactoryBuilder.CreateConnector(offset + new Position(0, -2), 0);
 				LayBelt(offset + new Position(0, -3), 3, 5);
@@ -117,7 +140,4 @@ public class NewGameWorldSetup : MonoBehaviour
 		}
 	}
 
-	private void OnDestroy() {
-		GameLoader.RemoveFromCall(SetUpNewGameWorld);
-	}
 }

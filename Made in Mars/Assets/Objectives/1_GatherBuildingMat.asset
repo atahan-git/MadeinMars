@@ -16,6 +16,10 @@ MonoBehaviour:
   title: Gather Building Materials
   description: 
   isComplete: 0
+  isUnlocked: 0
   completeReqs:
-  - have 80 buildingMat
+  - myType: 0
+    uniqueName: 
+    amount: 0
   unlockReqs: []
+  rewards: []

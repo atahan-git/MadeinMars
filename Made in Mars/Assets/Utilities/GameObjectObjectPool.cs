@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class GameObjectObjectPool : MonoBehaviour {
 
 	public bool autoExpand = true; //dont change this at runtime
@@ -23,7 +22,7 @@ public class GameObjectObjectPool : MonoBehaviour {
 		SetUp (poolSize);
 	}
 
-	public PooledGameObject[] objs;
+	public PooledGameObject[] objs = new PooledGameObject[0];
 	Queue<int> activeIds = new Queue<int>();
 
 	void SetUp (int poolsize){
@@ -64,7 +63,7 @@ public class GameObjectObjectPool : MonoBehaviour {
 				return objs [i];
 			}
 		}
-		print ("Not enough pooled objects detected " + myObject.name);
+		Debug.Log ("Not enough pooled objects detected " + myObject.name);
 
 		//there is no free object left
 		if (autoExpand) {
@@ -87,13 +86,16 @@ public class GameObjectObjectPool : MonoBehaviour {
 			
 			return objs [temp.Length];
 		} else {
-			int toReuse = activeIds.Dequeue ();
-			activeIds.Enqueue (toReuse);
-
-			objs[toReuse].BroadcastMessage("RemoveSelfFromTile");
-			objs [toReuse].EnableObject ();
-			ActiveObjects -= 1;
-			return objs [toReuse];
+			if (activeIds.Count > 0) {
+				int toReuse = activeIds.Dequeue();
+				activeIds.Enqueue(toReuse);
+				objs[toReuse].BroadcastMessage("RemoveSelfFromTile");
+				objs[toReuse].EnableObject();
+				ActiveObjects -= 1;
+				return objs[toReuse];
+			} else {
+				return null;
+			}
 		}
 	}
 
@@ -116,5 +118,24 @@ public class GameObjectObjectPool : MonoBehaviour {
 		objectDisableBuffer.Add(id);
 		objs[id].isActive = false;
 		//objs[id].DisableObject();
+	}
+
+	public void DestroyAllPooledObjects() {
+		for (int i = 0; i < objs.Length; i++) {
+			if (objs[i].isActive) {
+				DestroyPooledObject(i);
+			}
+		}
+	}
+
+	public List<PooledGameObject> GetActiveObjects() {
+		List<PooledGameObject> active = new List<PooledGameObject>();
+		for (int i = 0; i < objs.Length; i++) {
+			if (objs[i].isActive) {
+				active.Add(objs[i]);
+			}
+		}
+
+		return active;
 	}
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DroneInfoDisplay : MonoBehaviour
 {
-    //public static bool isExtraInfoVisible = false; //Controlled by gui inventory controller
+    //public static bool isExtraInfoVisible = false; //Controlled by gui inventoryItemSlots controller
     // Uses building info display's static bool instead of its own
 
     Drone myDrone;
@@ -31,7 +31,7 @@ public class DroneInfoDisplay : MonoBehaviour
     
     
     public void SetUp() {
-        isSetup = false;
+        isSetup = true;
         canvas.SetActive(isSetup);
         myDrone = GetComponent<DroneWorldObject>().myDrone;
         myDrone.myInventory.drawInventoryEvent += DrawInventory;
@@ -43,7 +43,7 @@ public class DroneInfoDisplay : MonoBehaviour
         if (isSetup) {
             canvas.SetActive(BuildingInfoDisplay.isExtraInfoVisible);
 
-        if (myDrone.isBusy) {
+        /*if (myDrone.isBusy) {
             var missingMaterialName = "done!";
             int missingMaterialCount = 0;
 
@@ -57,10 +57,11 @@ public class DroneInfoDisplay : MonoBehaviour
                         break;
                     }
                 }
-                    
-            }
+            }*/
 
-            switch (myDrone.myState) {
+
+            droneInfoDisplay.text = myDrone.myState.GetInfoDisplayText(myDrone);
+            /*switch (myDrone.myState) {
                 case Drone.DroneState.idle:
                     droneInfoDisplay.text = "Idle";
                     break;
@@ -123,20 +124,15 @@ public class DroneInfoDisplay : MonoBehaviour
             }
         } else {
             droneInfoDisplay.text = "Idle";
-        }
+        }*/
         } //progressBar.value = (float)crafter.curCraftingProgress / (float)crafter.craftingProgressTickReq;
     }
 
     public void DrawInventory () {
-        isSetup = true;
-        int childs = InventoryParent.childCount;
-        for (int i = childs - 1; i >= 0; i--) {
-            Destroy(InventoryParent.GetChild(i).gameObject);
-        }
+        InventoryParent.DeleteAllChildren();
         
-
         if (myDrone.currentTask != null) {
-            foreach (var itemRequirement in myDrone.myInventory.inventory) {
+            foreach (var itemRequirement in myDrone.myInventory.inventoryItemSlots) {
                 Instantiate(InventoryListingPrefab, InventoryParent).GetComponent<MiniGUI_InventoryListing>().SetUp(itemRequirement, myDrone.myInventory, true);
             }
         } 

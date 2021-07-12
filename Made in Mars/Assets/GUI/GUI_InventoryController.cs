@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// Controls the inventory UI panel
+/// Controls the inventoryItemSlots UI panel
 /// </summary>
 public class GUI_InventoryController : MonoBehaviour {
 
@@ -14,17 +14,18 @@ public class GUI_InventoryController : MonoBehaviour {
     public GameObject BuildingListingPrefab;
     GUI_BuildingBarController bbar;
 
-    // Start is called before the first frame update
-    void Start () {
-            DrawInventory();
-            
+
+    void Start() {
+        DrawInventory();
+
         if (PlayerPrefs.GetInt("extrainfo", 0) == 1) {
             ToggleExtraInfo();
         }
     }
 
     void DrawInventory () {
-        print("Drawing inventory");
+        print("Drawing inventoryItemSlots");
+        BuildingsParent.DeleteAllChildren();
         
         // Draw the buildings
         bbar = GetComponent<GUI_BuildingBarController>();

@@ -20,12 +20,12 @@ public class ResearchNodeGfx : NodeGfx {
 
         myNode = node;
 
-        researchName.text = node.researchName;
+        researchName.text = node.researchUniqueName;
         researchDescription.text = node.researchDescription;
     }
 
     public void ResearchNameValueUpdated() {
-        (myNode as ResearchNode).researchName = researchName.text;
+        (myNode as ResearchNode).researchUniqueName = researchName.text;
     }
     
     public void ResearchDescriptionValueUpdated() {

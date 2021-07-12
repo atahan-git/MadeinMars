@@ -6,16 +6,14 @@ using UnityEngine.Assertions;
 using UnityEngine.Serialization;
 
 public class FactoryVisuals : MonoBehaviour {
-
     public static FactoryVisuals s;
     
     public Sprite[] beltSprites;
     public Sprite[] connectorSprites;
     public Sprite[] connectorSpritesBases;
     public Sprite[] connectorPullerSprites;
-
     
-    public GameObjectObjectPool buidingWorldObjectPool;
+    public GameObjectObjectPool buildingWorldObjectPool;
     public GameObjectObjectPool beltWorldObjectPool;
     public GameObjectObjectPool connectorWorldObjectPool;
     public GameObjectObjectPool droneWorldObjectPool;
@@ -23,11 +21,22 @@ public class FactoryVisuals : MonoBehaviour {
     private void Awake() {
         s = this;
         FactoryBuilder.ObjectsUpdated += ObjectsCreationDeletionUpdate;
+        FactoryBuilder.DronesUpdated += DroneCreationDeletionUpdate;
+        GameMaster.CallWhenClearPlanet(ClearAll);
     }
 
     private void OnDestroy() {
         FactoryBuilder.ObjectsUpdated -= ObjectsCreationDeletionUpdate;
+        FactoryBuilder.DronesUpdated -= DroneCreationDeletionUpdate;
+        GameMaster.RemoveFromCall(ClearAll);
         s = null;
+    }
+
+    void ClearAll() {
+        buildingWorldObjectPool.DestroyAllPooledObjects();
+        beltWorldObjectPool.DestroyAllPooledObjects();
+        connectorWorldObjectPool.DestroyAllPooledObjects();
+        droneWorldObjectPool.DestroyAllPooledObjects();
     }
 
 
@@ -42,12 +51,12 @@ public class FactoryVisuals : MonoBehaviour {
             for (int n = 0; n < belt.length; n++) {
                 var location = Position.MoveTowards(belt.startPos, belt.endPos, n);
                 var tile = Grid.s.GetTile(location);
-                if (tile.areThereWorldObject) {
+                if (tile.areThereVisualObject) {
                     // We assume that if there is a world object, then it must be a belt world object.
                     // This is because world object deletions are handled through tile.objectUpdatedCallback
-                    Assert.IsNotNull(tile.worldObject.GetComponent<BeltWorldObject>());
+                    Assert.IsNotNull(tile.visualObject.GetComponent<BeltWorldObject>());
                     
-                    var beltWorldObject = tile.worldObject.GetComponent<BeltWorldObject>();
+                    var beltWorldObject = tile.visualObject.GetComponent<BeltWorldObject>();
                     beltWorldObject.UpdateSelf(location, belt);
                 } else {
                     beltWorldObjectPool.Spawn().GetComponent<BeltWorldObject>().UpdateSelf(location, belt);
@@ -63,16 +72,16 @@ public class FactoryVisuals : MonoBehaviour {
             for (int n = 0; n < connector.length; n++) {
                 var location = Position.MoveTowards(connector.startPos, connector.endPos, n);
                 var tile = Grid.s.GetTile(location);
-                if (tile.areThereWorldObject) {
+                if (tile.areThereVisualObject) {
                     // We assume that if there is a world object, then it must be a belt world object.
                     // This is because world object deletions are handled through tile.objectUpdatedCallback
                     try {
-                        Assert.IsNotNull(tile.worldObject.GetComponent<ConnectorWorldObject>());
+                        Assert.IsNotNull(tile.visualObject.GetComponent<ConnectorWorldObject>());
                     } catch {
                         print(tile.location);
                     }
                     
-                    var connectorWorldObject = tile.worldObject.GetComponent<ConnectorWorldObject>();
+                    var connectorWorldObject = tile.visualObject.GetComponent<ConnectorWorldObject>();
                     connectorWorldObject.UpdateSelf(location, connector);
                 } else {
                     connectorWorldObjectPool.Spawn().GetComponent<ConnectorWorldObject>().UpdateSelf(location, connector);
@@ -84,19 +93,19 @@ public class FactoryVisuals : MonoBehaviour {
         for (int i = 0; i < buildings.Count; i++) {
             var building = buildings[i];
             var tile = Grid.s.GetTile(building.center);
-            if (tile.areThereWorldObject) {
+            if (tile.areThereVisualObject) {
                 // We assume that if there is a world object, then it must be a belt world object.
                 // This is because world object deletions are handled through tile.objectUpdatedCallback
                 try {
-                    Assert.IsNotNull(tile.worldObject.GetComponent<BuildingWorldObject>());
+                    Assert.IsNotNull(tile.visualObject.GetComponent<BuildingWorldObject>());
                 } catch {
                     print(tile.location);
                 }
 
-                var buildingWorldObject = tile.worldObject.GetComponent<BuildingWorldObject>();
+                var buildingWorldObject = tile.visualObject.GetComponent<BuildingWorldObject>();
                 buildingWorldObject.UpdateSelf(building);
             } else {
-                buidingWorldObjectPool.Spawn().GetComponent<BuildingWorldObject>().UpdateSelf(building);
+                buildingWorldObjectPool.Spawn().GetComponent<BuildingWorldObject>().UpdateSelf(building);
             }
         }
         
@@ -107,10 +116,10 @@ public class FactoryVisuals : MonoBehaviour {
             var tile = Grid.s.GetTile(construction.center);
             switch (construction.myData.myType) {
                 case BuildingData.ItemType.Belt:
-                    if (tile.areThereWorldObject) {
-                        Assert.IsNotNull(tile.worldObject.GetComponent<BeltWorldObject>());
+                    if (tile.areThereVisualObject) {
+                        Assert.IsNotNull(tile.visualObject.GetComponent<BeltWorldObject>());
 
-                        var beltWorldObject = tile.worldObject.GetComponent<BeltWorldObject>();
+                        var beltWorldObject = tile.visualObject.GetComponent<BeltWorldObject>();
                         beltWorldObject.UpdateSelf(construction.center, construction);
                     } else {
                         beltWorldObjectPool.Spawn().GetComponent<BeltWorldObject>().UpdateSelf(construction.center, construction);
@@ -118,58 +127,56 @@ public class FactoryVisuals : MonoBehaviour {
 
                     break;
                 case BuildingData.ItemType.Connector:
-                    if (tile.areThereWorldObject) {
+                    if (tile.areThereVisualObject) {
                         // We assume that if there is a world object, then it must be a belt world object.
                         // This is because world object deletions are handled through tile.objectUpdatedCallback
-                        Assert.IsNotNull(tile.worldObject.GetComponent<ConnectorWorldObject>());
+                        Assert.IsNotNull(tile.visualObject.GetComponent<ConnectorWorldObject>());
                     
-                        var connectorWorldObject = tile.worldObject.GetComponent<ConnectorWorldObject>();
+                        var connectorWorldObject = tile.visualObject.GetComponent<ConnectorWorldObject>();
                         connectorWorldObject.UpdateSelf(construction.center, construction);
                     } else {
                         connectorWorldObjectPool.Spawn().GetComponent<ConnectorWorldObject>().UpdateSelf(construction.center, construction);
                     }
                     break;
                 default:
-                    if (tile.areThereWorldObject) {
-                        Assert.IsNotNull(tile.worldObject.GetComponent<BuildingWorldObject>());
+                    if (tile.areThereVisualObject) {
+                        Assert.IsNotNull(tile.visualObject.GetComponent<BuildingWorldObject>());
 
-                        var buildingWorldObject = tile.worldObject.GetComponent<BuildingWorldObject>();
+                        var buildingWorldObject = tile.visualObject.GetComponent<BuildingWorldObject>();
                         buildingWorldObject.UpdateSelf(construction);
                     } else {
-                        buidingWorldObjectPool.Spawn().GetComponent<BuildingWorldObject>().UpdateSelf(construction);
+                        buildingWorldObjectPool.Spawn().GetComponent<BuildingWorldObject>().UpdateSelf(construction);
                     }
 
                     break;
             }
         }
-        
-        // Currently there are no ways to create or destroy drones, so we handle drone visuals creation by using CreateDroneVisuals()
-        /*var drones = FactoryMaster.s.GetDrones();
-        for (int i = 0; i < drones.Count; i++) {
-            var drone = drones[i];
-            if (tile.areThereWorldObject) {
-                // We assume that if there is a world object, then it must be a belt world object.
-                // This is because world object deletions are handled through tile.objectUpdatedCallback
-                Assert.IsNotNull(tile.worldObject.GetComponent<BuildingWorldObject>());
-                
-                var buildingWorldObject = tile.worldObject.GetComponent<BuildingWorldObject>();
-                buildingWorldObject.UpdateSelf(building);
-            } else {
-                buidingWorldObjectPool.Spawn().GetComponent<BuildingWorldObject>().UpdateSelf(building);
-            }
-        }*/
     }
 
-    public void CreateDroneVisuals(Drone drone) {
-        droneWorldObjectPool.Spawn().GetComponent<DroneWorldObject>().SetUp(drone);
+    public void DroneCreationDeletionUpdate() {
+        droneWorldObjectPool.DestroyAllPooledObjects();
+
+        for (int i = 0; i < FactoryMaster.s.GetDrones().Count; i++) {
+            var drone = FactoryMaster.s.GetDrones()[i];
+            droneWorldObjectPool.Spawn().GetComponent<DroneWorldObject>().SetUp(drone);
+        }
     }
 
 
-    public int lastBeltItemCount = 0;
-    public void BeltVisualsUpdate () {
-        int skipCount = Mathf.CeilToInt((float)lastBeltItemCount/ItemDrawSystem.s.maxBeltItems);
+    public int lastSpawnedItemCount = 0;
+    public void UpdateVisualItems() {
+        ItemDrawSystem.s.ResetPoolIndex();
+        int skipCount = Mathf.CeilToInt((float)lastSpawnedItemCount/ItemDrawSystem.s.maxBeltItems);
         skipCount = Mathf.Max(1, skipCount);
-        lastBeltItemCount = 0;
+        if (skipCount > 1) {
+            ItemDrawSystem.s.ExpandPool();
+        }
+
+        lastSpawnedItemCount = 0;
+        BeltVisualsUpdate(skipCount);
+        ConnectorVisualUpdate(skipCount);
+    }
+    public void BeltVisualsUpdate (int skipCount) {
         
         for (int i = 0; i < FactoryMaster.s.GetBelts().Count; i++) {
             var curBelt = FactoryMaster.s.GetBelts()[i];
@@ -178,7 +185,6 @@ public class FactoryVisuals : MonoBehaviour {
                 int n = 0;
                 bool canMove = false;
                 var dir = (new Position(0,0)-Position.GetCardinalDirection(curBelt.direction)).Vector3(Position.Type.item);
-                //var start = (curBelt.endPos + Position.GetCardinalDirection(curBelt.direction)).Vector3(Position.Type.item);
                 var start = (curBelt.endPos).Vector3(Position.Type.item) - dir *0.5f;
                 
                 for (int m = curBelt.items.Count-1; m >= 0; m--) {
@@ -188,14 +194,13 @@ public class FactoryVisuals : MonoBehaviour {
                         canMove = true;
                     } else {
                         for (int k = 0; k < curBelt.items[m].count; k++) {
-                            //if (lastBeltItemCount % skipCount == 0) {
+                            if (lastSpawnedItemCount % skipCount == 0) {
                                 var pos = start + (dir * (((float) n) / ((float) FactoryMaster.SlotPerSegment+1)));
                                 pos = new Vector3(pos.x, pos.y, DataHolder.itemLayer);
                                 ItemDrawSystem.s.SpawnBeltItem(curBelt.items[m].item, pos, curBelt.direction, canMove);
-                            //}
+                            }
 
-                            lastBeltItemCount += 1;
-                            //Debug.DrawLine(pos, pos+Vector3.up, Color.red, 1f/FactoryMaster.SimUpdatePerSecond);
+                            lastSpawnedItemCount += 1;
                             n += 1;
                         }
                     }
@@ -205,18 +210,21 @@ public class FactoryVisuals : MonoBehaviour {
     }
     
     
-    public void ConnectorVisualUpdate () {
+    public void ConnectorVisualUpdate (int skipCount) {
+        int lastConnectorItemCount = 0;
         for (int i = 0; i < FactoryMaster.s.GetConnectors().Count; i++) {
             var curConnector = FactoryMaster.s.GetConnectors()[i];
             if (curConnector != null) {
                 for (int job = 0; job < curConnector.itemTransportJobs.Length; job++) {
                     var curJob = curConnector.itemTransportJobs[job];
                     if (curJob.isMovingItem) {
-                        ItemDrawSystem.s.SpawnConnectorItem(curJob.movingItem, curJob.itemCurPos.Vector3(Position.Type.item), curJob.itemDir, true);
+                        if (lastSpawnedItemCount % skipCount == 0) {
+                            ItemDrawSystem.s.SpawnConnectorItem(curJob.movingItem, curJob.itemCurPos.Vector3(Position.Type.item), curJob.itemDir, true);
+                        }
+                        lastSpawnedItemCount++;
                     }
                 }
             }
         }
     }
-
 }

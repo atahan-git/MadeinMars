@@ -17,7 +17,6 @@ public class Player_CommsController : MonoBehaviour {
     [Tooltip("Money is in units of Millions of dollars")]
     public float money = 1000;
 
-    public ObjectiveHolder[] objectives;
     [Serializable]
     public class ShopItem {
         public string uniqueName = "";

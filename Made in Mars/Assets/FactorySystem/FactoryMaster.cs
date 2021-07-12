@@ -3,51 +3,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FactoryMaster : MonoBehaviour {
-	public static FactoryMaster s;
-    public bool isSimStarted = false;
-	public static float SimUpdatePerSecond = 4;
-	public const float BeltLength = 1f;
-	public static float BeltLengthToMovePerSecond = BeltLength * SimUpdatePerSecond;
 
-	public const int SlotPerSegment = 4;
-	public const int ConnectorTransporterCount = 6;
-    
+[Serializable]
+public class FactoryMaster {
+    public static FactoryMaster s;
+    public bool isSimStarted = false;
+    public static float SimUpdatePerSecond = 4;
+    public const float BeltLength = 1f;
+    public static float BeltLengthToMovePerSecond = BeltLength * SimUpdatePerSecond;
+
+    public const int SlotPerSegment = 4;
+    public const int ConnectorTransporterCount = 6;
+
+
     public BuildingData beltBuildingData;
     public BuildingData connectorBuildingData;
 
-    [SerializeField]
-    List<Drone> drones = new List<Drone>();
-    [SerializeField]
-    List<Construction> constructions = new List<Construction>();
-    [SerializeField]
-    List<Belt> belts = new List<Belt>();
-    [SerializeField]
-    List<Connector> connectors = new List<Connector>();
-    [SerializeField]
-    List<Building> buildings = new List<Building>();
+    [SerializeField] List<ShipPart> shipParts = new List<ShipPart>();
+    [SerializeField] List<Drone> drones = new List<Drone>();
+    [SerializeField] List<Construction> constructions = new List<Construction>();
+    [SerializeField] List<Belt> belts = new List<Belt>();
+    [SerializeField] List<Connector> connectors = new List<Connector>();
+    [SerializeField] List<Building> buildings = new List<Building>();
 
-    public int population;
-    public int housed;
-    public int workers;
-    public int jobs;
-
-    private void Awake () {
-		if (s != null) {
-			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
-		}
-		s = this;
-        
-    }
-
-    private void Start() {
-        GameLoader.CallWhenLoaded(LoadFromSave);
+    public void RegisterLoad() {
+        GameMaster.CallWhenLoaded(LoadFromSave);
+        GameMaster.CallWhenFactorySimulationStart(StartFactorySystem);
+        GameMaster.CallWhenFactorySimulationStop(StopFactorySystem);
+        GameMaster.CallWhenClearPlanet(ClearPlanetEvent);
         DataSaver.s.saveEvent += SaveFactory;
     }
 
-    private void OnDestroy() {
-        GameLoader.RemoveFromCall(LoadFromSave);
+    public void UnregisterLoad() {
+        GameMaster.RemoveFromCall(LoadFromSave);
+        GameMaster.RemoveFromCall(StartFactorySystem);
+        GameMaster.RemoveFromCall(StopFactorySystem);
+        GameMaster.RemoveFromCall(ClearPlanetEvent);
         DataSaver.s.saveEvent -= SaveFactory;
+    }
+
+    void ClearPlanetEvent() {
+        shipParts.Clear();
+        drones.Clear();
+        constructions.Clear();
+        belts.Clear();
+        connectors.Clear();
+        buildings.Clear();
     }
 
     public void LoadFromSave(bool isSuccess) {
@@ -70,125 +71,198 @@ public class FactoryMaster : MonoBehaviour {
 
             foreach (var saveData in DataSaver.s.mySave.droneData) {
                 var drone = FactoryBuilder.CreateDroneFromSave(saveData);
-                FactoryVisuals.s.CreateDroneVisuals(drone);
             }
-        } /*else {
-            // For now, lets create some drones manually
-            for (int i = 0; i < 3; i++) {
-                
-            }
-        }*/
-        
-        //FactoryBuilder.ObjectsUpdated?.Invoke();
-    }
-
-    public void CreateDrone(Position location) {
-        var drone = new Drone(location);
             
-        AddDrone(drone);
-        FactoryVisuals.s.CreateDroneVisuals(drone);
+            FactoryBuilder.ObjectsUpdated?.Invoke();
+            FactoryBuilder.DronesUpdated?.Invoke();
+        } 
     }
 
 
     public void SaveFactory() {
+        DataSaver.s.mySave.beltData = new List<DataSaver.BeltSaveData>();
         foreach (var belt in belts) {
-            DataSaver.s.BeltsToBeSaved.Add(new DataSaver.BeltSaveData(
+            DataSaver.s.mySave.beltData.Add(new DataSaver.BeltSaveData(
                 belt.startPos, belt.endPos, belt.direction, FactoryBuilder.DecompressBeltForSaving(belt)
-                ));
+            ));
         }
-        
+
+        DataSaver.s.mySave.buildingData = new List<DataSaver.BuildingSaveData>();
         foreach (var building in buildings) {
-            DataSaver.s.BuildingsToBeSaved.Add(new DataSaver.BuildingSaveData(
-                building.buildingData.uniqueName, building.center, building.invController.inventory,
+            DataSaver.s.mySave.buildingData.Add(new DataSaver.BuildingSaveData(
+                building.buildingData.uniqueName, building.center, building.inv.inventoryItemSlots,
                 building.craftController.lastCheckId, building.craftController.GetCraftingProcessProgress()
             ));
         }
-        
-        
+
+
+        DataSaver.s.mySave.connectorData = new List<DataSaver.ConnectorSaveData>();
         foreach (var connector in connectors) {
-            DataSaver.s.ConnectorsToBeSaved.Add(new DataSaver.ConnectorSaveData(
+            DataSaver.s.mySave.connectorData.Add(new DataSaver.ConnectorSaveData(
                 connector.startPos, connector.endPos, connector.direction
             ));
         }
-        
+
+        DataSaver.s.mySave.constructionData = new List<DataSaver.ConstructionSaveData>();
         foreach (var construction in constructions) {
-            DataSaver.s.ConstructionsToBeSaved.Add(new DataSaver.ConstructionSaveData(
+            DataSaver.s.mySave.constructionData.Add(new DataSaver.ConstructionSaveData(
                 construction.myData.uniqueName, construction.center, construction.direction,
-                construction.isConstruction, construction.isAssignedToDrone,
-                construction.constructionInventory.inventory, construction.afterConstructionInventory
+                construction.isConstruction, construction.IsAssignedToDrone(),
+                construction.constructionInventory.inventoryItemSlots, construction.afterConstructionInventory
             ));
         }
-        
+
+        DataSaver.s.mySave.droneData = new List<DataSaver.DroneSaveData>();
         foreach (var drone in drones) {
             Position curTaskPos = Position.InvalidPosition();
             List<InventoryItemSlot> curTaskMaterials = new List<InventoryItemSlot>();
 
             if (drone.currentTask != null) {
-                if (drone.currentTask.location.isValid()) {
-                    curTaskPos = drone.currentTask.location;
-                    curTaskMaterials = drone.currentTask.materials;
+                switch (drone.currentTask.myType) {
+                    case DroneTask.DroneTaskType.build:
+                    case DroneTask.DroneTaskType.destroy:
+                        curTaskPos = drone.currentTask.construction.center;
+                        curTaskMaterials = drone.currentTask.materials;
+                        break;
+                    case DroneTask.DroneTaskType.transportShipPart:
+                        curTaskPos = drone.currentTask.shipPart.curPosition;
+                        break;
+
+                    case DroneTask.DroneTaskType.transportItem:
+                        throw new NotImplementedException();
+                        break;
                 }
             }
 
-            Position targetStorageLocation = Position.InvalidPosition();
-            if (drone.targetStorage != null) {
-                if(drone.targetStorage.myLocation.isValid())
-                    targetStorageLocation = drone.targetStorage.myLocation;
-            }
-            
-            Position constructionInventoryLocation = Position.InvalidPosition();
-            if (drone.constructionInv != null) {
-                if(drone.constructionInv.myLocation.isValid())
-                    constructionInventoryLocation = drone.constructionInv.myLocation;
-            }
-            
-            DataSaver.s.DronesToBeSaved.Add(new DataSaver.DroneSaveData(
+            DataSaver.s.mySave.droneData.Add(new DataSaver.DroneSaveData(
                 drone.curPosition, drone.targetPosition,
                 drone.isTravelling, drone.isBusy, drone.isLaser,
                 curTaskPos, curTaskMaterials,
-                drone.myInventory.inventory,
-                Drone.DroneStateToInt(drone.myState),
-                targetStorageLocation,
-                constructionInventoryLocation
+                drone.myInventory.inventoryItemSlots,
+                Drone.ConvertDroneStateAndInt(drone.myState)
             ));
         }
     }
 
-	public void StartFactorySystem () {
+    public void StartFactorySystem() {
         isSimStarted = true;
         FactoryBuilder.ObjectsUpdated?.Invoke();
         FactorySimulator.s.StartSimulation();
     }
+    
+    public void StopFactorySystem() {
+        isSimStarted = false;
+        FactorySimulator.s.StopSimulation();
+    }
 
 
-    public void AddBelt(Belt toAdd) { belts.Add(toAdd); }
-    public void RemoveBelt(Belt toRemove) { belts.Remove(toRemove); }
-    public List<Belt> GetBelts() { return belts; }
+    public void AddBelt(Belt toAdd) {
+        belts.Add(toAdd);
+    }
+
+    public void RemoveBelt(Belt toRemove) {
+        belts.Remove(toRemove);
+    }
+
+    public List<Belt> GetBelts() {
+        return belts;
+    }
+
+    public void AddConnector(Connector toAdd) {
+        connectors.Add(toAdd);
+    }
+
+    public void RemoveConnector(Connector toRemove) {
+        connectors.Remove(toRemove);
+    }
+
+    public List<Connector> GetConnectors() {
+        return connectors;
+    }
+
+    public void AddBuilding(Building toAdd) {
+        buildings.Add(toAdd);
+    }
+
+    public void RemoveBuilding(Building toRemove) {
+        buildings.Remove(toRemove);
+    }
+
+    public List<Building> GetBuildings() {
+        return buildings;
+    }
+
+    public void AddConstruction(Construction toAdd) {
+        constructions.Add(toAdd);
+    }
+
+    public void RemoveConstruction(Construction toRemove) {
+        constructions.Remove(toRemove);
+    }
+
+    public List<Construction> GetConstructions() {
+        return constructions;
+    }
+
+
+    public void AddDrone(Drone toAdd) {
+        drones.Add(toAdd);
+    }
+
+    public void RemoveDrone(Drone toRemove) {
+        drones.Remove(toRemove);
+    }
+
+    public List<Drone> GetDrones() {
+        return drones;
+    }
     
-    public void AddConnector(Connector toAdd) { connectors.Add(toAdd); }
-    public void RemoveConnector(Connector toRemove) { connectors.Remove(toRemove); }
-    public List<Connector> GetConnectors() { return connectors; }
-    
-    public void AddBuilding(Building toAdd) { buildings.Add(toAdd); }
-    public void RemoveBuilding(Building toRemove) { buildings.Remove(toRemove); }
-    public List<Building> GetBuildings() { return buildings; }
-    
-    public void AddConstruction(Construction toAdd) { constructions.Add(toAdd); }
-    public void RemoveConstruction(Construction toRemove) { constructions.Remove(toRemove); }
-    public List<Construction> GetConstructions() { return constructions; }
-    
-    
-    public void AddDrone(Drone toAdd) { drones.Add(toAdd); }
-    public void RemoveDrone(Drone toRemove) { drones.Remove(toRemove); }
-    public List<Drone> GetDrones() { return drones; }
+    public void AddShipPart(ShipPart toAdd) {
+        shipParts.Add(toAdd);
+    }
+
+    public void RemoveShipPart(ShipPart toRemove) {
+        shipParts.Remove(toRemove);
+    }
+
+    public List<ShipPart> GetShipParts() {
+        return shipParts;
+    }
+
+    public delegate void ItemCreated(Item item, int count);
 }
 
+public class SimGridObject {
+    
+}
+
+public interface IAssignableToDrone {
+    bool IsAssignedToDrone();
+    void AssignToDrone();
+    void UnAssignFromDrone();
+    Position GetPositionForDrone();
+}
+
+public class ShipPart : IAssignableToDrone {
+    public Position curPosition;
+    
+
+    public ShipPart(Position location) {
+        curPosition = location;
+    }
+
+    private bool isAssignedToDrone = false;
+    public bool IsAssignedToDrone() { return isAssignedToDrone; }
+    public void AssignToDrone() { isAssignedToDrone = true; }
+    public void UnAssignFromDrone() { isAssignedToDrone = false; }
+    public Position GetPositionForDrone() { return curPosition; }
+}
 
 /// <summary>
 /// Drones construct and deconstruct objects
 /// </summary>
 [Serializable]
-public class Drone {
+public class Drone  {
     Position _curPosition;
     public Position curPosition {
         get { return _curPosition; }
@@ -212,89 +286,60 @@ public class Drone {
 
     public DroneTask currentTask;
 
-    public BuildingInventoryController myInventory = new BuildingInventoryController();
+    public Inventory myInventory;
+    public Inventory constructionInv {
+        get { return currentTask.construction.constructionInventory; }
+    }
 
     public GenericCallback dronePositionUpdatedCallback;
     public GenericCallback droneTargetPositionUpdatedCallback;
     public GenericCallback droneLaserStateUpdatedCallback;
 
-    public enum DroneState {
-        idle,
-        BeginBuildingTask,
-        SearchingItem,
-        TravellingToItem,
-        TakingItem,
-        TravellingToBuild,
-        Building,
-        SearchingToEmptyInventory,
-        TravellingToEmptyInventory,
-        EmptyingInventory,
-        SearchingToDestroy,
-        BeingDestructionTask,
-        TravellingToDestroy,
-        Destroying,
-        UnableToFindConstructionItem,
-        UnableToFindEmptyStorage
-    }
+    public IDroneState myState = new DroneIdleState();
 
-    public DroneState myState = DroneState.idle;
-
-    public BuildingInventoryController targetStorage;
-    public BuildingInventoryController constructionInv;
+    public Building targetStorage;
     public float idleCounter = 0;
 
+    public List<string> debugDroneState = new List<string>();
 
     public Drone(Position _curPosition) {
-        myInventory.SetUpDrone();
+        myInventory= InventoryFactory.CreateDroneInventory();
         curPosition = _curPosition;
     }
-    
-    public static int DroneStateToInt(DroneState type) {
-        switch (type) {
-            case DroneState.idle: return 0;
-            case DroneState.BeginBuildingTask: return 1;
-            case DroneState.SearchingItem: return 2;
-            case DroneState.TravellingToItem: return 3;
-            case DroneState.TakingItem: return 4;
-            case DroneState.TravellingToBuild: return 5;
-            case DroneState.Building: return 6;
-            case DroneState.SearchingToEmptyInventory: return 7;
-            case DroneState.TravellingToEmptyInventory: return 8;
-            case DroneState.EmptyingInventory: return 9;
-            case DroneState.SearchingToDestroy: return 10;
-            case DroneState.BeingDestructionTask: return 11;
-            case DroneState.TravellingToDestroy: return 12;
-            case DroneState.Destroying: return 13;
-            case DroneState.UnableToFindConstructionItem: return 14;
-            case DroneState.UnableToFindEmptyStorage: return 15;
-        }
 
-        return -1;
+
+    private static readonly Map< int,Type> droneStateSavingMap = new Map<int ,Type >() {
+        {0, typeof(DroneIdleState)},
+        {1, typeof(DroneBeginConstruction)},
+        {2, typeof(DroneSearchItemForConstruction)},
+        {3, typeof(DroneTravelToItemStorage)},
+        {4, typeof(DroneTakeItemFromStorage)},
+        {5, typeof(DroneTravelToConstruction)},
+        {6, typeof(DroneConstruct)},
+        {7, typeof(DroneBeginDeconstruction)},
+        {8, typeof(DroneTravelToDeconstruction)},
+        {9, typeof(DroneDeconstruct)},
+        {10, typeof(DroneSearchStorageToEmptyInventory)},
+        {11, typeof(DroneTravelToEmptyDroneInventoryToStorage)},
+        {12, typeof(DroneEmptyInventoryToStorage)},
+        {13, typeof(DroneUnableToFindConstructionMaterial)},
+        {14, typeof(DroneUnableToFindEmptyStorage)},
+    };
+    public static int ConvertDroneStateAndInt(IDroneState state) {
+        return droneStateSavingMap.Get(state.GetType());
     }
 	
-    public static DroneState IntToDroneState(int type) {
-        switch (type) {
-            case 0: return DroneState.idle;
-            case 1: return DroneState.BeginBuildingTask;
-            case 2: return DroneState.SearchingItem;
-            case 3: return DroneState.TravellingToItem;
-            case 4: return DroneState.TakingItem;
-            case 5: return DroneState.TravellingToBuild;
-            case 6: return DroneState.Building;
-            case 7: return DroneState.SearchingToEmptyInventory;
-            case 8: return DroneState.TravellingToEmptyInventory;
-            case 9: return DroneState.EmptyingInventory;
-            case 10: return DroneState.SearchingToDestroy;
-            case 11: return DroneState.BeingDestructionTask;
-            case 12: return DroneState.TravellingToDestroy;
-            case 13: return DroneState.Destroying;
-            case 14: return DroneState.UnableToFindConstructionItem;
-            case 15: return DroneState.UnableToFindEmptyStorage;
-        }
-
-        return DroneState.idle;
+    public static IDroneState ConvertDroneStateAndInt(int type) {
+        return (IDroneState) Activator.CreateInstance(droneStateSavingMap.Get(type));
     }
+    
+    public interface IDroneState {
+        IDroneState ExecuteAndReturnNextState(Drone drone);
+        string GetInfoDisplayText(Drone drone);
+    }
+
 }
+
 
 
 
@@ -302,16 +347,20 @@ public class Drone {
 /// Used for construction and deconstruction of items.
 /// </summary>
 [Serializable]
-public class Construction {
+public class Construction : SimGridObject, IAssignableToDrone {
     public List<Position> locations = new List<Position>();
     public Position center;
     public int direction;
     public BuildingData myData;
-    public BuildingInventoryController constructionInventory;
+    public Inventory constructionInventory;
     // Construction object is used both for construction and destruction. This bool determines which
     public bool isConstruction = true;
 
-    public bool isAssignedToDrone = false;
+    private bool isAssignedToDrone = false;
+    public bool IsAssignedToDrone() { return isAssignedToDrone; }
+    public void AssignToDrone() { isAssignedToDrone = true; }
+    public void UnAssignFromDrone() { isAssignedToDrone = false; }
+    public Position GetPositionForDrone() { return center; }
 
     public List<InventoryItemSlot> afterConstructionInventory;
     
@@ -328,12 +377,10 @@ public class Construction {
             locations.Add(center);
         }
         isConstruction = _isConstruction;
-        constructionInventory = new BuildingInventoryController();
-        constructionInventory.SetUpConstruction(_center, materials);
+        constructionInventory = InventoryFactory.CreateConstructionInventory(materials);
         afterConstructionInventory = _afterConstructionInventory;
     }
 }
-
 
 /// <summary>
 /// One of the core building blocks of the belt system.
@@ -342,7 +389,7 @@ public class Construction {
 /// (2, null), (3, ore), (1, null), (1, ore) >> ##OOO#O
 /// </summary>
 [System.Serializable]
-public class Belt {
+public class Belt : SimGridObject {
     public Position startPos;
     public Position endPos;
     public int direction;
@@ -492,6 +539,8 @@ public class Belt {
 
 
 
+
+
 /// <summary>
 /// The second core building block of the belt system.
 /// A connector will connect belts with other belts or belts with buildings.
@@ -499,7 +548,7 @@ public class Belt {
 /// A connector will also always be a straight line
 /// </summary>
 [Serializable]
-public class Connector {
+public class Connector : SimGridObject {
     public Position startPos;
     public Position endPos;
     public int direction;
@@ -583,7 +632,7 @@ public class Connector {
             if (isBeltConnection) {
                 return belt.TryInsertItemToBelt(item);
             }else {
-                return building.TryInsertItemToBuilding(item);
+                return building.TryAndInsertItemToBuilding(item);
             }
         }
         /// <summary>
@@ -595,7 +644,7 @@ public class Connector {
             if (isBeltConnection) {
                 return belt.CheckInsertItemToBelt(item);
             } else {
-                return building.CheckInsertItemToBuilding(item);
+                return building.CheckIfCanInsertItemToBuilding(item);
             }
         }
 
@@ -608,7 +657,7 @@ public class Connector {
             if (isBeltConnection) {
                 return belt.TryRemoveLastItemFromBelt(out item);
             }else {
-                return building.TryTakeItemFromBuilding(out item);
+                return building.TryAndTakeItemFromBuilding(out item);
             }
         }
 
@@ -621,7 +670,7 @@ public class Connector {
             if (isBeltConnection) {
                 return belt.CheckTakeLastItemFromBelt(out item);
             }else {
-                return building.CheckTakeItem(out item);
+                return building.CheckIfCanTakeItem(out item);
             }
         }
         
@@ -670,90 +719,51 @@ public class Connector {
 }
 
 
-
-
-
 [Serializable]
-public class Building {
+public class Building : SimGridObject {
     public bool isDestructable = true;
     public BuildingData buildingData;
 
     public List<Position> myPositions = new List<Position>();
     public Position center = Position.InvalidPosition();
 
-    public BuildingInventoryController invController = new BuildingInventoryController();
+    public Inventory inv;
     public BuildingCraftingController craftController = new BuildingCraftingController();
 
-    public Building(Position _center, BuildingData _buildingData, List<InventoryItemSlot> starterInventory) {
+    // This is used when creating building from save as it also resumes the crafting controller
+    public Building(Position _center, BuildingData _buildingData, List<InventoryItemSlot> existingInventory,
+        int lastCheckId = -1, float[] craftingProcessProgress = null) {
         if (_buildingData == null) {
             Debug.Log("Trying to create a building with null data!");
         } else {
             center = _center;
             buildingData = _buildingData;
             myPositions = buildingData.shape.CoveredPositions(center);
-            craftController.SetUp(buildingData, invController);
-            invController.SetUp(_center, craftController, buildingData, starterInventory);
-        }
-    }
-    
-    /// <summary>
-    ///  This is used when creating building from save as it also resumes the crafting controller
-    /// </summary>
-    public Building(Position _center, BuildingData _buildingData, List<InventoryItemSlot> starterInventory, 
-        int lastCheckId, float[] CraftingProcessProgress) {
-        if (_buildingData == null) {
-            Debug.Log("Trying to create a building with null data!");
-        } else {
-            center = _center;
-            buildingData = _buildingData;
-            myPositions = buildingData.shape.CoveredPositions(center);
-            craftController.SetUp(buildingData, invController, lastCheckId, CraftingProcessProgress);
-            invController.SetUp(_center, craftController, buildingData, starterInventory);
+            craftController.SetUp(buildingData, lastCheckId, craftingProcessProgress);
+            inv = InventoryFactory.CreateBuildingInventory(existingInventory, this);
         }
     }
 
-    /// <summary>
-    /// Try to insert an item to the buildings input slots
-    /// Only works if the item type matches and there is enough space
-    /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
-    public bool TryInsertItemToBuilding(Item item) {
-        return invController.TryAddItem(item, 1, false);
-    }
-    
-    
-    /// <summary>
-    /// Checks if we can insert the item to the building.
-    /// Does NOT actually insert it!
-    /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
-    public bool CheckInsertItemToBuilding(Item item) {
-        return invController.CheckAddItem(item, 1, false);
-    }
-
-    /// <summary>
-    /// Tries to take an item from a building output slot.
-    /// Always gives priority to the smaller indexed output slot.
-    /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
-    public bool TryTakeItemFromBuilding(out Item item) {
-        return invController.TryTakeNextItem(out item, true);
-    }
-
-    /// <summary>
-    /// Gets the next item that would come out of the building without removing it
-    /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
-    public bool CheckTakeItem(out Item item) {
-        return invController.CheckTakeNextItem(out item, true);
+    public bool TryAndInsertItemToBuilding(Item item) {
+        return inv.TryAndAddItem(item, 1, false);
     }
 
 
-    public float UpdateCraftingProcess(float energySupply) {
-        return craftController.UpdateCraftingProcess(energySupply);
+    public bool CheckIfCanInsertItemToBuilding(Item item) {
+        return inv.CheckIfCanAddItem(item, 1, false);
+    }
+
+    public bool TryAndTakeItemFromBuilding(out Item item) {
+        return inv.TryAndTakeNextItem(out item, true);
+    }
+
+    public bool CheckIfCanTakeItem(out Item item) {
+        return inv.CheckIfCanTakeNextItem(out item, true);
+    }
+
+
+    public float UpdateCraftingProcess(float energySupply, Inventory inventory) {
+        return craftController.UpdateCraftingProcess(energySupply, inventory);
     }
 }
+

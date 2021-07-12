@@ -51,34 +51,18 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 		}
 	}
 
+	public void ResetIndex() {
+		index = 0;
+	}
 
-	public ItemOnBeltObject Spawn (Vector3 pos, Sprite sprite, int direction, bool isBeltObject){
-		
-		for (int i = 0; i < objs.Length; i++) {
-			if (!objs [i].isActive) {
+	public int index = 0;
+	public bool canExpand = true;
 
-				objs [i].EnableObject (pos, sprite, direction, isBeltObject);
-
-				if (!autoExpand)
-					activeIds.Enqueue (i);
-				
-				return objs [i];
-			}
-		}
-		//print ("Not enough pooled objects detected");
-
-		//there is no free object left
-		if (autoExpand) {
+	public void ExpandPool() {
+		if (canExpand) {
 			ItemOnBeltObject[] temp = objs;
-			objs = new ItemOnBeltObject[Mathf.Min(objs.Length*2, maxPoolSize)];
+			objs = new ItemOnBeltObject[Mathf.Min(objs.Length * 2, maxPoolSize)];
 			temp.CopyTo(objs, 0);
-			var inst = Instantiate (myObject, transform).GetComponent<ItemOnBeltObject>();
-			ExistingObjects += 1;
-			inst.transform.position = pos;
-			inst.EnableObject (pos, sprite, direction,isBeltObject);
-
-			objs[temp.Length] =  inst;
-			inst.myId = temp.Length;
 
 			FillArrayWithObjects();
 			poolSize = objs.Length;
@@ -86,18 +70,20 @@ public class ItemOnBeltObjectPool : MonoBehaviour {
 			if (poolSize == maxPoolSize) {
 				autoExpand = false;
 			}
-			
-			return objs [temp.Length];
-		} else {
-			int toReuse = activeIds.Dequeue ();
-			activeIds.Enqueue (toReuse);
-
-			objs [toReuse].transform.position = pos;
-			objs [toReuse].EnableObject (pos, sprite, direction, isBeltObject);
-			ActiveObjects -= 1;
-			return objs [toReuse];
 		}
-		
+	}
+
+
+	public ItemOnBeltObject Spawn (Vector3 pos, Sprite sprite, int direction, bool isBeltObject){
+		if (index < objs.Length) {
+			int i = index;
+			objs[i].EnableObject(pos, sprite, direction, isBeltObject);
+
+			index++;
+			return objs[i];
+		} else {
+			return null;
+		}
 	}
 	
 

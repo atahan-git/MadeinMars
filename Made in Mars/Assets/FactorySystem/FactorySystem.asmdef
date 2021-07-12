@@ -2,8 +2,6 @@
     "name": "FactorySystem",
     "references": [
         "GUID:c87700ed8d985264f8e5e1dbe65240d7",
-        "GUID:848c9f1fb22999a4bb0490da413f8f34",
-        "GUID:7931ae1df56054743a82f6e8706710b2",
         "GUID:09b3620e92863634684f039ee6c397c0",
         "GUID:f813a3ca5985e9e4aa2d9d281a2194fb",
         "GUID:276f854cb5502494d81873b9c6b16080"
