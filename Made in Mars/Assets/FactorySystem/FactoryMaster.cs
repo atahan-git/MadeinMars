@@ -19,7 +19,6 @@ public class FactoryMaster {
     public BuildingData beltBuildingData;
     public BuildingData connectorBuildingData;
 
-    [SerializeField] List<ShipPart> shipParts = new List<ShipPart>();
     [SerializeField] List<Drone> drones = new List<Drone>();
     [SerializeField] List<Construction> constructions = new List<Construction>();
     [SerializeField] List<Belt> belts = new List<Belt>();
@@ -31,7 +30,7 @@ public class FactoryMaster {
         GameMaster.CallWhenFactorySimulationStart(StartFactorySystem);
         GameMaster.CallWhenFactorySimulationStop(StopFactorySystem);
         GameMaster.CallWhenClearPlanet(ClearPlanetEvent);
-        DataSaver.s.saveEvent += SaveFactory;
+        DataSaver.saveEvent += SaveFactory;
     }
 
     public void UnregisterLoad() {
@@ -39,11 +38,10 @@ public class FactoryMaster {
         GameMaster.RemoveFromCall(StartFactorySystem);
         GameMaster.RemoveFromCall(StopFactorySystem);
         GameMaster.RemoveFromCall(ClearPlanetEvent);
-        DataSaver.s.saveEvent -= SaveFactory;
+        DataSaver.saveEvent -= SaveFactory;
     }
 
     void ClearPlanetEvent() {
-        shipParts.Clear();
         drones.Clear();
         constructions.Clear();
         belts.Clear();
@@ -53,23 +51,24 @@ public class FactoryMaster {
 
     public void LoadFromSave(bool isSuccess) {
         if (isSuccess) {
-            foreach (var saveData in DataSaver.s.mySave.beltData) {
+            var currentPlanetSave = DataSaver.s.GetSave().currentPlanet;
+            foreach (var saveData in currentPlanetSave.beltData) {
                 FactoryBuilder.CreateBeltFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.s.mySave.buildingData) {
+            foreach (var saveData in currentPlanetSave.buildingData) {
                 FactoryBuilder.CreateBuildingFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.s.mySave.connectorData) {
+            foreach (var saveData in currentPlanetSave.connectorData) {
                 FactoryBuilder.CreateConnectorFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.s.mySave.constructionData) {
+            foreach (var saveData in currentPlanetSave.constructionData) {
                 FactoryBuilder.CreateConstructionFromSave(saveData);
             }
 
-            foreach (var saveData in DataSaver.s.mySave.droneData) {
+            foreach (var saveData in currentPlanetSave.droneData) {
                 var drone = FactoryBuilder.CreateDroneFromSave(saveData);
             }
             
@@ -80,39 +79,40 @@ public class FactoryMaster {
 
 
     public void SaveFactory() {
-        DataSaver.s.mySave.beltData = new List<DataSaver.BeltSaveData>();
+        var currentPlanetSave = DataSaver.s.GetSave().currentPlanet;
+        currentPlanetSave.beltData = new List<DataSaver.BeltSaveData>();
         foreach (var belt in belts) {
-            DataSaver.s.mySave.beltData.Add(new DataSaver.BeltSaveData(
+            currentPlanetSave.beltData.Add(new DataSaver.BeltSaveData(
                 belt.startPos, belt.endPos, belt.direction, FactoryBuilder.DecompressBeltForSaving(belt)
             ));
         }
 
-        DataSaver.s.mySave.buildingData = new List<DataSaver.BuildingSaveData>();
+        currentPlanetSave.buildingData = new List<DataSaver.BuildingSaveData>();
         foreach (var building in buildings) {
-            DataSaver.s.mySave.buildingData.Add(new DataSaver.BuildingSaveData(
+            currentPlanetSave.buildingData.Add(new DataSaver.BuildingSaveData(
                 building.buildingData.uniqueName, building.center, building.inv.inventoryItemSlots,
                 building.craftController.lastCheckId, building.craftController.GetCraftingProcessProgress()
             ));
         }
 
 
-        DataSaver.s.mySave.connectorData = new List<DataSaver.ConnectorSaveData>();
+        currentPlanetSave.connectorData = new List<DataSaver.ConnectorSaveData>();
         foreach (var connector in connectors) {
-            DataSaver.s.mySave.connectorData.Add(new DataSaver.ConnectorSaveData(
+            currentPlanetSave.connectorData.Add(new DataSaver.ConnectorSaveData(
                 connector.startPos, connector.endPos, connector.direction
             ));
         }
 
-        DataSaver.s.mySave.constructionData = new List<DataSaver.ConstructionSaveData>();
+        currentPlanetSave.constructionData = new List<DataSaver.ConstructionSaveData>();
         foreach (var construction in constructions) {
-            DataSaver.s.mySave.constructionData.Add(new DataSaver.ConstructionSaveData(
+            currentPlanetSave.constructionData.Add(new DataSaver.ConstructionSaveData(
                 construction.myData.uniqueName, construction.center, construction.direction,
                 construction.isConstruction, construction.IsAssignedToDrone(),
                 construction.constructionInventory.inventoryItemSlots, construction.afterConstructionInventory
             ));
         }
 
-        DataSaver.s.mySave.droneData = new List<DataSaver.DroneSaveData>();
+        currentPlanetSave.droneData = new List<DataSaver.DroneSaveData>();
         foreach (var drone in drones) {
             Position curTaskPos = Position.InvalidPosition();
             List<InventoryItemSlot> curTaskMaterials = new List<InventoryItemSlot>();
@@ -124,9 +124,6 @@ public class FactoryMaster {
                         curTaskPos = drone.currentTask.construction.center;
                         curTaskMaterials = drone.currentTask.materials;
                         break;
-                    case DroneTask.DroneTaskType.transportShipPart:
-                        curTaskPos = drone.currentTask.shipPart.curPosition;
-                        break;
 
                     case DroneTask.DroneTaskType.transportItem:
                         throw new NotImplementedException();
@@ -134,7 +131,7 @@ public class FactoryMaster {
                 }
             }
 
-            DataSaver.s.mySave.droneData.Add(new DataSaver.DroneSaveData(
+            currentPlanetSave.droneData.Add(new DataSaver.DroneSaveData(
                 drone.curPosition, drone.targetPosition,
                 drone.isTravelling, drone.isBusy, drone.isLaser,
                 curTaskPos, curTaskMaterials,
@@ -155,6 +152,15 @@ public class FactoryMaster {
         FactorySimulator.s.StopSimulation();
     }
 
+    public Building GetShip() {
+        for (int i = 0; i < buildings.Count; i++) {
+            if (buildings[i].buildingData.myType == BuildingData.ItemType.Spaceship) {
+                return buildings[i];
+            }
+        }
+
+        return null;
+    }
 
     public void AddBelt(Belt toAdd) {
         belts.Add(toAdd);
@@ -216,18 +222,6 @@ public class FactoryMaster {
     public List<Drone> GetDrones() {
         return drones;
     }
-    
-    public void AddShipPart(ShipPart toAdd) {
-        shipParts.Add(toAdd);
-    }
-
-    public void RemoveShipPart(ShipPart toRemove) {
-        shipParts.Remove(toRemove);
-    }
-
-    public List<ShipPart> GetShipParts() {
-        return shipParts;
-    }
 
     public delegate void ItemCreated(Item item, int count);
 }
@@ -243,20 +237,6 @@ public interface IAssignableToDrone {
     Position GetPositionForDrone();
 }
 
-public class ShipPart : IAssignableToDrone {
-    public Position curPosition;
-    
-
-    public ShipPart(Position location) {
-        curPosition = location;
-    }
-
-    private bool isAssignedToDrone = false;
-    public bool IsAssignedToDrone() { return isAssignedToDrone; }
-    public void AssignToDrone() { isAssignedToDrone = true; }
-    public void UnAssignFromDrone() { isAssignedToDrone = false; }
-    public Position GetPositionForDrone() { return curPosition; }
-}
 
 /// <summary>
 /// Drones construct and deconstruct objects

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abec7158a89e2a40bb470a55d7349c3, type: 3}
+  m_Name: EuropaTileSet
+  m_EditorClassIdentifier: 
+  tileSetId: 1
+  tiles:
+  - {fileID: 11400000, guid: e7105514b07f6794ea98ecb4a70ae6a3, type: 2}
+  - {fileID: 11400000, guid: e7105514b07f6794ea98ecb4a70ae6a3, type: 2}
+  - {fileID: 11400000, guid: e7105514b07f6794ea98ecb4a70ae6a3, type: 2}
+  - {fileID: 11400000, guid: 17ee3592c1dc0d04cad7ae1072dc9779, type: 2}
+  colors:
+  - {r: 0.9103774, g: 0.9973942, b: 1, a: 1}
+  - {r: 0.740566, g: 0.94203436, b: 1, a: 1}
+  - {r: 0.6839622, g: 0.8208419, b: 1, a: 1}
+  - {r: 0.7688679, g: 0.7814209, b: 1, a: 1}

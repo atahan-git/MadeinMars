@@ -49,22 +49,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isConstruction: 0
   myBuilding:
+    isDestructable: 0
     buildingData: {fileID: 0}
     myPositions: []
     center:
       x: 0
       y: 0
-    invController:
-      myLocation:
-        x: 0
-        y: 0
-      myType: 4
-      inventory: []
+    inv:
+      inventoryItemSlots: []
       isCheatInventory: 0
+      isGrid: 0
+      columnCount: 10
     craftController:
       isActive: 0
-      myCraftingProcesses: []
+      isCrafting: 0
       lastCheckId: 0
+      myCraftingProcesses: []
   myConstruction:
     locations: []
     center:
@@ -73,32 +73,31 @@ MonoBehaviour:
     direction: 0
     myData: {fileID: 0}
     constructionInventory:
-      myLocation:
-        x: 0
-        y: 0
-      myType: 4
-      inventory: []
+      inventoryItemSlots: []
       isCheatInventory: 0
+      isGrid: 0
+      columnCount: 10
     isConstruction: 0
-    isAssignedToDrone: 0
     afterConstructionInventory: []
   myData: {fileID: 0}
   myLocations: []
   myTiles: []
   myCrafter:
     isActive: 0
-    myCraftingProcesses: []
+    isCrafting: 0
     lastCheckId: 0
+    myCraftingProcesses: []
   myInventory:
-    myLocation:
-      x: 0
-      y: 0
-    myType: 4
-    inventory: []
+    inventoryItemSlots: []
     isCheatInventory: 0
+    isGrid: 0
+    columnCount: 10
   width: 0
   height: 0
   isInventorySetup: 0
+  isSpaceLandingTriggered: 0
+  cardVisualPrefab: {fileID: 5519204683335000971, guid: 14f55e4752e5ef44486e8b000320da91,
+    type: 3}
   animationState: 1
   anims: []
   isAnimated: 1

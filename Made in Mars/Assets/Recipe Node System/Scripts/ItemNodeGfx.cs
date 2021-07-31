@@ -14,10 +14,16 @@ public class ItemNodeGfx : NodeGfx {
 
     public void ReDrawnNode(RecipeTreeViewer master, ItemNode node) {
         base.ReDrawnNode(master, node);
-        
+
         myNode = node;
-        icon.sprite = ((ItemNode)myNode).GetItem(master).mySprite;
-        uniqueName.text = ((ItemNode)myNode).GetItem(master).uniqueName;
+        Item item = master.GetItemOfNode((ItemNode) myNode);
+        var isEmptyItem = item == null || item.uniqueName.Length == 0;
+        if (!isEmptyItem) {
+            icon.sprite = item.mySprite;
+            uniqueName.text = item.uniqueName;
+        } else {
+            uniqueName.text = "error";
+        }
     }
 }
 

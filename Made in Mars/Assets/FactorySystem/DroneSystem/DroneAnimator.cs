@@ -31,15 +31,27 @@ public class DroneAnimator : MonoBehaviour {
     public GameObject plusOne;
 
     public ParticleSystem miningParticles;
-    private void Start() {
-        DisablePlusOne();
-        SetMiningLaser(false);
-        for (int i = 0; i < 10; i++) {
-            animCurvys[i].time = Mathf.Lerp (0, 1, i/10f);
-        }
-        droneTargetMarker.transform.SetParent(null);
 
-        updownOffset = Random.Range(0, 10f);
+    private void OnEnable() {
+	    DisablePlusOne();
+	    SetMiningLaser(false);
+	    for (int i = 0; i < 10; i++) {
+		    animCurvys[i].time = Mathf.Lerp(0, 1, i / 10f);
+	    }
+
+	    droneTargetMarker.SetActive(true);
+	    droneTargetMarker.transform.SetParent(null);
+	    droneTargetMarker.transform.position = transform.position;
+
+	    droneTargetLocation = transform.position;
+	    droneTargetSmoothingLocation = transform.position;
+
+	    updownOffset = Random.Range(0, 10f);
+    }
+
+    private void OnDisable() {
+	    if(droneTargetMarker != null)
+			droneTargetMarker.SetActive(false);
     }
 
     private void OnDestroy() {

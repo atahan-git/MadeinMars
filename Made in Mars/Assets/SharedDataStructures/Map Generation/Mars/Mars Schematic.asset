@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60797342272797d4298c7739d9c58ec6, type: 3}
+  m_Name: Mars Schematic
+  m_EditorClassIdentifier: 
+  uniqueName: mars
+  previewImage: {fileID: 21300000, guid: 3d7b3716b3933574284c0aa26761c8fc, type: 3}
+  filters:
+  - {fileID: 11400000, guid: 2db6aed0a722ac04cb05c1c1cbe25a2f, type: 2}
+  - {fileID: 11400000, guid: 8f7424e2308ffea4197d5ecdb92edc1a, type: 2}
+  - {fileID: 11400000, guid: 53a6bb2d572fc0c4daddc43da1c6ba5c, type: 2}

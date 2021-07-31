@@ -41,7 +41,6 @@ public class FactoryDrones {
 	public static void UpdateTasks() {
 
 		var assignableToDrones = new List<IAssignableToDrone>();
-		assignableToDrones.AddRange(FactoryMaster.s.GetShipParts());
 		assignableToDrones.AddRange(FactoryMaster.s.GetConstructions());
 		
 		for (int m = 0; m < assignableToDrones.Count; m++) {
@@ -68,9 +67,6 @@ public class FactoryDrones {
 					break;
 				case DroneTask.DroneTaskType.destroy:
 					drone.myState = new DroneBeginDeconstruction();
-					break;
-				case DroneTask.DroneTaskType.transportShipPart:
-					drone.myState = new DroneBeginCarryingShipPart();
 					break;
 				case DroneTask.DroneTaskType.transportItem:
 					throw new NotImplementedException();
@@ -115,19 +111,15 @@ public class FactoryDrones {
 [Serializable]
 public class DroneTask {
 	public enum DroneTaskType {
-		build, destroy, transportShipPart, transportItem
+		build, destroy, transportItem
 	}
 	
 	public DroneTaskType myType;
 	public List<InventoryItemSlot> materials;
 	public Construction construction;
-	public ShipPart shipPart;
 
 	public DroneTask(IAssignableToDrone assignable) {
-		if (assignable is ShipPart part) {
-			shipPart = part;
-			myType = DroneTaskType.transportShipPart;
-		}else if (assignable is Construction cons) {
+		if (assignable is Construction cons) {
 			construction = cons;
 			if (construction.isConstruction) {
 				myType = DroneTaskType.build;
@@ -155,21 +147,13 @@ public class DroneTask {
 			}
 
 			materials = DataSaver.InventoryData.ConvertToRegularData(saveData.currentTaskMaterials);
-		} else {
-			foreach (var shipPart in FactoryMaster.s.GetShipParts()) {
-				if (saveData.currentTaskPosition == shipPart.curPosition) {
-					this.shipPart = shipPart;
-					myType = DroneTaskType.transportShipPart;
-				}
-			}
-		}
+		} 
 	}
 
 
 	private static readonly Map< int,DroneTaskType> droneTaskTypeSavingMap = new Map<int ,DroneTaskType >() {
 		{0, DroneTaskType.build},
 		{1, DroneTaskType.destroy},
-		{2, DroneTaskType.transportShipPart},
 		{3, DroneTaskType.transportItem}
 	};
 	public static int ConvertDroneTaskTypeAndInt(DroneTaskType type) {

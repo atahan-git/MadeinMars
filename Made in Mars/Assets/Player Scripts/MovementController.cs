@@ -16,8 +16,8 @@ public class MovementController : MonoBehaviour {
 
 	Transform myCam;
 
-	public float minZoom = 6f;
-	public float maxZoom = 15f;
+	public float minZoom = 4f;
+	public float maxZoom = 100f;
 
 	// Use this for initialization
 	void Start () {

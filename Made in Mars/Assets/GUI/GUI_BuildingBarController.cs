@@ -36,25 +36,25 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
         myBuildingBarSlots = BuildingBarSlotsParent.GetComponentsInChildren<MiniGUI_BuildingBarSlot>();
         
+        scont = GetComponent<GUI_SwitchController>();
         GameMaster.CallWhenLoaded(LoadBuildingSlots);
     }
 
     private void Start () {
-        DataSaver.s.saveEvent += SaveBuildingSlots;
+        DataSaver.saveEvent += SaveBuildingSlots;
 
         //Player_InventoryController.s.inventoryContentsChangedEvent += UpdateSlotsBuildableStates;
-
-        scont = GetComponent<GUI_SwitchController>();
     }
 
     void LoadBuildingSlots (bool isSuccess) {
         if (isSuccess) {
-            if (DataSaver.s.mySave.buildingBarData != null) {
-                for (int i = 0; i < DataSaver.s.mySave.buildingBarData.Length; i++) {
-                    if (DataSaver.s.mySave.buildingBarData[i] != null)
-                        if (DataSaver.s.mySave.buildingBarData[i].Length > 0)
+            var buildingBarData = DataSaver.s.GetSave().currentPlanet.buildingBarData;
+            if (buildingBarData != null) {
+                for (int i = 0; i < buildingBarData.Length; i++) {
+                    if (buildingBarData[i] != null)
+                        if (buildingBarData[i].Length > 0)
                             myBuildingBarSlots[i].ChangeBuilding(
-                                DataHolder.s.GetBuilding(DataSaver.s.mySave.buildingBarData[i]),
+                                DataHolder.s.GetBuilding(buildingBarData[i]),
                                 false,null, false ,0);
 
                 }
@@ -193,17 +193,18 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
     void SaveBuildingSlots () {
-        DataSaver.s.mySave.buildingBarData = new string[myBuildingBarSlots.Length];
+        var currentPlanetSave = DataSaver.s.GetSave().currentPlanet;
+        currentPlanetSave.buildingBarData = new string[myBuildingBarSlots.Length];
         for (int i = 0; i < myBuildingBarSlots.Length; i++) {
             if (myBuildingBarSlots[i].myDat != null) {
-                DataSaver.s.mySave.buildingBarData[i] = myBuildingBarSlots[i].myDat.uniqueName;
+                currentPlanetSave.buildingBarData[i] = myBuildingBarSlots[i].myDat.uniqueName;
             }
         }
     }
 
 	public void OnDestroy () {
         GameMaster.RemoveFromCall(LoadBuildingSlots);
-        DataSaver.s.saveEvent -= SaveBuildingSlots;
+        DataSaver.saveEvent -= SaveBuildingSlots;
         //Player_InventoryController.s.inventoryContentsChangedEvent -= UpdateSlotsBuildableStates;
     }
 

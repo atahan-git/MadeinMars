@@ -15,30 +15,37 @@ public class GUI_SpaceshipLanding : MonoBehaviour {
     private void Awake() {
 	    spaceshipLandingGUI.SetActive(false);
 	    _controller = transform.parent.GetComponentInChildren<Player_BuildingController>();
+	    GameMaster.CallWhenLoaded(InitializeSpaceshipLanding);
     }
 
-    private void Start() {
-		GameMaster.CallWhenNewPlanet(InitializeSpaceshipLanding);
-	}
 	
 	private void OnDestroy() {
-		GameMaster.RemoveFromCall(InitializeSpaceshipLanding);
+		GameMaster.CallWhenLoaded(InitializeSpaceshipLanding);
 	}
 
-    public void InitializeSpaceshipLanding() {
-	    GUI_SwitchController.s.HideAllMenus();
-	    spaceshipLandingGUI.SetActive(true);
-	    DataSaver.s.mySave.isSpaceshipLanded = false;
-	    spaceshipSlot.ChangeBuilding(spaceshipData, true, new List<InventoryItemSlot>(), callback:FinishBuilding);
+	public void InitializeSpaceshipLanding(bool isLoadSuccess) {
+		var currentPlanetSave = DataSaver.s.GetSave().currentPlanet;
+		if (currentPlanetSave.isSpaceshipLanded == false) {
+			GUI_SwitchController.s.HideAllMenus();
+			spaceshipLandingGUI.SetActive(true);
+			currentPlanetSave.isSpaceshipLanded = false;
+			spaceshipSlot.ChangeBuilding(spaceshipData, true, new List<InventoryItemSlot>(), callback: FinishBuilding);
+		}
+	}
+
+	public void FinishBuilding(bool isSuccess) {
+	    if (isSuccess) {
+		    if (FactoryMaster.s.GetShip() != null) {
+			    spaceshipLandingGUI.SetActive(false);
+			    DataSaver.s.GetSave().currentPlanet.isSpaceshipLanded = true;
+			    print(SpriteGraphicsController.SpaceLandingTime);
+			    Invoke("DelayedStart", SpriteGraphicsController.SpaceLandingTime);
+		    }
+	    }
     }
 
-
-    public void FinishBuilding(bool isSuccess) {
-	    if (isSuccess) {
-		    spaceshipLandingGUI.SetActive(false);
-		    NewGameWorldSetup.s.SetUpNewPlanet();
-		    DataSaver.s.mySave.isSpaceshipLanded = true;
-	    }
+    void DelayedStart() {
+	    NewGameWorldSetup.s.SetUpAfterShipLanding();
     }
 
     public void LookForNewLandingSite() {
@@ -46,6 +53,6 @@ public class GUI_SpaceshipLanding : MonoBehaviour {
     }
     
     public void LeavePlanet () {
-	    
+	    GameMaster.s.LeavePlanet();
     }
 }

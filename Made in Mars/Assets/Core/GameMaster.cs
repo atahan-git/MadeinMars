@@ -10,16 +10,16 @@ using System.Collections.Generic;
 /// Also deals with quitting/saving the game
 /// </summary>
 public class GameMaster : MonoBehaviour {
-
 	public static GameMaster s;
-	public static bool loadingDone = false;
+	public bool loadingDone = false;
+
 	public enum  GameState {
 		planet, stars
 	}
 
 	public static GameState currentState = GameState.planet;
 
-	private void Awake () {
+	public void Awake () {
 		if (s != null) {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
 		}
@@ -27,60 +27,69 @@ public class GameMaster : MonoBehaviour {
 		GameLoader.isGameLoadingDone = false;
 	}
 
-	private void OnDestroy() {
+
+	private void Start() {
+		GameLoader.LoadGame();
+		loadingDone = true;
+		
+		var isGameLoadingSuccessful = GameLoader.isGameLoadingSuccessful;
+
+		loadCompleteEventEarly?.Invoke(isGameLoadingSuccessful);
+		loadCompleteEvent?.Invoke(isGameLoadingSuccessful);
+		
+		if (currentState == GameState.planet) {
+			StartPlanetSession();
+		}
+	}
+
+	public void OnDestroy() {
 		s = null;
 	}
 
-	// Use this for initialization
-	void Start () {
-		StartPlaySession();
-	}
 
 	public void NewLocationInPlanet() {
+		ClearPlanetSession();
+		
+		var isGameLoadingSuccessful = GameLoader.isGameLoadingSuccessful;
+		loadCompleteEventEarly?.Invoke(isGameLoadingSuccessful);
+		loadCompleteEvent?.Invoke(isGameLoadingSuccessful);
+		newPlanetEvent?.Invoke();;
+		var currentPlanet = DataSaver.s.GetSave().currentPlanet.newPlanet = false;
+		
+		startFactorySimulationEvent?.Invoke();
+	}
+
+	public void LeavePlanet() {
+		ClearPlanetSession();
+		SceneChangeMaster.s.LoadStarsLevel();
+	}
+
+	private void ClearPlanetSession() {
 		stopFactorySimulationEvent?.Invoke();
 		clearPlanetEvent?.Invoke();
 
-		DataSaver.s.mySave.beltData = new List<DataSaver.BeltSaveData>();
-		DataSaver.s.mySave.connectorData = new List<DataSaver.ConnectorSaveData>();
-		DataSaver.s.mySave.constructionData = new List<DataSaver.ConstructionSaveData>();
-		DataSaver.s.mySave.buildingData = new List<DataSaver.BuildingSaveData>();
-		DataSaver.s.mySave.droneData = new List<DataSaver.DroneSaveData>();
-		
+		var save = DataSaver.s.GetSave();
+		save.currentPlanet = new DataSaver.LocalPlanetData(save.currentPlanet.planetData);
+	}
+
+	public void StartPlanetSession() {
 		var isGameLoadingSuccessful = GameLoader.isGameLoadingSuccessful;
-		loadCompleteEventEarly?.Invoke(isGameLoadingSuccessful);
-		loadCompleteEvent?.Invoke(isGameLoadingSuccessful);
-		newPlanetEvent?.Invoke();
-		
+		var currentPlanet = DataSaver.s.GetSave().currentPlanet;
+		if (currentPlanet.newPlanet) {
+			newPlanetEvent?.Invoke();
+			currentPlanet.newPlanet = false;
+		}
 		startFactorySimulationEvent?.Invoke();
 	}
-
-	void StartPlaySession() {
-		GameLoader.LoadGame();
-		loadingDone = true;
-
-		var isGameLoadingSuccessful = GameLoader.isGameLoadingSuccessful;
-
-		loadCompleteEventEarly?.Invoke(isGameLoadingSuccessful);
-		loadCompleteEvent?.Invoke(isGameLoadingSuccessful);
-		if (!isGameLoadingSuccessful || (isGameLoadingSuccessful && !DataSaver.s.mySave.isSpaceshipLanded)) newPlanetEvent?.Invoke();
-
-		startFactorySimulationEvent?.Invoke();
-	}
-
-
-
-	public static void StartSavingGameProcess() {
-		if (loadingDone)
-			DataSaver.s.SaveGame();
-	}
+	
 
 	private void OnApplicationPause () {
-		StartSavingGameProcess();
+		GameQuitter.QuitGame();
 	}
 
 
 	private void OnApplicationQuit () {
-		StartSavingGameProcess();
+		GameQuitter.QuitGame();
 	}
 
 	public delegate void LoadingCompleteDelegate(bool isLoadSuccess);
@@ -91,6 +100,7 @@ public class GameMaster : MonoBehaviour {
 	public static event GenericCallback stopFactorySimulationEvent;
 	public static event GenericCallback newPlanetEvent;
 	public static event GenericCallback clearPlanetEvent;
+	public static event GenericCallback playerInventoryChangedEvent;
 	/// <summary>
 	/// This must be called from "Awake"
 	/// Remember to add the "OnDestroy" pair > RemoveFromCall
@@ -130,6 +140,15 @@ public class GameMaster : MonoBehaviour {
 	public static void CallWhenClearPlanet(GenericCallback callback) {
 		clearPlanetEvent += callback;
 	}
+	
+	
+	/// <summary>
+	/// This must be called from "Awake"
+	/// Remember to add the "OnDestroy" pair > RemoveFromCall
+	/// </summary>
+	public static void CallWhenPlayerInventoryChanged(GenericCallback callback) {
+		playerInventoryChangedEvent += callback;
+	}
 
 	/// <summary>
 	/// This should always be called "OnDestroy" to make things work if you ever delete an object and/or reload a scene
@@ -149,5 +168,6 @@ public class GameMaster : MonoBehaviour {
 		startFactorySimulationEvent -= callback;
 		stopFactorySimulationEvent -= callback;
 		clearPlanetEvent -= callback;
+		playerInventoryChangedEvent -= callback;
 	}
 }

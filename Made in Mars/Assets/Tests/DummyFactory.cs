@@ -37,10 +37,10 @@ namespace Tests
 		public static void SetUpDataHolder() {
 			DataHolder.s = new DataHolder();
 			var itemSet = ScriptableObject.CreateInstance<ItemSet>();
-			DataHolder.s.myItemSets = new[] {itemSet};
+			DataHolder.s.allItemSets = new[] {itemSet};
 			itemSet.items = new[] {new Item().MakeDummyItem(dummyInputName), new Item().MakeDummyItem(dummyOutputName)};
 			var recipeSet = ScriptableObject.CreateInstance<RecipeSet>();
-			DataHolder.s.myRecipeSets = new[] {recipeSet};
+			DataHolder.s.allRecipeSets = new[] {recipeSet};
 			DataHolder.s.Setup();
 		}
 
@@ -178,9 +178,9 @@ namespace Tests
 		        throw new Exception("You need to setup a DataHolder for this operation!");
 	        }
 
-	        DataHolder.s.myItemSets[0].items = new Item[materials.Count];
+	        DataHolder.s.allItemSets[0].items = new Item[materials.Count];
 	        for(int i = 0; i < materials.Count; i++) {
-		        DataHolder.s.myItemSets[0].items[i] = new Item().MakeDummyItem(materials[i].itemUniqueName);
+		        DataHolder.s.allItemSets[0].items[i] = new Item().MakeDummyItem(materials[i].itemUniqueName);
 	        }
 
 	        var buildingData = ScriptableObject.CreateInstance<BuildingData>();
@@ -188,16 +188,16 @@ namespace Tests
 	        buildingData.myType = BuildingData.ItemType.Furnace;
 	        buildingData.shape = new ArrayLayout();
 	        buildingData.shape.column[3].row[3] = true;
-	        DataHolder.s.myBuildings = new [] {buildingData};
+	        DataHolder.s.allBuildings = new [] {buildingData};
 
 	        var recipeSet = ScriptableObject.CreateInstance<RecipeSet>();
-	        DataHolder.s.myRecipeSets = new[] {recipeSet};
+	        DataHolder.s.allRecipeSets = new[] {recipeSet};
 
 	        recipeSet.myBuildings = new[] {buildingData};
 
-	        recipeSet.myItemSets = DataHolder.s.myItemSets;
-	        for(int i = 0; i < DataHolder.s.myItemSets[0].items.Length; i++) {
-		        recipeSet.AddItemNode(Vector3.zero, DataHolder.s.myItemSets[0].items[i]);
+	        recipeSet.myItemSets = DataHolder.s.allItemSets;
+	        for(int i = 0; i < DataHolder.s.allItemSets[0].items.Length; i++) {
+		        recipeSet.AddItemNode(Vector3.zero, DataHolder.s.allItemSets[0].items[i]);
 	        }
 
 	        recipeSet.AddCraftingNode(Vector3.zero);
@@ -226,7 +226,7 @@ namespace Tests
 	        buildingData.myType = BuildingData.ItemType.Furnace;
 	        buildingData.shape = new ArrayLayout();
 	        buildingData.shape.column[3].row[3] = true;
-	        DataHolder.s.myBuildings = new [] {buildingData};
+	        DataHolder.s.allBuildings = new [] {buildingData};
 
 	        return buildingData;
         }

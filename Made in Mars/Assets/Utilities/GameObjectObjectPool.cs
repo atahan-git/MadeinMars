@@ -50,6 +50,33 @@ public class GameObjectObjectPool : MonoBehaviour {
 		}
 	}
 
+	public PooledGameObject Spawn(int index) {
+		if (index < objs.Length) {
+
+			if (!objs[index].isActive) {
+				objs[index].EnableObject();
+
+				return objs[index];
+			} else {
+				return null;
+			}
+		} else {
+			PooledGameObject[] temp = objs;
+			objs = new PooledGameObject[Mathf.Min(objs.Length*2, maxPoolSize)];
+			temp.CopyTo(objs, 0);
+			var inst = Instantiate (myObject, transform).GetComponent<PooledGameObject>();
+			ExistingObjects += 1;
+			inst.EnableObject ();
+
+			objs[temp.Length] =  inst;
+			inst.myId = temp.Length;
+
+			FillArrayWithObjects();
+			poolSize = objs.Length;
+
+			return inst;
+		}
+	}
 
 	public PooledGameObject Spawn (){
 		for (int i = 0; i < objs.Length; i++) {

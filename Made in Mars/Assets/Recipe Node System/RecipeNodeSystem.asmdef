@@ -1,9 +1,9 @@
 {
     "name": "RecipeNodeSystem",
     "references": [
-        "GUID:f813a3ca5985e9e4aa2d9d281a2194fb",
         "GUID:276f854cb5502494d81873b9c6b16080",
-        "GUID:545d8bf2853f4064cb0520c11c3a1c47"
+        "GUID:545d8bf2853f4064cb0520c11c3a1c47",
+        "GUID:20490352827e9be458063e4880fe0718"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

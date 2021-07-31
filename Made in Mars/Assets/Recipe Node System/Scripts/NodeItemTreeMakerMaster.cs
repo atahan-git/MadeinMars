@@ -33,7 +33,7 @@ public class NodeItemTreeMakerMaster : RecipeTreeViewer {
         foreach (ItemSet myItemSet in myRecipeSet.myItemSets) {
             foreach (Item myItem in myItemSet.items) {
                 GameObject itemListItem = Instantiate(ItemListItemPrefab, ItemsParent);
-                itemListItem.GetComponent<DragMe>().myItem = myItem;
+                itemListItem.GetComponent<MiniGUI_RecipeNodeDragMe>().myItem = myItem;
                 itemListItem.transform.GetChild(0).GetComponent<Image>().sprite = myItem.mySprite;
                 itemListItem.transform.GetChild(1).GetComponent<Text>().text = myItem.name;
             }
@@ -45,7 +45,18 @@ public class NodeItemTreeMakerMaster : RecipeTreeViewer {
             if (myBuildingData != null) {
                 GameObject itemListItem = Instantiate(ItemListItemPrefab, ItemsParent);
                 Item buildingTempItem = new Item().MakeBuildingDataDummyItem(myBuildingData.uniqueName, myBuildingData.gfxSprite);
-                itemListItem.GetComponent<DragMe>().myItem = buildingTempItem;
+                itemListItem.GetComponent<MiniGUI_RecipeNodeDragMe>().myItem = buildingTempItem;
+                itemListItem.transform.GetChild(0).GetComponent<Image>().sprite = buildingTempItem.mySprite;
+                itemListItem.transform.GetChild(1).GetComponent<Text>().text = buildingTempItem.name;
+            }
+        }
+        
+        // Draw menu for cards
+        foreach (ShipCard myShipCard in myRecipeSet.myCards) {
+            if (myShipCard != null) {
+                GameObject itemListItem = Instantiate(ItemListItemPrefab, ItemsParent);
+                Item buildingTempItem = new Item().MakeBuildingDataDummyItem(myShipCard.uniqueName, myShipCard.GetImage());
+                itemListItem.GetComponent<MiniGUI_RecipeNodeDragMe>().myItem = buildingTempItem;
                 itemListItem.transform.GetChild(0).GetComponent<Image>().sprite = buildingTempItem.mySprite;
                 itemListItem.transform.GetChild(1).GetComponent<Text>().text = buildingTempItem.name;
             }
@@ -60,14 +71,15 @@ public class NodeItemTreeMakerMaster : RecipeTreeViewer {
         if (originalObj == null)
             return;
 
-        var dragMe = originalObj.GetComponent<DragMe>();
+        var dragMe = originalObj.GetComponent<MiniGUI_RecipeNodeDragMe>();
         if (dragMe == null)
             return;
 
         var myItem = dragMe.myItem;
         if (myItem == null)
             return;
-        GameObject node;
+        
+        
         var position = new Vector3(data.position.x, data.position.y, 0);
         if (myItem.uniqueName == "CraftingProcess") {
             var craftingNode = myRecipeSet.AddCraftingNode(position);
@@ -138,10 +150,6 @@ public class NodeItemTreeMakerMaster : RecipeTreeViewer {
     }
 
     const float changeIncrements = 500;
-
-
-    public void BackToMenu() {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-    }
+    
 
 }

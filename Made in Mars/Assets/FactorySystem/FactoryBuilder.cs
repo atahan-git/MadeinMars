@@ -8,7 +8,7 @@ public static class FactoryBuilder {
 
     public static GenericCallback ObjectsUpdated;
     public static GenericCallback DronesUpdated;
-    public static GenericCallback ShipPartsUpdated;
+    public static ShipCardAddedCallback shipCardAdded;
     
     public static Drone CreateDrone(Position location) {
         var drone = new Drone(location);
@@ -17,11 +17,12 @@ public static class FactoryBuilder {
         return drone;
     }
 
-    public static ShipPart CreateShipPart(Position location) {
-        var shipPart = new ShipPart(location);
-        FactoryMaster.s.AddShipPart(shipPart);
-        ShipPartsUpdated?.Invoke();
-        return shipPart;
+    public static void CreateShipPart(BuildingData myData, Position location) {
+        var shipCard = DataHolder.s.BuildingDataToShipCard(myData);
+        
+        DataSaver.s.mySave.availableShipCards.Add(new DataSaver.ShipCardData(shipCard));
+        
+        shipCardAdded?.Invoke(shipCard, location);
     }
     
     public static Construction StartConstruction(BuildingData buildingData, int direction, Position location, List<InventoryItemSlot> afterConstructionInventory = null) {
@@ -71,8 +72,8 @@ public static class FactoryBuilder {
             case BuildingData.ItemType.Connector:
                 CreateConnector(construction.locations[0], construction.direction);
                 break;
-            case BuildingData.ItemType.ShipPart:
-                CreateShipPart(construction.center);
+            case BuildingData.ItemType.ShipCard:
+                CreateShipPart(construction.myData, construction.center);
                 break;
             default:
                 CreateBuilding(construction.myData, construction.center, construction.afterConstructionInventory);

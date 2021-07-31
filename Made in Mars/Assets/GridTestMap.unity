@@ -866,7 +866,7 @@ MonoBehaviour:
   myGrid:
     mapGen: {fileID: 8083725270844303121}
     mapSize: 200
-    scheme: {fileID: 11400000, guid: 7ca14eb843d739a408da330b5f1634dd, type: 2}
+    _logger: {fileID: 0}
 --- !u!114 &8083725270844303121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +884,8 @@ MonoBehaviour:
   - {fileID: 1793735532}
   - {fileID: 336555540}
   - {fileID: 792000236}
+  layersToSwell: 01010101
+  layersToSwellAgain: 00000000
   resources: {fileID: 8083725269279076712}
   mapSize: {x: 200, y: 200}
   editorMapSchematic: {fileID: 11400000, guid: 7ca14eb843d739a408da330b5f1634dd, type: 2}
@@ -894,6 +896,8 @@ MonoBehaviour:
   - {r: 0.5002962, g: 1, b: 0.3820755, a: 1}
   - {r: 1, g: 0.7689924, b: 0.3443396, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  tilePerFrame: 1000
+  _logger: {fileID: 0}
 --- !u!1 &8083725270844303123
 GameObject:
   m_ObjectHideFlags: 0

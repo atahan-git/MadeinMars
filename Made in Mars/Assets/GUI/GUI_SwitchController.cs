@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 
 
@@ -24,30 +22,35 @@ public class GUI_SwitchController : MonoBehaviour {
 		}
 
 		s = this;
+		bbarcont = GetComponent<GUI_BuildingBarController>();
 	}
 
 	private void Start () {
-		bbarcont = GetComponent<GUI_BuildingBarController>();
 		HideAllMenus();
 	}
 
 	public void HideAllMenus() {
-		GUI_Inventory.SetActive(false);
-		GUI_Settings.SetActive(false);
-		GUI_Crafting.SetActive(false);
-		GUI_Comms.SetActive(false);
-		bbarcont.isOnFocus = true;
-		Player_MasterControlCheck.s.ToggleMovement(true);
+		if (GUI_Inventory)
+			GUI_Inventory.SetActive(false);
+		if (GUI_Settings)
+			GUI_Settings.SetActive(false);
+		if (GUI_Crafting)
+			GUI_Crafting.SetActive(false);
+		if (GUI_Comms)
+			GUI_Comms.SetActive(false);
+		if(bbarcont)
+			bbarcont.isOnFocus = true;
+		if(Player_MasterControlCheck.s)
+			Player_MasterControlCheck.s.ToggleMovement(true);
 	}
 
 	void ShowOneMenu(GameObject menu) {
-		GUI_Inventory.SetActive(false);
-		GUI_Settings.SetActive(false);
-		GUI_Crafting.SetActive(false);
-		GUI_Comms.SetActive(false);
-		bbarcont.isOnFocus = false;
-		Player_MasterControlCheck.s.ToggleMovement(false);
-		
+		HideAllMenus();
+		if (bbarcont)
+			bbarcont.isOnFocus = false;
+		if (Player_MasterControlCheck.s)
+			Player_MasterControlCheck.s.ToggleMovement(false);
+
 		menu.SetActive(true);
 	}
 
@@ -67,8 +70,9 @@ public class GUI_SwitchController : MonoBehaviour {
 
 	
 	public void SaveandQuit() {
-		GameMaster.StartSavingGameProcess();
-		SceneManager.LoadScene(0);
+		GameQuitter.QuitGame();
+		SceneChangeMaster.s.LoadMenu();
+		//SceneManager.LoadScene(0);
 	}
 
 	public void BringBuildingBarToFocus () {

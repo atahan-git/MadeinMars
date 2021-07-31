@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 /// <summary>
@@ -26,16 +27,13 @@ public class NewGameWorldSetup : MonoBehaviour
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
 		}
 		s = this;
+		GameMaster.CallWhenNewPlanet(SetUpNewPlanet);
 	}
 
-	/*private void Start() {
-		GameLoader.CallWhenNewPlanet(SetUpNewGameWorld);
-	}
-	
 	private void OnDestroy() {
-		GameLoader.RemoveFromCall(SetUpNewGameWorld);
-	}*/
-	
+		GameMaster.RemoveFromCall(SetUpNewPlanet);
+	}
+
 
 	void LayBelt(Position start, int direction, int amount) {
 		for (int i = 0; i < amount; i++) {
@@ -48,17 +46,40 @@ public class NewGameWorldSetup : MonoBehaviour
 			FactoryBuilder.CreateConnector(Position.MoveCardinalDirection(start,direction,i), direction);
 		}
 	}
-	
+
 	public void SetUpNewPlanet() {
+		Position randomPos;
+		var mapBorder = 10;
+		do {
+			randomPos = new Position(Random.Range(mapBorder, Grid.s.mapSize-mapBorder), Random.Range(mapBorder, Grid.s.mapSize-mapBorder));
+		} while (!Grid.s.GetTile(randomPos).buildingPlaceable);
+
+		var randomCard = DataHolder.s.allShipCards[Random.Range(0, DataHolder.s.allShipCards.Length)];
+
+		FactoryBuilder.StartConstruction(DataHolder.s.ShipCardToBuildingData(randomCard), 0, randomPos);
+		
+		Debug.Log($"spawned {randomCard} card in {randomPos}");
+		Debug.DrawLine(randomPos.Vector3(-10), randomPos.Vector3(-10) + Vector3.right*10, Color.green, 100f);
+	}
+	
+	public void SetUpAfterShipLanding() {
 		
 		Debug.Log("------------------- Starting new planet -------------------");
 
 		var shipPosition = FactoryMaster.s.GetBuildings()[0].center;
-		FactoryBuilder.CreateDrone(shipPosition + new Position(-2,-1));
-		FactoryBuilder.CreateDrone(shipPosition + new Position(-1,-1));
-		FactoryBuilder.CreateDrone(shipPosition + new Position(2,-1));
+		var droneCount = ShipDataMaster.s.droneCount;
 
-		SetUpStarterFactory();
+		StartCoroutine(DroneCreationLoop(shipPosition, droneCount));
+
+
+		//SetUpStarterFactory();
+	}
+
+	IEnumerator DroneCreationLoop(Position shipPosition, int droneCount) {
+		for (int i = 0; i < droneCount; i++) {
+			FactoryBuilder.CreateDrone(shipPosition + new Position(0,-1));
+			yield return new WaitForSeconds(0.2f);
+		}
 	}
 
 

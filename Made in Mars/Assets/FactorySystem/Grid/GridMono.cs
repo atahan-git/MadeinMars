@@ -14,13 +14,10 @@ public class GridMono : MonoBehaviour {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
 		}
 		Grid.s = myGrid;
-	}
-
-	private void Start() {
 		myGrid.RegisterEvents(GetComponent<MapGenerator>());
 	}
 
 	private void OnDestroy() {
-		Grid.s.OnDestroy();
+		Grid.s.UnRegisterEvents();
 	}
 }

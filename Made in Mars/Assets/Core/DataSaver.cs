@@ -7,27 +7,40 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 
-/// <summary>
-/// Deals with all the saving processes.
-/// If a data is saved, it should be here.
-/// </summary>
-public class DataSaver : MonoBehaviour {
+
+[Serializable]
+public class DataSaver {
 
 	public static DataSaver s;
 
 	public SaveFile mySave;
 	public const string saveName = "mySave.data";
 
+	public string saveFilePathAndFileName {
+		get { return Application.persistentDataPath + "/" + saveName; }
+	}
 	public delegate void SaveYourself ();
-	public event SaveYourself saveEvent;
-
-	// Use this for initialization
-	void Awake () {
-		s = this;
+	public static event SaveYourself saveEvent;
+	
+	public SaveFile GetSave() {
+		return mySave;
 	}
 
-	void Start () {
-		print("Save Location:" + Application.persistentDataPath);
+	public void ClearSave() {
+		mySave = new SaveFile();
+		OnNewSave();
+	}
+
+	public ShipCard[] newSaveCards = new ShipCard[0];
+	public void OnNewSave() {
+		for (int i = 0; i < newSaveCards.Length; i++) {
+			var card = newSaveCards[i];
+			if (card != null) {
+				mySave.availableShipCards.Add(new ShipCardData(card));
+			}
+		}
+
+		mySave.isRealSaveFile = true;
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------
@@ -42,65 +55,114 @@ public class DataSaver : MonoBehaviour {
 
 	void Save () {
 		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + "/" + saveName);
-
+		FileStream file = File.Create(saveFilePathAndFileName);
+		
+		mySave.isRealSaveFile = true;
 		SaveFile data = mySave;
 
 		bf.Serialize(file, data);
 		file.Close();
-		print("Data Saved to " + Application.persistentDataPath + "/");
+		Debug.Log("Data Saved to " + saveFilePathAndFileName);
 	}
 
 	public bool Load () {
+		if (mySave.isRealSaveFile) {
+			return true;
+		}
 		try {
-			if (File.Exists(Application.persistentDataPath + "/" + saveName)) {
+			if (File.Exists(saveFilePathAndFileName)) {
 				BinaryFormatter bf = new BinaryFormatter();
-				FileStream file = File.Open(Application.persistentDataPath + "/" + saveName, FileMode.Open);
+				FileStream file = File.Open(saveFilePathAndFileName, FileMode.Open);
 				try {
 					SaveFile data = (SaveFile)bf.Deserialize(file); 
 					file.Close();
 
 					mySave = data;
-					print("Data Loaded");
+					Debug.Log("Data Loaded");
 				} catch (Exception e) {
 					file.Close();
 					throw;
 				}
 				return true;
 			} else {
-				print("No Data Found");
+				Debug.Log("No Data Found");
+				mySave = new SaveFile();
+				OnNewSave();
 				return false;
 			}
 		} catch {
-			File.Delete(Application.persistentDataPath + "/" + saveName );
-			print("Corrupt Data Deleted");
+			File.Delete(saveFilePathAndFileName );
+			Debug.Log("Corrupt Data Deleted");
+			mySave = new SaveFile();
+			OnNewSave();
+			
 			return false;
 		}
 	}
 
 	public void DeleteSave () {
-		DeleteSave(saveName);
-	}
-
-	public void DeleteSave(string filename) {
-		File.Delete(Application.persistentDataPath + "/" + saveName);
+		File.Delete(saveFilePathAndFileName);
+		mySave = new SaveFile();
+		OnNewSave();
 	}
 
 	[System.Serializable]
 	public class SaveFile {
+		public bool isRealSaveFile = false;
+		public LocalPlanetData currentPlanet;
+
+		public List<ShipCardData> activeShipCards = new List<ShipCardData>();
+		public List<ShipCardData> availableShipCards = new List<ShipCardData>();
+		public List<ShipCardData> unlockedShipCards = new List<ShipCardData>();
+
+		public List<DataHolder.CountedItem> itemsMadeData = new List<DataHolder.CountedItem>();
+
+	}
+	
+	[Serializable]
+	public class LocalPlanetData {
 		public List<BuildingSaveData> buildingData = new List<BuildingSaveData>();
 		public List<BeltSaveData> beltData = new List<BeltSaveData>();
 		public List<ConnectorSaveData> connectorData = new List<ConnectorSaveData>();
 		public List<ConstructionSaveData> constructionData = new List<ConstructionSaveData>();
 		public List<DroneSaveData> droneData = new List<DroneSaveData>();
 		public string[] buildingBarData = new string[0];
+		public PlanetData planetData;
 		public TileData[,] tileData = new TileData[0,0];
-
-		public List<DataHolder.CountedItem> itemsMadeData = new List<DataHolder.CountedItem>();
-
 		public bool isSpaceshipLanded = false;
+		public bool newPlanet = true;
+
+
+		public LocalPlanetData(PlanetData planetData) {
+			this.planetData = planetData;
+		}
 	}
 	
+	[Serializable]
+	public class PlanetData {
+		public string planetSchematicUniqueName;
+		public int[] oreDensities = new int[0];
+		public string[] oreUniqueNames = new string[0];
+
+		public PlanetData(string planetSchematicUniqueName, int[] oreDensities, string[] oreUniqueNames) {
+			this.planetSchematicUniqueName = planetSchematicUniqueName;
+			this.oreDensities = oreDensities;
+			this.oreUniqueNames = oreUniqueNames;
+		}
+	}
+
+	[System.Serializable]
+	public class  ShipCardData {
+		public string myUniqueName;
+
+		public ShipCardData(ShipCard card) {
+			myUniqueName = card.uniqueName;
+		}
+
+		public ShipCard GetShipCard() {
+			return DataHolder.s.GetShipCard(myUniqueName);
+		}
+	}
 	
 	[System.Serializable]
 	public class ConstructionSaveData {

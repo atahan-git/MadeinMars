@@ -11,10 +11,7 @@ public class FactoryMasterMono : MonoBehaviour {
 			Debug.LogError(string.Format("More than one singleton copy of {0} is detected! this shouldn't happen.", this.ToString()));
 		}
 		FactoryMaster.s = myFactoryMaster;
-    }
-
-    private void Start() {
-	    FactoryMaster.s.RegisterLoad();
+		FactoryMaster.s.RegisterLoad();
     }
 
     private void OnDestroy() {

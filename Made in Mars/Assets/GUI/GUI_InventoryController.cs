@@ -16,7 +16,7 @@ public class GUI_InventoryController : MonoBehaviour {
 
 
     void Start() {
-        DrawInventory();
+        GameMaster.CallWhenPlayerInventoryChanged(DrawInventory);
 
         if (PlayerPrefs.GetInt("extrainfo", 0) == 1) {
             ToggleExtraInfo();
@@ -29,9 +29,8 @@ public class GUI_InventoryController : MonoBehaviour {
         
         // Draw the buildings
         bbar = GetComponent<GUI_BuildingBarController>();
-        foreach (BuildingData dat in DataHolder.s.AllBuildings()) {
-            if(dat.playerBuildBarApplicable)
-                Instantiate(BuildingListingPrefab, BuildingsParent).GetComponent<MiniGUI_BuildingListing>().SetUp(dat, bbar);
+        foreach (BuildingData dat in ShipDataMaster.s.GetPlayerBuildableBuildings()) {
+            Instantiate(BuildingListingPrefab, BuildingsParent).GetComponent<MiniGUI_BuildingListing>().SetUp(dat, bbar);
         }
         print(DataHolder.s.AllBuildings().Length.ToString() + " Buildings are put into building list");
         

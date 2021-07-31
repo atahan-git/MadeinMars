@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &827937899237870285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827937899237870282}
+  - component: {fileID: 5776742968927617469}
+  - component: {fileID: 827937899237870283}
+  - component: {fileID: 1889085300}
+  - component: {fileID: 5788683947890640832}
+  - component: {fileID: 8037295792184223520}
+  m_Layer: 0
+  m_Name: _SharedScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &827937899237870282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827937899237870285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5776742968927617469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827937899237870285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af146d7f8c7297c4fa8d63da363dab28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDataSaver:
+    mySave:
+      isRealSaveFile: 0
+      currentPlanet:
+        buildingData: []
+        beltData: []
+        connectorData: []
+        constructionData: []
+        droneData: []
+        buildingBarData: []
+        planetData:
+          planetSchematicUniqueName: 
+          oreDensities: 
+          oreUniqueNames: []
+        isSpaceshipLanded: 0
+        newPlanet: 0
+      activeShipCards: []
+      availableShipCards: []
+      unlockedShipCards: []
+      itemsMadeData: []
+    newSaveCards:
+    - {fileID: 11400000, guid: 23aefbe98fb58c64f86bc2c1176272cb, type: 2}
+    - {fileID: 11400000, guid: d987704331f33db42aff13f6aba638c0, type: 2}
+    - {fileID: 11400000, guid: b1a47a898314dc344907cf5ccc1e6e9e, type: 2}
+    dontSave: 0
+--- !u!114 &827937899237870283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827937899237870285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19f1ae379489f7409900d79a2f57ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingDone: 0
+--- !u!114 &1889085300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827937899237870285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed09bfd2bea34546a4868a8fb18fdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu:
+    sceneAsset: {fileID: 102900000, guid: 9dc28d4bebc79dc409e2d2dd3dc6ac5d, type: 3}
+    scenePath: Assets/Main Menu.unity
+  planetLevel:
+    sceneAsset: {fileID: 102900000, guid: c63c9c81112eb0649b968897e6e17bbc, type: 3}
+    scenePath: Assets/Play Level.unity
+  starsLevel:
+    sceneAsset: {fileID: 102900000, guid: 6191348352517294d892ae525ce01f18, type: 3}
+    scenePath: Assets/StarSelectionScreen.unity
+  modRecipesLevel:
+    sceneAsset: {fileID: 102900000, guid: e01a0fd9f85c95145a03958954afc639, type: 3}
+    scenePath: Assets/Node Item Tree Making Scene.unity
+--- !u!114 &5788683947890640832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827937899237870285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51ee9593c00470f8d94a1a03782fd48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDataHolder:
+    allTileSets:
+    - {fileID: 11400000, guid: 9d869f5af8894b142bd513f7de37e6a2, type: 2}
+    - {fileID: 11400000, guid: 03f690953e5942242a3dd541148a3390, type: 2}
+    allPlanetSchematics:
+    - {fileID: 11400000, guid: 7ca14eb843d739a408da330b5f1634dd, type: 2}
+    - {fileID: 11400000, guid: aaca87c5c3b0e7642974abe8f95c0720, type: 2}
+    allOreDensities:
+    - {fileID: 11400000, guid: 7a8816ebb55e61d4cbc87e8af76adbdc, type: 2}
+    - {fileID: 11400000, guid: 6fb9c6e0166510e41bda400771f140c5, type: 2}
+    - {fileID: 11400000, guid: 44d46d7f6bd07844ea87bcb90e61fb9d, type: 2}
+    allBuildings:
+    - {fileID: 11400000, guid: ba231f49a8aba3446a75e21413b1b077, type: 2}
+    - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
+    - {fileID: 11400000, guid: 2f1242d7254920046bd3966523742832, type: 2}
+    - {fileID: 11400000, guid: b1cb88f9cb208454fbf8fe40f959f985, type: 2}
+    - {fileID: 11400000, guid: 083597dc2ebf77f46a79e22709987166, type: 2}
+    - {fileID: 11400000, guid: 7ea4ad04d5e8a6e47a134d0ec48a002f, type: 2}
+    - {fileID: 11400000, guid: 68d403cecda93af489e4609a79e60d9f, type: 2}
+    - {fileID: 11400000, guid: 100a719508880084abd0d3fdba96fe00, type: 2}
+    - {fileID: 11400000, guid: 8a8742bdeef186546b5d5f9cc1208f04, type: 2}
+    - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
+    - {fileID: 11400000, guid: 23a2e5f0ee7f46a4d98e77a03f014ab1, type: 2}
+    - {fileID: 11400000, guid: ad2b7ca6eab6c0343bf01a2e89986d22, type: 2}
+    - {fileID: 11400000, guid: 4b348287299377648b8e1332c9d6be72, type: 2}
+    - {fileID: 11400000, guid: f827b53c0d3612a40b8ce455ba2fba9a, type: 2}
+    - {fileID: 11400000, guid: 935730212d7031445a543c3e54b0b0e5, type: 2}
+    allItemSets:
+    - {fileID: 11400000, guid: 9427da8f80d849340bc3314ec68eee65, type: 2}
+    allRecipeSets:
+    - {fileID: 11400000, guid: ee42a49283cfe254c8a49936c3f98286, type: 2}
+    allShipCards:
+    - {fileID: 11400000, guid: d987704331f33db42aff13f6aba638c0, type: 2}
+    - {fileID: 11400000, guid: b1a47a898314dc344907cf5ccc1e6e9e, type: 2}
+    - {fileID: 11400000, guid: 23aefbe98fb58c64f86bc2c1176272cb, type: 2}
+    cardBuildingData: {fileID: 11400000, guid: 935730212d7031445a543c3e54b0b0e5, type: 2}
+--- !u!114 &8037295792184223520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827937899237870285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72539b7f961c5248bf143d29d863559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBuildableBuildingsSetByShipCards: []
+  shipStarterInventory: []
+  droneCount: 0

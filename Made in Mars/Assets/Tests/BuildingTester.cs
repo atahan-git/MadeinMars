@@ -69,12 +69,14 @@ namespace Tests {
             Grid.s.GetTile(new Position(0, 0)).oreType = 1;
             Grid.s.GetTile(new Position(0, 0)).oreAmount = 10;
 
+            var dummyOreItem = ScriptableObject.CreateInstance<Item>();
+            dummyOreItem.uniqueName = "dummyOre";
             var oreSpawnSettings = ScriptableObject.CreateInstance<OreSpawnSettings>();
-            oreSpawnSettings.oreUniqueName = "dummyOre";
+            oreSpawnSettings.oreItem = dummyOreItem;
             var recipeSet = ScriptableObject.CreateInstance<RecipeSet>();
             recipeSet.myOres = new[] {oreSpawnSettings};
-            DataHolder.s.myItemSets[0].items = new[] {new Item() {uniqueName = "dummyOre"}};
-            DataHolder.s.myRecipeSets = new[] {recipeSet};
+            DataHolder.s.allItemSets[0].items = new[] {dummyOreItem};
+            DataHolder.s.allRecipeSets = new[] {recipeSet};
             
             var craftingNode = recipeSet.AddCraftingNode(Vector3.zero);
             var oreNode = recipeSet.AddItemNode(Vector3.zero, DataHolder.s.OreIdToItem(1));

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e4e7d833a160043baa1c40e0d5efd0, type: 3}
+  m_Name: MinerBuildingCard
+  m_EditorClassIdentifier: ShipSystems::BuildingCard
+  uniqueName: minerUnlockCard
+  buildingData: {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}

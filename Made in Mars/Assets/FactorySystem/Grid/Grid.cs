@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -16,18 +17,24 @@ public class Grid
 
 	public int mapSize = 200;
 
-	public TileData[,] myTiles;
-
-	public PlanetSchematic scheme;
+	TileData[,] myTiles;
+	PlanetSchematic scheme;
 
 	private TileData dummyTile = new TileData(-1,-1);
 	
 	public void RegisterEvents ( MapGenerator _mapGen) {
 		mapGen = _mapGen;
 
-		DataSaver.s.saveEvent += SaveTiles;
+		DataSaver.saveEvent += SaveTiles;
 		GameMaster.CallWhenLoadedEarly(GameLoadingComplete);
 		GameMaster.CallWhenNewPlanet(GenerateTiles);
+	}
+	
+	public void UnRegisterEvents () {
+		s = null;
+		DataSaver.saveEvent -= SaveTiles;
+		GameMaster.RemoveFromCall(GameLoadingComplete);
+		GameMaster.RemoveFromCall(GenerateTiles);
 	}
 
 	public void DummySetup(int _mapSize) {
@@ -76,12 +83,15 @@ public class Grid
 
 	public void LoadTiles() {
 		mapGen.Clear();
-		bool loadDataExists = DataSaver.s.mySave.tileData != null;
+		var currentPlanet = DataSaver.s.GetSave().currentPlanet;
+		bool loadDataExists = currentPlanet.tileData != null;
 		if (loadDataExists) {
-			if (DataSaver.s.mySave.tileData != null && DataSaver.s.mySave.tileData.Length > 0) {
-				int xLength = DataSaver.s.mySave.tileData.GetLength(0);
-				int yLength = DataSaver.s.mySave.tileData.GetLength(0);
-				int[,] materials = new int [xLength, yLength];
+			var previousPlanetExists = currentPlanet.planetData != null && currentPlanet.tileData != null && currentPlanet.tileData.Length > 0;
+			if (previousPlanetExists) {
+				scheme = DataHolder.s.GetPlanetSchematic(currentPlanet.planetData.planetSchematicUniqueName);
+				int xLength = currentPlanet.tileData.GetLength(0);
+				int yLength = currentPlanet.tileData.GetLength(0);
+				TileSet[,] materials = new TileSet [xLength, yLength];
 				int[,] height = new int[xLength, yLength];
 				int[][,] oreAmounts = new int[DataHolder.s.GetAllOres().Length][,];
 				for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
@@ -89,11 +99,11 @@ public class Grid
 				}
 
 				myTiles = new TileData[xLength, yLength];
-				for (int x = 0; x < DataSaver.s.mySave.tileData.GetLength(0); x++) {
-					for (int y = 0; y < DataSaver.s.mySave.tileData.GetLength(1); y++) {
-						DataSaver.TileData dat = DataSaver.s.mySave.tileData[x, y];
+				for (int x = 0; x < currentPlanet.tileData.GetLength(0); x++) {
+					for (int y = 0; y < currentPlanet.tileData.GetLength(1); y++) {
+						DataSaver.TileData dat = currentPlanet.tileData[x, y];
 						myTiles[x, y] = new TileData(dat, x, y);
-						materials[x, y] = dat.material;
+						materials[x, y] = DataHolder.s.IdToTileSet(dat.material);
 						height[x, y] = dat.height;
 						if (dat.oreType > 0 && dat.oreType <= oreAmounts.GetLength(0))
 							oreAmounts[dat.oreType - 1][x, y] = Mathf.CeilToInt(dat.oreAmount/10000f);
@@ -109,27 +119,33 @@ public class Grid
 			} else {
 				GenerateTiles();
 			}
-		}
+		} 
 	}
 
 	public DataLogger _logger;
 	public void GenerateTiles () {
 		var time = 0f;
 		time = Time.realtimeSinceStartup;
-		
+
+		var planet = new Planet(DataSaver.s.GetSave().currentPlanet.planetData);
+		scheme = planet.schematic;
 		mapGen.Clear();
-		int[,] materials;
+		TileSet[,] materials;
 		int[,] height;
 		mapGen.mapSize = new Vector2Int(mapSize, mapSize);
 		var map = mapGen.GenerateMap(scheme);
 		materials = map.Item1;
 		height = map.Item2;
 
+		var oreSettings = new List<OreSpawnSettings>();
+		for (int i = 0; i < planet.oreDensities.Length; i++) {
+			oreSettings.Add(DataHolder.s.GetOreSpawnSettings(planet.oreDensities[i], planet.oreNames[i]));
+		}
 		int[,] oreType = new int[mapSize,mapSize];
 		int[,] oreAmount = new int[mapSize, mapSize];
-		int[][,] oreAmountsPrepass = new int[DataHolder.s.GetAllOres().Length][,];
-		for (int i = 0; i < DataHolder.s.GetAllOres().Length; i++) {
-			oreAmountsPrepass[i] = mapGen.GenerateResources(DataHolder.s.GetAllOres()[i]);
+		int[][,] oreAmountsPrepass = new int[oreSettings.Count][,];
+		for (int i = 0; i < oreSettings.Count; i++) {
+			oreAmountsPrepass[i] = mapGen.GenerateResources(oreSettings[i]);
 		}
 
 		myTiles = new TileData[mapSize, mapSize];
@@ -146,7 +162,7 @@ public class Grid
 
 
 				myTiles[x, y] = new TileData(x,y);
-				myTiles[x, y].material = materials[x, y];
+				myTiles[x, y].material = materials[x, y].tileSetId;
 				myTiles[x, y].height = height[x, y];
 				myTiles[x, y].oreType = oreType[x,y];
 				myTiles[x, y].oreAmount = oreAmount[x, y]; 
@@ -157,22 +173,35 @@ public class Grid
 	}
 
 	public void SaveTiles () {
-		DataSaver.s.mySave.tileData = new DataSaver.TileData[myTiles.GetLength(0), myTiles.GetLength(1)];
-		for (int x = 0; x < myTiles.GetLength(0); x++) {
-			for (int y = 0; y < myTiles.GetLength(1); y++) {
-				TileData ct = myTiles[x, y];
-				DataSaver.s.mySave.tileData[x, y] = new DataSaver.TileData(ct.height, ct.material, ct.oreType, ct.oreAmount);
+		if (myTiles != null) {
+			DataSaver.s.GetSave().currentPlanet.tileData = new DataSaver.TileData[myTiles.GetLength(0), myTiles.GetLength(1)];
+			for (int x = 0; x < myTiles.GetLength(0); x++) {
+				for (int y = 0; y < myTiles.GetLength(1); y++) {
+					TileData ct = myTiles[x, y];
+					DataSaver.s.GetSave().currentPlanet.tileData[x, y] = new DataSaver.TileData(ct.height, ct.material, ct.oreType, ct.oreAmount);
+				}
 			}
 		}
 	}
-
-	public void OnDestroy () {
-		s = null;
-		DataSaver.s.saveEvent -= SaveTiles;
-		GameMaster.RemoveFromCall(GameLoadingComplete);
-	}
 }
 
+[System.Serializable]
+public class Planet {
+	public int planetGenerationInt;
+	public PlanetSchematic schematic;
+	public int[] oreDensities =new int[0];
+	public string[] oreNames = new string[0];
+
+	public Planet(DataSaver.PlanetData data) {
+		schematic = DataHolder.s.GetPlanetSchematic(data.planetSchematicUniqueName);
+		oreDensities = data.oreDensities;
+		oreNames = data.oreUniqueNames;
+	}
+
+	public Planet(int planetGenerationInt) {
+		this.planetGenerationInt = planetGenerationInt;
+	}
+}
 
 
 [System.Serializable]

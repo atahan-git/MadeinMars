@@ -26,6 +26,7 @@ public class AnimatedSpriteController : MonoBehaviour {
 	}
 	bool _isPlaying = false;
 	bool _smoothStop = false;
+	bool _isReverse = false;
 	[SerializeField]
     float index = 0;
 
@@ -46,10 +47,14 @@ public class AnimatedSpriteController : MonoBehaviour {
 				return;
 
 			_isPlaying = true;
-			if (randomIndex) {
-				if (myAnim != null) {
-					index = Random.Range (0, myAnim.sprites.Length);
+			if (syncWith == null) {
+				if (randomIndex) {
+					if (myAnim != null) {
+						index = Random.Range(0, myAnim.sprites.Length);
+					}
 				}
+			} else {
+				index = syncWith.index;
 			}
 
 			mySprite = myAnim.sprites[(int)index];
@@ -68,17 +73,17 @@ public class AnimatedSpriteController : MonoBehaviour {
 		}
 	}
 
-	private void Start() {
-		if (syncWith != null) {
-			index = syncWith.index;
-		}
-	}
-
 	void Update () {
 		if (_isPlaying) {
 			if (myAnim != null) {
-				index += Time.deltaTime / myAnim.waitSeconds;
-				if (index >= myAnim.sprites.Length) {
+				var delta = Time.deltaTime / myAnim.waitSeconds;
+				if (syncWith == null) {
+					index += _isReverse ? -delta : delta;
+				} else {
+					index = syncWith.index;
+				}
+
+				if (index >= myAnim.sprites.Length || index < 0) {
 					index = 0;
 
 					if (!loop) {
@@ -121,12 +126,16 @@ public class AnimatedSpriteController : MonoBehaviour {
 		myAnim = _anim;
 		isSprite = false;
 
-		if (randomIndex) {
-			if (myAnim != null) {
-				index = Random.Range (0, myAnim.sprites.Length);
+		if (syncWith == null) {
+			if (randomIndex) {
+				if (myAnim != null) {
+					index = Random.Range(0, myAnim.sprites.Length);
+				}
 			}
+		} else {
+			index = syncWith.index;
 		}
-		
+
 		Play();
 
 		Update ();
@@ -148,6 +157,16 @@ public class AnimatedSpriteController : MonoBehaviour {
 	public void Play () {
 		_isPlaying = true;
 		_smoothStop = false;
+	}
+	
+	public void PlayOnce () {
+		_isPlaying = true;
+		_smoothStop = true;
+	}
+	
+	public void PlayOnceReverse () {
+		_isPlaying = true;
+		_smoothStop = true;
 	}
 
 	public void Stop() {

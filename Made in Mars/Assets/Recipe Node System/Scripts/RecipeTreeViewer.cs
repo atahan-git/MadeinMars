@@ -287,4 +287,27 @@ public class RecipeTreeViewer : MonoBehaviour {
 
         //NodeParent.anchoredPosition = Vector3.zero;
     }
+
+    public Item GetItemOfNode(ItemNode node) {
+        var item = myRecipeSet.GetItem(node.itemUniqueName);
+
+
+        if (item == null) {
+            var building = myRecipeSet.GetBuilding(node.itemUniqueName);
+            if (building != null) {
+                item = new Item();
+                item.uniqueName = building.uniqueName;
+                item.mySprite = building.gfxSprite;
+            } else {
+                var shipCard = myRecipeSet.GetShipCard(node.itemUniqueName);
+                if (shipCard != null) {
+                    item = new Item();
+                    item.uniqueName = shipCard.uniqueName;
+                    item.mySprite = shipCard.GetImage();
+                }
+            }
+        }
+
+        return item;
+    }
 }

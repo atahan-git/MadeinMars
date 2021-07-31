@@ -14,7 +14,7 @@ public class BuildingWorldObject : MonoBehaviour
 	[SerializeField] bool isConstruction;
 	[SerializeField] Building myBuilding;
 	[SerializeField] Construction myConstruction;
-	[SerializeField] BuildingData myData;
+	[SerializeField] public BuildingData myData;
 	[SerializeField] List<Position> myLocations = new List<Position>();
 	[SerializeField] List<TileData> myTiles = new List<TileData>();
 	public BuildingCraftingController myCrafter;
@@ -35,7 +35,9 @@ public class BuildingWorldObject : MonoBehaviour
 	public void UpdateSelf(Building _building) {
 		RemoveSelfFromTile();
 		// Only update if the building has changed
-		if(myBuilding !=null && !myBuilding.center.isValid() && myBuilding.myPositions != null && myBuilding.myPositions.Count > 0 && myBuilding.myPositions[0] == _building.myPositions[0])
+		var isBuildingStillValid = myBuilding != null && !myBuilding.center.isValid() && myBuilding.myPositions != null && myBuilding.myPositions.Count > 0;
+		var isBuildingStillTheSame = isBuildingStillValid && myBuilding.myPositions[0] == _building.myPositions[0];
+		if(isBuildingStillTheSame)
 			return;
 
 		myBuilding = _building;
@@ -46,7 +48,8 @@ public class BuildingWorldObject : MonoBehaviour
 		/*if (isSpaceLanding)
 			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);*/
 		
-		myRend = GetComponentInChildren<SpriteGraphicsController>();
+		if(myRend == null)
+			myRend = GetComponentInChildren<SpriteGraphicsController>();
 		GenericUpdateSelf(myBuilding.myPositions, _building.center);
 		myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
 
@@ -62,12 +65,14 @@ public class BuildingWorldObject : MonoBehaviour
 		buildingInventoryUpdatedCallback?.Invoke();
 		StopAnimations();
 
-		if (_building.buildingData.uniqueName == "bRocket" && !isSpaceLandingTriggered) {
+		if (_building.buildingData.makesSpaceLanding && !isSpaceLandingTriggered) {
 			isSpaceLandingTriggered = true;
-			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null, _building.buildingData.spaceLandingXDisp);
 		}
 	}
-	
+
+	public GameObject cardVisualPrefab;
+	public GameObject card;
 	public void UpdateSelf(Construction _construction) {
 		RemoveSelfFromTile();
 		myConstruction = _construction;
@@ -77,19 +82,37 @@ public class BuildingWorldObject : MonoBehaviour
 		/*if (isSpaceLanding)
 			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null);*/
 		
-		myRend = GetComponentInChildren<SpriteGraphicsController>();
+		if(myRend == null)
+			myRend = GetComponentInChildren<SpriteGraphicsController>();
 		GenericUpdateSelf(myConstruction.locations, _construction.center);
-		if (myConstruction.isConstruction) {
-			myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
+		
+
+		if (myConstruction.myData.myType == BuildingData.ItemType.ShipCard) {
+			if (card != null) {
+				Destroy(card);
+			}
+			card = Instantiate(cardVisualPrefab, myRend.transform.parent);
+			card.transform.position = myRend.transform.position + new Vector3(0.808f, 1.219f, 0);
+			card.transform.rotation = myRend.transform.rotation;
+			card.transform.localScale = new Vector3(0.007864015f, 0.008721686f, 0.007864015f);
+			myRend.SetBuildState(SpriteGraphicsController.BuildState.built);
 		} else {
-			myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
+			if (myConstruction.isConstruction) {
+				myRend.SetBuildState(SpriteGraphicsController.BuildState.construction);
+			} else {
+				myRend.SetBuildState(SpriteGraphicsController.BuildState.destruction);
+			}
 		}
 
 
 		myInventory = myConstruction.constructionInventory;
 		isInventorySetup = true;
 		buildingInventoryUpdatedCallback?.Invoke();
-		StopAnimations();
+		if (myConstruction.myData.myType != BuildingData.ItemType.ShipCard) {
+			StopAnimations();
+		}else{
+			ContinueAnimations();	
+		}
 	}
 	
 	void GenericUpdateSelf(List<Position> _locations, Position _location) {
@@ -114,7 +137,11 @@ public class BuildingWorldObject : MonoBehaviour
 				myRend.SetGraphics(myData.gfxSprite, myData.gfxShadowSprite != null ? myData.gfxShadowSprite : myData.gfxSprite);
 				break;
 			case BuildingData.BuildingGfxType.AnimationBased:
-				myRend.SetGraphics(myData.gfxSpriteAnimation, myData.isAnimatedShadow);
+				if (myData.gfxShadowAnimation == null) {
+					myRend.SetGraphics(myData.gfxSpriteAnimation, myData.copySpriteAnimationToShadow);
+				} else {
+					myRend.SetGraphics(myData.gfxSpriteAnimation, myData.gfxShadowAnimation);
+				}
 
 				break;
 			case BuildingData.BuildingGfxType.PrefabBased:

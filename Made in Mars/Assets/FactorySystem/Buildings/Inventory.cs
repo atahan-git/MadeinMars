@@ -101,7 +101,7 @@ public class Inventory : IInventoryDisplayable, IInventoryWithSlots, IInventoryS
     }
 
     
-    public bool TryAndAddItem(Item item, int amount, bool isOutput) {
+    public bool TryAndAddItem(Item item, int amount, bool isOutput = false) {
         return TryAndAddItem(item, amount, isOutput, false);
     }
     

@@ -17,17 +17,23 @@ public class FactoryVisuals : MonoBehaviour {
     public GameObjectObjectPool beltWorldObjectPool;
     public GameObjectObjectPool connectorWorldObjectPool;
     public GameObjectObjectPool droneWorldObjectPool;
+
+    public GameObject ShipCardPrefab;
     
     private void Awake() {
         s = this;
         FactoryBuilder.ObjectsUpdated += ObjectsCreationDeletionUpdate;
         FactoryBuilder.DronesUpdated += DroneCreationDeletionUpdate;
+        FactoryBuilder.shipCardAdded += ShipCardAdded;
         GameMaster.CallWhenClearPlanet(ClearAll);
     }
+
+    
 
     private void OnDestroy() {
         FactoryBuilder.ObjectsUpdated -= ObjectsCreationDeletionUpdate;
         FactoryBuilder.DronesUpdated -= DroneCreationDeletionUpdate;
+        FactoryBuilder.shipCardAdded -= ShipCardAdded;
         GameMaster.RemoveFromCall(ClearAll);
         s = null;
     }
@@ -39,6 +45,10 @@ public class FactoryVisuals : MonoBehaviour {
         droneWorldObjectPool.DestroyAllPooledObjects();
     }
 
+    private void ShipCardAdded(ShipCard card, Position location) {
+        var shipCardWorldObject = Instantiate(ShipCardPrefab, location.Vector3(Position.Type.shipCard), Quaternion.identity);
+        shipCardWorldObject.GetComponent<ShipCardWorldObject>().SetUp(card, location);
+    }
 
     public void ObjectsCreationDeletionUpdate() {
         if(!FactoryMaster.s.isSimStarted)
@@ -140,7 +150,7 @@ public class FactoryVisuals : MonoBehaviour {
                     break;
                 default:
                     if (tile.areThereVisualObject) {
-                        Assert.IsNotNull(tile.visualObject.GetComponent<BuildingWorldObject>());
+                        Assert.IsNotNull(tile.visualObject.GetComponent<BuildingWorldObject>(), tile.visualObject.ToString());
 
                         var buildingWorldObject = tile.visualObject.GetComponent<BuildingWorldObject>();
                         buildingWorldObject.UpdateSelf(construction);
@@ -154,11 +164,13 @@ public class FactoryVisuals : MonoBehaviour {
     }
 
     public void DroneCreationDeletionUpdate() {
-        droneWorldObjectPool.DestroyAllPooledObjects();
+        //droneWorldObjectPool.DestroyAllPooledObjects();
 
         for (int i = 0; i < FactoryMaster.s.GetDrones().Count; i++) {
             var drone = FactoryMaster.s.GetDrones()[i];
-            droneWorldObjectPool.Spawn().GetComponent<DroneWorldObject>().SetUp(drone);
+            var droneObj = droneWorldObjectPool.Spawn(i);
+            if(droneObj != null)
+                droneObj.GetComponent<DroneWorldObject>().SetUp(drone);
         }
     }
 

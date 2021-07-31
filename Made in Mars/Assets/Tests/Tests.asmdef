@@ -7,7 +7,7 @@
         "Core",
         "RecipeNodeSystem",
         "Utilities",
-        "2DArrayInspector"
+        "SharedData"
     ],
     "includePlatforms": [
         "Editor"

@@ -22,7 +22,11 @@ public class AutoSetSpriteGraphics : MonoBehaviour {
                 myRend.SetGraphics(myData.gfxSprite, myData.gfxShadowSprite != null? myData.gfxShadowSprite : myData.gfxSprite);
                 break;
             case BuildingData.BuildingGfxType.AnimationBased:
-                myRend.SetGraphics(myData.gfxSpriteAnimation, myData.isAnimatedShadow);
+                if (myData.gfxShadowAnimation == null) {
+                    myRend.SetGraphics(myData.gfxSpriteAnimation, myData.copySpriteAnimationToShadow);
+                } else {
+                    myRend.SetGraphics(myData.gfxSpriteAnimation, myData.gfxShadowAnimation);
+                }
 				
                 break;
             case BuildingData.BuildingGfxType.PrefabBased:

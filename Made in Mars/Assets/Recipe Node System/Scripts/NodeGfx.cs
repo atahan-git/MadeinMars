@@ -39,7 +39,7 @@ public abstract class NodeGfx : MonoBehaviour {
     public const float snapMult = 0.0515f/2f;
     public static float snapMultUI;
     public void PositionUpdated() {
-        //Snapping is done by DragPanel.cs
+        //Snapping is done by RecipeNodeDragPanel.cs
         /*myNode.x = ((int) (transform.position.x*snapMult))/snapMult;
         myNode.y = ((int) (transform.position.y*snapMult))/snapMult;
         transform.position = new Vector3(myNode.x,myNode.y,0);*/

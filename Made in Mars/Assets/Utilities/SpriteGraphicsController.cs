@@ -87,6 +87,23 @@ public class SpriteGraphicsController : MonoBehaviour {
 
         originalPos = transform.localPosition;
     }
+    
+    public void SetGraphics(SpriteAnimationHolder animationHolder, SpriteAnimationHolder shadowAnimation) {
+        Clear();
+        if (rend == null || myShadow == null)
+            CreateShadow(height);
+        if (anim == null)
+            anim = gameObject.AddComponent<AnimatedSpriteController>();
+
+        anim.SetAnimation(animationHolder);
+        
+        var shadAnim = myShadow.AddComponent<AnimatedSpriteController>();
+        shadAnim.SetAnimation(shadowAnimation);
+        shadAnim.syncWith = anim;
+        
+
+        originalPos = transform.localPosition;
+    }
 
     public void SetGraphics(GameObject prefab) {
         Clear();
@@ -110,32 +127,33 @@ public class SpriteGraphicsController : MonoBehaviour {
 
     public delegate void SpaceLandingCallback();
 
-    public void DoSpaceLanding(SpaceLandingCallback callback) {
-        StartCoroutine(SpaceLanding(true, callback));
+    public void DoSpaceLanding(SpaceLandingCallback callback, float xDisp = 0) {
+        StopCoroutine("SpaceLanding");
+        StartCoroutine(SpaceLanding(true, callback, xDisp));
     }
 
-    public void DoSpaceLiftoff(SpaceLandingCallback callback) {
-        StartCoroutine(SpaceLanding(false, callback));
+    public void DoSpaceLiftoff(SpaceLandingCallback callback, float xDisp = 0) {
+        StopCoroutine("SpaceLanding");
+        StartCoroutine(SpaceLanding(false, callback, xDisp));
     }
 
     private const float SpaceLandingHeightMultiplier = 2f / 3f;
     private const float SpaceLandingHeight = 100f * SpaceLandingHeightMultiplier * SpaceLandingHeightMultiplier;
-    private const float SpaceLandingStartSpeed = -10f * SpaceLandingHeightMultiplier;
+    private const float SpaceLandingStartSpeed = -50f * SpaceLandingHeightMultiplier;
 
     private const float SpaceLandingDeceleration = (SpaceLandingStartSpeed * SpaceLandingStartSpeed) / (2f * (SpaceLandingHeight));
+    public const float SpaceLandingTime = -SpaceLandingStartSpeed / SpaceLandingDeceleration;
 //0 = u^2 + 2as
 //u^2 = 2as
 //u^2/2s = a
 
-    private bool launchInProgress = false;
+// 0 = u + at
+// t = -u/a
 
-    IEnumerator SpaceLanding(bool isLanding, SpaceLandingCallback callback) {
-        while (launchInProgress) {
-            yield return null;
-        }
 
-        launchInProgress = true;
+    private float landingLegOpenDistance = 2f;
 
+    IEnumerator SpaceLanding(bool isLanding, SpaceLandingCallback callback, float xDisp) {
         var landingFx = Instantiate(spaceLandingPrefab, transform);
         landingFx.transform.localPosition = Vector3.zero;
         var landingFloor = landingFx.transform.Find("Landing Floor").gameObject;
@@ -145,17 +163,20 @@ public class SpriteGraphicsController : MonoBehaviour {
 // If we are landing, start from the space and go down.
 // If we are lifting off, start from zero and go up.
         float curHeight = isLanding ? SpaceLandingHeight : 0;
+        float curDisp = isLanding ? xDisp : -xDisp;
+        float dispSpeed = -(curDisp / SpaceLandingTime );
         float curSpeed = isLanding ? SpaceLandingStartSpeed : 0;
         float acceleration = isLanding ? SpaceLandingDeceleration : SpaceLandingDeceleration;
-        while (isLanding ? curHeight > 0 : curHeight < SpaceLandingHeight) {
-            SetHeight(originalPos, curHeight);
+        while (isLanding ? curHeight >= 0 : curHeight < SpaceLandingHeight) {
+            SetHeight(originalPos + Vector3.left*curDisp, curHeight);
             curHeight += curSpeed * Time.deltaTime;
             curSpeed += acceleration * Time.deltaTime;
+            curDisp += dispSpeed * Time.deltaTime;
 
             yield return null;
         }
 
-        SetHeight(originalPos, isLanding ? 0 : SpaceLandingHeight);
+        SetHeight(isLanding? originalPos : originalPos+ Vector3.left*curDisp, isLanding ? 0 : SpaceLandingHeight);
 
         landingFx.transform.Find("Landing Rocket").GetComponent<ParticleSystem>().Stop();
         StartCoroutine(DestroyLandingFx(landingFx, landingFloor));
@@ -163,12 +184,12 @@ public class SpriteGraphicsController : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
 
-        launchInProgress = false;
+        
         callback?.Invoke();
     }
 
     IEnumerator DestroyLandingFx(GameObject fx, GameObject floor) {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
 
         Destroy(fx);
         Destroy(floor);
