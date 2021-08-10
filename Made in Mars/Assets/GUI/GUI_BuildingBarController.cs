@@ -48,7 +48,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
     void LoadBuildingSlots (bool isSuccess) {
         if (isSuccess) {
-            var buildingBarData = DataSaver.s.GetSave().currentPlanet.buildingBarData;
+            var buildingBarData = DataSaver.s.GetSave().buildingBarData;
             if (buildingBarData != null) {
                 for (int i = 0; i < buildingBarData.Length; i++) {
                     if (buildingBarData[i] != null)
@@ -59,6 +59,8 @@ public class GUI_BuildingBarController : MonoBehaviour {
 
                 }
             }
+
+            UpdateSlotsBuildableStates();
         }
     }
 
@@ -80,10 +82,19 @@ public class GUI_BuildingBarController : MonoBehaviour {
     // Now drones collect resources and build the things.
     public Color defColor = Color.white;
     public void UpdateSlotsBuildableStates () {
+        var availableBuildings = ShipDataMaster.s.playerBuildableBuildingsSetByShipCards;
         for (int i = 0; i < myBuildingBarSlots.Length; i++) {
-            if(myBuildingBarSlots[i].myDat != null)
+            if (myBuildingBarSlots[i].myDat != null) {
                 //myBuildingBarSlots[i].UpdateBuildableState(Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(myBuildingBarSlots[i].myDat));
-                myBuildingBarSlots[i].UpdateBuildableState(true);
+                var canBuildBuilding = false;
+                for (int j = 0; j < availableBuildings.Count; j++) {
+                    if (availableBuildings[i].uniqueName == myBuildingBarSlots[i].myDat.uniqueName) {
+                        canBuildBuilding = true;
+                        break;
+                    }
+                }
+                myBuildingBarSlots[i].UpdateBuildableState(canBuildBuilding);
+            }
         }
 
         //CanPlaceBelts = Player_MasterControlCheck.s.inventoryController.CanPlaceBuilding(FactoryBuilder.s.beltBuildingData);
@@ -111,7 +122,7 @@ public class GUI_BuildingBarController : MonoBehaviour {
         Debug.Log("End Drag inventoryItemSlots Building");
         buildingDragFromInventoryOverlay.SetActive(false);
         inventoryDragBegun = false;
-        UpdateSlotsBuildableStates();
+        //UpdateSlotsBuildableStates();
     }
 
     void OnGUI () {
@@ -193,11 +204,11 @@ public class GUI_BuildingBarController : MonoBehaviour {
     }
 
     void SaveBuildingSlots () {
-        var currentPlanetSave = DataSaver.s.GetSave().currentPlanet;
-        currentPlanetSave.buildingBarData = new string[myBuildingBarSlots.Length];
+        var currentSave = DataSaver.s.GetSave();
+        currentSave.buildingBarData = new string[myBuildingBarSlots.Length];
         for (int i = 0; i < myBuildingBarSlots.Length; i++) {
             if (myBuildingBarSlots[i].myDat != null) {
-                currentPlanetSave.buildingBarData[i] = myBuildingBarSlots[i].myDat.uniqueName;
+                currentSave.buildingBarData[i] = myBuildingBarSlots[i].myDat.uniqueName;
             }
         }
     }

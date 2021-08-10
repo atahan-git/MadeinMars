@@ -21,7 +21,7 @@ public class Inventory : IInventoryDisplayable, IInventoryWithSlots, IInventoryS
 
         if (existingItems != null) {
             foreach (var slot in existingItems) {
-                RestoreSlot(slot, false);
+                RestoreSlot(slot, false, addSlot:true);
             }
         }
 
@@ -79,7 +79,7 @@ public class Inventory : IInventoryDisplayable, IInventoryWithSlots, IInventoryS
     }
     
     public InventoryItemSlot AddSlot (Item item, int maxCount, InventoryItemSlot.SlotType slotType, bool reDrawInventory = true) {
-        var slotId = -1;
+        /*var slotId = -1;
         if (slotType != InventoryItemSlot.SlotType.storage) {
             for (int i = 0; i < inventoryItemSlots.Count; i++) {
                 if (inventoryItemSlots[i].mySlotType == slotType && inventoryItemSlots[i].myItem == item) {
@@ -88,10 +88,10 @@ public class Inventory : IInventoryDisplayable, IInventoryWithSlots, IInventoryS
                     break;
                 }
             }
-        }
+        }*/
 
         inventoryItemSlots.Add(new InventoryItemSlot(item,0,maxCount, slotType));
-        slotId = inventoryItemSlots.Count - 1;
+        var slotId = inventoryItemSlots.Count - 1;
         if (reDrawInventory) {
             drawInventoryEvent?.Invoke();
             InventoryContentsChanged();
@@ -137,7 +137,7 @@ public class Inventory : IInventoryDisplayable, IInventoryWithSlots, IInventoryS
         if (!isForced) {
             return false;
         } else {
-            AddSlot(item,99, InventoryItemSlot.SlotType.storage);
+            AddSlot(item,99, isOutput? InventoryItemSlot.SlotType.output : InventoryItemSlot.SlotType.input);
             return TryAndAddItem(item, amount, isOutput, isForced);
         }
     }
@@ -316,12 +316,13 @@ public class Inventory : IInventoryDisplayable, IInventoryWithSlots, IInventoryS
     
     
     public int GetAmountOfItems(Item item) {
+        var count = 0;
         for (int i = 0; i < inventoryItemSlots.Count; i++) {
             if (inventoryItemSlots[i].myItem == item) {
-                return inventoryItemSlots[i].count;
+                count += inventoryItemSlots[i].count;
             }
         }
-        return 0;
+        return count;
     }
     
     public int GetTotalAmountOfItems(bool isOutput) {

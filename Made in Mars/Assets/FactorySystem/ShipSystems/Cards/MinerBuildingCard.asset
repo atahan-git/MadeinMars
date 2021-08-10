@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: MinerBuildingCard
   m_EditorClassIdentifier: ShipSystems::BuildingCard
   uniqueName: minerUnlockCard
+  isSpawnableOnPlanet: 1
+  canOnlyHaveOne: 1
   buildingData: {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}

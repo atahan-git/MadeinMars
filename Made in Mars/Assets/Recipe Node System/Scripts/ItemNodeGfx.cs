@@ -12,8 +12,8 @@ public class ItemNodeGfx : NodeGfx {
     public Text uniqueName;
 
 
-    public void ReDrawnNode(RecipeTreeViewer master, ItemNode node) {
-        base.ReDrawnNode(master, node);
+    public void ReDrawnNode(RecipeTreeViewer master, ItemNode node, bool isInteractable) {
+        base.ReDrawnNode(master, node, isInteractable);
 
         myNode = node;
         Item item = master.GetItemOfNode((ItemNode) myNode);

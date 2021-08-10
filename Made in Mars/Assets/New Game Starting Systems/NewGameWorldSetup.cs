@@ -28,10 +28,12 @@ public class NewGameWorldSetup : MonoBehaviour
 		}
 		s = this;
 		GameMaster.CallWhenNewPlanet(SetUpNewPlanet);
+		DataSaver.earlySaveEvent += AddRemainingDronesInCaseGameQuitsDuringCoolDroneCreationSequence;
 	}
 
 	private void OnDestroy() {
 		GameMaster.RemoveFromCall(SetUpNewPlanet);
+		DataSaver.earlySaveEvent -= AddRemainingDronesInCaseGameQuitsDuringCoolDroneCreationSequence;
 	}
 
 
@@ -48,35 +50,66 @@ public class NewGameWorldSetup : MonoBehaviour
 	}
 
 	public void SetUpNewPlanet() {
+		var currentPlanet = DataSaver.s.mySave.currentPlanet.planetData;
+		for (int i = 0; i < currentPlanet.shipCardUniqueNames.Length; i++) {
+			PlaceCardInRandomPosition(DataHolder.s.GetShipCard(currentPlanet.shipCardUniqueNames[i]));
+		}
+		
+	}
+
+	void PlaceCardInRandomPosition(ShipCard card) {
 		Position randomPos;
 		var mapBorder = 10;
 		do {
 			randomPos = new Position(Random.Range(mapBorder, Grid.s.mapSize-mapBorder), Random.Range(mapBorder, Grid.s.mapSize-mapBorder));
 		} while (!Grid.s.GetTile(randomPos).buildingPlaceable);
 
-		var randomCard = DataHolder.s.allShipCards[Random.Range(0, DataHolder.s.allShipCards.Length)];
 
-		FactoryBuilder.StartConstruction(DataHolder.s.ShipCardToBuildingData(randomCard), 0, randomPos);
+		FactoryBuilder.StartConstruction(DataHolder.s.ShipCardToBuildingData(card), 0, randomPos);
 		
-		Debug.Log($"spawned {randomCard} card in {randomPos}");
+		Debug.Log($"spawned {card} card in {randomPos}");
 		Debug.DrawLine(randomPos.Vector3(-10), randomPos.Vector3(-10) + Vector3.right*10, Color.green, 100f);
 	}
-	
+
+	private Position shipPosition;
+	public BuildingData shipStarterStorageBuildingData;
 	public void SetUpAfterShipLanding() {
 		
 		Debug.Log("------------------- Starting new planet -------------------");
 
-		var shipPosition = FactoryMaster.s.GetBuildings()[0].center;
+		shipPosition = FactoryMaster.s.GetShip().center;
 		var droneCount = ShipDataMaster.s.droneCount;
 
 		StartCoroutine(DroneCreationLoop(shipPosition, droneCount));
 
 
+		CreateStarterResources();
+
 		//SetUpStarterFactory();
 	}
 
+	private void CreateStarterResources() {
+		var shipStarterResourceCount = ShipDataMaster.s.shipStarterInventory.Count;
+		var space = 2;
+		for (int i = 0; i < shipStarterResourceCount; i++) {
+			var invSlot = ShipDataMaster.s.shipStarterInventory[i];
+			var pos = shipPosition + new Position(((-shipStarterResourceCount / 2) * space) + (i * space), -2);
+			FactoryBuilder.CreateBuilding(shipStarterStorageBuildingData, pos, new List<InventoryItemSlot>() {invSlot});
+		}
+	}
+
+	private int remainingDronesToCreate = 0;
+
+	void AddRemainingDronesInCaseGameQuitsDuringCoolDroneCreationSequence() {
+		StopCoroutine("DroneCreationLoop");
+		for (int i = 0; i < remainingDronesToCreate; i++) {
+			FactoryBuilder.CreateDrone(shipPosition + new Position(0,-1));
+		}
+	} 
 	IEnumerator DroneCreationLoop(Position shipPosition, int droneCount) {
+		remainingDronesToCreate = droneCount;
 		for (int i = 0; i < droneCount; i++) {
+			remainingDronesToCreate -= 1;
 			FactoryBuilder.CreateDrone(shipPosition + new Position(0,-1));
 			yield return new WaitForSeconds(0.2f);
 		}

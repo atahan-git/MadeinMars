@@ -17,12 +17,12 @@ public class BuildingData : ScriptableObject {
 	public static Vector2 center = new Vector2(3, 3);
 
 	// Make sure to also add new crafting type to RecipeSet/CraftingNode if you are adding new crafting type building!
-	public enum ItemType { Belt, Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal, Storage, Connector, Spaceship, ShipCard }
+	public enum ItemType { Belt, Miner, Furnace, AssemblerSingle, AssemblerDouble, Press, Coiler, Cutter, Lab, Building, Base, Decal, Storage, Connector, Spaceship, ShipCard , Processor}
 
 	public ItemType myType;
 
 	[Tooltip("Grade 1 factory will only be able to process grade 1 items etc. Also determines miner range")]
-	public int buildingGrade = 0;
+	public int myTier = 0;
 
 	public float energyUse = 0;
 

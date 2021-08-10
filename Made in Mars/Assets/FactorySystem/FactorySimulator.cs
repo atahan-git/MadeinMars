@@ -315,3 +315,13 @@ public class FactorySimulator : MonoBehaviour {
         return building.UpdateCraftingProcess(energySupply, building.inv);
     }
 }
+
+public interface IInventorySimObject {
+     bool TryAndInsertItem(Item item);
+
+     bool CheckIfCanInsertItem(Item item);
+
+     bool TryAndTakeItem(out Item item);
+
+     bool CheckIfCanTakeItem(out Item item);
+}

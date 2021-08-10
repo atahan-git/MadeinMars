@@ -26,15 +26,6 @@ public class BuildingCraftingController {
     public event GenericCallback stopAnimationsEvent;
 
 
-    // Miner type is now set by changing available inventory for the miner
-    /*public void SetMinerType(string oreUniqueName) {
-        for (int i = 0; i < myCraftingProcesses.Length; i++) {
-            if (myCraftingProcesses[i].outputItems[0].uniqueName != oreUniqueName) {
-                myCraftingProcesses[i].isEnabled = false;
-            }
-        }
-    }*/
-
     /// <summary>
     /// Do the setup, and continue leftover crafting processes (used when loading from save
     /// </summary>
@@ -70,26 +61,29 @@ public class BuildingCraftingController {
 
         switch (mydat.myType) {
             case BuildingData.ItemType.Miner: {
-                CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
+                CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfTypeandTier(mydat.myType, mydat.myTier);
                 //myCraftingProcesses = new CraftingProcess[ps.Length];
-                myCraftingProcesses = new CraftingProcess[ps.Length];
+                var tempCp = new List<CraftingProcess>();
+                
 
                 for (int i = 0; i < ps.Length; i++) {
                     if (DataHolder.s.UniqueNameToOreId(DataHolder.s.GetConnections(ps[i], false)[0].itemUniqueName, out int oreId)) {
-                        myCraftingProcesses[i] = new CraftingProcess(
+                        tempCp.Add(new CraftingProcess(
                             new List<DataHolder.CountedItem>(),
                             DataHolder.s.GetConnections(ps[i], false),
                             ps[i].timeCost
-                        );
+                        ));
                     }
                 }
+
+                myCraftingProcesses = tempCp.ToArray();
             }
                 break;
 
             case BuildingData.ItemType.Lab: {
 
                 myCraftingProcesses = new [] {
-                    new CraftingProcess(new List<DataHolder.CountedItem>(), new List<DataHolder.CountedItem>(), mydat.buildingGrade)
+                    new CraftingProcess(new List<DataHolder.CountedItem>(), new List<DataHolder.CountedItem>(), mydat.myTier)
                 };
 
                 myCraftingProcesses[0].isResearchProcess = true;
@@ -98,7 +92,7 @@ public class BuildingCraftingController {
                 break;
 
             default: {
-                CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(mydat.myType);
+                CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfTypeandTier(mydat.myType, mydat.myTier);
                 if (ps != null) {
                     myCraftingProcesses = new CraftingProcess[ps.Length];
 
@@ -281,7 +275,7 @@ public class CraftingProcess {
     }
 
     public DataHolder.CountedItem[] GetOutputItems() {
-        DataHolder.CountedItem[] outputs = new DataHolder.CountedItem[inputItems.Length];
+        DataHolder.CountedItem[] outputs = new DataHolder.CountedItem[outputItems.Length];
 
         for (int i = 0; i < outputs.Length; i++) {
             outputs[i] = new DataHolder.CountedItem(outputItems[i], outputItemAmounts[i]);

@@ -23,6 +23,21 @@ public class Player_BuildingController : MonoBehaviour {
 	public PlacementState curState = PlacementState.nothing;
 	public bool isBeltSafeMode = true;
 
+	private void Awake() {
+		GameMaster.CallWhenClearPlanet(OnClearPlanet);
+	}
+
+	private void OnDestroy() {
+		GameMaster.RemoveFromCall(OnClearPlanet);
+	}
+
+	private void OnClearPlanet() {
+		isRocket = false;
+		inventory = null;
+		buildCompleteCallback = null;
+		curState = PlacementState.nothing;
+		isBeltSafeMode = true;
+	}
 
 	private void Start() {
 		if (instantBuildCheat)
@@ -66,10 +81,12 @@ public class Player_BuildingController : MonoBehaviour {
 					curItemPlacementScript.PlaceSelf();
 					FactoryPlayerConnector.s.BuildObject(buildingItem, lastTile.location,false, isRocket, instantBuildCheat, inventory);
 					buildCompleteCallback?.Invoke(true);
+					buildCompleteCallback = null;
 				} else {
 					Debug.Log("Item placement failed due: pointer place =" + IsPointerOutsideBuildingBar() + " or checkplaceable = " + FactoryPlayerConnector.s.CheckPlaceable(buildingItem, lastTile.location));
 					curItemPlacementScript.FailedPlacingSelf();
 					buildCompleteCallback?.Invoke(false);
+					buildCompleteCallback = null;
 				}
 			}
 		}

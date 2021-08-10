@@ -24,6 +24,10 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
     public Image bg;
     private bool updateColor;
     public void SetUp (InventoryItemSlot _myDat, IInventoryDisplayable _myCont, bool _updateColor) {
+        if (myCont != null) {
+            myCont.inventoryContentsChangedEvent -= UpdateAmount;
+        }
+        
         myDat = _myDat;
         myCont = _myCont;
         updateColor = _updateColor;
@@ -60,14 +64,18 @@ public class MiniGUI_InventoryListing : MonoBehaviour {
 
     public void UpdateAmount () {
         if (myDat.count > 0 || (updateColor && !myDat.myItem.isEmpty())) {
-            nameText.text = myDat.myItem.name;
-            numberText.text = "x" + myDat.count.ToString();
-            img.sprite = myDat.myItem.GetSprite();
-            img.enabled = true;
+            if (img != null) {
+                nameText.text = myDat.myItem.name;
+                numberText.text = $"x{myDat.count}/{myDat.maxCount}";
+                img.sprite = myDat.myItem.GetSprite();
+                img.enabled = true;
+            }
         } else {
-            nameText.text = "Empty";
-            numberText.text = "";
-            img.enabled = false;
+            if (img != null) {
+                nameText.text = "Empty";
+                numberText.text = ""; 
+                img.enabled = false;
+            }
         }
     }
 

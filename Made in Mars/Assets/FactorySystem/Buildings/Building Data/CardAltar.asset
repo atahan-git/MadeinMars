@@ -30,11 +30,11 @@ MonoBehaviour:
   gfxType: 1
   gfxSprite: {fileID: 21300000, guid: 9bfb05d43af796042b3a69798d1b35b8, type: 3}
   gfxSpriteAnimation: {fileID: 11400000, guid: 2db9d0207d2364940b8705387e744672, type: 2}
-  copySpriteAnimationToShadow: 0
+  copySpriteAnimationToShadow: 1
   gfxPrefab: {fileID: 0}
   gfxShadowSprite: {fileID: 0}
   gfxShadowAnimation: {fileID: 11400000, guid: 949142d090c38f74190d696036b89110, type: 2}
-  spriteOffset: {x: 0.5, y: 0.5}
+  spriteOffset: {x: 0, y: 1}
   playerBuildBarApplicable: 0
   makesSpaceLanding: 0
   spaceLandingXDisp: 0

@@ -8,16 +8,44 @@ public class GameObjectObjectPool : MonoBehaviour {
 	public bool autoExpand = true; //dont change this at runtime
 	public GameObject myObject;
 	public int poolSize = 50;
+	private int originalPoolSize = 10;
 	public int maxPoolSize = 3000;
 	[Space]
 	public int ExistingObjects;
 	public int ActiveObjects;
 
-	void Awake (){
+	private List<GameObject> activeObjects = new List<GameObject>();
+	public void DestroyAllPooledObjects() {
+		for (int i = activeObjects.Count - 1; i >= 0; i--) {
+			Destroy(activeObjects[i]);
+		}
+		
+		activeObjects.Clear();
+	}
+
+	public GameObject Spawn() {
+		var obj = Instantiate(myObject, transform);
+		activeObjects.Add(obj);
+		return obj;
+	}
+
+	public GameObject Spawn(int i) {
+		if (i < activeObjects.Count) {
+			return activeObjects[i];
+		} else {
+			var obj = Instantiate(myObject);
+			activeObjects.Add(obj);
+			return obj;
+		}
+	}
+
+	/*void Awake (){
 		if (myObject.GetComponent<PooledGameObject> () == null)
 			myObject.AddComponent<PooledGameObject> ();
 
 		myObject.GetComponent<PooledGameObject> ().myPool = this;
+
+		originalPoolSize = poolSize;
 
 		SetUp (poolSize);
 	}
@@ -62,7 +90,7 @@ public class GameObjectObjectPool : MonoBehaviour {
 			}
 		} else {
 			PooledGameObject[] temp = objs;
-			objs = new PooledGameObject[Mathf.Min(objs.Length*2, maxPoolSize)];
+			objs = new PooledGameObject[Mathf.Min(objs.Length + originalPoolSize, maxPoolSize)];
 			temp.CopyTo(objs, 0);
 			var inst = Instantiate (myObject, transform).GetComponent<PooledGameObject>();
 			ExistingObjects += 1;
@@ -95,7 +123,7 @@ public class GameObjectObjectPool : MonoBehaviour {
 		//there is no free object left
 		if (autoExpand) {
 			PooledGameObject[] temp = objs;
-			objs = new PooledGameObject[Mathf.Min(objs.Length*2, maxPoolSize)];
+			objs = new PooledGameObject[Mathf.Min(objs.Length + originalPoolSize, maxPoolSize)];
 			temp.CopyTo(objs, 0);
 			var inst = Instantiate (myObject, transform).GetComponent<PooledGameObject>();
 			ExistingObjects += 1;
@@ -164,5 +192,5 @@ public class GameObjectObjectPool : MonoBehaviour {
 		}
 
 		return active;
-	}
+	}*/
 }

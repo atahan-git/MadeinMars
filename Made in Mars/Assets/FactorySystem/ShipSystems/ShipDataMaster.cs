@@ -14,10 +14,10 @@ public class ShipDataMaster : MonoBehaviour {
 
     public int droneCount = 0;
 
-    public delegate void CardListUpdated(List<IShipCard> newCards);
+    public delegate void CardListUpdated(List<IShipCard> newCards);     
 
     public static CardListUpdated activeCardsUpdatedEvent;
-    public static CardListUpdated availableCardsUpdatedEvent;
+    /*public static CardListUpdated availableCardsUpdatedEvent;*/
 
     public void Awake() {
         if (s != null) {
@@ -25,7 +25,7 @@ public class ShipDataMaster : MonoBehaviour {
         }
 
         s = this;
-        GameMaster.CallWhenLoaded(SetupActiveShipCards);
+        GameMaster.CallWhenLoadedEarly(SetupActiveShipCards);
     }
 
     public void OnDestroy() {
@@ -36,7 +36,7 @@ public class ShipDataMaster : MonoBehaviour {
     void SetupActiveShipCards(bool isLoadingSuccess) {
         ApplyShipCardEffects();
         activeCardsUpdatedEvent?.Invoke(GetActiveCards());
-        availableCardsUpdatedEvent?.Invoke(GetAvailableCards());
+        /*availableCardsUpdatedEvent?.Invoke(GetAvailableCards());*/
     }
 
 
@@ -50,23 +50,22 @@ public class ShipDataMaster : MonoBehaviour {
         ShipCardApplicableObjects data = new ShipCardApplicableObjects(this);
         playerBuildableBuildingsSetByShipCards.Clear();
         shipStarterInventory.Clear();
+        droneCount = 0;
         
         var activeShipCards = GetActiveCards();
 
         for (int i = 0; i < activeShipCards.Count; i++) {
             activeShipCards[i].ApplyEffect(data);
         }
+        
+        GameMaster.s.TriggerPlayerInventoryChangedEvent();
     }
 
     public bool AddActiveCard(IShipCard card) {
-        if (DataSaver.s.mySave.activeShipCards.Count < 8) {
-            DataSaver.s.mySave.activeShipCards.Add(new DataSaver.ShipCardData(card as ShipCard));
-            ApplyShipCardEffects();
-            activeCardsUpdatedEvent?.Invoke(GetActiveCards());
-            return true;
-        } else {
-            return false;
-        }
+        DataSaver.s.mySave.activeShipCards.Add(new DataSaver.ShipCardData(card as ShipCard));
+        ApplyShipCardEffects();
+        activeCardsUpdatedEvent?.Invoke(GetActiveCards());
+        return true;
     }
 
     public void RemoveActiveCard(int index) {
@@ -90,7 +89,7 @@ public class ShipDataMaster : MonoBehaviour {
     }
 
     
-    public bool AddAvailableCard(IShipCard card) {
+    /*public bool AddAvailableCard(IShipCard card) {
         DataSaver.s.mySave.availableShipCards.Add(new DataSaver.ShipCardData(card as ShipCard));
         availableCardsUpdatedEvent?.Invoke(GetAvailableCards());
         return true;
@@ -100,7 +99,7 @@ public class ShipDataMaster : MonoBehaviour {
         var result  = DataSaver.s.mySave.availableShipCards.Remove(new DataSaver.ShipCardData(card as ShipCard));
         availableCardsUpdatedEvent?.Invoke(GetAvailableCards());
         return result;
-    }*/
+    }#1#
 
     public List<IShipCard> GetAvailableCards() {
         var availableCards = new List<IShipCard>();
@@ -114,7 +113,7 @@ public class ShipDataMaster : MonoBehaviour {
         
         
         return availableCards;
-    }
+    }*/
 }
 
 

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Belt
   m_EditorClassIdentifier: 
   uniqueName: bBelt1
+  name: Belt
+  description: This is a new Item
   shape:
     column:
     - row: 00000000000000
@@ -23,14 +25,17 @@ MonoBehaviour:
     - row: 00000000000000
     - row: 00000000000000
   myType: 0
-  buildingGrade: 0
+  myTier: 0
   energyUse: 0
   gfxType: 0
   gfxSprite: {fileID: 4704767108662335422, guid: ef5be55c1a6aa764f93f1929c9745a59,
     type: 3}
-  gfxShadowSprite: {fileID: 0}
-  isAnimatedShadow: 0
   gfxSpriteAnimation: {fileID: 0}
+  copySpriteAnimationToShadow: 1
   gfxPrefab: {fileID: 0}
+  gfxShadowSprite: {fileID: 0}
+  gfxShadowAnimation: {fileID: 0}
   spriteOffset: {x: -0.5, y: -0.5}
   playerBuildBarApplicable: 0
+  makesSpaceLanding: 0
+  spaceLandingXDisp: 0

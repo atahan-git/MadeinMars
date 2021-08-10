@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,13 +15,16 @@ public class GUI_InventoryController : MonoBehaviour {
     public GameObject BuildingListingPrefab;
     GUI_BuildingBarController bbar;
 
-
-    void Start() {
+    private void Awake() {
         GameMaster.CallWhenPlayerInventoryChanged(DrawInventory);
-
         if (PlayerPrefs.GetInt("extrainfo", 0) == 1) {
             ToggleExtraInfo();
         }
+    }
+
+
+    private void OnDestroy() {
+        GameMaster.RemoveFromCall(DrawInventory);
     }
 
     void DrawInventory () {

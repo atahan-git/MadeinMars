@@ -9,7 +9,11 @@ public class PooledGameObject : MonoBehaviour {
 
 	public bool isActive = false;
 
-	/// <summary>
+	public void DestroyPooledObject() {
+		Destroy(gameObject);
+	}
+
+	/*/// <summary>
 	/// Should be called from the object pool
 	/// </summary>
 	public void EnableObject () {
@@ -30,5 +34,5 @@ public class PooledGameObject : MonoBehaviour {
 
 	public void DestroyPooledObject (){
 		myPool.DestroyPooledObject (myId);
-	}
+	}*/
 }

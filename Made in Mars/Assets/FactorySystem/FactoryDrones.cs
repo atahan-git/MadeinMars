@@ -111,11 +111,10 @@ public class FactoryDrones {
 [Serializable]
 public class DroneTask {
 	public enum DroneTaskType {
-		build, destroy, transportItem
+		nullTask, build, destroy, transportItem
 	}
 	
-	public DroneTaskType myType;
-	public List<InventoryItemSlot> materials;
+	public DroneTaskType myType = DroneTaskType.nullTask;
 	public Construction construction;
 
 	public DroneTask(IAssignableToDrone assignable) {
@@ -125,12 +124,6 @@ public class DroneTask {
 				myType = DroneTaskType.build;
 			} else {
 				myType = DroneTaskType.destroy;
-			}
-
-			var inv = cons.constructionInventory.inventoryItemSlots;
-			materials = new List<InventoryItemSlot>();
-			for (int i = 0; i < inv.Count; i++) {
-				materials.Add(new InventoryItemSlot(inv[i].myItem, 0, inv[i].maxCount, InventoryItemSlot.SlotType.storage));
 			}
 		} else {
 			throw new NotImplementedException();
@@ -145,9 +138,9 @@ public class DroneTask {
 			} else {
 				myType = DroneTaskType.destroy;
 			}
-
-			materials = DataSaver.InventoryData.ConvertToRegularData(saveData.currentTaskMaterials);
-		} 
+		} else {
+			myType = DroneTaskType.nullTask;
+		}
 	}
 
 
@@ -167,15 +160,23 @@ public class DroneTask {
 
 
 class DroneIdleState : IDroneState {
+	const int idleDeadZone = 10;
 	public IDroneState ExecuteAndReturnNextState(Drone drone) {
-		if (drone.myInventory.inventoryItemSlots.Count > 0) {
-			drone.myInventory.SetInventory(new List<InventoryItemSlot>());
+		if (drone.myInventory.GetTotalAmountOfItems() > 0){
+			return new DroneSearchStorageToEmptyInventory();
 		}
+		
+		if (drone.myInventory.inventoryItemSlots.Count > 0 && drone.myInventory.GetTotalAmountOfItems() == 0) {
+			drone.myInventory.SetInventory(new List<InventoryItemSlot>());
+		} 
 
 		drone.idleCounter -= 1f / FactoryDrones.DroneUpdatePerSecond;
 
 		if (drone.idleCounter <= 0f) {
-			FactoryDrones.DroneStartTravelToLocation(drone, drone.curPosition + new Position(Random.Range(-3, 4), Random.Range(-3, 4)));
+			var randomPos = drone.curPosition + new Position(Random.Range(-3, 4), Random.Range(-3, 4));
+			randomPos.x = Mathf.Clamp(randomPos.x, idleDeadZone, Grid.s.mapSize-idleDeadZone);
+			randomPos.y = Mathf.Clamp(randomPos.y, idleDeadZone, Grid.s.mapSize-idleDeadZone);
+			FactoryDrones.DroneStartTravelToLocation(drone, randomPos);
 			drone.idleCounter += Random.Range(5f, 10f);
 		}
 		
@@ -190,21 +191,10 @@ class DroneIdleState : IDroneState {
 
 class DroneBeginConstruction : IDroneState {
 	public IDroneState ExecuteAndReturnNextState(Drone drone) {
-		// Tally both our inventoryItemSlots and the building's construction inventoryItemSlots for the available items
-		for (int k = 0; k < drone.currentTask.materials.Count; k++) {
-			drone.currentTask.materials[k].count = drone.constructionInv.GetAmountOfItems(drone.currentTask.materials[k].myItem);
-		}
-				
-		for (int k = 0; k < drone.currentTask.materials.Count; k++) {
-			drone.currentTask.materials[k].count += drone.myInventory.GetAmountOfItems(drone.currentTask.materials[k].myItem);
-		}
-
-		
 		return new DroneSearchItemForConstruction();
 	}
 	
 	public string GetInfoDisplayText(Drone drone) {
-
 		return this.ToString();
 	}
 }
@@ -212,8 +202,10 @@ class DroneBeginConstruction : IDroneState {
 class DroneSearchItemForConstruction : IDroneState {
 	public IDroneState ExecuteAndReturnNextState(Drone drone) {
 		bool finishedGathering = true;
-		for (int i = 0; i < drone.currentTask.materials.Count; i++) {
-			if (drone.currentTask.materials[i].count < drone.currentTask.materials[i].maxCount) {
+		var consInvSlots = drone.currentTask.construction.constructionInventory.inventoryItemSlots;
+		for (int i = 0; i < consInvSlots.Count; i++) {
+			var droneItemCount = drone.myInventory.GetAmountOfItems(consInvSlots[i].myItem);
+			if (consInvSlots[i].count + droneItemCount < consInvSlots[i].maxCount) {
 				finishedGathering = false;
 				break;
 			}
@@ -223,26 +215,34 @@ class DroneSearchItemForConstruction : IDroneState {
 			FactoryDrones.DroneStartTravelToLocation(drone, drone.currentTask.construction.center);
 			return new DroneTravelToConstruction();
 		}
-				
+
 		// Make the drone look for storage buildings
-		for (int i = 0; i < FactoryDrones.storageBuildings.Count; i++) {
-			for (int k = 0; k < drone.currentTask.materials.Count; k++) {
-				if (drone.currentTask.materials[k].count < drone.currentTask.materials[k].maxCount) {
-					if (FactoryDrones.storageBuildings[i].inv.CheckIfCanTakeItem(drone.currentTask.materials[k].myItem, 1, true)) {
-						drone.targetStorage = FactoryDrones.storageBuildings[i];
+		var buildings = FactoryMaster.s.GetBuildings();
+		for (int i = 0; i < buildings.Count; i++) {
+			for (int k = 0; k < consInvSlots.Count; k++) {
+				var droneInvCount = drone.myInventory.GetAmountOfItems(consInvSlots[k].myItem);
+				if (consInvSlots[k].count + droneInvCount < consInvSlots[k].maxCount) {
+					if (buildings[i].inv.CheckIfCanTakeItem(consInvSlots[k].myItem, 1, true)) {
+						drone.targetStorage = buildings[i];
 						FactoryDrones.DroneStartTravelToLocation(drone, drone.targetStorage.myPositions[0]);
 						return new DroneTravelToItemStorage();
 					}
 				}
 			}
 		}
-				
-		// If we've reached here that means there are no available storage buildings. In this case we can travel to the construction target
-		// And stand there to show to the player how sad we are that we cannot build our building 
-		FactoryDrones.DroneStartTravelToLocation(drone, drone.currentTask.construction.center);
-		return new DroneUnableToFindConstructionMaterial();
+
+		// If there are no available items and we don't have anything to put, travel to the construction and wait
+		if (drone.myInventory.GetTotalAmountOfItems() == 0) {
+			FactoryDrones.DroneStartTravelToLocation(drone, drone.currentTask.construction.center);
+			drone.isBusy = false;
+			drone.currentTask.construction.UnAssignFromDrone();
+			return new DroneIdleState();
+		} else {
+			FactoryDrones.DroneStartTravelToLocation(drone, drone.currentTask.construction.center);
+			return new DroneTravelToConstruction();
+		}
 	}
-	
+
 	public string GetInfoDisplayText(Drone drone) {
 
 		return this.ToString();
@@ -267,12 +267,17 @@ class DroneTravelToItemStorage : IDroneState {
 class DroneTakeItemFromStorage : IDroneState {
 	public IDroneState ExecuteAndReturnNextState(Drone drone) {
 		{
+			if (drone.targetStorage == null) {
+				return new DroneSearchItemForConstruction();
+			}
+			
 			var k = 0;
-			while (k < drone.currentTask.materials.Count) {
-				if (drone.currentTask.materials[k].count < drone.currentTask.materials[k].maxCount) {
-					if (drone.targetStorage.inv.TryAndTakeItem(drone.currentTask.materials[k].myItem, 1, true)) {
-						drone.currentTask.materials[k].count += 1;
-						drone.myInventory.TryAndAddItem(drone.currentTask.materials[k].myItem, 1, true, true);
+			var consInvSlots = drone.currentTask.construction.constructionInventory.inventoryItemSlots;
+			while (k < consInvSlots.Count) {
+				var droneInvCount = drone.myInventory.GetAmountOfItems(consInvSlots[k].myItem);
+				if (consInvSlots[k].count + droneInvCount < consInvSlots[k].maxCount) {
+					if (drone.targetStorage.inv.TryAndTakeItem(consInvSlots[k].myItem, 1, true)) {
+						drone.myInventory.TryAndAddItem(consInvSlots[k].myItem, 1, false, true);
 						return this;
 					} else {
 						k++;
@@ -313,24 +318,37 @@ class DroneTravelToConstruction : IDroneState {
 
 class DroneConstruct : IDroneState {
 	public IDroneState ExecuteAndReturnNextState(Drone drone) {
-		for (int k = 0; k < drone.currentTask.materials.Count; k++) {
-			if (drone.currentTask.materials[k].count > 0) {
-				drone.currentTask.materials[k].count -= 1;
-				if (drone.myInventory.TryAndTakeItem(drone.currentTask.materials[k].myItem, 1, true)) {
-					drone.constructionInv.TryAndAddItem(drone.currentTask.materials[k].myItem, 1, true, true);
+		var consInvSlots = drone.currentTask.construction.constructionInventory.inventoryItemSlots;
+		for (int k = 0; k < consInvSlots.Count; k++) {
+			if (consInvSlots[k].count < consInvSlots[k].maxCount && drone.myInventory.GetAmountOfItems(consInvSlots[k].myItem) > 0) {
+				if (drone.myInventory.TryAndTakeItem(consInvSlots[k].myItem, 1, false)) {
+					drone.constructionInv.TryAndAddItem(consInvSlots[k].myItem, 1, false, true);
+					return this;
 				}
-				return this;
 			}
 		}
 
-		FactoryBuilder.CompleteConstruction(drone.currentTask.construction);
-				
+		bool finishedGathering = true;
+		for (int i = 0; i < consInvSlots.Count; i++) {
+			if (consInvSlots[i].count < consInvSlots[i].maxCount) {
+				finishedGathering = false;
+				break;
+			}
+		}
+
 		drone.isLaser = false;
-		drone.isBusy = false;
-		drone.currentTask = null;
-		return new DroneIdleState();
+
+		if (finishedGathering) {
+			FactoryBuilder.CompleteConstruction(drone.currentTask.construction);
+			
+			drone.isBusy = false;
+			drone.currentTask = null;
+			return new DroneIdleState();
+		} else {
+			return new DroneSearchItemForConstruction();
+		}
 	}
-	
+
 	public string GetInfoDisplayText(Drone drone) {
 
 		return this.ToString();
@@ -466,10 +484,18 @@ class DroneTravelToEmptyDroneInventoryToStorage : IDroneState {
 class DroneEmptyInventoryToStorage : IDroneState {
 	public IDroneState ExecuteAndReturnNextState(Drone drone) {
 		if (drone.myInventory.TryAndTakeNextItem(out var item)) {
+			if (drone.targetStorage == null) {
+				return new DroneSearchStorageToEmptyInventory();
+			}
+			
 			if (drone.targetStorage.inv.TryAndAddItem(item, 1, true)) {
 				return this;
 			}
 		}
+
+		if (drone.myInventory.inventoryItemSlots.Count > 0 && drone.myInventory.GetTotalAmountOfItems() == 0) {
+			drone.myInventory.SetInventory(new List<InventoryItemSlot>());
+		} 
 
 		return new DroneSearchStorageToEmptyInventory();
 	}

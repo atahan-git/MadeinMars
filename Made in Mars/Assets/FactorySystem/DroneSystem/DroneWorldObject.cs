@@ -27,6 +27,8 @@ public class DroneWorldObject : MonoBehaviour {
 	    myDrone.dronePositionUpdatedCallback += CurrentPositionChanged;
 	    myDrone.droneLaserStateUpdatedCallback += LaserStateChanged;
 	    myDrone.droneTargetPositionUpdatedCallback += MovementTargetChanged;
+
+	    myAnim.SetUp();
     }
 
 

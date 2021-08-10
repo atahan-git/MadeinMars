@@ -32,7 +32,7 @@ public class DroneAnimator : MonoBehaviour {
 
     public ParticleSystem miningParticles;
 
-    private void OnEnable() {
+    public void SetUp() {
 	    DisablePlusOne();
 	    SetMiningLaser(false);
 	    for (int i = 0; i < 10; i++) {

@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BuildingInfoDisplay : MonoBehaviour {
     public static bool isExtraInfoVisible = false; //Controlled by gui inventoryItemSlots controller
+    public bool userClickedOnObject = false;
 
     BuildingCraftingController crafter;
     Inventory inventory;
@@ -22,38 +24,41 @@ public class BuildingInfoDisplay : MonoBehaviour {
     public GameObject InventoryListingPrefab;
     public Transform InventoryParent;
     
-    static float infoDisplayTimeoutTime = 5f;
+    const float infoDisplayTimeoutTime = 5f;
+    const bool infoDisplayTimeOutEnabled = false;
 
     private void Start() {
         var worldObject = GetComponent<BuildingWorldObject>();
+        worldObject.buildingInventoryUpdatedCallback += SetUp;
         if (worldObject.isInventorySetup) {
             SetUp();
-        } else {
-            worldObject.buildingInventoryUpdatedCallback += SetUp;
-        }
+        } 
     }
 
 
-    // Update is called once per frame
     void Update() {
-        if (isExtraInfoVisible) {
+        if (isExtraInfoVisible || userClickedOnObject) {
             if (craftingProcesses.Count > 0) {
                 UpdateValues();
             }
         }
 
-        canvas.SetActive(isExtraInfoVisible);
+        canvas.SetActive(isExtraInfoVisible || userClickedOnObject);
     }
 
     public void SetUp () {
+        canvas.SetActive(isExtraInfoVisible || userClickedOnObject);
+        
         InventoryParent.DeleteAllChildren();
-        InventoryParent.SetParent(null);
+        //InventoryParent.SetParent(null);
         Parent.DeleteAllChildren();
-        InventoryParent.SetParent(Parent);
+        //InventoryParent.SetParent(Parent);
         
         var worldObject = GetComponent<BuildingWorldObject>();
         crafter = worldObject.myCrafter;
         
+        if(inventory != null)
+            inventory.drawInventoryEvent -= SetUp;
         inventory = worldObject.myInventory;
         inventory.drawInventoryEvent += SetUp;
 
@@ -89,6 +94,11 @@ public class BuildingInfoDisplay : MonoBehaviour {
         }
     }
 
+    private void OnDestroy() {
+        if(inventory != null)
+            inventory.drawInventoryEvent -= SetUp;
+    }
+
     public void UpdateValues () {
         if (crafter != null) {
             for (int i = 0; i < crafter.myCraftingProcesses.Length; i++) {
@@ -122,12 +132,17 @@ public class BuildingInfoDisplay : MonoBehaviour {
                             timeoutCounters[i] = 0;
                         else if (timeoutCounters[i] < infoDisplayTimeoutTime)
                             timeoutCounters[i] += Time.deltaTime;
-                        else
-                            craftingProcesses[i].SetActive(false);
-
+                        else {
+                            if(infoDisplayTimeOutEnabled)
+                                craftingProcesses[i].SetActive(false);
+                        }
                     }
                 }
             }
         }
+    }
+
+    public void OnMouseDown() {
+        userClickedOnObject = !userClickedOnObject;
     }
 }

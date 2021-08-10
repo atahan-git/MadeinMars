@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30baec280fa5d0468bce2c5a6d2a647, type: 3}
+  m_Name: Processor 2
+  m_EditorClassIdentifier: 
+  uniqueName: bProcessor2
+  name: Processor 2
+  description: This is a new Item
+  shape:
+    column:
+    - row: 00000000000000
+    - row: 00000000000000
+    - row: 00000001000000
+    - row: 00000101010000
+    - row: 00000001000000
+    - row: 00000000000000
+    - row: 00000000000000
+  myType: 16
+  myTier: 1
+  energyUse: 0
+  gfxType: 1
+  gfxSprite: {fileID: 21300000, guid: 12ef33dc1c89f9f4188d02efe19e8934, type: 3}
+  gfxSpriteAnimation: {fileID: 11400000, guid: 58ac088a8ce09b445a5b4a0d258768c2, type: 2}
+  copySpriteAnimationToShadow: 1
+  gfxPrefab: {fileID: 0}
+  gfxShadowSprite: {fileID: 0}
+  gfxShadowAnimation: {fileID: 0}
+  spriteOffset: {x: 1, y: 1}
+  playerBuildBarApplicable: 1
+  makesSpaceLanding: 0
+  spaceLandingXDisp: 0

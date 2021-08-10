@@ -337,5 +337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0075ccff2671fec42b54fbc37271fe45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDrag: 0
   dragOnSurfaces: 1
   imageWidth: 50

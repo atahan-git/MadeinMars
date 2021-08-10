@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Furnace
   m_EditorClassIdentifier: 
   uniqueName: bFurnace
+  name: Furnace
+  description: This is a new Item
   shape:
     column:
     - row: 00000000000000
@@ -23,10 +25,16 @@ MonoBehaviour:
     - row: 00000000000000
     - row: 00000000000000
   myType: 2
-  BuildingAbility: 0000000000
+  myTier: 0
   energyUse: 0
   gfxType: 1
   gfxSprite: {fileID: 21300000, guid: 9145fc62581f77148acd3afa525d9da1, type: 3}
   gfxSpriteAnimation: {fileID: 11400000, guid: 23acd132471d4374ab880344023fc3ba, type: 2}
+  copySpriteAnimationToShadow: 1
   gfxPrefab: {fileID: 0}
+  gfxShadowSprite: {fileID: 0}
+  gfxShadowAnimation: {fileID: 0}
   spriteOffset: {x: 1, y: 1}
+  playerBuildBarApplicable: 1
+  makesSpaceLanding: 0
+  spaceLandingXDisp: 0

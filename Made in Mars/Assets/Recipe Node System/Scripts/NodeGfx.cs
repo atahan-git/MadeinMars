@@ -19,15 +19,20 @@ public abstract class NodeGfx : MonoBehaviour {
 
     public List<NodePortGfx> allPorts = new List<NodePortGfx>();
 
-    
-    
+
+    public bool isInteractable = true;
     /// <summary>
     /// Should be used to redraw specific node parts like the name or crafting type
     /// </summary>
-    protected void ReDrawnNode(RecipeTreeViewer master, Node node) {
+    protected void ReDrawnNode(RecipeTreeViewer master, Node node, bool isInteractable) {
         myViewer = master;
         myNode = node;
-        ReDrawPorts();
+        this.isInteractable = isInteractable;
+        if (!isInteractable) {
+            Destroy(GetComponent<RecipeNodeDragPanel>());
+        }
+        
+        ReDrawPorts(isInteractable);
     }
 
     public void BeginClickConnect(NodePortGfx port) {
@@ -67,10 +72,11 @@ public abstract class NodeGfx : MonoBehaviour {
 
 
 
-    void ReDrawPorts() {
+    void ReDrawPorts(bool isInteractable) {
         int childCount = allPorts.Count;
         for (int i = 0; i < childCount; i++) {
             allPorts[i].GetComponent<PooledGameObject>().DestroyPooledObject();
+            allPorts[i].transform.SetParent(transform.parent);
         }
 
         allPorts.Clear();
@@ -83,15 +89,16 @@ public abstract class NodeGfx : MonoBehaviour {
                 var myPort = myAdapter.isLeftAdapter ? myViewer.leftPortPool.Spawn() : myViewer.rightPortPool.Spawn();
                 myPort.transform.SetParent(myAdapter.isLeftAdapter? leftPortParent : rightPortParent);
                 
-                allPorts.Add(myPort.GetComponent<NodePortGfx>().Setup(this, myAdapter, connection, connection.count));
+                allPorts.Add(myPort.GetComponent<NodePortGfx>().Setup(this, myAdapter, connection, connection.count, isInteractable));
             }
             
             // add an extra port so that the user can generate extra connections
             var myPortExtra = myAdapter.isLeftAdapter ? myViewer.leftPortPool.Spawn() : myViewer.rightPortPool.Spawn();
             myPortExtra.transform.SetParent(myAdapter.isLeftAdapter? leftPortParent : rightPortParent);
                 
-            allPorts.Add(myPortExtra.GetComponent<NodePortGfx>().Setup(this, myAdapter, null, 0));
+            allPorts.Add(myPortExtra.GetComponent<NodePortGfx>().Setup(this, myAdapter, null, 0, isInteractable));
         }
+        
         RebuildLayout();
     }
 

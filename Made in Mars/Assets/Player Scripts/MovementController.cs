@@ -19,9 +19,14 @@ public class MovementController : MonoBehaviour {
 	public float minZoom = 4f;
 	public float maxZoom = 100f;
 
+	public Vector2 downLeftCorner;
+	public Vector2 topRightCorner;
+	public float zPos;
+	
 	// Use this for initialization
 	void Start () {
 		myCam = Camera.main.gameObject.transform;
+		zPos = myCam.transform.position.z;
 	}
 
 	int defZero = 0;
@@ -88,6 +93,14 @@ public class MovementController : MonoBehaviour {
 				oldTouchDistance = newTouchDistance;
 			}
 		}
+
+		ClampCamPos();
+	}
+
+	void ClampCamPos() {
+		var xPos = Mathf.Clamp(myCam.position.x, downLeftCorner.x, topRightCorner.x);
+		var yPos = Mathf.Clamp(myCam.position.y, downLeftCorner.y, topRightCorner.y);
+		myCam.position = new Vector3(xPos, yPos, zPos);
 	}
 
 	public float keyboardSpeed = 2f;
@@ -104,5 +117,7 @@ public class MovementController : MonoBehaviour {
 		}
 		myCam.GetComponent<Camera>().orthographicSize = Mathf.Clamp(myCam.GetComponent<Camera>().orthographicSize, minZoom, maxZoom);
 		myCam.Translate(new Vector3(horizontal, vertical, 0) * keyboardSpeed * Time.deltaTime);
+
+		ClampCamPos();
 	}
 }

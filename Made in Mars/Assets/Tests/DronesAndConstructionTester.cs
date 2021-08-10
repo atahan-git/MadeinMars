@@ -34,7 +34,7 @@ namespace Tests
 
         [Test]
         public void TestConstructionCreation() {
-            var dummyBuildingData = GetDummyBuildingDataForConstruction(new List<DataHolder.CountedItem>());
+            var dummyBuildingData = GetDummyBuildingDataForConstruction(new List<DataHolder.CountedItem>(){new DataHolder.CountedItem(GetDummyInputItem(),1)});
             FactoryBuilder.StartConstruction(dummyBuildingData, 0, new Position(0,1));
             
             Assert.AreEqual( 1,FactoryMaster.s.GetConstructions().Count);

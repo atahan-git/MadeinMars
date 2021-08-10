@@ -15,8 +15,8 @@ public class ResearchNodeGfx : NodeGfx {
     public InputField researchName;
     public InputField researchDescription;
 
-    public void ReDrawnNode(RecipeTreeViewer master, ResearchNode node) {
-        base.ReDrawnNode(master, node);
+    public void ReDrawnNode(RecipeTreeViewer master, ResearchNode node, bool isInteractable) {
+        base.ReDrawnNode(master, node, isInteractable);
 
         myNode = node;
 

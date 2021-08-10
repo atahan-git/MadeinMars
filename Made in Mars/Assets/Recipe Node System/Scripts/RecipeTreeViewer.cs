@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +39,8 @@ public class RecipeTreeViewer : MonoBehaviour {
 
     public Color[] PortColors;
     public Color[] lineColors;
+
+    public bool isInteractable = false;
 
 
     public List<NodeGfx> allNodeGfxs = new List<NodeGfx>();
@@ -75,6 +80,7 @@ public class RecipeTreeViewer : MonoBehaviour {
 
     protected void ReDrawAllNodes() {
         int childCount = allNodeGfxs.Count;
+        myRecipeSet.FixRecipes();
 
         for (int i = 0; i < childCount; i++) {
             allNodeGfxs[i].GetComponent<PooledGameObject>().DestroyPooledObject();
@@ -87,10 +93,12 @@ public class RecipeTreeViewer : MonoBehaviour {
             //Vector3 pos = itemNode.pos;
             var node = ItemNodePool.Spawn().gameObject;
             allNodeGfxs.Add(node.GetComponent<NodeGfx>());
-            node.GetComponent<ItemNodeGfx>().ReDrawnNode(this, itemNode);
+            node.GetComponent<ItemNodeGfx>().ReDrawnNode(this, itemNode, isInteractable);
             (node.transform as RectTransform).anchoredPosition = itemNode.pos;
             //itemNode.pos = pos;
-
+            if (node.GetComponent<NodeFocusCatcher>()) {
+                Destroy(node.GetComponent<NodeFocusCatcher>());
+            }
             node.AddComponent<NodeFocusCatcher>().Setup(this);
         }
 
@@ -98,10 +106,13 @@ public class RecipeTreeViewer : MonoBehaviour {
             //Vector3 pos = craftingNode.pos;
             var node = craftingNodePool.Spawn().gameObject;
             allNodeGfxs.Add(node.GetComponent<NodeGfx>());
-            node.GetComponent<CraftingNodeGfx>().ReDrawnNode(this, craftingNode);
+            node.GetComponent<CraftingNodeGfx>().ReDrawnNode(this, craftingNode, isInteractable);
             (node.transform as RectTransform).anchoredPosition = craftingNode.pos;
             //craftingNode.pos = pos;
-
+            
+            if (node.GetComponent<NodeFocusCatcher>()) {
+                Destroy(node.GetComponent<NodeFocusCatcher>());
+            }
             node.AddComponent<NodeFocusCatcher>().Setup(this);
         }
         
@@ -109,10 +120,13 @@ public class RecipeTreeViewer : MonoBehaviour {
             //Vector3 pos = craftingNode.pos;
             var node = researchNodePool.Spawn().gameObject;
             allNodeGfxs.Add(node.GetComponent<NodeGfx>());
-            node.GetComponent<ResearchNodeGfx>().ReDrawnNode(this, researchNode);
+            node.GetComponent<ResearchNodeGfx>().ReDrawnNode(this, researchNode, isInteractable);
             (node.transform as RectTransform).anchoredPosition = researchNode.pos;
             //craftingNode.pos = pos;
-
+            
+            if (node.GetComponent<NodeFocusCatcher>()) {
+                Destroy(node.GetComponent<NodeFocusCatcher>());
+            }
             node.AddComponent<NodeFocusCatcher>().Setup(this);
         }
         
@@ -123,6 +137,10 @@ public class RecipeTreeViewer : MonoBehaviour {
         }
         
         Invoke("LateRedraw",0.5f);
+
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(myRecipeSet);
+#endif
     }
 
     void LateRedraw() {
@@ -167,7 +185,7 @@ public class RecipeTreeViewer : MonoBehaviour {
         yield break;
     }
 
-    const float changeIncrements = 500;
+    const float changeIncrements = 1000;
 
     public void RescaleNodeArea() {
         float xmin = float.MaxValue, xmax = float.MinValue, ymin = float.MaxValue, ymax = float.MinValue;

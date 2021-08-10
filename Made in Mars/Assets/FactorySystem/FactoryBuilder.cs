@@ -19,14 +19,15 @@ public static class FactoryBuilder {
 
     public static void CreateShipPart(BuildingData myData, Position location) {
         var shipCard = DataHolder.s.BuildingDataToShipCard(myData);
-        
-        DataSaver.s.mySave.availableShipCards.Add(new DataSaver.ShipCardData(shipCard));
+
+        ShipDataMaster.s.AddActiveCard((IShipCard)shipCard);
+        //DataSaver.s.mySave.activeShipCards.Add(new DataSaver.ShipCardData(shipCard));
         
         shipCardAdded?.Invoke(shipCard, location);
     }
     
     public static Construction StartConstruction(BuildingData buildingData, int direction, Position location, List<InventoryItemSlot> afterConstructionInventory = null) {
-        var construction = new Construction(buildingData, direction, location,  GetRequirements(buildingData,false), afterConstructionInventory, true);
+        var construction = new Construction(buildingData, direction, location,  GetRequirements(buildingData,true), afterConstructionInventory, true);
         FactoryMaster.s.AddConstruction(construction);
         
         foreach (var loc in construction.locations) {
@@ -37,8 +38,8 @@ public static class FactoryBuilder {
         return construction;
     }
     
-    static List<InventoryItemSlot> GetRequirements(BuildingData myDat, bool isFilled) {
-        CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfType(BuildingData.ItemType.Building);
+    static List<InventoryItemSlot> GetRequirements(BuildingData myDat, bool isConstruction /*Alternative is destruction*/) {
+        CraftingNode[] ps = DataHolder.s.GetCraftingProcessesOfTypeandTier(BuildingData.ItemType.Building, 0);
         var reqs = new List<InventoryItemSlot>();
         if (ps != null) {
             for (int i = 0; i < ps.Length; i++) {
@@ -46,8 +47,8 @@ public static class FactoryBuilder {
                     for (int m = 0; m < DataHolder.s.GetConnections(ps[i], true).Count; m++) {
                         var count = DataHolder.s.GetConnections(ps[i], true)[m].count;
                         reqs.Add(new InventoryItemSlot(DataHolder.s.GetItem(DataHolder.s.GetConnections(ps[i], true)[m].itemUniqueName),
-                            isFilled? count : 0, count, 
-                            InventoryItemSlot.SlotType.storage)
+                            isConstruction? 0 : count, count, 
+                            isConstruction? InventoryItemSlot.SlotType.input : InventoryItemSlot.SlotType.output)
                         );
                     }
                     return reqs;
@@ -127,7 +128,7 @@ public static class FactoryBuilder {
 
             if (canBeDestroyed) {
                 if (buildingData != null) {
-                    var newConstruction = new Construction(buildingData, direction, location, GetRequirements(buildingData, true), afterConstructionInventory, false);
+                    var newConstruction = new Construction(buildingData, direction, location, GetRequirements(buildingData, false), afterConstructionInventory, false);
                     FactoryMaster.s.AddConstruction(newConstruction);
 
                     foreach (var loc in newConstruction.locations) {
@@ -301,8 +302,8 @@ public static class FactoryBuilder {
                     if (nextTile.simObject is Building nextTileBuilding) {
                         bool connectionExists = false;
                         for (int k = 0; k < connector.inputs.Count; k++) {
-                            if (!connector.inputs[k].isBeltConnection) {
-                                if (connector.inputs[k].building == nextTileBuilding) {
+                            if (connector.inputs[k].myObj is Building connectorBuilding) {
+                                if (connectorBuilding == nextTileBuilding) {
                                     connectionExists = true;
                                     break;
                                 }
@@ -312,6 +313,23 @@ public static class FactoryBuilder {
                         if (!connectionExists) {
                             connector.inputs.Add(new Connector.Connection(nextTileBuilding, curPos, dir));
                             connector.outputs.Add(new Connector.Connection(nextTileBuilding, curPos, dir));
+                        }
+                    }
+                    
+                    if (nextTile.simObject is Construction nextTileConstruction) {
+                        bool connectionExists = false;
+                        for (int k = 0; k < connector.inputs.Count; k++) {
+                            if (connector.inputs[k].myObj is Construction connectorConstruction) {
+                                if (connectorConstruction == nextTileConstruction) {
+                                    connectionExists = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!connectionExists) {
+                            connector.inputs.Add(new Connector.Connection(nextTileConstruction, curPos, dir));
+                            connector.outputs.Add(new Connector.Connection(nextTileConstruction, curPos, dir));
                         }
                     }
                 }
@@ -737,6 +755,12 @@ public static class FactoryBuilder {
     
     public static Construction CreateConstructionFromSave(DataSaver.ConstructionSaveData saveData) {
         var bData = DataHolder.s.GetBuilding(saveData.myUniqueName);
+
+        if (bData == null) {
+            Debug.LogError("unknown building, Removing");
+            return null;
+        }
+
         var construction = new Construction(bData, saveData.direction, saveData.center,
             saveData.myInvConverted(),
             DataSaver.InventoryData.ConvertToRegularData(saveData.afterConstructionInventory),
@@ -772,6 +796,12 @@ public static class FactoryBuilder {
     
     public static Building CreateBuildingFromSave(DataSaver.BuildingSaveData saveData) {
         var bData = DataHolder.s.GetBuilding(saveData.myUniqueName);
+        
+        if (bData == null) {
+            Debug.LogError("unknown building, Removing");
+            return null;
+        }
+        
         var building = new Building(saveData.center, bData, saveData.myInvConverted(), saveData.lastCheckid, saveData.curCraftingProgress);
         
         for (int i = 0; i < building.myPositions.Count; i++) {
@@ -806,6 +836,17 @@ public static class FactoryBuilder {
         };
         if (saveData.currentTaskPosition.isValid()) {
             drone.currentTask = new DroneTask(saveData);
+        } else {
+            drone.isBusy = false;
+            drone.isLaser = false;
+            drone.myState = new DroneIdleState();
+        }
+
+        
+        if (drone.currentTask != null && drone.currentTask.myType == DroneTask.DroneTaskType.nullTask) {
+            drone.isBusy = false;
+            drone.isLaser = false;
+            drone.myState = new DroneIdleState();
         }
         
         drone.myInventory.SetInventory(DataSaver.InventoryData.ConvertToRegularData(saveData.myInv));

@@ -2049,30 +2049,46 @@ MonoBehaviour:
   myItemSets:
   - {fileID: 11400000, guid: 9427da8f80d849340bc3314ec68eee65, type: 2}
   myBuildings:
-  - {fileID: 11400000, guid: ba231f49a8aba3446a75e21413b1b077, type: 2}
-  - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
-  - {fileID: 11400000, guid: 2f1242d7254920046bd3966523742832, type: 2}
   - {fileID: 11400000, guid: b1cb88f9cb208454fbf8fe40f959f985, type: 2}
-  - {fileID: 11400000, guid: 083597dc2ebf77f46a79e22709987166, type: 2}
-  - {fileID: 11400000, guid: 68d403cecda93af489e4609a79e60d9f, type: 2}
+  - {fileID: 11400000, guid: 935730212d7031445a543c3e54b0b0e5, type: 2}
+  - {fileID: 11400000, guid: 6f3a19096147bdb4ea8f0404321377b4, type: 2}
+  - {fileID: 11400000, guid: 7ea4ad04d5e8a6e47a134d0ec48a002f, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 100a719508880084abd0d3fdba96fe00, type: 2}
-  - {fileID: 11400000, guid: 8a8742bdeef186546b5d5f9cc1208f04, type: 2}
-  - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
   - {fileID: 11400000, guid: 23a2e5f0ee7f46a4d98e77a03f014ab1, type: 2}
-  - {fileID: 11400000, guid: ad2b7ca6eab6c0343bf01a2e89986d22, type: 2}
+  - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
+  - {fileID: 11400000, guid: 372e7db80a2c75a43b8f67c76a754284, type: 2}
+  - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
   - {fileID: 11400000, guid: 4b348287299377648b8e1332c9d6be72, type: 2}
   - {fileID: 11400000, guid: f827b53c0d3612a40b8ce455ba2fba9a, type: 2}
+  - {fileID: 11400000, guid: 170996ae8e0452541904bd66c0de8d3c, type: 2}
   myCards:
+  - {fileID: 11400000, guid: 23aefbe98fb58c64f86bc2c1176272cb, type: 2}
+  - {fileID: 11400000, guid: 47ce574df46c0c04b81cbd03390a9299, type: 2}
+  - {fileID: 11400000, guid: 010c16d4991d3ee42b9cfcf8b262d8a7, type: 2}
+  - {fileID: 11400000, guid: 4afd49c89de600e4aa0b9ab58d67a834, type: 2}
+  - {fileID: 11400000, guid: 6ed74f671cfaa3146ac4220fe68fc139, type: 2}
+  - {fileID: 11400000, guid: a56c8bfb244168d4186acfe488f3daa3, type: 2}
   - {fileID: 11400000, guid: d987704331f33db42aff13f6aba638c0, type: 2}
   - {fileID: 11400000, guid: b1a47a898314dc344907cf5ccc1e6e9e, type: 2}
+  - {fileID: 11400000, guid: f0512b8bbfabb0a4cb8bb0ca814e6f41, type: 2}
+  - {fileID: 11400000, guid: d830fe7b9a74f3d4facf3c17ef0feac3, type: 2}
+  - {fileID: 11400000, guid: 49314e06ed4058943a0a0ea49ad5338b, type: 2}
+  - {fileID: 11400000, guid: 3516c471bb4d24e4fab654509b0ca4cd, type: 2}
+  - {fileID: 11400000, guid: 1a81f3089e4da7a479123706e6169b40, type: 2}
+  - {fileID: 11400000, guid: 1498a36a1b9eeec4da7d5797ab13cc19, type: 2}
+  - {fileID: 11400000, guid: 7199868a2ed76cb4cb14f505e93b7ed2, type: 2}
+  - {fileID: 11400000, guid: c6481cf6e38936846b7f395ea2e1b4cd, type: 2}
   myOres:
-  - {fileID: 11400000, guid: e531984f8b4f3394384424387800c875, type: 2}
-  - {fileID: 11400000, guid: eb647e993e4883b42a27e878e38fe18c, type: 2}
-  - {fileID: 11400000, guid: 5f762e3692cc6a24ba6a35780f241bba, type: 2}
+  - {fileID: 11400000, guid: 02febdc8025df0f458a05fa03d0a0725, type: 2}
+  - {fileID: 11400000, guid: ed53e76955195c646838e977338c0380, type: 2}
+  - {fileID: 11400000, guid: de0f850534335c14f8632e1676ade165, type: 2}
+  - {fileID: 11400000, guid: a3763bee186e7c84ab8ef56544406a76, type: 2}
+  - {fileID: 11400000, guid: 91cc996cfc0cb0d4e9007d0ff8b343fe, type: 2}
   myCraftingNodes:
   - recipeSetName: baseSet
     id: 2
-    pos: {x: -427.18448, y: 38.834953, z: 0}
+    pos: {x: -1048.5437, y: -116.50485, z: 0}
     myAdapters:
     - isLeftAdapter: 1
       myType: 1
@@ -2090,11 +2106,11 @@ MonoBehaviour:
       parentNodeId: 2
       recipeSetName: baseSet
     tier: 0
-    timeCost: 5
+    timeCost: 1
     CraftingType: 0
   - recipeSetName: baseSet
     id: 3
-    pos: {x: 116.50485, y: 77.66991, z: 0}
+    pos: {x: -1048.5437, y: 466.0194, z: 0}
     myAdapters:
     - isLeftAdapter: 1
       myType: 1
@@ -2115,20 +2131,17 @@ MonoBehaviour:
       parentNodeId: 3
       recipeSetName: baseSet
     tier: 0
-    timeCost: 5
+    timeCost: 2
     CraftingType: 1
   - recipeSetName: baseSet
-    id: 7
-    pos: {x: -155.33981, y: -388.34952, z: 0}
+    id: 33
+    pos: {x: -737.8641, y: -116.50485, z: 0}
     myAdapters:
     - isLeftAdapter: 1
       myType: 1
       type: 0
-      connections:
-      - count: 50
-        recipeSetName: baseSet
-        nodeId: 8
-      parentNodeId: 7
+      connections: []
+      parentNodeId: 33
       recipeSetName: baseSet
     - isLeftAdapter: 0
       myType: 1
@@ -2136,8 +2149,928 @@ MonoBehaviour:
       connections:
       - count: 1
         recipeSetName: baseSet
-        nodeId: 6
-      parentNodeId: 7
+        nodeId: 34
+      parentNodeId: 33
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 10
+    CraftingType: 0
+  - recipeSetName: baseSet
+    id: 36
+    pos: {x: -466.0194, y: -116.50485, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections: []
+      parentNodeId: 36
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 37
+      parentNodeId: 36
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 0
+  - recipeSetName: baseSet
+    id: 108
+    pos: {x: -2252.4272, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 200
+        recipeSetName: baseSet
+        nodeId: 114
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 122
+      parentNodeId: 108
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 107
+      parentNodeId: 108
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 109
+    pos: {x: -2019.4175, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 200
+        recipeSetName: baseSet
+        nodeId: 114
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 123
+      parentNodeId: 109
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 106
+      parentNodeId: 109
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 116
+    pos: {x: -1786.4077, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 200
+        recipeSetName: baseSet
+        nodeId: 114
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 124
+      parentNodeId: 116
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 117
+      parentNodeId: 116
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 119
+    pos: {x: -1281.5533, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections: []
+      parentNodeId: 119
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 1
+      parentNodeId: 119
+      recipeSetName: baseSet
+    tier: 2
+    timeCost: 5
+    CraftingType: 0
+  - recipeSetName: baseSet
+    id: 120
+    pos: {x: -2019.4175, y: 1475.7281, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 10
+        recipeSetName: baseSet
+        nodeId: 176
+      - count: 10
+        recipeSetName: baseSet
+        nodeId: 175
+      parentNodeId: 120
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 159
+      parentNodeId: 120
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 121
+    pos: {x: -1786.4077, y: 1475.7281, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 10
+        recipeSetName: baseSet
+        nodeId: 174
+      parentNodeId: 121
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 160
+      parentNodeId: 121
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 126
+    pos: {x: -737.8641, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 34
+      parentNodeId: 126
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 127
+      parentNodeId: 126
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 4
+  - recipeSetName: baseSet
+    id: 128
+    pos: {x: -893.20386, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 1
+      parentNodeId: 128
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 130
+      parentNodeId: 128
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 4
+  - recipeSetName: baseSet
+    id: 129
+    pos: {x: -1165.0486, y: 1631.068, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 1
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 130
+      parentNodeId: 129
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 131
+      parentNodeId: 129
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 3
+  - recipeSetName: baseSet
+    id: 132
+    pos: {x: -427.18448, y: 1242.7185, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 1
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 136
+      parentNodeId: 132
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 139
+      parentNodeId: 132
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 1
+  - recipeSetName: baseSet
+    id: 133
+    pos: {x: 233.0097, y: 116.50485, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections: []
+      parentNodeId: 133
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 134
+      parentNodeId: 133
+      recipeSetName: baseSet
+    tier: 2
+    timeCost: 5
+    CraftingType: 0
+  - recipeSetName: baseSet
+    id: 135
+    pos: {x: -38.834953, y: 660.19415, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections: []
+      parentNodeId: 135
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 136
+      parentNodeId: 135
+      recipeSetName: baseSet
+    tier: 2
+    timeCost: 5
+    CraftingType: 0
+  - recipeSetName: baseSet
+    id: 137
+    pos: {x: 233.0097, y: 660.19415, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 134
+      parentNodeId: 137
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 136
+      parentNodeId: 137
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 9
+  - recipeSetName: baseSet
+    id: 138
+    pos: {x: 582.5243, y: 660.19415, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 136
+      parentNodeId: 138
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 134
+      parentNodeId: 138
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 9
+  - recipeSetName: baseSet
+    id: 140
+    pos: {x: -194.17476, y: 1242.7185, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections: []
+      parentNodeId: 140
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 139
+      parentNodeId: 140
+      recipeSetName: baseSet
+    tier: 2
+    timeCost: 20
+    CraftingType: 0
+  - recipeSetName: baseSet
+    id: 142
+    pos: {x: -2757.2815, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 200
+        recipeSetName: baseSet
+        nodeId: 141
+      parentNodeId: 142
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 147
+      parentNodeId: 142
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 143
+    pos: {x: -2990.2913, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 200
+        recipeSetName: baseSet
+        nodeId: 141
+      parentNodeId: 143
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 148
+      parentNodeId: 143
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 149
+    pos: {x: -3339.806, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 150
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 151
+      parentNodeId: 149
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 144
+      parentNodeId: 149
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 152
+    pos: {x: -2252.4272, y: 1475.7281, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 5
+        recipeSetName: baseSet
+        nodeId: 177
+      - count: 10
+        recipeSetName: baseSet
+        nodeId: 176
+      parentNodeId: 152
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 158
+      parentNodeId: 152
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 154
+    pos: {x: -1786.4077, y: 2291.2622, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 214
+      parentNodeId: 154
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 162
+      parentNodeId: 154
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 155
+    pos: {x: -2019.4175, y: 2291.2622, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 173
+      parentNodeId: 155
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 163
+      parentNodeId: 155
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 156
+    pos: {x: -2524.2717, y: 1475.7281, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 177
+      parentNodeId: 156
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 164
+      parentNodeId: 156
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 157
+    pos: {x: -2757.2815, y: 1475.7281, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 179
+      - count: 10
+        recipeSetName: baseSet
+        nodeId: 177
+      parentNodeId: 157
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 178
+      parentNodeId: 157
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 171
+    pos: {x: -2330.0972, y: 2291.2622, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections: []
+      parentNodeId: 171
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 169
+      parentNodeId: 171
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 172
+    pos: {x: -2563.1067, y: 2291.2622, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections: []
+      parentNodeId: 172
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 170
+      parentNodeId: 172
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 187
+    pos: {x: -854.36896, y: 2873.7864, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 188
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 189
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 190
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 191
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 192
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 193
+      parentNodeId: 187
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 186
+      parentNodeId: 187
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 20
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 194
+    pos: {x: 38.834953, y: 2174.7573, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 180
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 181
+      parentNodeId: 194
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 183
+      parentNodeId: 194
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 9
+  - recipeSetName: baseSet
+    id: 195
+    pos: {x: 271.84467, y: 2174.7573, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 181
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 182
+      parentNodeId: 195
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 184
+      parentNodeId: 195
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 9
+  - recipeSetName: baseSet
+    id: 196
+    pos: {x: 504.85437, y: 2174.7573, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 182
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 180
+      parentNodeId: 196
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 185
+      parentNodeId: 196
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 9
+  - recipeSetName: baseSet
+    id: 198
+    pos: {x: -1553.3981, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 200
+        recipeSetName: baseSet
+        nodeId: 114
+      - count: 20
+        recipeSetName: baseSet
+        nodeId: 199
+      parentNodeId: 198
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 197
+      parentNodeId: 198
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 200
+    pos: {x: 155.33981, y: 3145.631, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 2
+        recipeSetName: baseSet
+        nodeId: 203
+      - count: 5
+        recipeSetName: baseSet
+        nodeId: 202
+      parentNodeId: 200
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 201
+      parentNodeId: 200
+      recipeSetName: baseSet
+    tier: 1
+    timeCost: 5
+    CraftingType: 9
+  - recipeSetName: baseSet
+    id: 205
+    pos: {x: 388.34952, y: 3145.631, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 5
+        recipeSetName: baseSet
+        nodeId: 202
+      - count: 2
+        recipeSetName: baseSet
+        nodeId: 204
+      parentNodeId: 205
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 201
+      parentNodeId: 205
+      recipeSetName: baseSet
+    tier: 1
+    timeCost: 5
+    CraftingType: 9
+  - recipeSetName: baseSet
+    id: 206
+    pos: {x: -2524.2717, y: 466.0194, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 100
+        recipeSetName: baseSet
+        nodeId: 141
+      - count: 50
+        recipeSetName: baseSet
+        nodeId: 208
+      parentNodeId: 206
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 207
+      parentNodeId: 206
+      recipeSetName: baseSet
+    tier: 0
+    timeCost: 5
+    CraftingType: 8
+  - recipeSetName: baseSet
+    id: 209
+    pos: {x: -3106.7961, y: 1475.7281, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 1
+      type: 0
+      connections:
+      - count: 10
+        recipeSetName: baseSet
+        nodeId: 213
+      - count: 10
+        recipeSetName: baseSet
+        nodeId: 212
+      parentNodeId: 209
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 1
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 210
+      parentNodeId: 209
       recipeSetName: baseSet
     tier: 0
     timeCost: 5
@@ -2145,7 +3078,7 @@ MonoBehaviour:
   myItemNodes:
   - recipeSetName: baseSet
     id: 0
-    pos: {x: -155.33981, y: 0, z: 0}
+    pos: {x: -1048.5437, y: 155.33981, z: 0}
     myAdapters:
     - isLeftAdapter: 1
       myType: 0
@@ -2168,12 +3101,15 @@ MonoBehaviour:
     itemUniqueName: ironOre
   - recipeSetName: baseSet
     id: 1
-    pos: {x: 388.34952, y: 38.834953, z: 0}
+    pos: {x: -1087.3787, y: 776.69904, z: 0}
     myAdapters:
     - isLeftAdapter: 1
       myType: 0
       type: 1
       connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 119
       - count: 1
         recipeSetName: baseSet
         nodeId: 3
@@ -2182,13 +3118,22 @@ MonoBehaviour:
     - isLeftAdapter: 0
       myType: 0
       type: 0
-      connections: []
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 129
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 128
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 132
       parentNodeId: 1
       recipeSetName: baseSet
     itemUniqueName: ironIngot
   - recipeSetName: baseSet
-    id: 6
-    pos: {x: 194.17476, y: -427.18448, z: 0}
+    id: 34
+    pos: {x: -737.8641, y: 155.33981, z: 0}
     myAdapters:
     - isLeftAdapter: 1
       myType: 0
@@ -2196,25 +3141,137 @@ MonoBehaviour:
       connections:
       - count: 1
         recipeSetName: baseSet
-        nodeId: 7
-      parentNodeId: 6
+        nodeId: 33
+      parentNodeId: 34
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 126
+      parentNodeId: 34
+      recipeSetName: baseSet
+    itemUniqueName: copperOre
+  - recipeSetName: baseSet
+    id: 37
+    pos: {x: -466.0194, y: 155.33981, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 36
+      parentNodeId: 37
       recipeSetName: baseSet
     - isLeftAdapter: 0
       myType: 0
       type: 0
       connections: []
-      parentNodeId: 6
+      parentNodeId: 37
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 106
+    pos: {x: -2019.4175, y: 737.8641, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 109
+      parentNodeId: 106
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 106
+      recipeSetName: baseSet
+    itemUniqueName: 50ironcard
+  - recipeSetName: baseSet
+    id: 107
+    pos: {x: -2252.4272, y: 737.8641, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 108
+      parentNodeId: 107
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 107
+      recipeSetName: baseSet
+    itemUniqueName: 50copperCard
+  - recipeSetName: baseSet
+    id: 114
+    pos: {x: -2135.9224, y: 155.33981, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 114
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 108
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 109
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 116
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 198
+      parentNodeId: 114
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 117
+    pos: {x: -1786.4077, y: 737.8641, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 116
+      parentNodeId: 117
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 117
       recipeSetName: baseSet
     itemUniqueName: 50ironIngotCard
   - recipeSetName: baseSet
-    id: 8
-    pos: {x: -466.0194, y: -466.0194, z: 0}
+    id: 122
+    pos: {x: -2252.4272, y: -77.66991, z: 0}
     myAdapters:
     - isLeftAdapter: 1
       myType: 0
       type: 1
       connections: []
-      parentNodeId: 8
+      parentNodeId: 122
       recipeSetName: baseSet
     - isLeftAdapter: 0
       myType: 0
@@ -2222,10 +3279,1141 @@ MonoBehaviour:
       connections:
       - count: 1
         recipeSetName: baseSet
-        nodeId: 7
-      parentNodeId: 8
+        nodeId: 108
+      parentNodeId: 122
+      recipeSetName: baseSet
+    itemUniqueName: copperOre
+  - recipeSetName: baseSet
+    id: 123
+    pos: {x: -2019.4175, y: -77.66991, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 123
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 109
+      parentNodeId: 123
+      recipeSetName: baseSet
+    itemUniqueName: ironOre
+  - recipeSetName: baseSet
+    id: 124
+    pos: {x: -1786.4077, y: -77.66991, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 124
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 116
+      parentNodeId: 124
       recipeSetName: baseSet
     itemUniqueName: ironIngot
+  - recipeSetName: baseSet
+    id: 127
+    pos: {x: -734.3114, y: 769.2043, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 126
+      parentNodeId: 127
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 127
+      recipeSetName: baseSet
+    itemUniqueName: copperPlate
+  - recipeSetName: baseSet
+    id: 130
+    pos: {x: -893.20386, y: 1436.8932, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 128
+      parentNodeId: 130
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 129
+      parentNodeId: 130
+      recipeSetName: baseSet
+    itemUniqueName: ironPlate
+  - recipeSetName: baseSet
+    id: 131
+    pos: {x: -1158.7733, y: 1902.893, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 129
+      parentNodeId: 131
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 131
+      recipeSetName: baseSet
+    itemUniqueName: drillBits
+  - recipeSetName: baseSet
+    id: 134
+    pos: {x: 233.0097, y: 388.34952, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 133
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 138
+      parentNodeId: 134
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 137
+      parentNodeId: 134
+      recipeSetName: baseSet
+    itemUniqueName: water
+  - recipeSetName: baseSet
+    id: 136
+    pos: {x: 233.0097, y: 970.8738, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 135
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 137
+      parentNodeId: 136
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 132
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 138
+      parentNodeId: 136
+      recipeSetName: baseSet
+    itemUniqueName: fuel
+  - recipeSetName: baseSet
+    id: 139
+    pos: {x: -427.18448, y: 1631.068, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 132
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 140
+      parentNodeId: 139
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 139
+      recipeSetName: baseSet
+    itemUniqueName: titanium
+  - recipeSetName: baseSet
+    id: 141
+    pos: {x: -2757.2815, y: 116.50485, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 141
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 143
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 142
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 206
+      parentNodeId: 141
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 144
+    pos: {x: -3339.806, y: 699.0291, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 149
+      parentNodeId: 144
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 144
+      recipeSetName: baseSet
+    itemUniqueName: basicDroneCard
+  - recipeSetName: baseSet
+    id: 147
+    pos: {x: -2757.2815, y: 737.8641, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 142
+      parentNodeId: 147
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 147
+      recipeSetName: baseSet
+    itemUniqueName: assembler2unlock
+  - recipeSetName: baseSet
+    id: 148
+    pos: {x: -2990.2913, y: 737.8641, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 143
+      parentNodeId: 148
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 148
+      recipeSetName: baseSet
+    itemUniqueName: pressUnlock
+  - recipeSetName: baseSet
+    id: 150
+    pos: {x: -3456.3108, y: 116.50485, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 150
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 149
+      parentNodeId: 150
+      recipeSetName: baseSet
+    itemUniqueName: titanium
+  - recipeSetName: baseSet
+    id: 151
+    pos: {x: -3223.301, y: 116.50485, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 151
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 149
+      parentNodeId: 151
+      recipeSetName: baseSet
+    itemUniqueName: fuel
+  - recipeSetName: baseSet
+    id: 158
+    pos: {x: -2252.4272, y: 1747.5728, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 152
+      parentNodeId: 158
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 158
+      recipeSetName: baseSet
+    itemUniqueName: bFurnace
+  - recipeSetName: baseSet
+    id: 159
+    pos: {x: -2019.4175, y: 1747.5728, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 120
+      parentNodeId: 159
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 159
+      recipeSetName: baseSet
+    itemUniqueName: bMiner
+  - recipeSetName: baseSet
+    id: 160
+    pos: {x: -1786.4077, y: 1747.5728, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 121
+      parentNodeId: 160
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 160
+      recipeSetName: baseSet
+    itemUniqueName: bProcessor
+  - recipeSetName: baseSet
+    id: 162
+    pos: {x: -1786.4077, y: 2563.1067, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 154
+      parentNodeId: 162
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 162
+      recipeSetName: baseSet
+    itemUniqueName: bBelt1
+  - recipeSetName: baseSet
+    id: 163
+    pos: {x: -2019.4175, y: 2563.1067, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 155
+      parentNodeId: 163
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 163
+      recipeSetName: baseSet
+    itemUniqueName: bConnector
+  - recipeSetName: baseSet
+    id: 164
+    pos: {x: -2524.2717, y: 1747.5728, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 156
+      parentNodeId: 164
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 164
+      recipeSetName: baseSet
+    itemUniqueName: bPress
+  - recipeSetName: baseSet
+    id: 169
+    pos: {x: -2330.0972, y: 2563.1067, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 171
+      parentNodeId: 169
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 169
+      recipeSetName: baseSet
+    itemUniqueName: bStorage
+  - recipeSetName: baseSet
+    id: 170
+    pos: {x: -2563.1067, y: 2563.1067, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 172
+      parentNodeId: 170
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 170
+      recipeSetName: baseSet
+    itemUniqueName: bCollector
+  - recipeSetName: baseSet
+    id: 173
+    pos: {x: -2019.4175, y: 2019.4175, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 173
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 155
+      parentNodeId: 173
+      recipeSetName: baseSet
+    itemUniqueName: ironIngot
+  - recipeSetName: baseSet
+    id: 174
+    pos: {x: -1786.4077, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 174
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 121
+      parentNodeId: 174
+      recipeSetName: baseSet
+    itemUniqueName: ironOre
+  - recipeSetName: baseSet
+    id: 175
+    pos: {x: -2019.4175, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 175
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 120
+      parentNodeId: 175
+      recipeSetName: baseSet
+    itemUniqueName: ironIngot
+  - recipeSetName: baseSet
+    id: 176
+    pos: {x: -2252.4272, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 176
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 152
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 120
+      parentNodeId: 176
+      recipeSetName: baseSet
+    itemUniqueName: copperOre
+  - recipeSetName: baseSet
+    id: 177
+    pos: {x: -2524.2717, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 177
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 157
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 156
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 152
+      parentNodeId: 177
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 178
+    pos: {x: -2757.2815, y: 1747.5728, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 157
+      parentNodeId: 178
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 178
+      recipeSetName: baseSet
+    itemUniqueName: bAssembler2
+  - recipeSetName: baseSet
+    id: 179
+    pos: {x: -2757.2815, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 179
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 157
+      parentNodeId: 179
+      recipeSetName: baseSet
+    itemUniqueName: ironPlate
+  - recipeSetName: baseSet
+    id: 180
+    pos: {x: 38.834953, y: 1864.0776, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 180
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 194
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 196
+      parentNodeId: 180
+      recipeSetName: baseSet
+    itemUniqueName: copperOre
+  - recipeSetName: baseSet
+    id: 181
+    pos: {x: 271.84467, y: 1864.0776, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 181
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 194
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 195
+      parentNodeId: 181
+      recipeSetName: baseSet
+    itemUniqueName: ironOre
+  - recipeSetName: baseSet
+    id: 182
+    pos: {x: 504.85437, y: 1864.0776, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 182
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 195
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 196
+      parentNodeId: 182
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 183
+    pos: {x: 38.834953, y: 2446.602, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 194
+      parentNodeId: 183
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 183
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 184
+    pos: {x: 271.84467, y: 2446.602, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 195
+      parentNodeId: 184
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 184
+      recipeSetName: baseSet
+    itemUniqueName: copperOre
+  - recipeSetName: baseSet
+    id: 185
+    pos: {x: 504.85437, y: 2446.602, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 196
+      parentNodeId: 185
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 185
+      recipeSetName: baseSet
+    itemUniqueName: ironOre
+  - recipeSetName: baseSet
+    id: 186
+    pos: {x: -854.36896, y: 3145.631, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 187
+      parentNodeId: 186
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 186
+      recipeSetName: baseSet
+    itemUniqueName: winGame
+  - recipeSetName: baseSet
+    id: 188
+    pos: {x: -1281.5533, y: 2563.1067, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 188
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 187
+      parentNodeId: 188
+      recipeSetName: baseSet
+    itemUniqueName: drillBits
+  - recipeSetName: baseSet
+    id: 189
+    pos: {x: -1126.2136, y: 2368.9321, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 189
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 187
+      parentNodeId: 189
+      recipeSetName: baseSet
+    itemUniqueName: titanium
+  - recipeSetName: baseSet
+    id: 190
+    pos: {x: -970.8738, y: 2174.7573, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 190
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 187
+      parentNodeId: 190
+      recipeSetName: baseSet
+    itemUniqueName: copperPlate
+  - recipeSetName: baseSet
+    id: 191
+    pos: {x: -737.8641, y: 2174.7573, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 191
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 187
+      parentNodeId: 191
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 192
+    pos: {x: -582.5243, y: 2368.9321, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 192
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 187
+      parentNodeId: 192
+      recipeSetName: baseSet
+    itemUniqueName: fuel
+  - recipeSetName: baseSet
+    id: 193
+    pos: {x: -427.18448, y: 2563.1067, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 193
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 187
+      parentNodeId: 193
+      recipeSetName: baseSet
+    itemUniqueName: water
+  - recipeSetName: baseSet
+    id: 197
+    pos: {x: -1553.3981, y: 737.8641, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 198
+      parentNodeId: 197
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 197
+      recipeSetName: baseSet
+    itemUniqueName: 50waterCard
+  - recipeSetName: baseSet
+    id: 199
+    pos: {x: -1553.3981, y: -77.66991, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 199
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 198
+      parentNodeId: 199
+      recipeSetName: baseSet
+    itemUniqueName: water
+  - recipeSetName: baseSet
+    id: 201
+    pos: {x: 271.84467, y: 3456.3108, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 200
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 205
+      parentNodeId: 201
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 201
+      recipeSetName: baseSet
+    itemUniqueName: concrete
+  - recipeSetName: baseSet
+    id: 202
+    pos: {x: 271.84467, y: 2796.1165, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 202
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 200
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 205
+      parentNodeId: 202
+      recipeSetName: baseSet
+    itemUniqueName: water
+  - recipeSetName: baseSet
+    id: 203
+    pos: {x: 38.834953, y: 2796.1165, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 203
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 200
+      parentNodeId: 203
+      recipeSetName: baseSet
+    itemUniqueName: ironOre
+  - recipeSetName: baseSet
+    id: 204
+    pos: {x: 504.85437, y: 2796.1165, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 204
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 205
+      parentNodeId: 204
+      recipeSetName: baseSet
+    itemUniqueName: copperOre
+  - recipeSetName: baseSet
+    id: 207
+    pos: {x: -2524.2717, y: 737.8641, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 206
+      parentNodeId: 207
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 207
+      recipeSetName: baseSet
+    itemUniqueName: processor2unlock
+  - recipeSetName: baseSet
+    id: 208
+    pos: {x: -2524.2717, y: 116.50485, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 208
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 206
+      parentNodeId: 208
+      recipeSetName: baseSet
+    itemUniqueName: water
+  - recipeSetName: baseSet
+    id: 210
+    pos: {x: -3106.7961, y: 1747.5728, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 209
+      parentNodeId: 210
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections: []
+      parentNodeId: 210
+      recipeSetName: baseSet
+    itemUniqueName: bProcessor2
+  - recipeSetName: baseSet
+    id: 212
+    pos: {x: -2990.2913, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 212
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 209
+      parentNodeId: 212
+      recipeSetName: baseSet
+    itemUniqueName: fuel
+  - recipeSetName: baseSet
+    id: 213
+    pos: {x: -3223.301, y: 1165.0486, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 213
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 209
+      parentNodeId: 213
+      recipeSetName: baseSet
+    itemUniqueName: ironOre
+  - recipeSetName: baseSet
+    id: 214
+    pos: {x: -1786.4077, y: 2019.4175, z: 0}
+    myAdapters:
+    - isLeftAdapter: 1
+      myType: 0
+      type: 1
+      connections: []
+      parentNodeId: 214
+      recipeSetName: baseSet
+    - isLeftAdapter: 0
+      myType: 0
+      type: 0
+      connections:
+      - count: 1
+        recipeSetName: baseSet
+        nodeId: 154
+      parentNodeId: 214
+      recipeSetName: baseSet
+    itemUniqueName: ironOre
   myResearchNodes: []
 --- !u!114 &896045736394307463
 MonoBehaviour:

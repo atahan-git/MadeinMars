@@ -26,9 +26,9 @@ public class SpriteGraphicsController : MonoBehaviour {
     Vector3 originalPos;
 
     // Start is called before the first frame update
-    void Start() {
-        /*if (rend == null)
-            CreateShadow();*/
+    void Awake() {
+        if (rend == null)
+            rend = GetComponent<SpriteRenderer>();
     }
 
     // 00C8FF
@@ -115,72 +115,131 @@ public class SpriteGraphicsController : MonoBehaviour {
     public void Clear() {
         if (instantiatedPrefab) {
             Destroy(instantiatedPrefab);
+            rend = GetComponent<SpriteRenderer>();
         }
 
-        if (anim && anim.isPlaying)
-            anim.Stop();
+        if (myShadow != null)
+            Destroy(myShadow);
+
+        var animatedSprites = GetComponentsInChildren<AnimatedSpriteController>();
+
+        for (int i = 0; i < animatedSprites.Length; i++) {
+            Destroy(animatedSprites[i]);
+        }
+        
+        
         if (rend)
             rend.sprite = null;
+        
+        
+        if(landingFx != null)
+            Destroy(landingFx);
+        if(landingFloor != null)
+            Destroy(landingFloor);
     }
 
     public GameObject spaceLandingPrefab;
 
     public delegate void SpaceLandingCallback();
 
-    public void DoSpaceLanding(SpaceLandingCallback callback, float xDisp = 0) {
+    public void DoSpaceLanding(SpaceLandingCallback callback, float xDisp, SpriteAnimationHolder landingLegsAnim) {
         StopCoroutine("SpaceLanding");
-        StartCoroutine(SpaceLanding(true, callback, xDisp));
+        StartCoroutine(SpaceLanding(true, callback, xDisp, landingLegsAnim));
     }
 
-    public void DoSpaceLiftoff(SpaceLandingCallback callback, float xDisp = 0) {
+    public void DoSpaceLiftoff(SpaceLandingCallback callback, float xDisp, SpriteAnimationHolder landingLegsAnim) {
         StopCoroutine("SpaceLanding");
-        StartCoroutine(SpaceLanding(false, callback, xDisp));
+        StartCoroutine(SpaceLanding(false, callback, xDisp, landingLegsAnim));
     }
 
-    private const float SpaceLandingHeightMultiplier = 2f / 3f;
+    private const float SpaceLandingHeightMultiplier = 5f / 3f; //2f/3f
     private const float SpaceLandingHeight = 100f * SpaceLandingHeightMultiplier * SpaceLandingHeightMultiplier;
     private const float SpaceLandingStartSpeed = -50f * SpaceLandingHeightMultiplier;
 
     private const float SpaceLandingDeceleration = (SpaceLandingStartSpeed * SpaceLandingStartSpeed) / (2f * (SpaceLandingHeight));
     public const float SpaceLandingTime = -SpaceLandingStartSpeed / SpaceLandingDeceleration;
-//0 = u^2 + 2as
+//v = u^2 + 2as
+//v = 0
 //u^2 = 2as
 //u^2/2s = a
 
-// 0 = u + at
+// v = u + at
+// v = 0
 // t = -u/a
 
+    private const float landingLegOpenDistance = 15f;
 
-    private float landingLegOpenDistance = 2f;
 
-    IEnumerator SpaceLanding(bool isLanding, SpaceLandingCallback callback, float xDisp) {
-        var landingFx = Instantiate(spaceLandingPrefab, transform);
+    private GameObject landingFx;
+    private GameObject landingFloor;
+    IEnumerator SpaceLanding(bool isLanding, SpaceLandingCallback callback, float xDisp, SpriteAnimationHolder landingLegsAnim) {
+        var startTime = Time.realtimeSinceStartup;
+        
+        if(landingFx != null)
+            Destroy(landingFx);
+        landingFx = Instantiate(spaceLandingPrefab, transform);
         landingFx.transform.localPosition = Vector3.zero;
-        var landingFloor = landingFx.transform.Find("Landing Floor").gameObject;
+        if(landingFloor != null)
+            Destroy(landingFloor);
+        landingFloor = landingFx.transform.Find("Landing Floor").gameObject;
         landingFloor.transform.SetParent(transform.parent);
         landingFloor.transform.localPosition = originalPos + Vector3.down * 2;
+
+        Sprite originalSprite = rend.sprite;
+        var spriteIndex = 0f;
+        if (landingLegsAnim != null) {
+            spriteIndex = !isLanding ? 0 : landingLegsAnim.sprites.Length-1;
+            rend.sprite = landingLegsAnim.sprites[(int)spriteIndex];
+        }
+        
 
 // If we are landing, start from the space and go down.
 // If we are lifting off, start from zero and go up.
         float curHeight = isLanding ? SpaceLandingHeight : 0;
-        float curDisp = isLanding ? xDisp : -xDisp;
-        float dispSpeed = -(curDisp / SpaceLandingTime );
+        float curDisp = isLanding ? xDisp : 0;
+        float dispSpeed = isLanding ? -(xDisp / (SpaceLandingTime/2) ) : 0;
         float curSpeed = isLanding ? SpaceLandingStartSpeed : 0;
         float acceleration = isLanding ? SpaceLandingDeceleration : SpaceLandingDeceleration;
+        float dispAcceleration = 0;
+        if (xDisp != 0) {
+            dispAcceleration = ((xDisp / (SpaceLandingTime/2f) ) * (xDisp / (SpaceLandingTime/2f) )) / (2 * xDisp);
+            dispAcceleration *= isLanding ? 1 : -1;
+        } 
+
         while (isLanding ? curHeight >= 0 : curHeight < SpaceLandingHeight) {
             SetHeight(originalPos + Vector3.left*curDisp, curHeight);
             curHeight += curSpeed * Time.deltaTime;
             curSpeed += acceleration * Time.deltaTime;
             curDisp += dispSpeed * Time.deltaTime;
+            dispSpeed += dispAcceleration * Time.deltaTime;
+
+            if (landingLegsAnim != null) {
+                if (curHeight < landingLegOpenDistance) {
+                    var delta = Time.deltaTime / landingLegsAnim.waitSeconds;
+                    spriteIndex += delta * (!isLanding ? +1 : -1);
+                    if (spriteIndex > landingLegsAnim.sprites.Length) {
+                        spriteIndex = landingLegsAnim.sprites.Length - 1;
+                    } else if (spriteIndex <= 0) {
+                        spriteIndex = 0;
+                    }
+
+                    rend.sprite = landingLegsAnim.sprites[(int) spriteIndex];
+                }
+            }
 
             yield return null;
         }
 
         SetHeight(isLanding? originalPos : originalPos+ Vector3.left*curDisp, isLanding ? 0 : SpaceLandingHeight);
 
-        landingFx.transform.Find("Landing Rocket").GetComponent<ParticleSystem>().Stop();
+        if(landingFx != null)
+            landingFx.transform.Find("Landing Rocket").GetComponent<ParticleSystem>().Stop();
         StartCoroutine(DestroyLandingFx(landingFx, landingFloor));
 
+        rend.sprite = originalSprite;
+
+        var realLandingTime = Time.realtimeSinceStartup - startTime;
+        Debug.Log($"Real Landing time {realLandingTime}, CalculatedLandingTime {SpaceLandingTime}");
 
         yield return new WaitForSeconds(1f);
 
@@ -188,11 +247,11 @@ public class SpriteGraphicsController : MonoBehaviour {
         callback?.Invoke();
     }
 
-    IEnumerator DestroyLandingFx(GameObject fx, GameObject floor) {
-        yield return new WaitForSeconds(2f);
+    IEnumerator DestroyLandingFx(GameObject landingFx, GameObject landingFloor) {
+        yield return new WaitForSeconds(15f);
 
-        Destroy(fx);
-        Destroy(floor);
+        Destroy(landingFx);
+        Destroy(landingFloor);
     }
 
     void SetHeight(Vector3 originalPos, float offset) {

@@ -18,7 +18,9 @@ public class GUI_StarSelectionController : MonoBehaviour {
     public void LandToPlanet(Planet planet) {
         Debug.Log($"Landing on planet: {planet.schematic.uniqueName} - {planet.oreDensities} - {planet.oreNames}");
         var saveFile = DataSaver.s.GetSave();
-        saveFile.currentPlanet = new DataSaver.LocalPlanetData(new DataSaver.PlanetData(planet.schematic.uniqueName, planet.oreDensities, planet.oreNames));
+        saveFile.currentPlanet = new DataSaver.LocalPlanetData(
+            new DataSaver.PlanetData(planet.planetGenerationInt, planet.schematic.uniqueName, planet.oreDensities, planet.oreNames, planet.myPresentCardNames)
+            );
         SceneChangeMaster.s.LoadPlanetLevel();
     }
 }

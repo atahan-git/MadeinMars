@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,10 +33,18 @@ public class DroneInfoDisplay : MonoBehaviour
     
     public void SetUp() {
         isSetup = true;
-        canvas.SetActive(isSetup);
+        canvas.SetActive(BuildingInfoDisplay.isExtraInfoVisible);
+        if (myDrone != null) {
+            myDrone.myInventory.drawInventoryEvent -= DrawInventory;
+        }
+        
         myDrone = GetComponent<DroneWorldObject>().myDrone;
         myDrone.myInventory.drawInventoryEvent += DrawInventory;
         DrawInventory();
+    }
+
+    private void OnDestroy() {
+        myDrone.myInventory.drawInventoryEvent -= DrawInventory;
     }
 
     // Update is called once per frame

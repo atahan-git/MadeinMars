@@ -13,7 +13,7 @@ public class CraftingNodeGfx : NodeGfx {
     public Image background;
     public Text craftingName;
     
-    public Color[] craftingTypeColors = new Color[11];
+    public Color[] craftingTypeColors = new Color[12];
     public float nonLegalBrightness = 0.5f;
     
     public ValueRegion craftingTypeRegion;
@@ -22,8 +22,8 @@ public class CraftingNodeGfx : NodeGfx {
 
     private static string[] dropDownOptions = null;
     private static CraftingNode.cTypes[] craftingTypes;
-    public void ReDrawnNode(RecipeTreeViewer master, CraftingNode node) {
-        base.ReDrawnNode(master, node);
+    public void ReDrawnNode(RecipeTreeViewer master, CraftingNode node, bool isInteractable) {
+        base.ReDrawnNode(master, node, isInteractable);
 
         myNode = node;
 
@@ -35,9 +35,9 @@ public class CraftingNodeGfx : NodeGfx {
             }
             
         }
-        craftingTypeRegion.SetUp(ValueRegion.type.craftingType,true, "Crafting Type", dropDownOptions,this, (int)node.CraftingType);
-        craftingTierRegion.SetUp(ValueRegion.type.craftingTier,true, "Crafting Tier", null,this, node.tier);
-        timeCostRegion.SetUp(ValueRegion.type.timeCost,true, "Time Cost",  null, this, node.timeCost);
+        craftingTypeRegion.SetUp(ValueRegion.type.craftingType,true, "Crafting Type", dropDownOptions,this, (int)node.CraftingType, isInteractable);
+        craftingTierRegion.SetUp(ValueRegion.type.craftingTier,true, "Crafting Tier", null,this, node.tier, isInteractable);
+        timeCostRegion.SetUp(ValueRegion.type.timeCost,true, "Time Cost",  null, this, node.timeCost, isInteractable);
         
         UpdateVisuals();
     }
@@ -83,12 +83,12 @@ public class CraftingNodeGfx : NodeGfx {
                     isLegal = true;
                 background.color = craftingTypeColors[1];
                 break;
-            case CraftingNode.cTypes.ProcessorSingle:
+            case CraftingNode.cTypes.AssemblerSingle:
                 if (inputCount == 1 && outputCount > 0)
                     isLegal = true;
                 background.color = craftingTypeColors[2];
                 break;
-            case CraftingNode.cTypes.ProcessorDouble:
+            case CraftingNode.cTypes.AssemblerDouble:
                 if (inputCount == 2 && outputCount > 0)
                     isLegal = true;
                 background.color = craftingTypeColors[3];
@@ -117,6 +117,11 @@ public class CraftingNodeGfx : NodeGfx {
                 if (outputCount  == 1)
                     isLegal = true;
                 background.color = craftingTypeColors[8];
+                break;
+            case CraftingNode.cTypes.Processor:
+                if (outputCount  == 1)
+                    isLegal = true;
+                background.color = craftingTypeColors[9];
                 break;
         }
 

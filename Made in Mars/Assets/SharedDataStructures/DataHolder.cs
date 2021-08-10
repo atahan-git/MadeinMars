@@ -151,7 +151,7 @@ public class DataHolder  {
             }
         }
 
-        oreId = 0;
+        oreId = -1;
         return false;
     }
 
@@ -330,6 +330,9 @@ public class DataHolder  {
             }
         }
 
+        if (countedItems.Count == 0) {
+            Debug.LogError($"This selection contains no connections {craftingNode.id} - {craftingNode.CraftingType} - {isLeft}");
+        }
         return countedItems;
     }
     
@@ -396,26 +399,27 @@ public class DataHolder  {
         myCraftingProcessesDivided = cp.Select(a => a.ToArray()).ToArray();
     }
 
-    public CraftingNode[] GetCraftingProcessesOfType (BuildingData.ItemType type) {
+    public CraftingNode[] GetCraftingProcessesOfTypeandTier (BuildingData.ItemType type, int tier) {
         int index = -1;
         switch (type) {
         case BuildingData.ItemType.Miner:           index = 0; break;
         case BuildingData.ItemType.Furnace:         index = 1; break;
-        case BuildingData.ItemType.ProcessorSingle: index = 2; break;
-        case BuildingData.ItemType.ProcessorDouble: index = 3; break;
+        case BuildingData.ItemType.AssemblerSingle: index = 2; break;
+        case BuildingData.ItemType.AssemblerDouble: index = 3; break;
         case BuildingData.ItemType.Press:           index = 4; break;
         case BuildingData.ItemType.Coiler:          index = 5; break;
         case BuildingData.ItemType.Cutter:          index = 6; break;
         case BuildingData.ItemType.Lab:             index = 7; break;
         case BuildingData.ItemType.Building:        index = 8; break;
+        case BuildingData.ItemType.Processor:       index = 9; break;
         }
         if (index == -1) {
-            Debug.Log("Building does not support crafting! >> " + type.ToString());
+            //Debug.Log("Building does not support crafting! >> " + type.ToString());
             return null;
         }
 
         if (index < myCraftingProcessesDivided.Length) {
-            return myCraftingProcessesDivided[index];
+            return Array.FindAll(myCraftingProcessesDivided[index], x => x.tier == tier);
         } else {
             Debug.LogError("Crafting Process of correct type not found!");
             return null;
@@ -433,13 +437,14 @@ public class DataHolder  {
             cTypetoIndexMatch = new Dictionary<CraftingNode.cTypes, int>();
             cTypetoIndexMatch[CraftingNode.cTypes.Miner] = 0;
             cTypetoIndexMatch[CraftingNode.cTypes.Furnace] = 1;
-            cTypetoIndexMatch[CraftingNode.cTypes.ProcessorSingle] = 2;
-            cTypetoIndexMatch[CraftingNode.cTypes.ProcessorDouble] = 3;
+            cTypetoIndexMatch[CraftingNode.cTypes.AssemblerSingle] = 2;
+            cTypetoIndexMatch[CraftingNode.cTypes.AssemblerDouble] = 3;
             cTypetoIndexMatch[CraftingNode.cTypes.Press] = 4;
             cTypetoIndexMatch[CraftingNode.cTypes.Coiler] = 5;
             cTypetoIndexMatch[CraftingNode.cTypes.Cutter] = 6;
             cTypetoIndexMatch[CraftingNode.cTypes.Lab] = 7;
             cTypetoIndexMatch[CraftingNode.cTypes.Building] = 8;
+            cTypetoIndexMatch[CraftingNode.cTypes.Processor] = 9;
         }
 
         return cTypetoIndexMatch[type];

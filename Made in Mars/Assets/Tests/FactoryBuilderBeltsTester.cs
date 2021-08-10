@@ -372,9 +372,9 @@ namespace Tests {
 			for (int i = 0; i < 16; i++) {
 				// add items in chunks
 				if (i < 3 || (i > 7 && i < 10) || i > 15) {
-					belt.TryInsertItemToBelt(dummy1);
+					belt.TryAndInsertItem(dummy1);
 				} else if (i < 5) {
-					belt.TryInsertItemToBelt(dummy2);
+					belt.TryAndInsertItem(dummy2);
 				}
 
 

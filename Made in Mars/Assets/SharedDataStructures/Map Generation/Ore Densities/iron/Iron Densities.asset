@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Iron Densities
   m_EditorClassIdentifier: 
   oreLevels:
-  - {fileID: 11400000, guid: eb647e993e4883b42a27e878e38fe18c, type: 2}
-  - {fileID: 11400000, guid: eb647e993e4883b42a27e878e38fe18c, type: 2}
-  - {fileID: 11400000, guid: eb647e993e4883b42a27e878e38fe18c, type: 2}
+  - {fileID: 11400000, guid: a3763bee186e7c84ab8ef56544406a76, type: 2}
+  - {fileID: 11400000, guid: 2ec53d518cd4d1244a995483ba3f5f77, type: 2}
+  - {fileID: 11400000, guid: 4dc5793726b6cbb47be8c6ac4a7b38c4, type: 2}

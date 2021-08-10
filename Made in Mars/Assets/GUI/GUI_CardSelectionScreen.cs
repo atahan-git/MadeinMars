@@ -14,12 +14,12 @@ public class GUI_CardSelectionScreen : MonoBehaviour {
 
     private void Awake() {
         ShipDataMaster.activeCardsUpdatedEvent += RedrawActiveCardsPanel;
-        ShipDataMaster.availableCardsUpdatedEvent += RedrawAvailableCardsPanel;
+        /*ShipDataMaster.availableCardsUpdatedEvent += RedrawAvailableCardsPanel;*/
     }
 
     private void OnDestroy() {
         ShipDataMaster.activeCardsUpdatedEvent -= RedrawActiveCardsPanel;
-        ShipDataMaster.availableCardsUpdatedEvent -= RedrawAvailableCardsPanel;
+        /*ShipDataMaster.availableCardsUpdatedEvent -= RedrawAvailableCardsPanel;*/
     }
 
     private void  RedrawActiveCardsPanel(List<IShipCard> cards) {
@@ -28,9 +28,9 @@ public class GUI_CardSelectionScreen : MonoBehaviour {
 
 
 
-    void RedrawAvailableCardsPanel(List<IShipCard> cards) {
+    /*void RedrawAvailableCardsPanel(List<IShipCard> cards) {
         availableCardsPanel.RedrawListOfCards(cards.Cast<ShipCard>().ToList());
-    }
+    }*/
 
 
     IShipCard GetCardFromPointerData(PointerEventData data) {

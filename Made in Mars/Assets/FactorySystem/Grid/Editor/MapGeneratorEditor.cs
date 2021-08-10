@@ -24,6 +24,10 @@ public class MapGeneratorEditor : Editor {
         if (GUILayout.Button("Generate Resources")) {
             myScript.GenerateResources(myScript.debugOreSpawnSettings);
         }
+        
+        if (GUILayout.Button("Clear Resources")) {
+            myScript.ClearResources();
+        }
 
         DrawDefaultInspector();
 

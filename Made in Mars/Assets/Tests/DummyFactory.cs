@@ -26,11 +26,15 @@ namespace Tests
 		
 
 		public static Item GetDummyInputItem() {
-			return new Item().MakeDummyItem(dummyInputName);
+			return ScriptableObject.CreateInstance<Item>().MakeDummyItem(dummyInputName);
 		}
 		
 		public static Item GetDummyOutputItem() {
-			return new Item().MakeDummyItem(dummyOutputName);
+			return ScriptableObject.CreateInstance<Item>().MakeDummyItem(dummyOutputName);
+		}
+
+		public static Item MakeDummyItem(string itemUniqueName) {
+			return ScriptableObject.CreateInstance<Item>().MakeDummyItem(itemUniqueName);
 		}
 		
 
@@ -38,7 +42,7 @@ namespace Tests
 			DataHolder.s = new DataHolder();
 			var itemSet = ScriptableObject.CreateInstance<ItemSet>();
 			DataHolder.s.allItemSets = new[] {itemSet};
-			itemSet.items = new[] {new Item().MakeDummyItem(dummyInputName), new Item().MakeDummyItem(dummyOutputName)};
+			itemSet.items = new[] {GetDummyInputItem(), GetDummyOutputItem()};
 			var recipeSet = ScriptableObject.CreateInstance<RecipeSet>();
 			DataHolder.s.allRecipeSets = new[] {recipeSet};
 			DataHolder.s.Setup();
@@ -62,7 +66,7 @@ namespace Tests
 		public static Belt GetFullBelt() {
 			return new Belt(new Position(0, 0), new Position(0, 0)) {
 				items = new List<Belt.BeltSegment>() {
-					new Belt.BeltSegment() {count = 1, item = new Item().MakeDummyItem(1)},
+					new Belt.BeltSegment() {count = 1, item = MakeDummyItem(1.ToString())},
 				}
 			};
 		}
@@ -76,7 +80,7 @@ namespace Tests
 		}
 
 		public static bool CheckBeltEmptyness(Connector.Connection connection) {
-			return connection.belt.items[0].item.isEmpty();
+			return (connection.myObj as Belt).items[0].item.isEmpty();
 		}
 
 		[Test]
@@ -90,8 +94,8 @@ namespace Tests
 
 		public static Building GetFullBuilding() {
 			var inventory = new List<InventoryItemSlot>();
-			inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1), 1, 1, InventoryItemSlot.SlotType.output));
-			inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1), 1, 1, InventoryItemSlot.SlotType.input));
+			inventory.Add(new InventoryItemSlot(MakeDummyItem(1.ToString()), 1, 1, InventoryItemSlot.SlotType.output));
+			inventory.Add(new InventoryItemSlot(MakeDummyItem(1.ToString()), 1, 1, InventoryItemSlot.SlotType.input));
 			var building = new Building(new Position(0, 0), GetDummyBuildingData(), inventory);
 			building.inv = InventoryFactory.CreateBuildingInventory(null, building);
 			building.inv.SetInventory(inventory);
@@ -100,8 +104,8 @@ namespace Tests
 
 		public static Building GetEmptyBuilding() {
 			var inventory = new List<InventoryItemSlot>();
-			inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1), 0, 1, InventoryItemSlot.SlotType.output));
-			inventory.Add(new InventoryItemSlot(new Item().MakeDummyItem(1), 0, 1, InventoryItemSlot.SlotType.input));
+			inventory.Add(new InventoryItemSlot(MakeDummyItem(1.ToString()), 0, 1, InventoryItemSlot.SlotType.output));
+			inventory.Add(new InventoryItemSlot(MakeDummyItem(1.ToString()), 0, 1, InventoryItemSlot.SlotType.input));
 			var building = new Building(new Position(0, 0), GetDummyBuildingData(), inventory);
 			building.inv = InventoryFactory.CreateBuildingInventory(null, building);
 			building.inv.SetInventory(inventory);
@@ -109,11 +113,11 @@ namespace Tests
 		}
 
 		public static int GetBuildingInputCount(Connector.Connection connection) {
-			return connection.building.inv.GetTotalAmountOfItems(false);
+			return (connection.myObj as Building).inv.GetTotalAmountOfItems(false);
 		}
 
 		public static int GetBuildingOutputCount(Connector.Connection connection) {
-			return connection.building.inv.GetTotalAmountOfItems(true);
+			return (connection.myObj as Building).inv.GetTotalAmountOfItems(true);
 		}
 
 		[Test]
@@ -156,11 +160,11 @@ namespace Tests
             };
             var beltsegment3 = new List<Belt.BeltSegment>() {
                 new Belt.BeltSegment() {count = 3, item = Item.GetEmpty()},
-                new Belt.BeltSegment() {count = 2, item = new Item().MakeDummyItem(1)},
+                new Belt.BeltSegment() {count = 2, item = MakeDummyItem(1.ToString())},
             };
             var beltsegment4 = new List<Belt.BeltSegment>() {
                 new Belt.BeltSegment() {count = 3, item = Item.GetEmpty()},
-                new Belt.BeltSegment() {count = 2, item = new Item().MakeDummyItem(1)}
+                new Belt.BeltSegment() {count = 2, item = MakeDummyItem(1.ToString())}
             };
             var beltsegment5 = new List<Belt.BeltSegment>() { };
             var beltsegment6 = new List<Belt.BeltSegment>() { };
@@ -180,7 +184,7 @@ namespace Tests
 
 	        DataHolder.s.allItemSets[0].items = new Item[materials.Count];
 	        for(int i = 0; i < materials.Count; i++) {
-		        DataHolder.s.allItemSets[0].items[i] = new Item().MakeDummyItem(materials[i].itemUniqueName);
+		        DataHolder.s.allItemSets[0].items[i] = MakeDummyItem(materials[i].itemUniqueName);
 	        }
 
 	        var buildingData = ScriptableObject.CreateInstance<BuildingData>();
@@ -208,7 +212,7 @@ namespace Tests
 		        RecipeSet.ConnectAdapters(itemNode.myAdapters[1], craftingNode.myAdapters[0]);
 	        }
 
-	        var buildingNode = recipeSet.AddItemNode(Vector3.zero, new Item().MakeBuildingDataDummyItem(buildingData.uniqueName, null));
+	        var buildingNode = recipeSet.AddItemNode(Vector3.zero,MakeDummyItem(buildingData.uniqueName));
 	        RecipeSet.ConnectAdapters(buildingNode.myAdapters[0], craftingNode.myAdapters[1]);
 	        
 	        DataHolder.s.Setup();
@@ -235,7 +239,7 @@ namespace Tests
         public static Building CreateStorage(int slots, bool isInfinite) {
 	        var buildingData = ScriptableObject.CreateInstance<BuildingData>();
 	        buildingData.myType = BuildingData.ItemType.Storage;
-	        buildingData.buildingGrade = slots;
+	        buildingData.myTier = slots;
 	        buildingData.shape = new ArrayLayout();
 	        buildingData.shape.column[3].row[3] = true;
 	        var building = FactoryBuilder.CreateBuilding(buildingData, new Position(0, 0), null);

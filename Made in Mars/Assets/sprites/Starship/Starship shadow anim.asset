@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4afd542f70fd2a469402a72086f39f3, type: 3}
+  m_Name: Starship shadow anim
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 95a3651f91bd4d4479fbafb3f361cea7, type: 3}
+  - {fileID: 21300000, guid: 7be51c12cb7f7244e9bafa4774c0a07f, type: 3}
+  - {fileID: 21300000, guid: 14dd4790d8bcdf6429f489a5da2de06d, type: 3}
+  - {fileID: 21300000, guid: 638ba2ea62267cb4586a9bea06782079, type: 3}
+  - {fileID: 21300000, guid: e9cb6f40c39c8fb46a88effb2926dd6b, type: 3}
+  - {fileID: 21300000, guid: f644de64474638046b388b9819c4d8c2, type: 3}
+  - {fileID: 21300000, guid: 2c8555c8b585b78458709b1470e16852, type: 3}
+  - {fileID: 21300000, guid: c6f635699fd737047b7bc00a25d53a12, type: 3}
+  - {fileID: 21300000, guid: f2fb8cde623bddc448772e3558423f73, type: 3}
+  - {fileID: 21300000, guid: b26d2a73f65cd754397592daa5d9f77c, type: 3}
+  - {fileID: 21300000, guid: 26ffe8873785d9b4abc012dd910c4479, type: 3}
+  - {fileID: 21300000, guid: 662b2a1699ad69d4cacad3c6a988b19e, type: 3}
+  - {fileID: 21300000, guid: 9950fa7a53d7b2447815e3a17ccfc220, type: 3}
+  - {fileID: 21300000, guid: 88ae2a77cfd62cc4dafcb6129514fb2c, type: 3}
+  - {fileID: 21300000, guid: 708071915c1675442b854fa089c81d7e, type: 3}
+  - {fileID: 21300000, guid: a703f4c14b9c3d846ac3c3b9de00e97d, type: 3}
+  - {fileID: 21300000, guid: af38238a2c0203246b3c7cd697e59125, type: 3}
+  - {fileID: 21300000, guid: c82a1bc1061b49c40a25f7a297e8df3a, type: 3}
+  - {fileID: 21300000, guid: fcfc6303d9c9c764596d941a096f7f60, type: 3}
+  - {fileID: 21300000, guid: 7c83e3806a4cc674bba34bc85fca7b57, type: 3}
+  - {fileID: 21300000, guid: bc1fdbf6e8c4a3644b4612caf8459683, type: 3}
+  spritePerSecond: 10
+  stopSprite: {fileID: 21300000, guid: 95a3651f91bd4d4479fbafb3f361cea7, type: 3}

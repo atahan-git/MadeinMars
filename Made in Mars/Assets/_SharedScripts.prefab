@@ -58,9 +58,11 @@ MonoBehaviour:
         droneData: []
         buildingBarData: []
         planetData:
+          planetId: -1
           planetSchematicUniqueName: 
           oreDensities: 
           oreUniqueNames: []
+          shipCardUniqueNames: []
         isSpaceshipLanded: 0
         newPlanet: 0
       activeShipCards: []
@@ -71,6 +73,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 23aefbe98fb58c64f86bc2c1176272cb, type: 2}
     - {fileID: 11400000, guid: d987704331f33db42aff13f6aba638c0, type: 2}
     - {fileID: 11400000, guid: b1a47a898314dc344907cf5ccc1e6e9e, type: 2}
+    - {fileID: 11400000, guid: 4afd49c89de600e4aa0b9ab58d67a834, type: 2}
+    - {fileID: 11400000, guid: d830fe7b9a74f3d4facf3c17ef0feac3, type: 2}
+    - {fileID: 11400000, guid: 1498a36a1b9eeec4da7d5797ab13cc19, type: 2}
+    - {fileID: 11400000, guid: 1a81f3089e4da7a479123706e6169b40, type: 2}
+    - {fileID: 11400000, guid: 010c16d4991d3ee42b9cfcf8b262d8a7, type: 2}
+    - {fileID: 11400000, guid: 7c3e17077cc064d4c85c12a1c7a239dd, type: 2}
+    - {fileID: 11400000, guid: f0512b8bbfabb0a4cb8bb0ca814e6f41, type: 2}
+    - {fileID: 11400000, guid: a56c8bfb244168d4186acfe488f3daa3, type: 2}
     dontSave: 0
 --- !u!114 &827937899237870283
 MonoBehaviour:
@@ -124,38 +134,50 @@ MonoBehaviour:
   myDataHolder:
     allTileSets:
     - {fileID: 11400000, guid: 9d869f5af8894b142bd513f7de37e6a2, type: 2}
-    - {fileID: 11400000, guid: 03f690953e5942242a3dd541148a3390, type: 2}
     allPlanetSchematics:
     - {fileID: 11400000, guid: 7ca14eb843d739a408da330b5f1634dd, type: 2}
-    - {fileID: 11400000, guid: aaca87c5c3b0e7642974abe8f95c0720, type: 2}
     allOreDensities:
     - {fileID: 11400000, guid: 7a8816ebb55e61d4cbc87e8af76adbdc, type: 2}
     - {fileID: 11400000, guid: 6fb9c6e0166510e41bda400771f140c5, type: 2}
     - {fileID: 11400000, guid: 44d46d7f6bd07844ea87bcb90e61fb9d, type: 2}
+    - {fileID: 11400000, guid: eff295f5dc5cdbb4dbf58d8c3da2e91f, type: 2}
+    - {fileID: 11400000, guid: 2afd4ee46cdf1af458adf808fe8f5bae, type: 2}
     allBuildings:
-    - {fileID: 11400000, guid: ba231f49a8aba3446a75e21413b1b077, type: 2}
-    - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
-    - {fileID: 11400000, guid: 2f1242d7254920046bd3966523742832, type: 2}
     - {fileID: 11400000, guid: b1cb88f9cb208454fbf8fe40f959f985, type: 2}
-    - {fileID: 11400000, guid: 083597dc2ebf77f46a79e22709987166, type: 2}
+    - {fileID: 11400000, guid: 935730212d7031445a543c3e54b0b0e5, type: 2}
+    - {fileID: 11400000, guid: 6f3a19096147bdb4ea8f0404321377b4, type: 2}
     - {fileID: 11400000, guid: 7ea4ad04d5e8a6e47a134d0ec48a002f, type: 2}
-    - {fileID: 11400000, guid: 68d403cecda93af489e4609a79e60d9f, type: 2}
     - {fileID: 11400000, guid: 100a719508880084abd0d3fdba96fe00, type: 2}
-    - {fileID: 11400000, guid: 8a8742bdeef186546b5d5f9cc1208f04, type: 2}
     - {fileID: 11400000, guid: 2856b6823161cbf439dd9d00886b9883, type: 2}
-    - {fileID: 11400000, guid: 23a2e5f0ee7f46a4d98e77a03f014ab1, type: 2}
-    - {fileID: 11400000, guid: ad2b7ca6eab6c0343bf01a2e89986d22, type: 2}
+    - {fileID: 11400000, guid: 372e7db80a2c75a43b8f67c76a754284, type: 2}
     - {fileID: 11400000, guid: 4b348287299377648b8e1332c9d6be72, type: 2}
     - {fileID: 11400000, guid: f827b53c0d3612a40b8ce455ba2fba9a, type: 2}
-    - {fileID: 11400000, guid: 935730212d7031445a543c3e54b0b0e5, type: 2}
+    - {fileID: 11400000, guid: fe6dc29ddb91168478bbd3a930e52e75, type: 2}
+    - {fileID: 11400000, guid: 444990aa199557a40a19efa919313cc3, type: 2}
+    - {fileID: 11400000, guid: 23a2e5f0ee7f46a4d98e77a03f014ab1, type: 2}
+    - {fileID: 11400000, guid: 170996ae8e0452541904bd66c0de8d3c, type: 2}
     allItemSets:
     - {fileID: 11400000, guid: 9427da8f80d849340bc3314ec68eee65, type: 2}
     allRecipeSets:
     - {fileID: 11400000, guid: ee42a49283cfe254c8a49936c3f98286, type: 2}
     allShipCards:
+    - {fileID: 11400000, guid: 23aefbe98fb58c64f86bc2c1176272cb, type: 2}
+    - {fileID: 11400000, guid: 47ce574df46c0c04b81cbd03390a9299, type: 2}
+    - {fileID: 11400000, guid: 010c16d4991d3ee42b9cfcf8b262d8a7, type: 2}
+    - {fileID: 11400000, guid: 7c3e17077cc064d4c85c12a1c7a239dd, type: 2}
+    - {fileID: 11400000, guid: 4afd49c89de600e4aa0b9ab58d67a834, type: 2}
+    - {fileID: 11400000, guid: 6ed74f671cfaa3146ac4220fe68fc139, type: 2}
+    - {fileID: 11400000, guid: a56c8bfb244168d4186acfe488f3daa3, type: 2}
     - {fileID: 11400000, guid: d987704331f33db42aff13f6aba638c0, type: 2}
     - {fileID: 11400000, guid: b1a47a898314dc344907cf5ccc1e6e9e, type: 2}
-    - {fileID: 11400000, guid: 23aefbe98fb58c64f86bc2c1176272cb, type: 2}
+    - {fileID: 11400000, guid: d830fe7b9a74f3d4facf3c17ef0feac3, type: 2}
+    - {fileID: 11400000, guid: 1a81f3089e4da7a479123706e6169b40, type: 2}
+    - {fileID: 11400000, guid: 1498a36a1b9eeec4da7d5797ab13cc19, type: 2}
+    - {fileID: 11400000, guid: f0512b8bbfabb0a4cb8bb0ca814e6f41, type: 2}
+    - {fileID: 11400000, guid: 7199868a2ed76cb4cb14f505e93b7ed2, type: 2}
+    - {fileID: 11400000, guid: 49314e06ed4058943a0a0ea49ad5338b, type: 2}
+    - {fileID: 11400000, guid: 3516c471bb4d24e4fab654509b0ca4cd, type: 2}
+    - {fileID: 11400000, guid: c6481cf6e38936846b7f395ea2e1b4cd, type: 2}
     cardBuildingData: {fileID: 11400000, guid: 935730212d7031445a543c3e54b0b0e5, type: 2}
 --- !u!114 &8037295792184223520
 MonoBehaviour:

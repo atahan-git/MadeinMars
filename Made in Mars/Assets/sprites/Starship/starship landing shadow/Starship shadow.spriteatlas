@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Starship shadow
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 95a3651f91bd4d4479fbafb3f361cea7, type: 3}
+    - {fileID: 2800000, guid: 7be51c12cb7f7244e9bafa4774c0a07f, type: 3}
+    - {fileID: 2800000, guid: 14dd4790d8bcdf6429f489a5da2de06d, type: 3}
+    - {fileID: 2800000, guid: 638ba2ea62267cb4586a9bea06782079, type: 3}
+    - {fileID: 2800000, guid: e9cb6f40c39c8fb46a88effb2926dd6b, type: 3}
+    - {fileID: 2800000, guid: f644de64474638046b388b9819c4d8c2, type: 3}
+    - {fileID: 2800000, guid: 2c8555c8b585b78458709b1470e16852, type: 3}
+    - {fileID: 2800000, guid: c6f635699fd737047b7bc00a25d53a12, type: 3}
+    - {fileID: 2800000, guid: f2fb8cde623bddc448772e3558423f73, type: 3}
+    - {fileID: 2800000, guid: b26d2a73f65cd754397592daa5d9f77c, type: 3}
+    - {fileID: 2800000, guid: 26ffe8873785d9b4abc012dd910c4479, type: 3}
+    - {fileID: 2800000, guid: 662b2a1699ad69d4cacad3c6a988b19e, type: 3}
+    - {fileID: 2800000, guid: 9950fa7a53d7b2447815e3a17ccfc220, type: 3}
+    - {fileID: 2800000, guid: 88ae2a77cfd62cc4dafcb6129514fb2c, type: 3}
+    - {fileID: 2800000, guid: 708071915c1675442b854fa089c81d7e, type: 3}
+    - {fileID: 2800000, guid: a703f4c14b9c3d846ac3c3b9de00e97d, type: 3}
+    - {fileID: 2800000, guid: af38238a2c0203246b3c7cd697e59125, type: 3}
+    - {fileID: 2800000, guid: c82a1bc1061b49c40a25f7a297e8df3a, type: 3}
+    - {fileID: 2800000, guid: fcfc6303d9c9c764596d941a096f7f60, type: 3}
+    - {fileID: 2800000, guid: 7c83e3806a4cc674bba34bc85fca7b57, type: 3}
+    - {fileID: 2800000, guid: bc1fdbf6e8c4a3644b4612caf8459683, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e9cb6f40c39c8fb46a88effb2926dd6b, type: 3}
+  - {fileID: 21300000, guid: 7c83e3806a4cc674bba34bc85fca7b57, type: 3}
+  - {fileID: 21300000, guid: 14dd4790d8bcdf6429f489a5da2de06d, type: 3}
+  - {fileID: 21300000, guid: 708071915c1675442b854fa089c81d7e, type: 3}
+  - {fileID: 21300000, guid: a703f4c14b9c3d846ac3c3b9de00e97d, type: 3}
+  - {fileID: 21300000, guid: c82a1bc1061b49c40a25f7a297e8df3a, type: 3}
+  - {fileID: 21300000, guid: 7be51c12cb7f7244e9bafa4774c0a07f, type: 3}
+  - {fileID: 21300000, guid: fcfc6303d9c9c764596d941a096f7f60, type: 3}
+  - {fileID: 21300000, guid: b26d2a73f65cd754397592daa5d9f77c, type: 3}
+  - {fileID: 21300000, guid: f644de64474638046b388b9819c4d8c2, type: 3}
+  - {fileID: 21300000, guid: 662b2a1699ad69d4cacad3c6a988b19e, type: 3}
+  - {fileID: 21300000, guid: bc1fdbf6e8c4a3644b4612caf8459683, type: 3}
+  - {fileID: 21300000, guid: 88ae2a77cfd62cc4dafcb6129514fb2c, type: 3}
+  - {fileID: 21300000, guid: 26ffe8873785d9b4abc012dd910c4479, type: 3}
+  - {fileID: 21300000, guid: 2c8555c8b585b78458709b1470e16852, type: 3}
+  - {fileID: 21300000, guid: c6f635699fd737047b7bc00a25d53a12, type: 3}
+  - {fileID: 21300000, guid: 9950fa7a53d7b2447815e3a17ccfc220, type: 3}
+  - {fileID: 21300000, guid: af38238a2c0203246b3c7cd697e59125, type: 3}
+  - {fileID: 21300000, guid: 638ba2ea62267cb4586a9bea06782079, type: 3}
+  - {fileID: 21300000, guid: f2fb8cde623bddc448772e3558423f73, type: 3}
+  - {fileID: 21300000, guid: 95a3651f91bd4d4479fbafb3f361cea7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Starship shadow0004
+  - Starship shadow0019
+  - Starship shadow0002
+  - Starship shadow0014
+  - Starship shadow0015
+  - Starship shadow0017
+  - Starship shadow0001
+  - Starship shadow0018
+  - Starship shadow0009
+  - Starship shadow0005
+  - Starship shadow0011
+  - Starship shadow0020
+  - Starship shadow0013
+  - Starship shadow0010
+  - Starship shadow0006
+  - Starship shadow0007
+  - Starship shadow0012
+  - Starship shadow0016
+  - Starship shadow0003
+  - Starship shadow0008
+  - Starship shadow0000
+  m_Tag: Starship shadow
+  m_IsVariant: 0

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public abstract class MapFilter : ScriptableObject  {
@@ -25,6 +26,20 @@ public abstract class MapFilter : ScriptableObject  {
 
 		Array.Clear(scratchDisk, 0,scratchDisk.Length);
 		return scratchDisk;
+	}
+	
+	public static void RandomSpots (int[,] map, float seed, int density) {
+		Random.InitState((int)seed);
+		var xLength = map.GetLength(0);
+		var yLength = map.GetLength(1);
+		int spotCount = ((xLength * yLength) / (100 * 100)) * density;
+
+
+		var deadZone = 10;
+		for (int i = 0; i < spotCount; i++) {
+			Vector2Int spotLocation = new Vector2Int(Random.Range(deadZone, xLength-deadZone), Random.Range(deadZone, yLength-deadZone));
+			map[spotLocation.x, spotLocation.y] = 1;
+		}
 	}
 	
 	public static void PerlinNoise (int[,] map, float seed, float cutoff, float perlinScale) {

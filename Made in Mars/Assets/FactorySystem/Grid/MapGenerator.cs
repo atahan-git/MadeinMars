@@ -27,6 +27,10 @@ public class MapGenerator : MonoBehaviour  {
         }
         resources.ClearAllTiles();
 	}
+    
+    public void ClearResources () {
+        resources.ClearAllTiles();
+    }
 
     public OreSpawnSettings debugOreSpawnSettings;
     public int[,] debug_heights;
@@ -73,8 +77,11 @@ public class MapGenerator : MonoBehaviour  {
 
         int[,] map = new int[(int)mapSize.x, (int)mapSize.y];
 
-        MapFilter.PerlinNoise(map, seed, new float[] { setting.cutoff * (1f - setting.edgePercent), setting.cutoff * (1f + setting.edgePercent) }, setting.perlinScale);
-
+        if(setting.isPerlinOre)
+            MapFilter.PerlinNoise(map, seed, new float[] { setting.cutoff * (1f - setting.edgePercent), setting.cutoff * (1f + setting.edgePercent) }, setting.perlinScale);
+        if(setting.isRandomSpotsOre)
+            MapFilter.RandomSpots(map, seed, setting.spotDensity);
+            
         ConvertMapToResources(map, resources, setting.tiles);
 
         return map;

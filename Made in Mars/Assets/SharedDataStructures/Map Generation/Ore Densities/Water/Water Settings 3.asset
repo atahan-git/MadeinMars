@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2737279d0e9680448a53446214736a7, type: 3}
-  m_Name: Copper Ore Settings
+  m_Name: Water Settings 3
   m_EditorClassIdentifier: 
-  oreItem: {fileID: 11400000, guid: f2f9a52fb41b340438be50866c4f4b34, type: 2}
+  oreItem: {fileID: 11400000, guid: 0fab914f276d4cb4cbd9994daf746f4c, type: 2}
   tiles:
-  - {fileID: 11400000, guid: 28b2aa1950df03440bfc3b3fd8a749f1, type: 2}
-  - {fileID: 11400000, guid: 32b9409624d899646bb95fc008f92106, type: 2}
+  - {fileID: 11400000, guid: a3df57feaadff5e4488ea9f4cd75510d, type: 2}
+  isPerlinOre: 0
   cutoff: 0.781
-  perlinScale: 0.022
+  perlinScale: 0.024
   edgePercent: 0.042
+  isRandomSpotsOre: 1
+  spotDensity: 25

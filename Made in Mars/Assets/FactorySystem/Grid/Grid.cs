@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Holds the game's grid data These grids are more lightweight than the actual tiles underneath. The graphics are controlled by the build in "Grid"
@@ -27,7 +28,7 @@ public class Grid
 
 		DataSaver.saveEvent += SaveTiles;
 		GameMaster.CallWhenLoadedEarly(GameLoadingComplete);
-		GameMaster.CallWhenNewPlanet(GenerateTiles);
+		GameMaster.CallWhenNewPlanetEarly(GenerateTiles);
 	}
 	
 	public void UnRegisterEvents () {
@@ -84,7 +85,7 @@ public class Grid
 	public void LoadTiles() {
 		mapGen.Clear();
 		var currentPlanet = DataSaver.s.GetSave().currentPlanet;
-		bool loadDataExists = currentPlanet.tileData != null;
+		bool loadDataExists = currentPlanet != null && currentPlanet.tileData != null;
 		if (loadDataExists) {
 			var previousPlanetExists = currentPlanet.planetData != null && currentPlanet.tileData != null && currentPlanet.tileData.Length > 0;
 			if (previousPlanetExists) {
@@ -116,19 +117,86 @@ public class Grid
 				}
 
 				Debug.Log("Map successfully loaded");
-			} else {
+			} /*else {
 				GenerateTiles();
-			}
+			}*/
 		} 
 	}
+	
+	public Planet MakeRandomPlanet() {
+		int seed = Random.Range(0, 1000);
+		var myPlanet = new Planet(seed);
+        
+		Random.InitState(seed);
+        
+		SetPlanetOres(myPlanet);
+
+		var planetType = Random.Range(0, DataHolder.s.allPlanetSchematics.Length);
+
+		myPlanet.schematic = DataHolder.s.allPlanetSchematics[planetType];
+		
+		SetPlanetCards(myPlanet);
+
+		return myPlanet;
+	}
+
+	private static void SetPlanetCards(Planet myPlanet) {
+		HashSet<string> existingCanOnlyHaveOneCards = new HashSet<string>();
+
+		var activeCards = ShipDataMaster.s.GetActiveCards().Cast<ShipCard>();
+		foreach (var card in activeCards) {
+			if (card.canOnlyHaveOne) {
+				existingCanOnlyHaveOneCards.Add(card.uniqueName);
+			}
+		}
+
+		var cardCount = Random.Range(1, 3);
+		myPlanet.myPresentCardNames = new string[cardCount];
+
+		for (int i = 0; i < cardCount; i++) {
+			ShipCard randomCard;
+			do {
+				randomCard = DataHolder.s.allShipCards[Random.Range(0, DataHolder.s.allShipCards.Length)];
+			} while (!randomCard.isSpawnableOnPlanet ||existingCanOnlyHaveOneCards.Contains(randomCard.uniqueName));
+
+			if (randomCard.canOnlyHaveOne) {
+				existingCanOnlyHaveOneCards.Add(randomCard.uniqueName);
+			}
+
+			myPlanet.myPresentCardNames[i] = randomCard.uniqueName;
+		}
+	}
+
+	private static void SetPlanetOres(Planet myPlanet) {
+		var oreCount = Random.Range(2, DataHolder.s.allOreDensities.Length);
+
+		var ores = new List<OreDensityLevelsHolder>(DataHolder.s.allOreDensities);
+
+		myPlanet.oreNames = new string[oreCount];
+		myPlanet.oreDensities = new int[oreCount];
+		for (int i = 0; i < oreCount; i++) {
+			int index = Random.Range(0, ores.Count);
+
+			var ore = ores[index];
+			var myDensity = Random.Range(0, ore.oreLevels.Length);
+
+			myPlanet.oreNames[i] = ore.GetUniqueName();
+			myPlanet.oreDensities[i] = myDensity;
+
+			ores.RemoveAt(index);
+		}
+	}
+
 
 	public DataLogger _logger;
 	public void GenerateTiles () {
 		var time = 0f;
 		time = Time.realtimeSinceStartup;
-
-		var planet = new Planet(DataSaver.s.GetSave().currentPlanet.planetData);
+		
+		var planet = MakeRandomPlanet();
+		DataSaver.s.GetSave().currentPlanet.planetData = new DataSaver.PlanetData(planet.planetGenerationInt, planet.schematic.uniqueName, planet.oreDensities, planet.oreNames, planet.myPresentCardNames);
 		scheme = planet.schematic;
+		
 		mapGen.Clear();
 		TileSet[,] materials;
 		int[,] height;
@@ -144,8 +212,11 @@ public class Grid
 		int[,] oreType = new int[mapSize,mapSize];
 		int[,] oreAmount = new int[mapSize, mapSize];
 		int[][,] oreAmountsPrepass = new int[oreSettings.Count][,];
+		int[] oreIds = new int[oreSettings.Count];
 		for (int i = 0; i < oreSettings.Count; i++) {
 			oreAmountsPrepass[i] = mapGen.GenerateResources(oreSettings[i]);
+			DataHolder.s.UniqueNameToOreId(oreSettings[i].oreUniqueName, out int oreId);
+			oreIds[i] = oreId;
 		}
 
 		myTiles = new TileData[mapSize, mapSize];
@@ -154,7 +225,7 @@ public class Grid
 			for (int y = 0; y < materials.GetLength(1); y++) {
 				for (int i = 0; i < oreAmountsPrepass.Length; i++) {
 					if (oreAmountsPrepass[i][x, y] > 0) {
-						oreType[x, y] = i+1;
+						oreType[x, y] = oreIds[i];
 						oreAmount[x, y] = oreAmountsPrepass[i][x, y] * 10000;
 						break;
 					}
@@ -169,7 +240,8 @@ public class Grid
 			}
 		}
 		
-		_logger.mapGenerationTime.Add(Time.realtimeSinceStartup - time);
+		if(_logger)
+			_logger.mapGenerationTime.Add(Time.realtimeSinceStartup - time);
 	}
 
 	public void SaveTiles () {
@@ -191,11 +263,14 @@ public class Planet {
 	public PlanetSchematic schematic;
 	public int[] oreDensities =new int[0];
 	public string[] oreNames = new string[0];
+	public string[] myPresentCardNames = new string[0];
 
 	public Planet(DataSaver.PlanetData data) {
+		planetGenerationInt = data.planetId;
 		schematic = DataHolder.s.GetPlanetSchematic(data.planetSchematicUniqueName);
 		oreDensities = data.oreDensities;
 		oreNames = data.oreUniqueNames;
+		myPresentCardNames = data.shipCardUniqueNames;
 	}
 
 	public Planet(int planetGenerationInt) {

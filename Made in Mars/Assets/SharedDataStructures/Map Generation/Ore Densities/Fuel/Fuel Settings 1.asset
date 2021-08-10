@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2737279d0e9680448a53446214736a7, type: 3}
-  m_Name: Concrete Settings
+  m_Name: Fuel Settings 1
   m_EditorClassIdentifier: 
-  oreItem: {fileID: 11400000, guid: b212c2a40238ba14e9f1a4b65a7fd9ef, type: 2}
+  oreItem: {fileID: 11400000, guid: b44cbee80e9933449ae5eee97bca71d0, type: 2}
   tiles:
-  - {fileID: 11400000, guid: 5896e9dc73de2d6459f7db11d8fd99d0, type: 2}
-  - {fileID: 11400000, guid: d6db4e0cd6182c1469c4d1f6ceebff7e, type: 2}
-  cutoff: 0.814
-  perlinScale: 0.107
+  - {fileID: 11400000, guid: d97f66229bef48443b41413d99991918, type: 2}
+  isPerlinOre: 0
+  cutoff: 0.781
+  perlinScale: 0.024
   edgePercent: 0.042
+  isRandomSpotsOre: 1
+  spotDensity: 2

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(MiniGUI_Card))]
 public class MiniGUI_CardDragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+
+	public bool canDrag = true;
+	
 	public bool dragOnSurfaces = true;
 
 	private Dictionary<int, GameObject> m_DraggingIcons = new Dictionary<int, GameObject>();
@@ -14,6 +17,9 @@ public class MiniGUI_CardDragMe : MonoBehaviour, IBeginDragHandler, IDragHandler
 	public int imageWidth = 50;
 
 	public void OnBeginDrag(PointerEventData eventData) {
+		if(!canDrag)
+			return;
+
 		var canvas = FindInParents<Canvas>(gameObject);
 		if (canvas == null)
 			return;
@@ -48,11 +54,15 @@ public class MiniGUI_CardDragMe : MonoBehaviour, IBeginDragHandler, IDragHandler
 	}
 
 	public void OnDrag(PointerEventData eventData) {
+		if(!canDrag)
+			return;
 		if (m_DraggingIcons[eventData.pointerId] != null)
 			SetDraggedPosition(eventData);
 	}
 
 	private void SetDraggedPosition(PointerEventData eventData) {
+		if(!canDrag)
+			return;
 		if (dragOnSurfaces && eventData.pointerEnter != null && eventData.pointerEnter.transform as RectTransform != null)
 			m_DraggingPlanes[eventData.pointerId] = eventData.pointerEnter.transform as RectTransform;
 
@@ -65,6 +75,8 @@ public class MiniGUI_CardDragMe : MonoBehaviour, IBeginDragHandler, IDragHandler
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
+		if(!canDrag)
+			return;
 		if (m_DraggingIcons[eventData.pointerId] != null)
 			Destroy(m_DraggingIcons[eventData.pointerId]);
 

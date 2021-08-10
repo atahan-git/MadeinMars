@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Press
   m_EditorClassIdentifier: 
   uniqueName: bPress
+  name: Press
+  description: This is a new Item
   shape:
     column:
     - row: 00000000000000
@@ -23,13 +25,16 @@ MonoBehaviour:
     - row: 00000000000000
     - row: 00000000000000
   myType: 5
-  BuildingAbility: 0000000000
+  myTier: 0
   energyUse: 0
   gfxType: 1
   gfxSprite: {fileID: 21300000, guid: 14de4c564d0d5f34491ac1fcfbe4a41b, type: 3}
-  gfxShadowSprite: {fileID: 0}
-  isAnimatedShadow: 1
   gfxSpriteAnimation: {fileID: 11400000, guid: fc308f040fef06c4f9633664c5058b91, type: 2}
+  copySpriteAnimationToShadow: 1
   gfxPrefab: {fileID: 0}
+  gfxShadowSprite: {fileID: 0}
+  gfxShadowAnimation: {fileID: 0}
   spriteOffset: {x: 0, y: 1}
-  playerBuildable: 1
+  playerBuildBarApplicable: 1
+  makesSpaceLanding: 0
+  spaceLandingXDisp: 0

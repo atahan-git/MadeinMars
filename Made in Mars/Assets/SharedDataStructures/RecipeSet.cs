@@ -77,18 +77,21 @@ public class RecipeSet : ScriptableObject {
     
     public CraftingNode AddCraftingNode(Vector3 pos) {
         var craftNode = new CraftingNode(GetNextId(), recipeSetUniqueName);
+        craftNode.pos = pos;
         myCraftingNodes.Add(craftNode);
         return craftNode;
     }
 
     public ResearchNode AddResearchNode(Vector3 pos) {
         var researchNode = new ResearchNode(GetNextId(), recipeSetUniqueName);
+        researchNode.pos = pos;
         myResearchNodes.Add(researchNode);
         return researchNode;
     }
 
     public ItemNode AddItemNode(Vector3 pos, Item item) {
         var itemNode = new ItemNode(GetNextId(), recipeSetUniqueName, item);
+        itemNode.pos = pos;
         myItemNodes.Add(itemNode);
         return itemNode;
     }
@@ -211,7 +214,13 @@ public class RecipeSet : ScriptableObject {
         nodeMegaList.AddRange(myCraftingNodes);
         nodeMegaList.AddRange(myItemNodes);
         nodeMegaList.AddRange(myResearchNodes);
-        var connectionCount = 0;
+        var removedConnectionsCount = 0;
+
+
+        HashSet<int> allExistingIds = new HashSet<int>();
+        foreach (var node in nodeMegaList) {
+            allExistingIds.Add(node.id);
+        }
 
         foreach (var node in nodeMegaList) {
             node.recipeSetName = recipeSetUniqueName;
@@ -220,12 +229,16 @@ public class RecipeSet : ScriptableObject {
                 for(int i = adapterGroup.connections.Count-1; i >= 0; i--) {
                     var connection = adapterGroup.connections[i];
                     connection.recipeSetName = recipeSetUniqueName;
+                    if (!allExistingIds.Contains(connection.nodeId)) {
+                        adapterGroup.connections.RemoveAt(i);
+                        removedConnectionsCount++;
+                    }
                 }
             }
         }
         
         
-        Debug.Log($"Fixed {count} nodes and removed {connectionCount} connections");
+        Debug.Log($"Fixed {count} nodes and removed {removedConnectionsCount} connections");
     }
 }
 
@@ -332,7 +345,7 @@ public class CraftingNode : Node {
 
     // Make sure to also go edit DataHolder's index converted when you add things here!
     public enum cTypes {
-        Miner, Furnace, ProcessorSingle, ProcessorDouble, Press, Coiler, Cutter, Lab, Building, 
+        Miner, Furnace, AssemblerSingle, AssemblerDouble, Press, Coiler, Cutter, Lab, Building, Processor
     }
 
     public cTypes CraftingType;

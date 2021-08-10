@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Assembler 1
   m_EditorClassIdentifier: 
   uniqueName: bAssembler1
+  name: Assembler
+  description: This is a new Item
   shape:
     column:
     - row: 00000000000000
@@ -23,13 +25,16 @@ MonoBehaviour:
     - row: 00000000000000
     - row: 00000000000000
   myType: 3
-  BuildingAbility: 0000000000
+  myTier: 0
   energyUse: 0
   gfxType: 1
   gfxSprite: {fileID: 21300000, guid: 11d71a5b6fe920947b13e48e1f87e464, type: 3}
-  gfxShadowSprite: {fileID: 0}
-  isAnimatedShadow: 1
   gfxSpriteAnimation: {fileID: 11400000, guid: 88cbcc823830deb47b3f7f3b5b1dd0f0, type: 2}
+  copySpriteAnimationToShadow: 1
   gfxPrefab: {fileID: 0}
+  gfxShadowSprite: {fileID: 0}
+  gfxShadowAnimation: {fileID: 0}
   spriteOffset: {x: 0, y: 1}
-  playerBuildable: 1
+  playerBuildBarApplicable: 1
+  makesSpaceLanding: 0
+  spaceLandingXDisp: 0

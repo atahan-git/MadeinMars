@@ -44,7 +44,7 @@ public class AutoSetSpriteGraphics : MonoBehaviour {
     }
 
     void _Landing() {
-        myRend.DoSpaceLanding(LiftOff);
+        myRend.DoSpaceLanding(LiftOff, myData.spaceLandingXDisp/3f, myData.gfxSpriteAnimation);
     }
     
     void LiftOff() {
@@ -52,7 +52,7 @@ public class AutoSetSpriteGraphics : MonoBehaviour {
     }
 
     void _LiftOff() {
-        myRend.DoSpaceLiftoff(Landing);
+        myRend.DoSpaceLiftoff(Landing, myData.spaceLandingXDisp/3f, myData.gfxSpriteAnimation);
     }
 
 }

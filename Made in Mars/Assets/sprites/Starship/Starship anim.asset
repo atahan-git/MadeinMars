@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4afd542f70fd2a469402a72086f39f3, type: 3}
+  m_Name: Starship anim
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 01b157884f9e44b449c326621867235f, type: 3}
+  - {fileID: 21300000, guid: a5bc1c5f4ed2171438ae6f8ca275feb3, type: 3}
+  - {fileID: 21300000, guid: 311cefd92d970d947b5e3b0b63ea546f, type: 3}
+  - {fileID: 21300000, guid: e1e3611939105ce45af71a96d2783eaa, type: 3}
+  - {fileID: 21300000, guid: 47161bf7ca846bb45b46e9de5eef5997, type: 3}
+  - {fileID: 21300000, guid: d39951a759d080a4b9a97422510a789f, type: 3}
+  - {fileID: 21300000, guid: 2cde8fce832dfb046a56467e8d5c2da8, type: 3}
+  - {fileID: 21300000, guid: ead56d60da12d39419eb565006e8dcb6, type: 3}
+  - {fileID: 21300000, guid: 9db96f55dacc8f845b15327d57b97d7c, type: 3}
+  - {fileID: 21300000, guid: 9f7d146a9fea1f148be347fc600d258c, type: 3}
+  - {fileID: 21300000, guid: ef4b07cc38f04dd4abdb7926bd7f3e28, type: 3}
+  - {fileID: 21300000, guid: 8edc39e11f8834d41aa7fdda888e2336, type: 3}
+  - {fileID: 21300000, guid: de5f2649577f15141b5908d74e884c36, type: 3}
+  - {fileID: 21300000, guid: 28523ce8c94ddfd489dbe19162831ef8, type: 3}
+  - {fileID: 21300000, guid: 04872de2c9648084ca884e0a366a631f, type: 3}
+  - {fileID: 21300000, guid: 6bcccc3f711a4f449acb415858a1b7f5, type: 3}
+  - {fileID: 21300000, guid: 82402fa0f7ba2874dbb64562abb8f1c5, type: 3}
+  - {fileID: 21300000, guid: e122c9cc9f44d9e428965ec5d43cdde5, type: 3}
+  - {fileID: 21300000, guid: 5d1887e45767bd5488049108fdf2b1ca, type: 3}
+  - {fileID: 21300000, guid: 0e1a940ff0c18274a8379f1a011d8d7a, type: 3}
+  - {fileID: 21300000, guid: f91a16e9e10f95d45bedf3bc091075b9, type: 3}
+  spritePerSecond: 10
+  stopSprite: {fileID: 21300000, guid: 01b157884f9e44b449c326621867235f, type: 3}

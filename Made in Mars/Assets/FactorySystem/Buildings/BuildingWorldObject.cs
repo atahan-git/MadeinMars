@@ -63,12 +63,16 @@ public class BuildingWorldObject : MonoBehaviour
 		myInventory = myBuilding.inv;
 		isInventorySetup = true;
 		buildingInventoryUpdatedCallback?.Invoke();
-		StopAnimations();
+		/*if (myBuilding.buildingData.myType != BuildingData.ItemType.ShipCard) {
+			StopAnimations();
+		}else{
+			ContinueAnimations();	
+		}*/
 
-		if (_building.buildingData.makesSpaceLanding && !isSpaceLandingTriggered) {
+		/*if (_building.buildingData.makesSpaceLanding && !isSpaceLandingTriggered) {
 			isSpaceLandingTriggered = true;
-			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null, _building.buildingData.spaceLandingXDisp);
-		}
+			GetComponentInChildren<SpriteGraphicsController>().DoSpaceLanding(null, _building.buildingData.spaceLandingXDisp, _building.buildingData.gfxSpriteAnimation);
+		}*/
 	}
 
 	public GameObject cardVisualPrefab;
@@ -86,11 +90,8 @@ public class BuildingWorldObject : MonoBehaviour
 			myRend = GetComponentInChildren<SpriteGraphicsController>();
 		GenericUpdateSelf(myConstruction.locations, _construction.center);
 		
-
+		
 		if (myConstruction.myData.myType == BuildingData.ItemType.ShipCard) {
-			if (card != null) {
-				Destroy(card);
-			}
 			card = Instantiate(cardVisualPrefab, myRend.transform.parent);
 			card.transform.position = myRend.transform.position + new Vector3(0.808f, 1.219f, 0);
 			card.transform.rotation = myRend.transform.rotation;
@@ -108,11 +109,11 @@ public class BuildingWorldObject : MonoBehaviour
 		myInventory = myConstruction.constructionInventory;
 		isInventorySetup = true;
 		buildingInventoryUpdatedCallback?.Invoke();
-		if (myConstruction.myData.myType != BuildingData.ItemType.ShipCard) {
+		/*if (myConstruction.myData.myType != BuildingData.ItemType.ShipCard) {
 			StopAnimations();
 		}else{
 			ContinueAnimations();	
-		}
+		}*/
 	}
 	
 	void GenericUpdateSelf(List<Position> _locations, Position _location) {
@@ -130,8 +131,12 @@ public class BuildingWorldObject : MonoBehaviour
 		height = myData.shape.height;
 		Vector3 centerOffset = new Vector3(0.5f, myData.shape.maxHeightFromCenter - 1, 0);
 
-		myRend.transform.localPosition = myData.spriteOffset.vector3() - centerOffset;
-
+		transform.position = _location.Vector3(Position.Type.building) + centerOffset;
+		transform.position += myData.spriteOffset.vector3() - centerOffset;
+		
+		if (card != null) {
+			Destroy(card);
+		}
 		switch (myData.gfxType) {
 			case BuildingData.BuildingGfxType.SpriteBased:
 				myRend.SetGraphics(myData.gfxSprite, myData.gfxShadowSprite != null ? myData.gfxShadowSprite : myData.gfxSprite);
@@ -148,9 +153,8 @@ public class BuildingWorldObject : MonoBehaviour
 				myRend.SetGraphics(myData.gfxPrefab);
 				break;
 		}
-		StopAnimationsForced(true);
+		//StopAnimationsForced(true);
 
-		transform.position = _location.Vector3(Position.Type.building) + centerOffset;
 	}
 	
 	void TileUpdated() {

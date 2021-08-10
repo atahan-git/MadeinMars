@@ -39,14 +39,7 @@ namespace Tests {
 
 			Assert.IsNotNull(ship);
 		}
-
-		[Test]
-		public void TestSpaceshipHasGridInventory() {
-			var ship = MakeSpaceship();
-
-			Assert.IsNotNull(ship.inv);
-			Assert.IsTrue(ship.inv.isGrid);
-		}
+		
 	}
 }
  

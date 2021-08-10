@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 
 /// <summary>
@@ -25,6 +26,7 @@ public class GameMaster : MonoBehaviour {
 		}
 		s = this;
 		GameLoader.isGameLoadingDone = false;
+		GameQuitter.didQuit = false;
 	}
 
 
@@ -45,15 +47,16 @@ public class GameMaster : MonoBehaviour {
 	public void OnDestroy() {
 		s = null;
 	}
-
+	
 
 	public void NewLocationInPlanet() {
 		ClearPlanetSession();
-		
+
 		var isGameLoadingSuccessful = GameLoader.isGameLoadingSuccessful;
 		loadCompleteEventEarly?.Invoke(isGameLoadingSuccessful);
 		loadCompleteEvent?.Invoke(isGameLoadingSuccessful);
-		newPlanetEvent?.Invoke();;
+		newPlanetEarlyEvent?.Invoke();
+		newPlanetEvent?.Invoke();
 		var currentPlanet = DataSaver.s.GetSave().currentPlanet.newPlanet = false;
 		
 		startFactorySimulationEvent?.Invoke();
@@ -76,20 +79,33 @@ public class GameMaster : MonoBehaviour {
 		var isGameLoadingSuccessful = GameLoader.isGameLoadingSuccessful;
 		var currentPlanet = DataSaver.s.GetSave().currentPlanet;
 		if (currentPlanet.newPlanet) {
+			newPlanetEarlyEvent?.Invoke();
 			newPlanetEvent?.Invoke();
 			currentPlanet.newPlanet = false;
 		}
 		startFactorySimulationEvent?.Invoke();
 	}
 	
-
-	private void OnApplicationPause () {
+	
+	private void OnDisable() {
 		GameQuitter.QuitGame();
 	}
 
 
+	private void OnApplicationPause () {
+		if(loadingDone)
+			GameQuitter.QuitGame();
+	}
+
+	
+
 	private void OnApplicationQuit () {
 		GameQuitter.QuitGame();
+	}
+
+
+	public void TriggerPlayerInventoryChangedEvent() {
+		playerInventoryChangedEvent?.Invoke();
 	}
 
 	public delegate void LoadingCompleteDelegate(bool isLoadSuccess);
@@ -98,6 +114,8 @@ public class GameMaster : MonoBehaviour {
 	public static event LoadingCompleteDelegate loadCompleteEvent;
 	public static event GenericCallback startFactorySimulationEvent;
 	public static event GenericCallback stopFactorySimulationEvent;
+	
+	public static event GenericCallback newPlanetEarlyEvent;
 	public static event GenericCallback newPlanetEvent;
 	public static event GenericCallback clearPlanetEvent;
 	public static event GenericCallback playerInventoryChangedEvent;
@@ -137,6 +155,10 @@ public class GameMaster : MonoBehaviour {
 		newPlanetEvent += callback;
 	}
 	
+	public static void CallWhenNewPlanetEarly(GenericCallback callback) {
+		newPlanetEarlyEvent += callback;
+	}
+	
 	public static void CallWhenClearPlanet(GenericCallback callback) {
 		clearPlanetEvent += callback;
 	}
@@ -169,5 +191,6 @@ public class GameMaster : MonoBehaviour {
 		stopFactorySimulationEvent -= callback;
 		clearPlanetEvent -= callback;
 		playerInventoryChangedEvent -= callback;
+		newPlanetEarlyEvent -= callback;
 	}
 }

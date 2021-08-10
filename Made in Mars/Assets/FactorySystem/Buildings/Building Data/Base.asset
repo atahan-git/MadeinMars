@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Base
   m_EditorClassIdentifier: 
   uniqueName: bBase
+  name: Base
+  description: This is a new Item
   shape:
     column:
     - row: 00000000000000
@@ -23,11 +25,17 @@ MonoBehaviour:
     - row: 00000101010000
     - row: 00000000000000
   myType: 10
-  BuildingAbility: 0000000000
+  myTier: 0
   energyUse: 0
   gfxType: 0
   gfxSprite: {fileID: -8414089499890134879, guid: 303bb25d1c5eb4742be5b86894aba532,
     type: 3}
   gfxSpriteAnimation: {fileID: 0}
+  copySpriteAnimationToShadow: 1
   gfxPrefab: {fileID: 0}
+  gfxShadowSprite: {fileID: 0}
+  gfxShadowAnimation: {fileID: 0}
   spriteOffset: {x: 0.5, y: 1}
+  playerBuildBarApplicable: 1
+  makesSpaceLanding: 0
+  spaceLandingXDisp: 0

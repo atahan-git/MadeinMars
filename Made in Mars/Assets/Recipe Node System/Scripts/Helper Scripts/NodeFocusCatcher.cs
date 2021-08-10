@@ -15,6 +15,8 @@ public class NodeFocusCatcher : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void OnPointerClick(PointerEventData data) {
-		myMaster.FocusOnNode(gameObject);
+		if (!data.dragging) {
+			myMaster.FocusOnNode(gameObject);
+		}
 	}
 }

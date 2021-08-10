@@ -865,7 +865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myGrid:
     mapGen: {fileID: 8083725270844303121}
-    mapSize: 200
+    mapSize: 100
     _logger: {fileID: 0}
 --- !u!114 &8083725270844303121
 MonoBehaviour:
@@ -887,9 +887,9 @@ MonoBehaviour:
   layersToSwell: 01010101
   layersToSwellAgain: 00000000
   resources: {fileID: 8083725269279076712}
-  mapSize: {x: 200, y: 200}
+  mapSize: {x: 100, y: 100}
   editorMapSchematic: {fileID: 11400000, guid: 7ca14eb843d739a408da330b5f1634dd, type: 2}
-  debugOreSpawnSettings: {fileID: 11400000, guid: eb647e993e4883b42a27e878e38fe18c,
+  debugOreSpawnSettings: {fileID: 11400000, guid: 02febdc8025df0f458a05fa03d0a0725,
     type: 2}
   heightColors:
   - {r: 0.514151, g: 1, b: 0.9931531, a: 1}

@@ -122,7 +122,6 @@ public class FactoryMaster {
                     case DroneTask.DroneTaskType.build:
                     case DroneTask.DroneTaskType.destroy:
                         curTaskPos = drone.currentTask.construction.center;
-                        curTaskMaterials = drone.currentTask.materials;
                         break;
 
                     case DroneTask.DroneTaskType.transportItem:
@@ -134,7 +133,7 @@ public class FactoryMaster {
             currentPlanetSave.droneData.Add(new DataSaver.DroneSaveData(
                 drone.curPosition, drone.targetPosition,
                 drone.isTravelling, drone.isBusy, drone.isLaser,
-                curTaskPos, curTaskMaterials,
+                curTaskPos, 
                 drone.myInventory.inventoryItemSlots,
                 Drone.ConvertDroneStateAndInt(drone.myState)
             ));
@@ -327,7 +326,7 @@ public class Drone  {
 /// Used for construction and deconstruction of items.
 /// </summary>
 [Serializable]
-public class Construction : SimGridObject, IAssignableToDrone {
+public class Construction : SimGridObject, IAssignableToDrone, IInventorySimObject {
     public List<Position> locations = new List<Position>();
     public Position center;
     public int direction;
@@ -356,9 +355,47 @@ public class Construction : SimGridObject, IAssignableToDrone {
             locations.Clear();
             locations.Add(center);
         }
+
+        // We dont want shipcards to be buildable by drones.
+        if (myData.myType == BuildingData.ItemType.ShipCard) {
+            isAssignedToDrone = true;
+        }
         isConstruction = _isConstruction;
         constructionInventory = InventoryFactory.CreateConstructionInventory(materials);
         afterConstructionInventory = _afterConstructionInventory;
+    }
+    
+    
+    public bool TryAndInsertItem(Item item) {
+        var result = constructionInventory.TryAndAddItem(item, 1, false);
+
+        var consInvSlots = constructionInventory.inventoryItemSlots;
+        bool finishedGathering = true;
+        for (int i = 0; i < consInvSlots.Count; i++) {
+            if (consInvSlots[i].count < consInvSlots[i].maxCount) {
+                finishedGathering = false;
+                break;
+            }
+        }
+
+        if (finishedGathering) {
+            FactoryBuilder.CompleteConstruction(this);
+        }
+
+        return result;
+    }
+
+
+    public bool CheckIfCanInsertItem(Item item) {
+        return constructionInventory.CheckIfCanAddItem(item, 1, false);
+    }
+
+    public bool TryAndTakeItem(out Item item) {
+        return constructionInventory.TryAndTakeNextItem(out item, true);
+    }
+
+    public bool CheckIfCanTakeItem(out Item item) {
+        return constructionInventory.CheckIfCanTakeNextItem(out item, true);
     }
 }
 
@@ -369,7 +406,7 @@ public class Construction : SimGridObject, IAssignableToDrone {
 /// (2, null), (3, ore), (1, null), (1, ore) >> ##OOO#O
 /// </summary>
 [System.Serializable]
-public class Belt : SimGridObject {
+public class Belt : SimGridObject, IInventorySimObject {
     public Position startPos;
     public Position endPos;
     public int direction;
@@ -385,7 +422,7 @@ public class Belt : SimGridObject {
     /// automatically replaces it with empty and does reshaping as needed
     /// </summary>
     /// <returns>Returns an item (can be empty item)</returns>
-    public bool TryRemoveLastItemFromBelt(out Item item) {
+    public bool TryAndTakeItem(out Item item) {
         var lastIndex = items.Count - 1;
         item = items[lastIndex].item;
         
@@ -432,7 +469,7 @@ public class Belt : SimGridObject {
     /// </summary>
     /// <param name="item"></param>
     /// <returns></returns>
-    public bool CheckTakeLastItemFromBelt(out Item item) {
+    public bool CheckIfCanTakeItem(out Item item) {
         var lastIndex = items.Count - 1;
         item = items[lastIndex].item;
         return !item.isEmpty();
@@ -443,7 +480,7 @@ public class Belt : SimGridObject {
     /// Automatically merges slots if the next slot matches with the item
     /// </summary>
     /// <returns>Returns true only if there is empty slot at the start of the belt</returns>
-    public bool TryInsertItemToBelt(Item itemToInsert) {
+    public bool TryAndInsertItem(Item itemToInsert) {
         if (itemToInsert.isEmpty()) {
             return true;
         }
@@ -473,7 +510,7 @@ public class Belt : SimGridObject {
     /// Does NOT actually inserts it!
     /// </summary>
     /// <returns>Returns true only if there is empty slot at the start of the belt</returns>
-    public bool CheckInsertItemToBelt(Item itemToInsert) {
+    public bool CheckIfCanInsertItem(Item itemToInsert) {
         if (itemToInsert.isEmpty()) {
             return true;
         }
@@ -515,6 +552,8 @@ public class Belt : SimGridObject {
     public int CardinalDirection() {
         return this.direction;
     }
+
+   
 }
 
 
@@ -581,23 +620,13 @@ public class Connector : SimGridObject {
 
     [Serializable]
     public class Connection {
-        public bool isBeltConnection;
-        public Belt belt;
-        public Building building;
+        public IInventorySimObject myObj;
         public Position position;
         public int direction;
 
 
-        public Connection(Belt _belt, Position _position, int _direction) {
-            isBeltConnection = true;
-            belt = _belt;
-            position = _position;
-            direction = _direction;
-        }
-        
-        public Connection(Building _building, Position _position, int _direction) {
-            isBeltConnection = false;
-            building = _building;
+        public Connection(IInventorySimObject _obj, Position _position, int _direction) {
+            myObj = _obj;
             position = _position;
             direction = _direction;
         }
@@ -609,11 +638,7 @@ public class Connector : SimGridObject {
         /// <param name="item"></param>
         /// <returns></returns>
         public bool TryInsertItem(Item item) {
-            if (isBeltConnection) {
-                return belt.TryInsertItemToBelt(item);
-            }else {
-                return building.TryAndInsertItemToBuilding(item);
-            }
+            return myObj.TryAndInsertItem(item);
         }
         /// <summary>
         /// Try to get the next item without removing it
@@ -621,11 +646,7 @@ public class Connector : SimGridObject {
         /// <param name="item"></param>
         /// <returns></returns>
         public bool CheckInsertItem(Item item) {
-            if (isBeltConnection) {
-                return belt.CheckInsertItemToBelt(item);
-            } else {
-                return building.CheckIfCanInsertItemToBuilding(item);
-            }
+            return myObj.CheckIfCanInsertItem(item);
         }
 
         /// <summary>
@@ -634,11 +655,7 @@ public class Connector : SimGridObject {
         /// <param name="item"></param>
         /// <returns></returns>
         public bool TryTakeItem(out Item item) {
-            if (isBeltConnection) {
-                return belt.TryRemoveLastItemFromBelt(out item);
-            }else {
-                return building.TryAndTakeItemFromBuilding(out item);
-            }
+            return myObj.TryAndTakeItem(out item);
         }
 
         /// <summary>
@@ -647,46 +664,16 @@ public class Connector : SimGridObject {
         /// <param name="item"></param>
         /// <returns></returns>
         public bool CheckTakeItem(out Item item) {
-            if (isBeltConnection) {
-                return belt.CheckTakeLastItemFromBelt(out item);
-            }else {
-                return building.CheckIfCanTakeItem(out item);
-            }
+            return myObj.CheckIfCanTakeItem(out item);
         }
         
         
         public static bool operator ==(Connection a, Connection b) {
-            if (a.isBeltConnection) {
-                if (b.isBeltConnection) {
-                    return a.belt == b.belt;
-                } else {
-                    return false;
-                }
-                
-            } else {
-                if (!b.isBeltConnection) {
-                    return a.building == b.building;
-                } else {
-                    return false;
-                }
-            }
+            return a.myObj == b.myObj;
         }
 	
         public static bool operator !=(Connection a, Connection b) {
-            if (a.isBeltConnection) {
-                if (b.isBeltConnection) {
-                    return a.belt != b.belt;
-                } else {
-                    return true;
-                }
-                
-            } else {
-                if (!b.isBeltConnection) {
-                    return a.building != b.building;
-                } else {
-                    return true;
-                }
-            }
+            return a.myObj != b.myObj;
         }
        
     }
@@ -700,7 +687,7 @@ public class Connector : SimGridObject {
 
 
 [Serializable]
-public class Building : SimGridObject {
+public class Building : SimGridObject, IInventorySimObject {
     public bool isDestructable = true;
     public BuildingData buildingData;
 
@@ -724,16 +711,16 @@ public class Building : SimGridObject {
         }
     }
 
-    public bool TryAndInsertItemToBuilding(Item item) {
+    public bool TryAndInsertItem(Item item) {
         return inv.TryAndAddItem(item, 1, false);
     }
 
 
-    public bool CheckIfCanInsertItemToBuilding(Item item) {
+    public bool CheckIfCanInsertItem(Item item) {
         return inv.CheckIfCanAddItem(item, 1, false);
     }
 
-    public bool TryAndTakeItemFromBuilding(out Item item) {
+    public bool TryAndTakeItem(out Item item) {
         return inv.TryAndTakeNextItem(out item, true);
     }
 

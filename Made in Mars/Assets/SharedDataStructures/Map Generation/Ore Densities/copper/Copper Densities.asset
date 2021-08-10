@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Copper Densities
   m_EditorClassIdentifier: 
   oreLevels:
-  - {fileID: 11400000, guid: 5f762e3692cc6a24ba6a35780f241bba, type: 2}
-  - {fileID: 11400000, guid: 5f762e3692cc6a24ba6a35780f241bba, type: 2}
-  - {fileID: 11400000, guid: 5f762e3692cc6a24ba6a35780f241bba, type: 2}
+  - {fileID: 11400000, guid: ed53e76955195c646838e977338c0380, type: 2}
+  - {fileID: 11400000, guid: 5a553d231c49e2f4ba7af4a272863692, type: 2}
+  - {fileID: 11400000, guid: a6085bfc8ef480246b1a8ba158d4c4bb, type: 2}

@@ -48,8 +48,8 @@ public class NodePortGfx : MonoBehaviour {
             //pushDistance = Mathf.Max(pushDistance, 50f*localScale);
             Vector3[] knots = new[] {
                 startWorldPoint, 
-                startWorldPoint + (myAdapterGroup.isLeftAdapter ? Vector3.left : Vector3.right) *pushDistance, 
-                endWorldPoint + (!myAdapterGroup.isLeftAdapter ? Vector3.left : Vector3.right)*pushDistance,
+                startWorldPoint + (myAdapterGroup.isLeftAdapter ? Vector3.down : Vector3.up) *pushDistance, 
+                endWorldPoint + (!myAdapterGroup.isLeftAdapter ? Vector3.down : Vector3.up)*pushDistance,
                 endWorldPoint
             };
 
@@ -73,10 +73,12 @@ public class NodePortGfx : MonoBehaviour {
         }
     }
 
-    public NodePortGfx Setup(NodeGfx master, AdapterGroup adapterGroup,  AdapterGroup.AdapterConnection connection, int value) {
+    public bool isInteractable = true;
+    public NodePortGfx Setup(NodeGfx master, AdapterGroup adapterGroup,  AdapterGroup.AdapterConnection connection, int value, bool isInteractable) {
         myMaster = master;
         myAdapterGroup = adapterGroup;
         myConnection = connection;
+        this.isInteractable = isInteractable;
         
         myRend = GetComponentInChildren<UILineRenderer>();
         ConnectionInProgressShowObject.SetActive(false);
@@ -97,8 +99,14 @@ public class NodePortGfx : MonoBehaviour {
                 ValueRegion.type.port, 
                 adapterGroup.myType == AdapterGroup.AdapterType.counted, 
                 adapterGroup.isLeftAdapter ? "Ingredient" : "Result", 
-                null, this, value);
+                null, this, value, isInteractable);
         }
+
+        var buttons = GetComponentsInChildren<Button>();
+        for (int i = 0; i < buttons.Length; i++) {
+            buttons[i].interactable = isInteractable;
+        }
+        
 
         return this;
     }

@@ -20,6 +20,7 @@ public class DataSaver {
 		get { return Application.persistentDataPath + "/" + saveName; }
 	}
 	public delegate void SaveYourself ();
+	public static event SaveYourself earlySaveEvent;
 	public static event SaveYourself saveEvent;
 	
 	public SaveFile GetSave() {
@@ -27,6 +28,7 @@ public class DataSaver {
 	}
 
 	public void ClearSave() {
+		Debug.Log("Clearing Save");
 		mySave = new SaveFile();
 		OnNewSave();
 	}
@@ -36,7 +38,7 @@ public class DataSaver {
 		for (int i = 0; i < newSaveCards.Length; i++) {
 			var card = newSaveCards[i];
 			if (card != null) {
-				mySave.availableShipCards.Add(new ShipCardData(card));
+				mySave.activeShipCards.Add(new ShipCardData(card));
 			}
 		}
 
@@ -48,6 +50,7 @@ public class DataSaver {
 	public bool dontSave = false;
 	public void SaveGame () {
 		if (!dontSave) {
+			earlySaveEvent?.Invoke();
 			saveEvent?.Invoke();
 			Save();
 		}
@@ -101,6 +104,7 @@ public class DataSaver {
 	}
 
 	public void DeleteSave () {
+		Debug.Log("Deleting Save File at " + saveFilePathAndFileName);
 		File.Delete(saveFilePathAndFileName);
 		mySave = new SaveFile();
 		OnNewSave();
@@ -109,7 +113,9 @@ public class DataSaver {
 	[System.Serializable]
 	public class SaveFile {
 		public bool isRealSaveFile = false;
-		public LocalPlanetData currentPlanet;
+		public LocalPlanetData currentPlanet = new LocalPlanetData(new PlanetData());
+		
+		public string[] buildingBarData = new string[0];
 
 		public List<ShipCardData> activeShipCards = new List<ShipCardData>();
 		public List<ShipCardData> availableShipCards = new List<ShipCardData>();
@@ -126,7 +132,6 @@ public class DataSaver {
 		public List<ConnectorSaveData> connectorData = new List<ConnectorSaveData>();
 		public List<ConstructionSaveData> constructionData = new List<ConstructionSaveData>();
 		public List<DroneSaveData> droneData = new List<DroneSaveData>();
-		public string[] buildingBarData = new string[0];
 		public PlanetData planetData;
 		public TileData[,] tileData = new TileData[0,0];
 		public bool isSpaceshipLanded = false;
@@ -140,15 +145,20 @@ public class DataSaver {
 	
 	[Serializable]
 	public class PlanetData {
+		public int planetId = -1;
 		public string planetSchematicUniqueName;
 		public int[] oreDensities = new int[0];
 		public string[] oreUniqueNames = new string[0];
-
-		public PlanetData(string planetSchematicUniqueName, int[] oreDensities, string[] oreUniqueNames) {
+		public string[] shipCardUniqueNames = new string[0];
+		public PlanetData(int planetId, string planetSchematicUniqueName, int[] oreDensities, string[] oreUniqueNames, string[] shipCardUniqueNames) {
+			this.planetId = planetId;
 			this.planetSchematicUniqueName = planetSchematicUniqueName;
 			this.oreDensities = oreDensities;
 			this.oreUniqueNames = oreUniqueNames;
+			this.shipCardUniqueNames = shipCardUniqueNames;
 		}
+		
+		public PlanetData(){}
 	}
 
 	[System.Serializable]
@@ -266,7 +276,6 @@ public class DataSaver {
 		public bool isLaser;
 		
 		public Position currentTaskPosition;
-		public InventoryData[] currentTaskMaterials;
 		
 		public InventoryData[] myInv;
 
@@ -274,7 +283,7 @@ public class DataSaver {
 		
 		public DroneSaveData (Position _curPosition, Position _targePosition, 
 			bool _isTravelling, bool _isBusy, bool _isLaser,
-			Position _currentTaskPosition, List<InventoryItemSlot> _currentTaskMaterials,
+			Position _currentTaskPosition,
 			List<InventoryItemSlot> _myInv,
 			int _droneState) {
 
@@ -286,7 +295,6 @@ public class DataSaver {
 			isLaser = _isLaser;
 
 			currentTaskPosition = _currentTaskPosition;
-			currentTaskMaterials = InventoryData.ConvertToSaveData(_currentTaskMaterials);
 			
 			myInv = InventoryData.ConvertToSaveData(_myInv);
 

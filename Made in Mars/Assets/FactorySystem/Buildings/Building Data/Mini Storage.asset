@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30baec280fa5d0468bce2c5a6d2a647, type: 3}
+  m_Name: Mini Storage
+  m_EditorClassIdentifier: 
+  uniqueName: bminiStorage
+  name: Mini Storage
+  description: This is a new Item
+  shape:
+    column:
+    - row: 00000000000000
+    - row: 00000000000000
+    - row: 00000000000000
+    - row: 00000101000000
+    - row: 00000101000000
+    - row: 00000000000000
+    - row: 00000000000000
+  myType: 12
+  myTier: 1
+  energyUse: 0
+  gfxType: 0
+  gfxSprite: {fileID: 21300000, guid: 4528e205cfb88c140a3d83de2f7ff6e9, type: 3}
+  gfxSpriteAnimation: {fileID: 0}
+  copySpriteAnimationToShadow: 1
+  gfxPrefab: {fileID: 0}
+  gfxShadowSprite: {fileID: 0}
+  gfxShadowAnimation: {fileID: 0}
+  spriteOffset: {x: 0, y: 1}
+  playerBuildBarApplicable: 0
+  makesSpaceLanding: 0
+  spaceLandingXDisp: 0

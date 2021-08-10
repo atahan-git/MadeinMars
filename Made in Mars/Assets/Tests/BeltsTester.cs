@@ -80,14 +80,14 @@ namespace Tests {
             // Act
             var results = new bool[numberOfCases];
 
-            results[0] = belts[0].TryInsertItemToBelt(new Item().MakeDummyItem(1));
-            results[1] = belts[1].TryInsertItemToBelt(new Item().MakeDummyItem(1));
-            results[2] = belts[2].TryInsertItemToBelt(new Item().MakeDummyItem(1));
-            results[3] = belts[3].TryInsertItemToBelt(new Item().MakeDummyItem(2));
-            results[4] = belts[4].TryInsertItemToBelt(new Item().MakeDummyItem(1));
-            results[5] = belts[5].TryInsertItemToBelt(Item.GetEmpty());
-            results[6] = belts[6].TryInsertItemToBelt(new Item().MakeDummyItem(1));
-            results[7] = belts[7].TryInsertItemToBelt(new Item().MakeDummyItem(1));
+            results[0] = belts[0].TryAndInsertItem(new Item().MakeDummyItem(1));
+            results[1] = belts[1].TryAndInsertItem(new Item().MakeDummyItem(1));
+            results[2] = belts[2].TryAndInsertItem(new Item().MakeDummyItem(1));
+            results[3] = belts[3].TryAndInsertItem(new Item().MakeDummyItem(2));
+            results[4] = belts[4].TryAndInsertItem(new Item().MakeDummyItem(1));
+            results[5] = belts[5].TryAndInsertItem(Item.GetEmpty());
+            results[6] = belts[6].TryAndInsertItem(new Item().MakeDummyItem(1));
+            results[7] = belts[7].TryAndInsertItem(new Item().MakeDummyItem(1));
 
 
 
@@ -192,7 +192,7 @@ namespace Tests {
             var items = new Item[numberOfCases];
             var results = new bool[numberOfCases];
             for (int i = 0; i < numberOfCases; i++) {
-                results[i] = belts[i].TryRemoveLastItemFromBelt(out items[i]);
+                results[i] = belts[i].TryAndTakeItem(out items[i]);
             }
 
 
@@ -479,9 +479,9 @@ namespace Tests {
             for (int i = 0; i < 16; i++) {
                 // add items in chunks
                 if (i < 3 || (i > 7 && i < 10) || i > 15) {
-                    belt.TryInsertItemToBelt(dummy1);
+                    belt.TryAndInsertItem(dummy1);
                 } else if (i < 5) {
-                    belt.TryInsertItemToBelt(dummy2);
+                    belt.TryAndInsertItem(dummy2);
                 }
 
                 AssertBeltSlotCounts(belt);

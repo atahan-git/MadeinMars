@@ -80,13 +80,16 @@ public class NodeItemTreeMakerMaster : RecipeTreeViewer {
             return;
         
         
-        var position = new Vector3(data.position.x, data.position.y, 0);
+        Vector3 panelPosition = Vector3.zero;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle (NodeParent, data.position, data.pressEventCamera, out var localPointerPosition)) {
+            panelPosition = localPointerPosition;
+        }
         if (myItem.uniqueName == "CraftingProcess") {
-            var craftingNode = myRecipeSet.AddCraftingNode(position);
+            var craftingNode = myRecipeSet.AddCraftingNode(panelPosition);
         }else if(myItem.uniqueName == "Research") {
-            var researchNode = myRecipeSet.AddResearchNode(position);
+            var researchNode = myRecipeSet.AddResearchNode(panelPosition);
         } else {
-            var itemNode = myRecipeSet.AddItemNode(position, myItem);
+            var itemNode = myRecipeSet.AddItemNode(panelPosition, myItem);
         }
         
         ReDrawAllNodes();

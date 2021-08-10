@@ -5225,7 +5225,7 @@ GameObject:
   - component: {fileID: 3820341030842352253}
   - component: {fileID: 5843756978747590751}
   m_Layer: 0
-  m_Name: Drone
+  m_Name: Drone World Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5406,8 +5406,6 @@ MonoBehaviour:
   plusOneTimer: 0.5
   droneTargetLocation: {x: 100, y: 100, z: -5}
   droneTargetSmoothingLocation: {x: 100, y: 100, z: -5}
-  droneSpeed: 1
-  droneAcceleration: 0.8
   isInTargetLocation: 0
   droneTargetMarker: {fileID: 1783309412196368306}
   miningTimer: 0
@@ -5449,9 +5447,6 @@ MonoBehaviour:
     isBusy: 0
     currentTask:
       myType: 0
-      location:
-        x: 0
-        y: 0
       materials: []
       construction:
         locations: []
@@ -5461,38 +5456,36 @@ MonoBehaviour:
         direction: 0
         myData: {fileID: 0}
         constructionInventory:
-          myLocation:
-            x: 0
-            y: 0
-          myType: 4
-          inventory: []
+          inventoryItemSlots: []
           isCheatInventory: 0
+          isGrid: 0
+          columnCount: 10
         isConstruction: 0
-        isAssignedToDrone: 0
         afterConstructionInventory: []
     myInventory:
-      myLocation:
-        x: 0
-        y: 0
-      myType: 4
-      inventory: []
+      inventoryItemSlots: []
       isCheatInventory: 0
-    myState: 0
+      isGrid: 0
+      columnCount: 10
     targetStorage:
-      myLocation:
+      isDestructable: 0
+      buildingData: {fileID: 0}
+      myPositions: []
+      center:
         x: 0
         y: 0
-      myType: 4
-      inventory: []
-      isCheatInventory: 0
-    constructionInv:
-      myLocation:
-        x: 0
-        y: 0
-      myType: 4
-      inventory: []
-      isCheatInventory: 0
+      inv:
+        inventoryItemSlots: []
+        isCheatInventory: 0
+        isGrid: 0
+        columnCount: 10
+      craftController:
+        isActive: 0
+        isCrafting: 0
+        lastCheckId: 0
+        myCraftingProcesses: []
     idleCounter: 0
+    debugDroneState: []
   myAnim: {fileID: 0}
   isInventorySetup: 0
 --- !u!114 &5843756978747590751
@@ -5913,7 +5906,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4967513719800257639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -5953,7 +5946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6868438609302383035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6066,10 +6059,10 @@ RectTransform:
   m_Father: {fileID: 2279717368431786955}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 101, y: -50}
+  m_SizeDelta: {x: 202, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2771067046532485798
 MonoBehaviour:
@@ -6091,7 +6084,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 48, y: 48}
+  m_CellSize: {x: 100, y: 100}
   m_Spacing: {x: 2, y: 2}
   m_Constraint: 1
   m_ConstraintCount: 4

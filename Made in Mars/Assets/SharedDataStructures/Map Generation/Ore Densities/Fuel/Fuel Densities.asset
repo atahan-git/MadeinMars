@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e7cd359ae4006468d7fcab3e95c676, type: 3}
+  m_Name: Fuel Densities
+  m_EditorClassIdentifier: 
+  oreLevels:
+  - {fileID: 11400000, guid: de0f850534335c14f8632e1676ade165, type: 2}
+  - {fileID: 11400000, guid: 491e6cbfb3000f741b4f5eed6e6bd49c, type: 2}
+  - {fileID: 11400000, guid: 73f4bfd8992173b4bb013387148e9e87, type: 2}
