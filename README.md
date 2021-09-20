@@ -1,3 +1,7 @@
+# CANCELLED
+
+I will no longer be working on this project.
+
 # Made in Mars
 
 Welcome to the Made in Mars code repository! Here you can see the code of the game [Made in Mars](http://madeinmarsgame.com/) as it is being developed. Feel free to check it out! 
